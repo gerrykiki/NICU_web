@@ -1,12 +1,12 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Route } from 'react-router-dom';
 import './App.css';
 import Layoutframe from './Layout/Layout'
 
 function App() {
   return (
     < div >
-      <Layoutframe />
+      <Route path="/Main" component={Layoutframe} />
     </div >
   );
 }
