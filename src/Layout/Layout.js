@@ -5,6 +5,7 @@ import './Layout.css';
 import Sidermenu from './Sidermenu';
 import Bedview from '../Content/Bedview'
 import Caseview from '../Content/Caseview'
+import Historyview from '../Content/Historyview'
 import { Route} from 'react-router-dom';
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -71,11 +72,12 @@ class Layoutframe extends Component {
                         < div style={{ background: '#fff', minHeight: '1000px'}}>
                             <Route path="/Main/Bedview" component={Bedview} />
                             <Route path="/Main/Caseview" component={Caseview} />
+                            <Route path="/Main/Historyview" component={Historyview} />
                         </div >
                     </Content>
                     <Footer style={{ textAlign: 'center' }}>
                         SWPC MRT300 Create by NICU group
-        </Footer>
+                        </Footer>
                 </Layout>
             </Layout>
         );

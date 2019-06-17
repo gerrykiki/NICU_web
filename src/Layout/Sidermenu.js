@@ -16,6 +16,7 @@ class Sidermenu extends Component {
                 </Menu.Item>
                 <Menu.Item key="3">
                     <span className="nav-text">歷史病歷管理</span>
+                    <Link to="/Main/Historyview"></Link>
                 </Menu.Item>
                 <Menu.Item key="4">
                     <span className="nav-text">系統設定</span>
