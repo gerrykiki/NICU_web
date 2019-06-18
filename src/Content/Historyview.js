@@ -95,7 +95,7 @@ class Historyview extends Component {
                     </div>
                     <div style={{ background: '#484', width: 'auto' }}>
                         <InputGroup compact>
-                            <DatePicker placeholder="選擇轉出時間" />
+                            <DatePicker  placeholder="選擇轉出時間" />
                         </InputGroup>
                     </div>
                 </div>
