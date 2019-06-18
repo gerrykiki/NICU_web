@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Divider, Tag } from 'antd';
+import { Table, Divider, Tag, Breadcrumb ,Input, Select, DatePicker, Button} from 'antd';
 
 const columns = [
     {
@@ -72,12 +72,73 @@ const data = [
     },
 ];
 
+const InputGroup = Input.Group;
+const { Option } = Select;
 
 class Caseview extends Component {
+    Searchbar() {
+        return (
+            <div style={{ background: '#fff', height: '50px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div style={{ flexGrow: 2, display: 'flex', alignItems: 'center' }}>
+                    <div style={{ background: '#fff', width: 'auto' }}>
+                        個案姓名:
+                    </div>
+                    <div style={{ background: '#484', width: 'auto' }}>
+                        <Input placeholder="輸入個案姓名">
+                        </Input>
+                    </div>
+                </div>
+                <div style={{ flexGrow: 2, display: 'flex', alignItems: 'center' }}>
+                    <div style={{ background: '#fff', width: 'auto' }}>
+                        轉出時間:
+                    </div>
+                    <div style={{ background: '#484', width: 'auto' }}>
+                        <InputGroup compact>
+                            <DatePicker placeholder="選擇轉出時間" />
+                        </InputGroup>
+                    </div>
+                </div>
+                <div style={{ flexGrow: 2, display: 'flex', alignItems: 'center' }}>
+                    <div style={{ background: '#fff', width: 'auto' }}>
+                        病歷號碼:
+                    </div>
+                    <div style={{ background: '#484', width: 'auto' }}>
+                        <Input placeholder="輸入病歷號碼">
+                        </Input>
+                    </div>
+                </div>
+                <div style={{ flexGrow: 2, display: 'flex', alignItems: 'center' }}>
+                    <div style={{ background: '#fff', width: 'auto' }}>
+                        主治醫生:
+                    </div>
+                    <div style={{ background: '#484', width: 'auto' }}>
+                        <Input placeholder="選擇主治醫師">
+                        </Input>
+                    </div>
+                </div>
+                <div style={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
+                    <div style={{ width: 'auto', flexGrow: 1 }}>
+                        <Button type="primary" icon="search" />
+                    </div>
+                    <div style={{ width: 'auto', flexGrow: 2 }}>
+                        <Button>匯出</Button>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
     render() {
         return (
             <div>
                 <div style={{ background: '#fff', height: '50px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <Breadcrumb>
+                        <Breadcrumb.Item>首頁</Breadcrumb.Item>
+                        <Breadcrumb.Item>個案資訊管理</Breadcrumb.Item>
+                    </Breadcrumb>
+                </div>
+                <div>
+                    {this.Searchbar()}
                 </div>
                 <div>
                     <Table columns={columns} dataSource={data} />

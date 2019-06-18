@@ -1,12 +1,13 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
 import './App.css';
-import Layoutframe from './Layout/Layout'
+import { renderRoutes } from 'react-router-config'
+import rotes from './Layout/Routes'
 
 function App() {
   return (
     < div >
-      <Route path="/Main" component={Layoutframe} />
+      {/* child routes won't render without this */}
+      {renderRoutes(rotes)}
     </div >
   );
 }

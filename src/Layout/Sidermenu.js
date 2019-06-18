@@ -2,8 +2,9 @@ import { Menu } from 'antd';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-class Sidermenu extends Component {
-    render() {
+
+class Sidermenu extends Component{
+    render(){
         return (
             <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
                 <Menu.Item key="1">
@@ -24,6 +25,7 @@ class Sidermenu extends Component {
             </Menu>
 
         );
+
     }
 }
 

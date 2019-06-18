@@ -2,15 +2,20 @@ import { Layout, Icon } from 'antd';
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
 import './Layout.css';
-import Sidermenu from './Sidermenu';
-import Bedview from '../Content/Bedview'
-import Caseview from '../Content/Caseview'
-import Historyview from '../Content/Historyview'
-import { Route} from 'react-router-dom';
+import Sidermenu  from './Sidermenu';
+import { renderRoutes, matchRoutes } from 'react-router-config'
+import routes from './Routes'
 
 const { Header, Content, Footer, Sider } = Layout;
 
 class Layoutframe extends Component {
+
+
+    constructor(props) {
+        super(props);
+        console.log(props);
+    }
+
     state = {
         value: 1,
         collapsed: false,
@@ -45,6 +50,9 @@ class Layoutframe extends Component {
     }
 
     render() {
+
+        const matchedRoutes = matchRoutes(routes, this.props.location.pathname);
+
         return (
             <Layout>
                 <Sider
@@ -57,7 +65,7 @@ class Layoutframe extends Component {
                 </Sider>
                 <Layout style={{ background: '#fff' }}>
                     <Header style={{ background: '#000', padding: 0, display: 'flex', justifyContent: 'space-between' }}>
-                        <span style={{ color: '#fff', paddingLeft: '2%', fontSize: '1.4em' }}>
+                        <span style={{ color: '#fff', paddingLeft: '2%', fontSize: '1.4em',width:210 }}>
                             <Icon
                                 className="trigger"
                                 type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
@@ -65,14 +73,23 @@ class Layoutframe extends Component {
                                 style={{ cursor: 'pointer' }}
                             />
                         </span>
-                        <span style={{ color: '#fff', fontSize: '1.4em' }}>病房總覽</span>
-                        <span style={{ color: '#fff', marginRight: 10 }}>Hi,陳國榮醫師 {new Date().toLocaleDateString()} {this.renderSwitch(new Date().getDay())}</span>
+                        {/*eslint-disable-next-line*/}
+                        {matchedRoutes.map((matchRoute, i) => {
+                            const { path, breadcrumbName } = matchRoute.route;
+                            const isActive = path === this.props.location.pathname;
+                            if (isActive) {
+                                return (
+                                    <span key={breadcrumbName.toString()} style={{ color: '#fff', fontSize: '1.4em' }}>
+                                        {breadcrumbName}
+                                    </span>
+                                );
+                            }
+                        })}
+                        <span style={{ color: '#fff', marginRight: 10,width:210 }}>Hi,陳國榮醫師 {new Date().toLocaleDateString()} {this.renderSwitch(new Date().getDay())}</span>
                     </Header>
                     <Content style={{ margin: '10px 16px' }}>
-                        < div style={{ background: '#fff', minHeight: '1000px'}}>
-                            <Route path="/Main/Bedview" component={Bedview} />
-                            <Route path="/Main/Caseview" component={Caseview} />
-                            <Route path="/Main/Historyview" component={Historyview} />
+                        < div style={{ background: '#fff', minHeight: '1000px' }}>
+                            {renderRoutes(this.props.route.routes)}
                         </div >
                     </Content>
                     <Footer style={{ textAlign: 'center' }}>
