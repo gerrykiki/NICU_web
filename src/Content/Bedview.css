@@ -1,0 +1,49 @@
+.wardcontent{
+       background: #ffffff;
+       height: auto;
+       margin: 10px;
+       display: flex;
+       flex-grow: 1;
+       flex-wrap: wrap;
+       width: 35%;
+       padding: 5px;
+       justify-content: center;
+       overflow: auto;
+       max-height: 650px;
+}
+
+.wardcontentlarge{
+    background: #333333;
+    height: auto;
+    margin: 10px;
+    display: flex;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    width: 35%;
+    padding: 5px;
+    overflow: auto;
+    max-height: 650px;
+}
+
+.wardcard{
+    width: 97%;
+    height: 150;
+    margin: 5px;
+}
+
+.wardcard{
+    width: 97%;
+    height: 150;
+    margin: 5px;
+}
+
+.wardinfocontent{
+    background: #ffffff;
+    height: auto;
+    margin: 10px;
+    flex-grow: 2;
+    width: 65%;
+    overflow: auto;
+    max-height: 650px;
+    padding: 5px;
+}

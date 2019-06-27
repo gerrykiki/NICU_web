@@ -65,7 +65,7 @@ class Layoutframe extends Component {
                 </Sider>
                 <Layout style={{ background: '#fff' }}>
                     <Header style={{ background: '#000', padding: 0, display: 'flex', justifyContent: 'space-between' }}>
-                        <span style={{ color: '#fff', paddingLeft: '2%', fontSize: '1.4em',width:'210' }}>
+                        <span style={{ color: '#fff', paddingLeft: '2%', fontSize: '1.4em',width:'auto' }}>
                             <Icon
                                 className="trigger"
                                 type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
@@ -88,7 +88,7 @@ class Layoutframe extends Component {
                         <span style={{ color: '#fff', marginRight:10,width:'auto' }}>Hi,陳國榮醫師 {new Date().toLocaleDateString()} {this.renderSwitch(new Date().getDay())}</span>
                     </Header>
                     <Content style={{ margin: '10px 16px' }}>
-                        < div style={{ background: '#fff', minHeight: '1000px' }}>
+                        < div style={{ background: '#fff', minHeight: '700px' }}>
                             {renderRoutes(this.props.route.routes)}
                         </div >
                     </Content>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Table, Divider, Tag, Breadcrumb ,Input, Select, DatePicker, Button} from 'antd';
+import { Table, Divider, Tag, Breadcrumb, Input, Select, DatePicker, Button } from 'antd';
+import { Link } from 'react-router-dom';
 
 const columns = [
     {
@@ -128,9 +129,13 @@ class Caseview extends Component {
         );
     }
 
+
+
     render() {
         return (
             <div>
+
+                <Link to="/Main/Historyview"></Link>
                 <div style={{ background: '#fff', height: '50px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <Breadcrumb>
                         <Breadcrumb.Item>首頁</Breadcrumb.Item>
@@ -141,7 +146,13 @@ class Caseview extends Component {
                     {this.Searchbar()}
                 </div>
                 <div>
-                    <Table columns={columns} dataSource={data} />
+                    <Table columns={columns} dataSource={data} onRow={(record, rowIndex) => {
+                        return {
+                            onClick: event => { this.clicktable() } // click row
+                        };
+                    }}>
+
+                    </Table>
                 </div>
             </div>
         );
