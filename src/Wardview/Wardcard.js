@@ -8,7 +8,7 @@ class Wardcard extends Component{
     render(){
         return(
             <div className="Wardcardboder">
-                <Button className="Wardbutton"></Button>
+                <Button ghost='true' className="Wardbutton"></Button>
             </div>
         );
     }
