@@ -1,5 +1,5 @@
 import Layoutframe from './Layout'
-import Bedview from '../Content/Bedview'
+import Bedview from '../Wardview/Bedview'
 import Caseview from '../Content/Caseview'
 import Historyview from '../Content/Historyview'
 import classinformation from '../Content/CaseInfo'
