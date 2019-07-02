@@ -67,6 +67,7 @@ class Bedview extends Component {
             return (
                 <div style={{ padding: 1, background: '#fff', display: 'flex' }} >
                     <div className="wardcontentlarge">
+                        <Wardcard />
                     </div>
                 </div>
             );
