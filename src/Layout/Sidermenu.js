@@ -12,7 +12,7 @@ class Sidermenu extends Component {
 
     Selectkeynumber(key) {
         switch (key) {
-            case '/Main/Bedview':
+            case '/Main/Bedview/Wardindex':
                 return ['1'];
             case '/Main/Caseview':
                 return ['2'];
@@ -32,7 +32,7 @@ class Sidermenu extends Component {
             <Menu theme="dark" mode="inline" defaultSelectedKeys={this.Selectkeynumber(data)}>
                 <Menu.Item key="1">
                     <span className="nav-text">病床總覽</span>
-                    <Link to="/Main/Bedview"></Link>
+                    <Link to="/Main/Bedview/Wardindex"></Link>
                 </Menu.Item>
                 <Menu.Item key="2">
                     <span className="nav-text">個案資訊管理</span>

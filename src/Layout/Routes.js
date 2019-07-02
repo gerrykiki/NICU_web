@@ -3,6 +3,8 @@ import Bedview from '../Wardview/Bedview'
 import Caseview from '../Content/Caseview'
 import Historyview from '../Content/Historyview'
 import classinformation from '../Content/CaseInfo'
+import Wardinfoindex from '../Wardview/Wardinfoindex'
+import Wardinfouser from '../Wardview/Wardinfouser'
 
 const routes = [
     {
@@ -13,7 +15,19 @@ const routes = [
             {
                 path: '/Main/Bedview',
                 component: Bedview,
-                breadcrumbName:'病房總覽'
+                breadcrumbName:'病房總覽',
+                routes: [
+                    {
+                        path: '/Main/Bedview/Wardindex',
+                        component: Wardinfoindex,
+                        breadcrumbName:'病房總覽'
+                    },
+                    {
+                        path: '/Main/Bedview/Warduser',
+                        component: Wardinfouser,
+                        breadcrumbName:'病房總覽'
+                    }
+                ]
             },
             {
                 path: '/Main/Caseview',

@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { Switch, Card } from 'antd';
 import "./Bedview.css"
 import Wardinfo from './Wardinfo';
-import Wardcard from './Wardcard'
+import Wardcard from './Wardcard';
+import Wardinfoindex from './Wardinfoindex';
+import { renderRoutes} from 'react-router-config'
 
 class Bedview extends Component {
 
@@ -65,36 +67,6 @@ class Bedview extends Component {
             return (
                 <div style={{ padding: 1, background: '#fff', display: 'flex' }} >
                     <div className="wardcontentlarge">
-                        <Card className="wardcardlarge" title="Card title" bordered={false}>
-                            <p>Card content</p>
-                        </Card>
-                        <Card className="wardcardlarge" title="Card title" bordered={false}>
-                            <p>Card content</p>
-                        </Card>
-                        <Card className="wardcardlarge" title="Card title" bordered={false}>
-                            <p>Card content</p>
-                        </Card>
-                        <Card className="wardcardlarge" title="Card title" bordered={false}>
-                            <p>Card content</p>
-                        </Card>
-                        <Card className="wardcardlarge" title="Card title" bordered={false}>
-                            <p>Card content</p>
-                        </Card>
-                        <Card className="wardcardlarge" title="Card title" bordered={false}>
-                            <p>Card content</p>
-                        </Card>
-                        <Card className="wardcardlarge" title="Card title" bordered={false}>
-                            <p>Card content</p>
-                        </Card>
-                        <Card className="wardcardlarge" title="Card title" bordered={false}>
-                            <p>Card content</p>
-                        </Card>
-                        <Card className="wardcardlarge" title="Card title" bordered={false}>
-                            <p>Card content</p>
-                        </Card>
-                        <Card className="wardcardlarge" title="Card title" bordered={false}>
-                            <p>Card content</p>
-                        </Card>
                     </div>
                 </div>
             );
@@ -105,20 +77,15 @@ class Bedview extends Component {
             return (
                 <div style={{ padding: 1, background: '#fff', display: 'flex' }}>
                     <div className="wardcontent">
-                        <Wardcard/>
-                        <Wardcard/>
-                        <Wardcard/>
-                        <Wardcard/>
-                        <Wardcard/>
-                        <Wardcard/>
-                        <Wardcard/>
-                        <Wardcard/>
-                        <Wardcard/>
-                        <Wardcard/>
-                        <Wardcard/>
+                        <Wardcard />
                     </div>
                     <div className="wardinfocontent">
-                        <Wardinfo />
+                        <div style={{ borderWidth: '1px', borderStyle: 'solid', borderColor: '#333', height: '50px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                            個案資訊摘要
+                </div>
+                        <div style={{ borderTopWidth: '0px', borderBottomWidth: '1px', borderLeftWidth: '1px', borderRightWidth: '1px', borderStyle: 'solid', borderColor: '#333' }}>
+                            {renderRoutes(this.props.route.routes)}
+                        </div>
                     </div>
                 </div>
             );
