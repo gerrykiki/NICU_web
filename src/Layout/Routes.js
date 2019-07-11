@@ -38,7 +38,7 @@ const routes = [
             {
                 path: '/Main/Crosssectionlayout',
                 component: Crosssectionlayout,
-                breadcrumbName:'個案資訊管理'
+                breadcrumbName:'首頁/個案資訊管理/個案資訊'
             },
             {
                 path: '/Main/classinformation',

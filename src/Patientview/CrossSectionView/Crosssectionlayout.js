@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Tabs } from 'antd';
-import Controlbar from '../Controlbar'
-
+import Controlbar from './Controlbar'
 
 const { TabPane } = Tabs;
 
