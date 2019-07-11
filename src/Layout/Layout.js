@@ -55,26 +55,11 @@ class Layoutframe extends Component {
 
         return (
             <Layout>
-                <Sider
-                    trigger={null}
-                    collapsible
-                    collapsed={this.state.collapsed}
-                >
-                    <div className="logo" />
-                    <Sidermenu data={this.props.location.pathname} />
-                </Sider>
                 <Layout style={{ background: '#fff' }}>
-                    <Header style={{ background: '#000', padding: 0, display: 'flex', justifyContent: 'space-between' }}>
-                        <span style={{ color: '#fff', paddingLeft: '2%', fontSize: '1.4em',width:'auto' }}>
-                            <Icon
-                                className="trigger"
-                                type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
-                                onClick={this.toggle}
-                                style={{ cursor: 'pointer' }}
-                            />
-                        </span>
+                    <Header style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
                         {/*eslint-disable-next-line*/}
-                        {matchedRoutes.map((matchRoute, i) => {
+                        <Sidermenu></Sidermenu>
+                        {/*matchedRoutes.map((matchRoute, i) => {
                             const { path, breadcrumbName } = matchRoute.route;
                             const isActive = path === this.props.location.pathname;
                             if (isActive) {
@@ -84,10 +69,10 @@ class Layoutframe extends Component {
                                     </span>
                                 );
                             }
-                        })}
-                        <span style={{ color: '#fff', marginRight:10,width:'auto' }}>Hi,陳國榮醫師 {new Date().toLocaleDateString()} {this.renderSwitch(new Date().getDay())}</span>
+                        })*/}
+                        <div style={{ color: '#fff', marginRight:10,width:'auto' }}>Hi,陳國榮醫師 {new Date().toLocaleDateString()} {this.renderSwitch(new Date().getDay())}</div>
                     </Header>
-                    <Content style={{ margin: '10px 16px' }}>
+                    <Content>
                         < div style={{ background: '#fff', minHeight: '700px' }}>
                             {renderRoutes(this.props.route.routes)}
                         </div >

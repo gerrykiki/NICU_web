@@ -109,10 +109,23 @@ class Wardinfouser extends Component {
                 <div style={{ height: '10px' }}></div>
                 {this.MedInfo()}
                 <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around' }}>
-                    <Card style={{ height: '200px', margin: '5px', width: '97%' }} title="過去一週生命跡象" bordered={true} headStyle={{ textAlign: 'center' }}>
-                        <p>Card content</p>
+                    <Card style={{ height: 'auto', margin: '5px', width: '97%' }} title="過去一週生命跡象" bordered={true} headStyle={{ textAlign: 'center' }}>
+                        <div style={{ display: 'flex', justifyContent: 'center' }}>
+                            <div style={{ display: 'flex', flexWrap: 'nowrap' }}>
+                                <Button style={{ margin: '3px', borderRadius: '50px' }}>BP</Button>
+                                <Button style={{ margin: '3px', borderRadius: '50px' }}>HR</Button>
+                                <Button style={{ margin: '3px', borderRadius: '50px' }}>RR</Button>
+                                <Button style={{ margin: '3px', borderRadius: '50px' }}>BT</Button>
+                                <Button style={{ margin: '3px', borderRadius: '50px' }}>尿液</Button>
+                                <Button style={{ margin: '3px', borderRadius: '50px' }}>血糖</Button>
+                                <Button style={{ margin: '3px', borderRadius: '50px' }}>Sp02</Button>
+                            </div>
+                        </div>
+                        <div style={{ display: 'flex', flexWrap: 'nowrap', justifyContent: 'center', margin: '5px' }}>
+                            chart
+                            </div>
                     </Card>
-                    <Card style={{ margin: '5px', width: '47%' }} title="Schedule" bordered={true} headStyle={{ textAlign: 'center' }}>
+                    <Card style={{ margin: '5px', width: '47%' }} title="最近檢驗項目" bordered={true} headStyle={{ textAlign: 'center' }}>
                         <div style={{ overflow: 'auto', height: '150px' }}>
                             <Checkbox>Checkbox</Checkbox><br></br>
                             <Checkbox>Checkbox</Checkbox><br></br>

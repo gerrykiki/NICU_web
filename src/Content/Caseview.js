@@ -130,12 +130,9 @@ class Caseview extends Component {
     }
 
 
-
     render() {
         return (
             <div>
-
-                <Link to="/Main/Historyview"></Link>
                 <div style={{ background: '#fff', height: '50px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <Breadcrumb>
                         <Breadcrumb.Item>首頁</Breadcrumb.Item>
@@ -146,9 +143,10 @@ class Caseview extends Component {
                     {this.Searchbar()}
                 </div>
                 <div>
+
                     <Table columns={columns} dataSource={data} onRow={(record, rowIndex) => {
                         return {
-                            onClick: event => { this.clicktable() } // click row
+                            onClick: event => { console.log("Click table") } // click row
                         };
                     }}>
 

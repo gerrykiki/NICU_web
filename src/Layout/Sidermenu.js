@@ -16,6 +16,8 @@ class Sidermenu extends Component {
                 return ['1'];
             case '/Main/Caseview':
                 return ['2'];
+            case '/Main/Caseview/Crosssectionlayout':
+                return ['2'];
             case '/Main/Historyview':
                 return ['3'];
             default:
@@ -29,7 +31,7 @@ class Sidermenu extends Component {
         console.log(data);
 
         return (
-            <Menu theme="dark" mode="inline" defaultSelectedKeys={this.Selectkeynumber(data)}>
+            <Menu theme="dark" mode="horizontal" defaultSelectedKeys={this.Selectkeynumber(1)}>
                 <Menu.Item key="1">
                     <span className="nav-text">病床總覽</span>
                     <Link to="/Main/Bedview/Wardindex"></Link>

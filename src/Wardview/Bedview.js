@@ -3,8 +3,9 @@ import { Switch, Card } from 'antd';
 import "./Bedview.css"
 import Wardinfo from './Wardinfo';
 import Wardcard from './Wardcard';
+import Wardcarddetail from './Wardcarddetail'
 import Wardinfoindex from './Wardinfoindex';
-import { renderRoutes} from 'react-router-config'
+import { renderRoutes } from 'react-router-config'
 
 class Bedview extends Component {
 
@@ -39,6 +40,7 @@ class Bedview extends Component {
             return (
                 <div style={{ padding: 1, background: '#fff', display: 'flex' }}>
                     <div style={{ background: '#333', height: '1000px', margin: '10px', flexGrow: 1 }}>
+                        <Wardcarddetail />
                     </div>
                 </div>
             );
@@ -47,16 +49,16 @@ class Bedview extends Component {
             console.log("2");
             return (
                 <div style={{ padding: 1, background: '#fff', display: 'flex' }}>
-                    <div style={{ background: '#333', height: 'auto', margin: '10px', flexGrow: 1, flexWrap: 'wrap', display: 'flex', width: '35%', justifyContent: 'space-between', padding: '5px' }}>
-                        <Card title="Card title" bordered={false} style={{ width: '90%', height: 200, margin: '5px' }}>
-                            <p>Card content</p>
-                            <p>Card content</p>
-                            <p>Card content</p>
-                        </Card>
+                    <div className="wardcontent">
+                        <Wardcarddetail />
                     </div>
-                    <div style={{ background: '#333', height: 'auto', margin: '10px', flexGrow: 2, width: '65%' }}>
-                    </div>
-                    <div>
+                    <div className="wardinfocontent">
+                        <div style={{ borderWidth: '1px', borderStyle: 'solid', borderColor: '#333', height: '50px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                            個案資訊摘要
+                </div>
+                        <div style={{ borderTopWidth: '0px', borderBottomWidth: '1px', borderLeftWidth: '1px', borderRightWidth: '1px', borderStyle: 'solid', borderColor: '#333' }}>
+                            {renderRoutes(this.props.route.routes)}
+                        </div>
                     </div>
                 </div>
             );
@@ -67,7 +69,7 @@ class Bedview extends Component {
             return (
                 <div style={{ padding: 1, background: '#fff', display: 'flex' }} >
                     <div className="wardcontentlarge">
-                        <Wardcard />
+                        <Wardcard></Wardcard>
                     </div>
                 </div>
             );
@@ -83,7 +85,7 @@ class Bedview extends Component {
                     <div className="wardinfocontent">
                         <div style={{ borderWidth: '1px', borderStyle: 'solid', borderColor: '#333', height: '50px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                             個案資訊摘要
-                </div>
+                        </div>
                         <div style={{ borderTopWidth: '0px', borderBottomWidth: '1px', borderLeftWidth: '1px', borderRightWidth: '1px', borderStyle: 'solid', borderColor: '#333' }}>
                             {renderRoutes(this.props.route.routes)}
                         </div>
