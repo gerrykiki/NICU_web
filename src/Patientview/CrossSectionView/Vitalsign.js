@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Button } from 'antd';
+import { Button,Card } from 'antd';
 
 
 class Vitalsign extends Component {
     render() {
         return (
-            <div style={{ width: '50%', margin: '20px' }}>
+            <div style={{ width: '45%', margin: '20px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <div style={{ fontWeight: 'bold' }}>
                         Vital Sign(一天生命徵象)
@@ -26,7 +26,17 @@ class Vitalsign extends Component {
                     </div>
                 </div>
                 <hr></hr>
-                <Card title="Default size card" extra={<a href="#">More</a>} style={{ width: 300 }}>
+                <Card title="Default size card" extra={<a href="#">More</a>} style={{marginTop:'5px'}}>
+                    <p>Card content</p>
+                    <p>Card content</p>
+                    <p>Card content</p>
+                </Card>
+                <Card title="Default size card" extra={<a href="#">More</a>} style={{marginTop:'5px'}}>
+                    <p>Card content</p>
+                    <p>Card content</p>
+                    <p>Card content</p>
+                </Card>
+                <Card title="Default size card" extra={<a href="#">More</a>} style={{marginTop:'5px'}}>
                     <p>Card content</p>
                     <p>Card content</p>
                     <p>Card content</p>

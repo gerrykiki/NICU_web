@@ -55,8 +55,12 @@ class Controlbar extends Component {
                         </Button>
                     </div>
                 </div>
+                <div style={{display:'flex',flexWrap:'wrap',justifyContent:'space-between'}}>
                 <Basicinformation></Basicinformation>
                 <Vitalsign></Vitalsign>
+                <Vitalsign></Vitalsign>
+
+                </div>
             </div>
 
         );
