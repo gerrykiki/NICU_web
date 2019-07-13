@@ -6,7 +6,7 @@ class Vitalsign extends Component {
     render() {
         return (
             <div style={{ width: '45%', margin: '20px' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center',height:'40px'  }}>
                     <div style={{ fontWeight: 'bold' }}>
                         Vital Sign(一天生命徵象)
                     </div>

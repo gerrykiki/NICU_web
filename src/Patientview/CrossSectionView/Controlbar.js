@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, Icon, DatePicker } from 'antd';
 import Basicinformation from './Basicinformation';
 import Vitalsign from './Vitalsign';
+import IOpage from './iopage'
 
 
 class Controlbar extends Component {
@@ -58,8 +59,7 @@ class Controlbar extends Component {
                 <div style={{display:'flex',flexWrap:'wrap',justifyContent:'space-between'}}>
                 <Basicinformation></Basicinformation>
                 <Vitalsign></Vitalsign>
-                <Vitalsign></Vitalsign>
-
+                <IOpage></IOpage>
                 </div>
             </div>
 

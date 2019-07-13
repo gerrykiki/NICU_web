@@ -16,7 +16,7 @@ class Sidermenu extends Component {
                 return ['1'];
             case '/Main/Caseview':
                 return ['2'];
-            case '/Main/Caseview/Crosssectionlayout':
+            case '/Main/Crosssectionlayout':
                 return ['2'];
             case '/Main/Historyview':
                 return ['3'];

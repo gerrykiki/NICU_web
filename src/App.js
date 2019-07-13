@@ -6,7 +6,6 @@ import rotes from './Layout/Routes'
 function App() {
   return (
     < div >
-      {/* child routes won't render without this */}
       {renderRoutes(rotes)}
     </div >
   );

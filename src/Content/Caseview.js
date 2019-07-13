@@ -143,10 +143,11 @@ class Caseview extends Component {
                     {this.Searchbar()}
                 </div>
                 <div>
-
+                    <Link to="/Main/Crosssectionlayout">Link to CrossectionLayout</Link>
                     <Table columns={columns} dataSource={data} onRow={(record, rowIndex) => {
                         return {
                             onClick: event => { console.log("Click table") } // click row
+
                         };
                     }}>
 
