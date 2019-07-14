@@ -39,8 +39,8 @@ class Bedview extends Component {
             console.log("1");
             return (
                 <div style={{ padding: 1, background: '#fff', display: 'flex' }}>
-                    <div style={{ background: '#333', height: '1000px', margin: '10px', flexGrow: 1 }}>
-                        <Wardcarddetail />
+                    <div style={{ margin: '10px', overflow: 'auto', maxHeight: '650px', width: '100%', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr' }}>
+                        <Wardcarddetail style={{ height: 'auto', margin: '5px' }} />
                     </div>
                 </div>
             );
@@ -49,8 +49,8 @@ class Bedview extends Component {
             console.log("2");
             return (
                 <div style={{ padding: 1, background: '#fff', display: 'flex' }}>
-                    <div className="wardcontent">
-                        <Wardcarddetail />
+                    <div style={{ margin: '10px', display: 'flex', flexGrow: '1', width: '35%', justifyContent: 'center', overflow: 'auto', maxHeight: '650px' }}>
+                        <Wardcarddetail style={{ height: '150px', width: '100%', margin: '5px' }} />
                     </div>
                     <div className="wardinfocontent">
                         <div style={{ borderWidth: '1px', borderStyle: 'solid', borderColor: '#333', height: '50px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -68,8 +68,8 @@ class Bedview extends Component {
             console.log("3");
             return (
                 <div style={{ padding: 1, background: '#fff', display: 'flex' }} >
-                    <div className="wardcontentlarge">
-                        <Wardcard></Wardcard>
+                    <div style={{ margin: '10px', overflow: 'auto', maxHeight: '650px', width: '100%', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr' }}>
+                        <Wardcard style={{ height: 'auto', margin: '5px' }}></Wardcard>
                     </div>
                 </div>
             );
@@ -79,8 +79,8 @@ class Bedview extends Component {
             console.log("4");
             return (
                 <div style={{ padding: 1, background: '#fff', display: 'flex' }}>
-                    <div className="wardcontent">
-                        <Wardcard />
+                    <div style={{ margin: '10px', display: 'flex', flexGrow: '1', width: '35%', justifyContent: 'center', overflow: 'auto', maxHeight: '650px' }}>
+                        <Wardcard style={{ height: '150px', width: '100%', margin: '5px' }} />
                     </div>
                     <div className="wardinfocontent">
                         <div style={{ borderWidth: '1px', borderStyle: 'solid', borderColor: '#333', height: '50px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
