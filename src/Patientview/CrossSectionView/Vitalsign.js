@@ -26,21 +26,6 @@ class Vitalsign extends Component {
                     </div>
                 </div>
                 <hr></hr>
-                <Card title="Default size card" extra={<a href="#">More</a>} style={{marginTop:'5px'}}>
-                    <p>Card content</p>
-                    <p>Card content</p>
-                    <p>Card content</p>
-                </Card>
-                <Card title="Default size card" extra={<a href="#">More</a>} style={{marginTop:'5px'}}>
-                    <p>Card content</p>
-                    <p>Card content</p>
-                    <p>Card content</p>
-                </Card>
-                <Card title="Default size card" extra={<a href="#">More</a>} style={{marginTop:'5px'}}>
-                    <p>Card content</p>
-                    <p>Card content</p>
-                    <p>Card content</p>
-                </Card>
             </div>
         );
     }

@@ -56,10 +56,11 @@ class Controlbar extends Component {
                         </Button>
                     </div>
                 </div>
-                <div style={{display:'flex',flexWrap:'wrap',justifyContent:'space-between'}}>
-                <Basicinformation></Basicinformation>
-                <Vitalsign></Vitalsign>
-                <IOpage></IOpage>
+                <div>
+                    <Basicinformation></Basicinformation>
+                    <div style={{maxHeight:'500px', overflow: 'auto' ,display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between'}}>
+                        <Vitalsign></Vitalsign>
+                    </div>
                 </div>
             </div>
 

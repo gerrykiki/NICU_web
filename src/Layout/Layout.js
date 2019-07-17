@@ -56,30 +56,17 @@ class Layoutframe extends Component {
         return (
             <Layout>
                 <Layout style={{ background: '#fff' }}>
-                    <Header style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
+                    <Header style={{display:'flex',alignItems:'center',justifyContent:'space-between',height:'50px'}}>
                         {/*eslint-disable-next-line*/}
                         <Sidermenu></Sidermenu>
-                        {/*matchedRoutes.map((matchRoute, i) => {
-                            const { path, breadcrumbName } = matchRoute.route;
-                            const isActive = path === this.props.location.pathname;
-                            if (isActive) {
-                                return (
-                                    <span key={breadcrumbName.toString()} style={{ color: '#fff', fontSize: '1.4em' }}>
-                                        {breadcrumbName}
-                                    </span>
-                                );
-                            }
                         })*/}
                         <div style={{ color: '#fff', marginRight:10,width:'auto' }}>Hi,陳國榮醫師 {new Date().toLocaleDateString()} {this.renderSwitch(new Date().getDay())}</div>
                     </Header>
                     <Content>
-                        < div style={{ background: '#fff', minHeight: '700px' }}>
+                        < div style={{ background: '#fff'}}>
                             {renderRoutes(this.props.route.routes)}
                         </div >
                     </Content>
-                    <Footer style={{ textAlign: 'center' }}>
-                        SWPC MRT300 Create by NICU group
-                        </Footer>
                 </Layout>
             </Layout>
         );
