@@ -3,6 +3,13 @@ import { Button, Icon, DatePicker } from 'antd';
 import Basicinformation from './Basicinformation';
 import Vitalsign from './Vitalsign';
 import IOpage from './iopage'
+import Labviewlayout from './Labview'
+import Nonlabviewlayout from './Nonlabview'
+import RTviewlayout from './RTview'
+import Prescriptionorderlayout from './Prescriptionorder'
+import Treatmentorderlayout from './Treatmentorder'
+import Schedulelayout from './Schedule'
+import Todolayout from './Todo'
 
 
 class Controlbar extends Component {
@@ -60,6 +67,14 @@ class Controlbar extends Component {
                     <Basicinformation></Basicinformation>
                     <div style={{maxHeight:'500px', overflow: 'auto' ,display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between'}}>
                         <Vitalsign></Vitalsign>
+                        <IOpage></IOpage>
+                        <Labviewlayout></Labviewlayout>
+                        <Nonlabviewlayout></Nonlabviewlayout>
+                        <RTviewlayout></RTviewlayout>
+                        <Prescriptionorderlayout></Prescriptionorderlayout>
+                        <Treatmentorderlayout></Treatmentorderlayout>
+                        <Schedulelayout></Schedulelayout>
+                        <Todolayout></Todolayout>
                     </div>
                 </div>
             </div>
