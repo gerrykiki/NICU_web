@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Button, Icon, DatePicker } from 'antd';
-import Basicinformation from './Basicinformation';
 import Vitalsign from './Vitalsign';
 import IOpage from './iopage'
 import Labviewlayout from './Labview'
@@ -10,6 +9,7 @@ import Prescriptionorderlayout from './Prescriptionorder'
 import Treatmentorderlayout from './Treatmentorder'
 import Schedulelayout from './Schedule'
 import Todolayout from './Todo'
+import Basicinformation from './Basicinformation';
 
 
 class Controlbar extends Component {
@@ -18,19 +18,7 @@ class Controlbar extends Component {
             <div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#ddd' }}>
                     <div style={{ display: 'flex', alignItems: 'center' }}>
-                        <Button style={{ margin: '5px' }}>
-                            <Icon type="step-backward" />
-                        </Button>
-                        <Button style={{ margin: '5px' }}>
-                            <Icon type="caret-left" />
-                        </Button>
                         <DatePicker style={{ margin: '5px' }} placeholder="選擇轉出時間" />
-                        <Button style={{ margin: '5px' }}>
-                            <Icon type="caret-right" />
-                        </Button>
-                        <Button style={{ margin: '5px' }}>
-                            <Icon type="step-forward" />
-                        </Button>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                         <span>項目切換：</span>
@@ -64,8 +52,8 @@ class Controlbar extends Component {
                     </div>
                 </div>
                 <div>
+                    <div style={{ maxHeight: '500px', overflow: 'auto', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
                     <Basicinformation></Basicinformation>
-                    <div style={{maxHeight:'500px', overflow: 'auto' ,display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between'}}>
                         <Vitalsign></Vitalsign>
                         <IOpage></IOpage>
                         <Labviewlayout></Labviewlayout>

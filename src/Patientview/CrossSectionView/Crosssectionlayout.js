@@ -15,15 +15,11 @@ class Crosssectionlayout extends Component {
         return (
             <div>
                 <div>
-                    <div style={{ margin: '10px' }}>
+                    <div style={{ margin: '2px' }}>
                         <Tabs defaultActiveKey="1" onChange={console.log("click")}>
                             <TabPane tab="Cross Section View" key="1">
-                                <div style={{ background: '#dddddd', display: 'flex', alignItems: 'center', marginTop: '10px' }}>
-                                    <span style={{ margin: '10px', display: 'flex', flexWrap: 'wrap', margin: '10px', fontSize: '14px' }}>
-                                        姓名:王大明&nbsp;
-                                        身分證字號:A123456789&nbsp;
-                                        性別:男&nbsp;
-                                        年齡:3&nbsp;
+                                <div style={{ background: '#dddddd', display: 'flex', alignItems: 'center', marginTop: '2px' }}>
+                                    <span style={{ margin: '10px', display: 'flex', flexWrap: 'wrap', margin: '2px', fontSize: '16px' }}>
                                         病歷號碼:0123456789&nbsp;
                                         出生日期:2999-12-32&nbsp;
                                         聯絡電話:0970-787-787&nbsp;
@@ -34,10 +30,31 @@ class Crosssectionlayout extends Component {
                                 </div>
                                 <Controlbar></Controlbar>
                             </TabPane>
-                            <TabPane tab="Chromice View" key="2">
+                            <TabPane tab="Chronicle View" key="2">
                                 Content of Tab Pane 2
                             </TabPane>
                             <TabPane tab="Flow Sheet" key="3">
+                                Content of Tab Pane 3
+                            </TabPane>
+                            <TabPane tab="Exam & Report" key="4">
+                                Content of Tab Pane 3
+                            </TabPane>
+                            <TabPane tab="Order view" key="5">
+                                Content of Tab Pane 3
+                            </TabPane>
+                            <TabPane tab="Note" key="6">
+                                Content of Tab Pane 3
+                            </TabPane>
+                            <TabPane tab="RT" key="7">
+                                Content of Tab Pane 3
+                            </TabPane>
+                            <TabPane tab="Nurtion" key="8">
+                                Content of Tab Pane 3
+                            </TabPane>
+                            <TabPane tab="Infection" key="9">
+                                Content of Tab Pane 3
+                            </TabPane>
+                            <TabPane tab="Schedule" key="10">
                                 Content of Tab Pane 3
                             </TabPane>
                         </Tabs>

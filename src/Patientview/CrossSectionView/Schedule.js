@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {button, Button} from 'antd';
 
 class Schedulelayout extends Component{
     render(){
@@ -10,9 +11,66 @@ class Schedulelayout extends Component{
                     </div>
                 </div>
                 <hr></hr>
+                <div style={{display:'flex'}}>
+                    <div style={{flexGrow:1,height:'160px',borderWidth:'1px',borderStyle:'solid'}}>
+                        <div style={{borderWidth:'1px',borderStyle:'solid',height:'20%',textAlign:'center'}}>
+                            06-17(一)
+                        </div>
+                        <div>
+                            1234567889                       
+                        </div>
+                    </div>
+                    <div style={{flexGrow:1,height:'160px',borderWidth:'1px',borderStyle:'solid'}}>
+                        <div style={{borderWidth:'1px',borderStyle:'solid',height:'20%',textAlign:'center'}}>
+                            06-17(一)
+                        </div>
+                        <div>
+                            1234567889                       
+                        </div>
+                    </div>
+                    <div style={{flexGrow:1,height:'160px',borderWidth:'1px',borderStyle:'solid'}}>
+                        <div style={{borderWidth:'1px',borderStyle:'solid',height:'20%',textAlign:'center'}}>
+                            06-17(一)
+                        </div>
+                        <div>
+                            1234567889                       
+                        </div>
+                    </div>
+                    <div style={{flexGrow:1,height:'160px',borderWidth:'1px',borderStyle:'solid'}}>
+                        <div style={{borderWidth:'1px',borderStyle:'solid',height:'20%',textAlign:'center'}}>
+                            06-17(一)
+                        </div>
+                        <div>
+                            1234567889                       
+                        </div>
+                    </div>
+                    <div style={{flexGrow:1,height:'160px',borderWidth:'1px',borderStyle:'solid'}}>
+                        <div style={{borderWidth:'1px',borderStyle:'solid',height:'20%',textAlign:'center'}}>
+                            06-17(一)
+                        </div>
+                        <div>
+                            1234567889                       
+                        </div>
+                    </div>
+                    <div style={{flexGrow:1,height:'160px',borderWidth:'1px',borderStyle:'solid'}}>
+                        <div style={{borderWidth:'1px',borderStyle:'solid',height:'20%',textAlign:'center'}}>
+                            06-17(一)
+                        </div>
+                        <div>
+                            1234567889                       
+                        </div>
+                    </div>
+                    <div style={{flexGrow:1,height:'160px',borderWidth:'1px',borderStyle:'solid'}}>
+                        <div style={{borderWidth:'1px',borderStyle:'solid',height:'20%',textAlign:'center'}}>
+                            06-17(一)
+                        </div>
+                        <div className="button">
+                            1234567889                       
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     }
 }
-
 export default Schedulelayout
