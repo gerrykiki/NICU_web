@@ -1,0 +1,20 @@
+.button{
+    display: none;
+}
+
+.linkfont{
+    font-family:'PingFangSC-Regular';
+    font-size: 16px;
+    color:rgba(46, 100, 164, 1);
+    margin: 10px;
+}
+
+.logo{
+    width: 180px;
+    height: 64px;
+    background:rgba(0, 0, 0, 0);
+    background-image: url('../Image/Logo/logo@1x.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+

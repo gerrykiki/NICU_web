@@ -10,6 +10,14 @@
     color: #1890ff;
   }
 
+.header {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  height:64px;
+  padding:0px;
+  background-image: -webkit-linear-gradient(left,rgba(195, 239, 255, 1),rgba(78, 124, 222, 0.8));
+}
   
 .logo {
     height: 100px;
@@ -25,4 +33,27 @@
 
 .ant-layout-sider-collapsed .nav-text {
   display: none;
+}
+
+.hospital{
+  width: 316px;
+  height: 64px;
+  background:rgba(0, 0, 0, 0);
+  background-image: url('../Image/hospital/hospital.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+.hospitalbackground{
+  width: 316px;
+  height: 64px;
+  background:rgba(0, 0, 0, 0);
+  background-image: -webkit-linear-gradient(right,rgba(195, 239, 255, 1),rgba(78 , 124, 222, 0.8));
+  position: absolute;
+  top: 0px;
+  right: 0px;
 }

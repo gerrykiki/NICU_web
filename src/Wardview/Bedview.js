@@ -1,150 +1,86 @@
 import React, { Component } from 'react';
-import { Switch, Card } from 'antd';
-import "./Bedview.css"
-import Wardinfo from './Wardinfo';
+import { Switch } from 'antd';
+import "./Bedview.css";
 import Wardcard from './Wardcard';
-import Wardcarddetail from './Wardcarddetail'
-import Wardinfoindex from './Wardinfoindex';
-import { renderRoutes } from 'react-router-config'
+import Wardcarddetail from './Wardcarddetail';
+import { renderRoutes } from 'react-router-config';
 
 class Bedview extends Component {
 
     state = {
         displaymode: false,
-        simplemode: false,
-        MedInfostate: false
+        simplemode: false
     };
 
-    onChangesimple = (checked) => {
-        console.log(`switch to ${checked}`);
+
+    onChangesimple = () => {
         this.setState({
             simplemode: !this.state.simplemode,
         });
     }
 
-
-
-    onChangedisplay = (checked) => {
-        console.log(`switch to ${checked}`);
+    onChangedisplay = () => {
         this.setState({
             displaymode: !this.state.displaymode,
         });
     }
 
-
-
-
-    contentview = () => {
-        if (this.state.displaymode && this.state.simplemode) {
-            console.log("1");
+    previwbool() {
+        if (!this.state.displaymode) {
             return (
-                <div style={{ padding: 1, background: '#fff', display: 'flex' }}>
-                    <div style={{ margin: '10px', overflow: 'auto', maxHeight: '650px', width: '100%', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr' }}>
-                        <Wardcarddetail style={{ height: 'auto', margin: '5px' }} />
-                        <Wardcarddetail style={{ height: 'auto', margin: '5px' }} />
-                        <Wardcarddetail style={{ height: 'auto', margin: '5px' }} />
-                        <Wardcarddetail style={{ height: 'auto', margin: '5px' }} />
-                        <Wardcarddetail style={{ height: 'auto', margin: '5px' }} />
-                        <Wardcarddetail style={{ height: 'auto', margin: '5px' }} />
-                        <Wardcarddetail style={{ height: 'auto', margin: '5px' }} />
-                        <Wardcarddetail style={{ height: 'auto', margin: '5px' }} />
-                        <Wardcarddetail style={{ height: 'auto', margin: '5px' }} />
-                        <Wardcarddetail style={{ height: 'auto', margin: '5px' }} />
-                    </div>
-                </div>
+                <div className="wardinfocontent">{renderRoutes(this.props.route.routes)}</div>
             );
-        }
-        else if (!this.state.displaymode && this.state.simplemode) {
-            console.log("2");
-            return (
-                <div style={{ padding: 1, background: '#fff', display: 'flex' }}>
-                    <div style={{ margin: '10px', display: 'flex', flexGrow: '1', width: '30%', justifyContent: 'center', overflow: 'auto', maxHeight: '650px',flexWrap:'wrap'}}>
-                        <Wardcarddetail style={{ height: 'auto', width: '100%', margin: '5px' }} />
-                        <Wardcarddetail style={{ height: 'auto', width: '100%', margin: '5px' }} />
-                        <Wardcarddetail style={{ height: 'auto', width: '100%', margin: '5px' }} />
-                        <Wardcarddetail style={{ height: 'auto', width: '100%', margin: '5px' }} />
-                        <Wardcarddetail style={{ height: 'auto', width: '100%', margin: '5px' }} />
-                        <Wardcarddetail style={{ height: 'auto', width: '100%', margin: '5px' }} />
-                        <Wardcarddetail style={{ height: 'auto', width: '100%', margin: '5px' }} />
-                        <Wardcarddetail style={{ height: 'auto', width: '100%', margin: '5px' }} />
-                        <Wardcarddetail style={{ height: 'auto', width: '100%', margin: '5px' }} />
-                        <Wardcarddetail style={{ height: 'auto', width: '100%', margin: '5px' }} />
-                    </div>
-                    <div className="wardinfocontent">
-                        <div style={{ borderWidth: '1px', borderStyle: 'solid', borderColor: '#333', height: '50px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                            個案資訊摘要
-                </div>
-                        <div style={{ borderTopWidth: '0px', borderBottomWidth: '1px', borderLeftWidth: '1px', borderRightWidth: '1px', borderStyle: 'solid', borderColor: '#333' }}>
-                            {renderRoutes(this.props.route.routes)}
-                        </div>
-                    </div>
-                </div>
-            );
-
-        }
-        else if (this.state.displaymode && !this.state.simplemode) {
-            console.log("3");
-            return (
-                <div style={{ padding: 1, background: '#fff', display: 'flex' }} >
-                    <div style={{ margin: '10px', overflow: 'auto', maxHeight: '650px', width: '100%', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr' }}>
-                        <Wardcard style={{ height: 'auto', margin: '5px' }}></Wardcard>
-                        <Wardcard style={{ height: 'auto', margin: '5px' }}></Wardcard>
-                        <Wardcard style={{ height: 'auto', margin: '5px' }}></Wardcard>
-                        <Wardcard style={{ height: 'auto', margin: '5px' }}></Wardcard>
-                        <Wardcard style={{ height: 'auto', margin: '5px' }}></Wardcard>
-                        <Wardcard style={{ height: 'auto', margin: '5px' }}></Wardcard>
-                        <Wardcard style={{ height: 'auto', margin: '5px' }}></Wardcard>
-                        <Wardcard style={{ height: 'auto', margin: '5px' }}></Wardcard>
-                        <Wardcard style={{ height: 'auto', margin: '5px' }}></Wardcard>
-                        <Wardcard style={{ height: 'auto', margin: '5px' }}></Wardcard>
-                    </div>
-                </div>
-            );
-
-        }
-        else {
-            console.log("4");
-            return (
-                <div style={{ padding: 1, background: '#fff', display: 'flex' }}>
-                    <div style={{ margin: '10px', display: 'flex', flexGrow: '1', width: '30%', justifyContent: 'center', overflow: 'auto', maxHeight: '650px',flexWrap:'wrap'}}>
-                        <Wardcard style={{ height: '150px', width: '100%', margin: '5px' }} />
-                        <Wardcard style={{ height: '150px', width: '100%', margin: '5px' }} />
-                        <Wardcard style={{ height: '150px', width: '100%', margin: '5px' }} />
-                        <Wardcard style={{ height: '150px', width: '100%', margin: '5px' }} />
-                        <Wardcard style={{ height: '150px', width: '100%', margin: '5px' }} />
-                        <Wardcard style={{ height: '150px', width: '100%', margin: '5px' }} />
-                        <Wardcard style={{ height: '150px', width: '100%', margin: '5px' }} />
-                        <Wardcard style={{ height: '150px', width: '100%', margin: '5px' }} />
-                        <Wardcard style={{ height: '150px', width: '100%', margin: '5px' }} />
-                        <Wardcard style={{ height: '150px', width: '100%', margin: '5px' }} />
-                    </div>
-                    <div className="wardinfocontent">
-                        <div style={{ borderWidth: '1px', borderStyle: 'solid', borderColor: '#333', height: '50px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                            個案資訊摘要
-                        </div>
-                        <div style={{ borderTopWidth: '0px', borderBottomWidth: '1px', borderLeftWidth: '1px', borderRightWidth: '1px', borderStyle: 'solid', borderColor: '#333' }}>
-                            {renderRoutes(this.props.route.routes)}
-                        </div>
-                    </div>
-                </div>
-            );
-
         }
     }
 
     render() {
-        console.log(this.state);
+        const wardcardlist = []
+        const wardcarddetaillist = []
+
+        const detailstyle = {
+            padding: '10px',
+            width: '30%',
+            overflow: 'auto',
+            maxHeight: '80vh'
+        }
+
+        const simplestyple = {
+            margin: '10px',
+            overflow: 'auto',
+            maxHeight: '650px',
+            width: '100%',
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr 1fr 1fr'
+        }
+
+        for (let i = 0; i < 1; i++) {
+            //記得在JSX中使用JS變數要用花括號包著
+            wardcardlist.push(<Wardcard />)
+            wardcarddetaillist.push(<Wardcarddetail />)
+        }
+
+
         return (
             <div>
-                <div style={{ background: '#fff', height: '50px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <span style={{ color: '#000', width: 'auto', marginLeft: 10 }}>資料更新時間 {new Date().toLocaleString()}</span>
-                    <span>
-                        <Switch style={{ marginRight: 5 }} checkedChildren="Detail" unCheckedChildren="Detail" defaultChecked onChange={this.onChangesimple} />
-                        <Switch style={{ marginLeft: 5, marginRight: 10 }} checkedChildren="Previw" unCheckedChildren="Previw" defaultChecked onChange={this.onChangedisplay} />
-                    </span>
+                <div className="wardcardlayout">
+                    <div className="wardcardheader">
+                        病房總覽
+                    </div>
+                    <div>
+                        <span className="timeinformation">資料更新時間 {new Date().toLocaleString()}</span>
+                        <span>
+                            <Switch style={{ margin: 5 }} checkedChildren="Detail" unCheckedChildren="Detail" defaultChecked onChange={this.onChangesimple} />
+                            <Switch style={{ margin: 5 }} checkedChildren="Previw" unCheckedChildren="Previw" defaultChecked onChange={this.onChangedisplay} />
+                        </span>
+                    </div>
                 </div>
-                <div >
-                    {this.contentview()}
+                <div>
+                    <div style={{ display: 'flex' }}>
+                        <div style={this.state.displaymode ? simplestyple : detailstyle}>
+                            {this.state.simplemode ? wardcardlist : wardcarddetaillist}
+                        </div>
+                        {this.previwbool()}
+                    </div>
                 </div>
             </div>
         );

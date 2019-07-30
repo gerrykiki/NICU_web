@@ -5,11 +5,7 @@ import React, { Component } from 'react';
 class Basicinformation extends Component {
     render() {
         return (
-            <div style={{width:'100%'}}>
-                <div>
-                    Basic Info
-                    </div>
-                <hr></hr>
+            <div>
                 <div style={{ height: '50px', display: 'flex', alignItems: 'center', borderWidth: '1px', borderColor: '#333', borderStyle: 'solid' }}>
                     <div style={{ display: 'flex', alignItems: 'center', marginLeft: '20px' }}>
                         <div>

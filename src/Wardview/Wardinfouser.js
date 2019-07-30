@@ -1,178 +1,104 @@
 import React, { Component } from 'react';
-import { Card, Button, Checkbox } from 'antd';
+import { Button } from 'antd';
 import { Link } from 'react-router-dom';
+import WardcardvitalsignChart from './Wardcardvitalsign'
+
+const width = window.screen.availWidth * 0.5, height = 150, margin = 20, max = 90, min = 10
+
+
+
+//var timeoutID = window.setInterval(( () => console.log("Hello!") ), 1000);
+
 
 class Wardinfouser extends Component {
-
-
-    state = {
-        MedInfostate: false
-    };
-
-    onChangeMedInfo = () => {
-        this.setState({
-            MedInfostate: !this.state.MedInfostate,
-        });
-    }
-    MedInfo = () => {
-        if (this.state.MedInfostate) {
-            return (
-                <div>
-                </div>
-            );
+    datarelease() {
+        var dataset = []; //建立空的資料陣列
+        var Num = 50
+        for (var i = 0; i < 20; i++) {
+            var newNum = Num + (5 - Math.floor(Math.random() * 10));
+            dataset.push(newNum);
+            Num = newNum;
         }
-        else {
-            return (
-                <div>
-                    <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
-                        <div style={{ height: '60px', width: '150px', background: '#bebebe', margin: '10px' }}>
-                            <div style={{ height: '15px', margin: '5px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                主治醫師
-                    </div>
-                            <div style={{ fontSize: '30px', height: '35px', margin: '5px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                陳國榮
-                    </div>
-                        </div>
-                        <div style={{ height: '60px', width: '150px', background: '#bebebe', margin: '10px' }}>
-                            <div style={{ height: '15px', margin: '5px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                住院醫師
-                    </div>
-                            <div style={{ fontSize: '30px', height: '35px', margin: '5px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                劉珈慶
-                    </div>
-                        </div>
-                    </div>
-                    <div style={{ height: '10px' }}></div>
-                </div>
-            );
-
-        }
+        console.log(dataset);
+        return dataset;
     }
     render() {
         return (
-            <div>
+            <div style={{ borderColor: "rgba(232, 232, 232, 1)", borderWidth: "1px", borderStyle: "solid", borderRadius: "4px" }}>
                 <div style={{ height: '50px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <span>
+                    <div>
                         <Link to="/Main/Bedview/Wardindex">
-                            <Button type="link">
-                                &larr;返回病房資訊總覽
-                                    </Button>
+                            <Button type="link">&larr;返回病房資訊總覽</Button>
                         </Link>
-                    </span>
-                    <span>
-                        <Button type="link">
-                            前往個案頁面&rarr;
-                                    </Button>
-                    </span>
-                </div>
-                <div style={{ height: '50px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '5px' }}>
-                    <div style={{ margin: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <span>
-                            <div style={{ height: '20px' }}>
-                                病床
-                                            </div>
-                            <div style={{ height: '20px' }}></div>
-                        </span>
-                        <span style={{ fontSize: '50px' }}>
-                            01
-                                    </span>
-                        <span>
-                            <div style={{ height: '20px', fontWeight: 'bold' }}>
-                                程子倩 / Ch01 / 女 / 13週
-                                    </div>
-                            <div style={{ height: '20px' }}>
-                                病歷浩:XXXXX-XXXXX   3700g (+700g)
-                                    </div>
-                        </span>
-
                     </div>
-                    <span>
-                        <Button disabled={true}>呼</Button>&nbsp;
-                                    <Button disabled={true}>TPN</Button>&nbsp;
-                                    <Button disabled={true}>NP0</Button>&nbsp;
-                                    <Button>透</Button>&nbsp;
-                                    <Button>葉</Button>&nbsp;
-                                    <Button>抗</Button>
-                    </span>
+                    <div style={{ fontSize: "22px" }}>個案資訊摘要</div>
+                    <div>
+                        <Button type="link">前往個案頁面&rarr;</Button>
+                    </div>
                 </div>
-                <div style={{ height: '20px' }}></div>
-                <div style={{ borderTopWidth: '1px', borderTopColor: 'back', borderTopStyle: 'solid', position: 'relative', margin: '5px' }}>
-                    <span style={{ height: '50px', background: '#fff', textAlign: 'center', lineHeight: '50px', color: '#666666', position: 'absolute', top: '-25px', left: '50px' }}>
-                        主治醫師 陳國榮
-                                </span>
-                    <span style={{ height: '50px', background: '#fff', textAlign: 'center', lineHeight: '50px', color: '#666666', position: 'absolute', top: '-25px', right: '0px' }}>
-                        <Button type="link" block onClick={this.onChangeMedInfo}>
-                            隱藏醫療團隊資訊
-                                    </Button>
-                    </span>
-                </div>
-                <div style={{ height: '10px' }}></div>
-                {this.MedInfo()}
-                <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around' }}>
-                    <Card style={{ height: 'auto', margin: '5px', width: '97%' }} title="過去一週生命跡象" bordered={true} headStyle={{ textAlign: 'center' }}>
-                        <div style={{ display: 'flex', justifyContent: 'center' }}>
-                            <div style={{ display: 'flex', flexWrap: 'nowrap' }}>
-                                <Button style={{ margin: '3px', borderRadius: '50px' }}>BP</Button>
-                                <Button style={{ margin: '3px', borderRadius: '50px' }}>HR</Button>
-                                <Button style={{ margin: '3px', borderRadius: '50px' }}>RR</Button>
-                                <Button style={{ margin: '3px', borderRadius: '50px' }}>BT</Button>
-                                <Button style={{ margin: '3px', borderRadius: '50px' }}>尿液</Button>
-                                <Button style={{ margin: '3px', borderRadius: '50px' }}>血糖</Button>
-                                <Button style={{ margin: '3px', borderRadius: '50px' }}>Sp02</Button>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingLeft: "16px", paddingRight: "16px" }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', height: "70px", width: "100%" }}>
+                        <div style={{ display: "flex" }}>
+                            <div style={{ height: '40px', lineHeight: "40px" }}>病床</div>
+                            <div style={{ fontSize: '50px', marginLeft: "5px" }}>01</div>
+                            <div style={{ marginLeft: "5px" }}>
+                                <div style={{ lineHeight: "40px" }}>
+                                    <span style={{ fontSize: "20px" }}>程子倩</span>
+                                    <span style={{ fontSize: "20px" }}>&nbsp;/&nbsp;</span>
+                                    <span style={{ fontSize: "20px" }}>Ch01</span>
+                                    <span style={{ fontSize: "20px" }}>&nbsp;/&nbsp;</span>
+                                    <span style={{ fontSize: "20px" }}>女</span>
+                                    <span style={{ fontSize: "20px" }}>&nbsp;/&nbsp;</span>
+                                    <span style={{ fontSize: "20px" }}>13週</span>
+                                </div>
+                                <div style={{ lineHeight: "30px" }}>
+                                    <span style={{ fontSize: "14px", marginRight: "14px" }}>病歷號:XXXXX-XXXXX</span>
+                                    <span style={{ fontSize: "14px", marginRight: "14px" }}>3700g</span>
+                                    <span style={{ fontSize: "14px", marginRight: "14px" }}>(+700g)</span>
+                                    <span style={{ fontSize: "14px" }}>聯絡電話::OOOOO-OOOOO</span>
+                                </div>
+
                             </div>
                         </div>
-                        <div style={{ display: 'flex', flexWrap: 'nowrap', justifyContent: 'center', margin: '5px' }}>
-                            chart
+                        <div style={{ marginLeft: "8px" }}>
+                            <div style={{ lineHeight: "40px", display: "flex", justifyContent: "flex-end" }}>
+                                <div style={{ fontSize: "14px", textAlign: "center", borderRadius: "4px", background: "rgba(232, 152, 162, 1)", color: "rgba(255, 255, 255, 1)", marginRight: "10px", width: "40px", height: "40px" }}>呼</div>
+                                <div style={{ fontSize: "14px", textAlign: "center", borderRadius: "4px", background: "rgba(195, 153, 115, 1)", color: "rgba(255, 255, 255, 1)", marginRight: "10px", width: "40px", height: "40px" }}>TPN</div>
+                                <div style={{ fontSize: "14px", textAlign: "center", borderRadius: "4px", background: "rgba(61, 119, 181, 1)", color: "rgba(255, 255, 255, 1)", marginRight: "10px", width: "40px", height: "40px" }}>NP0</div>
+                                <div style={{ fontSize: "14px", textAlign: "center", borderRadius: "4px", background: "rgba(241, 204, 115, 1)", color: "rgba(255, 255, 255, 1)", marginRight: "10px", width: "40px", height: "40px" }}>透</div>
+                                <div style={{ fontSize: "14px", textAlign: "center", borderRadius: "4px", background: "rgba(155, 202, 100, 1)", color: "rgba(255, 255, 255, 1)", marginRight: "10px", width: "40px", height: "40px" }}>葉</div>
+                                <div style={{ fontSize: "14px", textAlign: "center", borderRadius: "4px", background: "rgba(65, 165, 181, 1)", color: "rgba(255, 255, 255, 1)", width: "40px", height: "40px" }}>抗</div>
                             </div>
-                    </Card>
-                    <Card style={{ margin: '5px', width: '47%' }} title="最近檢驗項目" bordered={true} headStyle={{ textAlign: 'center' }}>
-                        <div style={{ overflow: 'auto', height: '150px' }}>
-                            <Checkbox>Checkbox</Checkbox><br></br>
-                            <Checkbox>Checkbox</Checkbox><br></br>
-                            <Checkbox>Checkbox</Checkbox><br></br>
-                            <Checkbox>Checkbox</Checkbox><br></br>
-                            <Checkbox>Checkbox</Checkbox><br></br>
-                            <Checkbox>Checkbox</Checkbox><br></br>
-                            <Checkbox>Checkbox</Checkbox><br></br>
-                            <Checkbox>Checkbox</Checkbox><br></br>
+                            <div style={{ lineHeight: "30px", textAlign: "end" }}>
+                                <span style={{ fontSize: "14px" }}>主治醫師&nbsp;</span>
+                                <span style={{ fontSize: "14px", marginRight: "14px" }}>陳XX</span>
+                                <span style={{ fontSize: "14px" }}>查看醫療團隊資訊</span>
+                            </div>
                         </div>
-                    </Card>
-                    <Card style={{ margin: '5px', width: '47%' }} title="Schedule" bordered={true} headStyle={{ textAlign: 'center' }}>
-                        <div style={{ overflow: 'auto', height: '150px' }}>
-                            <Checkbox>Checkbox</Checkbox><br></br>
-                            <Checkbox>Checkbox</Checkbox><br></br>
-                            <Checkbox>Checkbox</Checkbox><br></br>
-                            <Checkbox>Checkbox</Checkbox><br></br>
-                            <Checkbox>Checkbox</Checkbox><br></br>
-                            <Checkbox>Checkbox</Checkbox><br></br>
-                            <Checkbox>Checkbox</Checkbox><br></br>
-                            <Checkbox>Checkbox</Checkbox><br></br>
-                        </div>
-                    </Card>
-                    <Card style={{ margin: '5px', width: '47%' }} title="待辦事項" bordered={true} headStyle={{ textAlign: 'center' }}>
-                        <div style={{ overflow: 'auto', height: '100px' }}>
-                            <Checkbox>Checkbox</Checkbox><br></br>
-                            <Checkbox>Checkbox</Checkbox><br></br>
-                            <Checkbox>Checkbox</Checkbox><br></br>
-                            <Checkbox>Checkbox</Checkbox><br></br>
-                            <Checkbox>Checkbox</Checkbox><br></br>
-                            <Checkbox>Checkbox</Checkbox><br></br>
-                            <Checkbox>Checkbox</Checkbox><br></br>
-                            <Checkbox>Checkbox</Checkbox><br></br>
-                        </div>
-                    </Card>
-                    <Card style={{ margin: '5px', width: '47%' }} title="待辦事項" bordered={true} headStyle={{ textAlign: 'center' }}>
-                        <div style={{ overflow: 'auto', height: '100px' }}>
-                            <Checkbox>Checkbox</Checkbox><br></br>
-                            <Checkbox>Checkbox</Checkbox><br></br>
-                            <Checkbox>Checkbox</Checkbox><br></br>
-                            <Checkbox>Checkbox</Checkbox><br></br>
-                            <Checkbox>Checkbox</Checkbox><br></br>
-                            <Checkbox>Checkbox</Checkbox><br></br>
-                            <Checkbox>Checkbox</Checkbox><br></br>
-                            <Checkbox>Checkbox</Checkbox><br></br>
-                        </div>
-                    </Card>
+                    </div>
+                </div>
+                <div style={{ height: '1px', backgroundColor: "rgba(220, 220, 220, 1)", marginRight: "16px", marginLeft: "16px", marginBottom: "20px", marginTop: "20px" }}></div>
+                <div style={{ textAlign: "center", lineHeight: "20px", fontSize: "16px" }}>過去24小時生命徵象</div>
+                <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                    <div id="wardvital" style={{ marginTop: "20px", marginBottom: "20px", marginRight: "20px", width: "51vw", height: "150px" }}>
+                        {console.log("wid" + width)}
+                        <WardcardvitalsignChart data={this.datarelease()} width={width} height={100} margin={margin} max={max} min={min} axisBot={false} axisTop={true} circlrcolor={"green"}></WardcardvitalsignChart>
+                    </div>
+                </div>
+                <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                    <div id="wardvital" style={{ marginTop: "20px", marginBottom: "20px", marginRight: "20px", width: "51vw", height: "150px" }}>
+                        <WardcardvitalsignChart data={this.datarelease()} width={width} height={100} margin={margin} max={max} min={min} axisBot={false} axisTop={false} circlrcolor={"green"}></WardcardvitalsignChart>
+                    </div>
+                </div>
+                <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                    <div id="wardvital" style={{ marginTop: "20px", marginBottom: "20px", marginRight: "20px", width: "51vw", height: "150px" }}>
+                        <WardcardvitalsignChart data={this.datarelease()} width={width} height={100} margin={margin} max={max} min={min} axisBot={false} axisTop={false} circlrcolor={"green"}></WardcardvitalsignChart>
+                    </div>
+                </div>
+                <div style={{ marginTop: "20px", marginBottom: "20px" }}>
+                    {
+                        //小卡片
+                    }
                 </div>
             </div>
         );

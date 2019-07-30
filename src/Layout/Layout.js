@@ -1,12 +1,11 @@
-import { Layout, Icon } from 'antd';
+import { Layout } from 'antd';
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
 import './Layout.css';
-import Sidermenu  from './Sidermenu';
-import { renderRoutes, matchRoutes } from 'react-router-config'
-import routes from './Routes'
+import Sidermenu from './Sidermenu';
+import { renderRoutes } from 'react-router-config'
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Content } = Layout;
 
 class Layoutframe extends Component {
 
@@ -50,22 +49,22 @@ class Layoutframe extends Component {
     }
 
     render() {
-
-        const matchedRoutes = matchRoutes(routes, this.props.location.pathname);
-
         return (
             <Layout>
                 <Layout style={{ background: '#fff' }}>
-                    <Header style={{display:'flex',alignItems:'center',justifyContent:'space-between',height:'50px'}}>
+                    <Header className="header">
                         {/*eslint-disable-next-line*/}
                         <Sidermenu></Sidermenu>
-                        })*/}
-                        <div style={{ color: '#fff', marginRight:10,width:'auto' }}>Hi,陳國榮醫師 {new Date().toLocaleDateString()} {this.renderSwitch(new Date().getDay())}</div>
+                        <div style={{ marginRight: 10 }}>
+                            <div className="hospitalbackground"></div>
+                            <div className="hospital"></div>
+                            <div style={{ fontFamily: "PingFangTC-Regular", fontSize: "14px", color: 'rgba(255, 255, 255, 1)', width: 'auto', position: "absolute", right: '50px', top: '0px' }}>陳國榮醫師 {new Date().toLocaleDateString()} {this.renderSwitch(new Date().getDay())}</div>
+                        </div>
                     </Header>
                     <Content>
-                        < div style={{ background: '#fff'}}>
+                        <div style={{ background: '#fff' }}>
                             {renderRoutes(this.props.route.routes)}
-                        </div >
+                        </div>
                     </Content>
                 </Layout>
             </Layout>

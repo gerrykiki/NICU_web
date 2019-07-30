@@ -1,6 +1,7 @@
-import { Menu } from 'antd';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { Icon } from 'antd';
+import './Sidermenu.css';
 
 
 class Sidermenu extends Component {
@@ -31,23 +32,22 @@ class Sidermenu extends Component {
         console.log(data);
 
         return (
-            <Menu theme="dark" mode="horizontal" defaultSelectedKeys={this.Selectkeynumber(1)}>
-                <Menu.Item key="1">
-                    <span className="nav-text">病床總覽</span>
-                    <Link to="/Main/Bedview/Wardindex"></Link>
-                </Menu.Item>
-                <Menu.Item key="2">
-                    <span className="nav-text">個案資訊管理</span>
-                    <Link to="/Main/Caseview"></Link>
-                </Menu.Item>
-                <Menu.Item key="3">
-                    <span className="nav-text">歷史病歷管理</span>
-                    <Link to="/Main/Historyview"></Link>
-                </Menu.Item>
-                <Menu.Item key="4">
-                    <span className="nav-text">系統設定</span>
-                </Menu.Item>
-            </Menu>
+            <div style={{ backgroundColor: "rgba(0, 0, 0, 0)", display: 'flex', alignItems: 'center' }}>
+                <div className="logo"></div>
+                <div style={{width:"400px",display:"flex",alignItems:"center",justifyContent:"space-between"}}>
+                    <Link to="/Main/Bedview/Wardindex" style={{ backgroundColor: "rgba(0, 0, 0, 0)" }}>
+                        <Icon type="dashboard" style={{ fontSize: '16px', color: 'rgba(46, 100, 164, 1)' }} />
+                        <span className="linkfont">病床總覽</span>
+                    </Link>
+                    <Link to="/Main/Historyview" style={{ backgroundColor: "rgba(0, 0, 0, 0)" }}>
+                        <span className="linkfont">歷史病歷管理</span>
+                    </Link>
+                    <Link style={{ backgroundColor: "rgba(0, 0, 0, 0)" }}>
+                        <Icon type="setting" style={{ fontSize: '16px', color: 'rgba(46, 100, 164, 1)' }} />
+                        <span className="linkfont">系統設定</span>
+                    </Link>
+                </div>
+            </div>
         );
     }
 }
