@@ -1,8 +1,6 @@
 {
   "name": "nicu",
   "version": "0.1.0",
-  "private": true,
-  "homepage": "https://gerrykiki.github.io/Reactproj",
   "dependencies": {
     "antd": "^3.19.3",
     "d3": "^5.9.7",
