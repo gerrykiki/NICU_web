@@ -1,12 +1,16 @@
 svg {
   width: 100%;
   height: 100%;
-  font-family: Helvetica, Arial, _sans;
   font-size: 0.75em;
 }
 
+path {
+	stroke-width: 1;
+	fill: none;
+}
+
 .axis text {
-  font: 10px sans-serif;
+  font: 10px;
   stroke: #333333;
 }
 
@@ -21,8 +25,7 @@ svg {
 }
 
 .limitaxis text {
-  font: 10px sans-serif;
-  stroke: #ff0000;
+  font: 10px;
 }
 
 .limitaxis path {
@@ -36,5 +39,5 @@ svg {
 }
 
 .caption {
-  font-weight: bold;
+  font-weight: normal;
 }

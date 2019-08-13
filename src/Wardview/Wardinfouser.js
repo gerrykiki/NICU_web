@@ -3,7 +3,7 @@ import { Button } from 'antd';
 import { Link } from 'react-router-dom';
 import WardcardvitalsignChart from './Wardcardvitalsign'
 
-const width = window.screen.availWidth * 0.55, height = 150, margin = 20, max = 90, min = 10
+const width = window.screen.availWidth * 0.55, height = 50, margin = 20, max = 150, min = 50
 
 
 
@@ -13,8 +13,8 @@ const width = window.screen.availWidth * 0.55, height = 150, margin = 20, max = 
 class Wardinfouser extends Component {
     datarelease() {
         var dataset = []; //建立空的資料陣列
-        var Num = 50
-        for (var i = 0; i < 20; i++) {
+        var Num = 100
+        for (var i = 0; i < 24; i++) {
             var newNum = Num + (5 - Math.floor(Math.random() * 10));
             dataset.push(newNum);
             Num = newNum;
@@ -26,15 +26,13 @@ class Wardinfouser extends Component {
         return (
             <div style={{ borderColor: "rgba(232, 232, 232, 1)", borderWidth: "1px", borderStyle: "solid", borderRadius: "4px" }}>
                 <div style={{ height: '50px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <div>
+                    <div style={{width:"200px"}}>
                         <Link to="/Main/Bedview/Wardindex">
                             <Button type="link">&larr;返回病房資訊總覽</Button>
                         </Link>
                     </div>
-                    <div style={{ fontSize: "22px" }}>個案資訊摘要</div>
-                    <div>
-                        <Button type="link">前往個案頁面&rarr;</Button>
-                    </div>
+                    <div style={{ fontSize: "22px" ,width:"200px",textAlign:"center"}}>個案資訊摘要</div>
+                    <div style={{width:"200px",textAlign:"end"}}></div>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingLeft: "16px", paddingRight: "16px" }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', height: "70px", width: "100%" }}>
@@ -80,68 +78,68 @@ class Wardinfouser extends Component {
                 <div style={{ height: '1px', backgroundColor: "rgba(220, 220, 220, 1)", marginRight: "16px", marginLeft: "16px", marginBottom: "20px", marginTop: "20px" }}></div>
                 <div style={{ textAlign: "center", lineHeight: "20px", fontSize: "16px" }}>過去24小時生命徵象</div>
                 <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", marginLeft: "20px" }}>
-                    <div style={{ marginTop: "20px" }}>
+                    <div style={{ marginTop: "10px" , width:"100px"}}>
                         <div style={{ color: "rgba(126, 211, 33, 1)" }}>
                             HR
                         </div>
-                        <div style={{ fontSize: "2rem", color: "rgba(126, 211, 33, 1)" }}>
+                        <div style={{ fontSize: "1.5rem", color: "rgba(126, 211, 33, 1)" }}>
                             123
                         </div>
                     </div>
-                    <div id="wardvital" style={{ marginRight: "20px", width: "71vw", height: "150px" }}>
-                        <WardcardvitalsignChart data={this.datarelease()} width={width} height={100} margin={margin} max={150} min={50} axisBot={false} axisTop={true} circlrcolor={"rgba(126, 211, 33, 1)"}></WardcardvitalsignChart>
+                    <div id="wardvitalhr" style={{ marginRight: "20px", width: "71vw", height: "100px" }}>
+                        <WardcardvitalsignChart id={"wardvitalhr"} data={this.datarelease()} width={width} height={height} margin={margin} max={max} min={min} axisBot={false} axisTop={true} circlrcolor={"rgba(126, 211, 33, 1)"}></WardcardvitalsignChart>
                     </div>
                 </div>
                 <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", marginLeft: "20px" }}>
-                    <div style={{ marginTop: "20px" }}>
+                    <div style={{ marginTop: "10px" , width:"100px"}}>
                         <div style={{ color: "rgba(222, 150, 159, 1)" }}>
                             BP
                         </div>
-                        <div style={{ fontSize: "2rem", color: "rgba(222, 150, 159, 1)" }}>
+                        <div style={{ fontSize: "1.5rem", color: "rgba(222, 150, 159, 1)" }}>
                             90
                         </div>
                     </div>
-                    <div id="wardvital" style={{ marginRight: "20px", width: "71vw", height: "150px" }}>
-                        <WardcardvitalsignChart data={this.datarelease()} width={width} height={100} margin={margin} max={150} min={50} axisBot={false} axisTop={false} circlrcolor={"rgba(222, 150, 159, 1)"}></WardcardvitalsignChart>
+                    <div id="wardvitalbp" style={{ marginRight: "20px", width: "71vw", height: "100px" }}>
+                        <WardcardvitalsignChart id={"wardvitalbp"} data={this.datarelease()} width={width} height={height} margin={margin} max={max} min={min} axisBot={false} axisTop={false} circlrcolor={"rgba(222, 150, 159, 1)"}></WardcardvitalsignChart>
                     </div>
                 </div>
                 <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", marginLeft: "20px" }}>
-                    <div style={{ marginTop: "20px" }}>
+                    <div style={{ marginTop: "10px" , width:"100px"}}>
                         <div style={{ color: "rgba(59, 151, 225, 1)" }}>
                             SpO2
                         </div>
-                        <div style={{ fontSize: "2rem", color: "rgba(59, 151, 225, 1)" }}>
+                        <div style={{ fontSize: "1.5rem", color: "rgba(59, 151, 225, 1)" }}>
                             24
                         </div>
                     </div>
-                    <div id="wardvital" style={{ marginRight: "20px", width: "71vw", height: "150px" }}>
-                        <WardcardvitalsignChart data={this.datarelease()} width={width} height={100} margin={margin} max={150} min={50} axisBot={false} axisTop={false} circlrcolor={"rgba(59, 151, 225, 1)"}></WardcardvitalsignChart>
+                    <div id="wardvitalsp" style={{ marginRight: "20px", width: "71vw", height: "100px" }}>
+                        <WardcardvitalsignChart id={"wardvitalsp"} data={this.datarelease()} width={width} height={height} margin={margin} max={max} min={min} axisBot={false} axisTop={false} circlrcolor={"rgba(59, 151, 225, 1)"}></WardcardvitalsignChart>
                     </div>
                 </div>
                 <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", marginLeft: "20px" }}>
-                    <div style={{ marginTop: "20px" }}>
+                    <div style={{ marginTop: "10px" , width:"100px"}}>
                         <div style={{ color: "rgba(144, 19, 254, 1)" }}>
                             BT
                         </div>
-                        <div style={{ fontSize: "2rem", color: "rgba(144, 19, 254, 1)" }}>
+                        <div style={{ fontSize: "1.5rem", color: "rgba(144, 19, 254, 1)" }}>
                             90
                         </div>
                     </div>
-                    <div id="wardvital" style={{ marginRight: "20px", width: "71vw", height: "150px" }}>
-                        <WardcardvitalsignChart data={this.datarelease()} width={width} height={100} margin={margin} max={150} min={50} axisBot={false} axisTop={false} circlrcolor={"rgba(144, 19, 254, 1)"}></WardcardvitalsignChart>
+                    <div id="wardvitalbt" style={{ marginRight: "20px", width: "71vw", height: "100px" }}>
+                        <WardcardvitalsignChart id={"wardvitalbt"} data={this.datarelease()} width={width} height={height} margin={margin} max={max} min={min}axisBot={false} axisTop={false} circlrcolor={"rgba(144, 19, 254, 1)"}></WardcardvitalsignChart>
                     </div>
                 </div>
                 <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", marginLeft: "20px" }}>
-                    <div style={{ marginTop: "20px" }}>
+                    <div style={{ marginTop: "10px" , width:"100px"}}>
                         <div style={{ color: "rgba(245, 166, 35, 1)" }}>
                             RR
                         </div>
-                        <div style={{ fontSize: "2rem", color: "rgba(245, 166, 35, 1)" }}>
+                        <div style={{ fontSize: "1.5rem", color: "rgba(245, 166, 35, 1)" }}>
                             90
                         </div>
                     </div>
-                    <div id="wardvital" style={{ marginRight: "20px", width: "71vw", height: "150px" }}>
-                        <WardcardvitalsignChart data={this.datarelease()} width={width} height={100} margin={margin} max={150} min={50} axisBot={true} axisTop={false} circlrcolor={"rgba(245, 166, 35, 1)"}></WardcardvitalsignChart>
+                    <div id="wardvitalrr" style={{ marginRight: "20px", width: "71vw", height: "100px" }}>
+                        <WardcardvitalsignChart id={"wardvitalrr"} data={this.datarelease()} width={width} height={height} margin={margin} max={max} min={min} axisBot={false} axisTop={false} circlrcolor={"rgba(245, 166, 35, 1)"}></WardcardvitalsignChart>
                     </div>
                 </div>
                 <div style={{ marginTop: "20px", marginBottom: "20px", display: "grid", gridTemplateColumns: "1fr 1fr", gridTemplateRows: "250px 350px", padding: "10px" }}>
@@ -160,13 +158,11 @@ class Wardinfouser extends Component {
                         <div style={{ height: "50px", backgroundColor: "rgba(238, 238, 238, 1)", width: "100%", borderTopLeftRadius: "4px", borderTopRightRadius: "4px" ,lineHeight:"50px",paddingLeft:"15px"}}>
                         最近檢驗項目
                         </div>
-
                     </div>
                     <div style={{ borderWidth: "1px", borderStyle: "solid", borderColor: "rgba(238, 238, 238, 1)", borderRadius: "4px", display: "flex", margin: "5px" }}>
                         <div style={{ height: "50px", backgroundColor: "rgba(238, 238, 238, 1)", width: "100%", borderTopLeftRadius: "4px", borderTopRightRadius: "4px" ,lineHeight:"50px",paddingLeft:"15px"}}>
                         備註
                         </div>
-
                     </div>
                 </div>
             </div>

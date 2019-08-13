@@ -10,7 +10,7 @@ class WardcardvitalsignChart extends Component {
     }
 
     drawChart() {
-        const { width, height, margin, max, min, axisBot, axisTop, circlrcolor, data } = this.props
+        const { id, width, height, margin, max, min, axisBot, axisTop, circlrcolor, data } = this.props
 
         var vertigo = data;
 
@@ -21,7 +21,7 @@ class WardcardvitalsignChart extends Component {
 
 
         var x = d3.scaleLinear()
-            .domain([1, 20])
+            .domain([1, 24])
             .range([0, width - 20])
 
 
@@ -50,12 +50,12 @@ class WardcardvitalsignChart extends Component {
 
 
 
-        var svg = d3.select("#wardvital")
+        var svg = d3.select("#" + id)
             .append("svg")
             .attr("width", width)
             .attr("height", height)
             .append("g")
-            .attr("transform", "translate(" + 50 + "," + (margin+20) + ")");
+            .attr("transform", "translate(" + 50 + "," + (margin + 20) + ")");
 
 
 
@@ -68,14 +68,24 @@ class WardcardvitalsignChart extends Component {
 
         svg.append("g")
             .call(ylimitAxis)
-            .attr("class", "limitaxis");
+            .attr("class", "limitaxis")
+            .style('stroke', circlrcolor);
+
+        var line = d3.line()
+            .x(function (d, i) {
+                return x(i + 1); //利用尺度運算資料索引，傳回x的位置
+            })
+            .y(function (d) {
+                return y(d); //利用尺度運算資料的值，傳回y的位置
+            });
+
 
         if (axisBot) {
             console.log(axisBot)
             svg.append("g")
                 .call(xAxisbottom)
                 .attr("class", "axis")
-                .attr("transform", "translate(" + 0 + ", " - height + ")");
+                .attr("transform", "translate(" + 0 + ", " + height + ")");
         }
 
         if (axisTop) {
@@ -105,9 +115,9 @@ class WardcardvitalsignChart extends Component {
 
         svg.append('line')
             .attr('x1', -margin)
-            .attr('y1', y(100))
+            .attr('y1', y(200))
             .attr('x2', width)
-            .attr('y2', y(100))
+            .attr('y2', y(200))
             .style('stroke', 'rgba(0, 0, 0, 0.1)')
             .style('stroke-width', 1)
             .style('stroke-dasharray', 5.5);
@@ -121,14 +131,17 @@ class WardcardvitalsignChart extends Component {
             .style('stroke-width', 1)
             .style('stroke-dasharray', 5.5);
 
+        svg.append('path')
+            .attr('d', line(vertigo))
+            .style('stroke',circlrcolor);
 
         vertigo.map((o, i) => (
-            o > 0 && o < 100 ?
+            o > 0 && o < 200 ?
                 o > min && o < max ?
                     svg.append('circle')
                         .attr('cx', x(i + 1))
                         .attr('cy', y(o))
-                        .attr('r', 3.5)
+                        .attr('r', 2)
                         .style('fill', circlrcolor)
                         .on("mouseover", function (d) {
                             var x0 = x.invert(d3.mouse(this)[0]);
@@ -138,7 +151,7 @@ class WardcardvitalsignChart extends Component {
                     svg.append('circle')
                         .attr('cx', x(i + 1))
                         .attr('cy', y(o))
-                        .attr('r', 3.5)
+                        .attr('r', 2)
                         .style('fill', 'red')
                 : null
         ))
