@@ -16,7 +16,7 @@ class WardcardvitalsignChart extends Component {
 
 
         var y = d3.scaleLinear()
-            .domain([0, 100])
+            .domain([0, 200])
             .range([height, 0])
 
 
@@ -26,7 +26,7 @@ class WardcardvitalsignChart extends Component {
 
 
         var yAxis = d3.axisLeft(y)
-            .tickValues([0, 100])
+            .tickValues([0, 200])
             .tickFormat(n => (n))
             .tickSize(0, 0)
             .tickPadding(margin + 5);
@@ -75,7 +75,7 @@ class WardcardvitalsignChart extends Component {
             svg.append("g")
                 .call(xAxisbottom)
                 .attr("class", "axis")
-                .attr("transform", "translate(" + 0 + ", " + height + ")");
+                .attr("transform", "translate(" + 0 + ", " - height + ")");
         }
 
         if (axisTop) {
@@ -108,16 +108,18 @@ class WardcardvitalsignChart extends Component {
             .attr('y1', y(100))
             .attr('x2', width)
             .attr('y2', y(100))
-            .style('stroke', 'black')
-            .style('stroke-width', 1);
+            .style('stroke', 'rgba(0, 0, 0, 0.1)')
+            .style('stroke-width', 1)
+            .style('stroke-dasharray', 5.5);
 
         svg.append('line')
             .attr('x1', -margin)
             .attr('y1', y(0))
             .attr('x2', width)
             .attr('y2', y(0))
-            .style('stroke', 'black')
-            .style('stroke-width', 1);
+            .style('stroke', 'rgba(0, 0, 0, 0.1)')
+            .style('stroke-width', 1)
+            .style('stroke-dasharray', 5.5);
 
 
         vertigo.map((o, i) => (
