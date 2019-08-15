@@ -6,6 +6,7 @@ import classinformation from '../Content/CaseInfo'
 import Wardinfoindex from '../Wardview/Wardinfoindex'
 import Wardinfouser from '../Wardview/Wardinfouser'
 import Crosssectionlayout from '../Patientview/CrossSectionView/Crosssectionlayout'
+import Patientviewlayout from '../Patientview/Patientviewlayout'
 
 const routes = [
     {
@@ -36,8 +37,8 @@ const routes = [
                 breadcrumbName:'個案資訊管理'
             },
             {
-                path: '/Main/Crosssectionlayout',
-                component: Crosssectionlayout,
+                path: '/Main/Patientview',
+                component: Patientviewlayout,
                 breadcrumbName:'首頁/個案資訊管理/個案資訊'
             },
             {

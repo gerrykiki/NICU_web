@@ -2,7 +2,9 @@
   "name": "nicu",
   "version": "0.1.0",
   "dependencies": {
+    "@material-ui/core": "^4.3.0",
     "antd": "^3.19.3",
+    "antd-iconfont": "^3.0.3",
     "d3": "^5.9.7",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
