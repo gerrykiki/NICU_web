@@ -23,6 +23,19 @@ class Wardcard extends Component {
         });
     }
 
+    switchgender(gender) {
+        switch (gender) {
+            case "Male":
+                return "男"
+                break;
+            case "FeMale":
+                return "女"
+                break;
+            default:
+                return "未知"
+                break;
+        }
+    }
     render() {
         const style = {
             backgroundColor: "rgba(0, 0, 0, 0.6)",
@@ -35,14 +48,17 @@ class Wardcard extends Component {
             justifyContent: "center",
             alignItems: "center"
         }
+
+        const {data} = this.props
+        console.log(data.Name);
         return (
             <div className="wardcardbuttonlayout" onMouseMove={() => this.hoverbackground()} onMouseLeave={() => this.hoverbackgroundhover()}>
                 <div className="wardcardbuttonheader">
                     <div style={{ fontSize: '16px', color: "rgba(61, 119, 181, 1)", fontFamily: "PingFangSC-Regular" }}>01</div>
-                    <div style={{ fontSize: '14px', fontFamily: "PingFangSC-Regular", color: "rgba(61, 119, 181, 1)" }}>程子倩/Ch01/女/13週</div>
+                    <div style={{ fontSize: '14px', fontFamily: "PingFangSC-Regular", color: "rgba(61, 119, 181, 1)" }}>{data.Name}/{data.Channel}/{this.switchgender(data.Gender)}/{data.Week}週</div>
                 </div>
                 <div style={{ height: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: "10px", borderBottomWidth: "0.5px", borderBottomColor: "rgba(160, 213, 255, 1)", borderBottomStyle: "solid" }}>
-                    <span style={{ fontSize: '12px' }}>病歷號:XXXXX-XXXXX</span>
+                    <span style={{ fontSize: '12px' }}>病歷號:{data.id}</span>
                     <span style={{ fontSize: '12px' }}>3700g (+700g)</span>
                 </div>
                 <div style={{ height: '30px', display: 'flex', alignItems: 'center',padding: "10px" }}>

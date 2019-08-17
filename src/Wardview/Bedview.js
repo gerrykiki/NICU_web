@@ -4,6 +4,7 @@ import "./Bedview.css";
 import Wardcard from './Wardcard';
 import Wardcarddetail from './Wardcarddetail';
 import { renderRoutes } from 'react-router-config';
+import { jsonResponse } from '../jsonResponse';
 
 class Bedview extends Component {
 
@@ -53,10 +54,11 @@ class Bedview extends Component {
             gridTemplateColumns: '1fr 1fr 1fr 1fr'
         }
 
+        const source = jsonResponse;
+        console.log(source);
         for (let i = 0; i < 1; i++) {
-            //記得在JSX中使用JS變數要用花括號包著
-            wardcardlist.push(<Wardcard />)
-            wardcarddetaillist.push(<Wardcarddetail />)
+            wardcardlist.push(<Wardcard data={source.Userdata.user[i]} />)
+            wardcarddetaillist.push(<Wardcarddetail data={source[i]} />)
         }
 
 
