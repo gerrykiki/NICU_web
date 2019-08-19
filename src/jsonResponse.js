@@ -1,13 +1,12 @@
-import React from 'react';
 
 const jsonResponse = {
     "Userdata": {
         "user": [
             {
                 "Name": "程子倩", //string
-                "Channel":"Ch01",
-                "Gender":"FeMale",
-                "Week":13,
+                "Channel":"Ch01", //Channel
+                "Gender":"FeMale", //性別
+                "Week":2, //週數
                 "id": "20190817001", //string
                 "published": true, //使否公開中
                 "publishednumber": 1,
@@ -17,6 +16,10 @@ const jsonResponse = {
                 "TH":true,
                 "Anti":false,
                 "Leaf":false,
+                "Birthday":1564617600,
+                "Weight":5000,
+                "WeightDif":100,
+                "Note":"隨時注意病人血壓狀況",
                 "BP": [
                     {
                         "time": 1565395200,

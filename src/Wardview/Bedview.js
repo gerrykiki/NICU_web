@@ -58,7 +58,7 @@ class Bedview extends Component {
         console.log(source);
         for (let i = 0; i < 1; i++) {
             wardcardlist.push(<Wardcard data={source.Userdata.user[i]} />)
-            wardcarddetaillist.push(<Wardcarddetail data={source[i]} />)
+            wardcarddetaillist.push(<Wardcarddetail data={source.Userdata.user[i]} />)
         }
 
 
