@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Wardcard.css'
 import { Link } from 'react-router-dom';
-import { Icon } from 'antd'
+import { Icon } from 'antd';
 
 
 class Wardcard extends Component {
@@ -64,7 +64,7 @@ class Wardcard extends Component {
                 </div>
                 <div style={{ height: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: "10px", borderBottomWidth: "0.5px", borderBottomColor: "rgba(160, 213, 255, 1)", borderBottomStyle: "solid" }}>
                     <span style={{ fontSize: '12px' }}>病歷號:{data.id}</span>
-                    <span style={{ fontSize: '12px' }}>{data.Weight}g (+{data.WeightDif}g)</span>
+                    <span style={{ fontSize: '12px' }}>{data.data.Weight}g (+{data.data.WeightDif}g)</span>
                 </div>
                 <div style={{ height: '30px', display: 'flex', alignItems: 'center',padding: "10px" }}>
                     <span style={{ fontSize: '12px' }}>{data.Note}</span>

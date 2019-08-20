@@ -22,8 +22,10 @@ class Wardcarddetail extends Component {
         }
     }
 
-    detailinformation(infoarray){
-        
+    detailinformation(infoarray,colorback,rowinfo){
+        console.log(infoarray);
+        const style = {height: "20px",backgroundColor:colorback, borderRadius: "4px", textAlign: "center", lineHeight: "20px"} 
+        const disstyle = {height: "20px", borderWidth: "1px", borderColor: "rgba(220, 220, 220, 1)", borderStyle: "solid", borderRadius: "4px", textAlign: "center", lineHeight: "20px"}
     }
 
     render() {
@@ -63,7 +65,7 @@ class Wardcarddetail extends Component {
                         病歷號:{data.id}
                     </span>
                     <span style={{ fontSize: '12px' }}>
-                        {data.Weight}g (+{data.WeightDif}g)
+                        {data.data.Weight}g (+{data.data.WeightDif}g)
                         </span>
                 </div>
                 <div style={{ borderBottomWidth: "0.5px", borderBottomColor: "rgba(160, 213, 255, 1)", borderBottomStyle: "solid" }}>
@@ -72,8 +74,11 @@ class Wardcarddetail extends Component {
                     </div>
                 </div>
                 <div style={{ height: '30px', display: 'flex', alignItems: 'center', paddingTop: "3px", paddingLeft: "10px", paddingRight: "10px", paddingBottom: "3px", borderBottomWidth: "0.5px", borderBottomColor: "rgba(160, 213, 255, 1)", borderBottomStyle: "solid" }}>
-                    <div style={{ height: "20px", borderWidth: "1px", borderColor: "rgba(59, 151, 225, 1)", borderStyle: "solid", borderRadius: "4px", textAlign: "center", lineHeight: "20px" }}>
-                        BP
+                    <div style={{width:"24px", height: "24px", borderWidth: "1px", borderColor: "rgba(59, 151, 225, 1)", borderStyle: "solid", borderRadius: "4px", textAlign: "center", lineHeight: "24px" }}>
+                        {
+                            //this.detailinformation(data.detaildata,"rgba(232,152,162,1)")
+                        }
+                        乎
                     </div>
                 </div>
                 <div style={{ height: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: "13px", borderBottomWidth: "0.5px", borderBottomColor: "rgba(160, 213, 255, 1)", borderBottomStyle: "solid" }}>
