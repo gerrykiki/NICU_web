@@ -5,7 +5,6 @@ import Historyview from '../Content/Historyview'
 import classinformation from '../Content/CaseInfo'
 import Wardinfoindex from '../Wardview/Wardinfoindex'
 import Wardinfouser from '../Wardview/Wardinfouser'
-import Crosssectionlayout from '../Patientview/CrossSectionView/Crosssectionlayout'
 import Patientviewlayout from '../Patientview/Patientviewlayout'
 
 const routes = [

@@ -16,7 +16,7 @@ class Vitalsign extends Component {
             }
             dataarray.push(dataset);
         }
-        console.log(dataarray);
+        //console.log(dataarray);
         return dataarray;
     }
 

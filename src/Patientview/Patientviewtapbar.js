@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Tabs } from 'antd';
 import Crosssectionlayout from './CrossSectionView/Crosssectionlayout'
+import Chroniclelayout from './ChronicleView/Chroniclelayout'
 
 class Patientviewtapbar extends Component {
 
@@ -19,7 +20,7 @@ class Patientviewtapbar extends Component {
                         <Crosssectionlayout></Crosssectionlayout>
                     </TabPane>
                     <TabPane tab="Chronicle View" key="2">
-                        Content of Tab Pane 2
+                        <Chroniclelayout></Chroniclelayout>
                     </TabPane>
                     <TabPane tab="Flow Sheet" key="3">
                         Content of Tab Pane 3

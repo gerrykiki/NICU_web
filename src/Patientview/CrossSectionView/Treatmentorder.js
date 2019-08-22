@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
+import Treatmentordertable from './Treatmentordertable'
 
 class Treatmentorderlayout extends Component{
     render(){
         return(
-            <div style={{ width: '45%', margin: '20px' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center',height:'40px'  }}>
-                    <div style={{ fontWeight: 'bold' }}>
+            <div style={{ width: "100%", marginBottom: "20px" }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '40px' }}>
+                    <div style={{ fontSize: "22px", fontFamily: "PingFangTC-Medium" }}>
                     Treatment Order
                     </div>
                 </div>
-                <hr></hr>
+                <Treatmentordertable></Treatmentordertable>
             </div>
         );
     }

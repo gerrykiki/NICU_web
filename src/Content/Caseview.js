@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Divider, Tag, Breadcrumb, Input, Select, DatePicker, Button } from 'antd';
+import { Table, Divider, Tag, Breadcrumb, Input, DatePicker, Button } from 'antd';
 import { Link } from 'react-router-dom';
 
 const columns = [
@@ -74,7 +74,6 @@ const data = [
 ];
 
 const InputGroup = Input.Group;
-const { Option } = Select;
 
 class Caseview extends Component {
     Searchbar() {

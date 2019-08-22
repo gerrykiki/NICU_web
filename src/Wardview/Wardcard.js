@@ -11,7 +11,7 @@ class Wardcard extends Component {
     };
 
     hoverbackground() {
-        console.log("123")
+        //console.log("123")
         this.setState({
             hoverstate: "flex"
         });
@@ -32,18 +32,15 @@ class Wardcard extends Component {
         switch (gender) {
             case "Male":
                 return "男"
-                break;
             case "FeMale":
                 return "女"
-                break;
             default:
                 return "未知"
-                break;
         }
     }
     render() {
         const style = {
-            backgroundColor: "rgba(0, 0, 0, 0.6)",
+            backgroundColor: "rgba(0, 0, 0, 0.3)",
             width: "100%",
             height: "100%",
             position: "absolute",
@@ -55,7 +52,7 @@ class Wardcard extends Component {
         }
 
         const {data} = this.props
-        console.log(data.Name);
+        console.log(data);
         return (
             <div className="wardcardbuttonlayout" onMouseMove={() => this.hoverbackground()} onMouseLeave={() => this.hoverbackgroundhover()}>
                 <div className="wardcardbuttonheader">

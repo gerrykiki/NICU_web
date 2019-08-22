@@ -24,7 +24,10 @@ class Wardinfouser extends Component {
         console.log(dataset);
         return dataset;
     }
+    
     render() {
+        const {data} = this.props
+        console.log(data);
         return (
             <div style={{ borderColor: "rgba(232, 232, 232, 1)", borderWidth: "1px", borderStyle: "solid", borderRadius: "4px" }}>
                 <div style={{ height: '50px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>

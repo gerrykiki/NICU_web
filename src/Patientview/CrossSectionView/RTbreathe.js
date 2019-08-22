@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
-import RTtable from './RTtable'
+import RTbreathetable from './RTbreathetable'
 
-class RTviewlayout extends Component{
+class RTbreathe extends Component{
     render(){
         return(
             <div style={{ width: "100%", marginBottom: "20px" }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '40px' }}>
                     <div style={{ fontSize: "22px", fontFamily: "PingFangTC-Medium" }}>
-                        RT(Blood Gas Analysis)
+                        RT(呼吸器設定)
                     </div>
                 </div>
-                <RTtable></RTtable>
+                <RTbreathetable></RTbreathetable>
             </div>
         );
     }
 }
 
-export default RTviewlayout
+export default RTbreathe

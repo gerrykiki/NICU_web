@@ -9,7 +9,7 @@ class Crosssectionvitalsignchart extends Component {
 
     drawChart() {
         const { id, width, height, margin, max, min, axisBot, axisTop, circlrcolor, data } = this.props
-        console.log(this.props)
+        //console.log(this.props)
         var vertigo = data
         var svg
 
@@ -85,7 +85,7 @@ class Crosssectionvitalsignchart extends Component {
         */
 
         if (axisBot) {
-            console.log(axisBot)
+            //console.log(axisBot)
             svg.append("g")
                 .call(xAxisbottom)
                 .attr("class", "axis")
@@ -93,7 +93,7 @@ class Crosssectionvitalsignchart extends Component {
         }
 
         if (axisTop) {
-            console.log(axisTop)
+            //console.log(axisTop)
             svg.append("g")
                 .call(xAxis)
                 .attr("class", "axis");
@@ -162,7 +162,7 @@ class Crosssectionvitalsignchart extends Component {
 
         for (let index = 0; index < vertigo.length; index++) {
             const element = vertigo[index];
-            console.log(element)
+            //console.log(element)
             const boxwidth = 10
             const data_sorted = element.sort(d3.ascending)
             const q1 = d3.quantile(data_sorted, .25)

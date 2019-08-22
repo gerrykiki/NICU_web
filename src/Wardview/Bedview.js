@@ -57,8 +57,8 @@ class Bedview extends Component {
         const source = jsonResponse;
         console.log(source);
         for (let i = 0; i < 1; i++) {
-            wardcardlist.push(<Wardcard data={source.Userdata.user[i]}/>)
-            wardcarddetaillist.push(<Wardcarddetail data={source.Userdata.user[i]} />)
+            wardcardlist.push(<Wardcard key={i} data={source.Userdata.user[i]}/>)
+            wardcarddetaillist.push(<Wardcarddetail key={i} data={source.Userdata.user[i]} />)
         }
 
 
