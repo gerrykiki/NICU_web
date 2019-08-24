@@ -5,17 +5,13 @@ import Chroniclelayout from './ChronicleView/Chroniclelayout'
 
 class Patientviewtapbar extends Component {
 
-    constructor(props) {
-        super(props);
-        console.log(props);
-    }
+
 
     render() {
         const { TabPane } = Tabs;
-
         return (
             <div style={{paddingRight:"24px",paddingLeft:"24px"}}>
-                <Tabs defaultActiveKey="1" onChange={console.log("click")}å>
+                <Tabs defaultActiveKey="2" onChange={console.log("click")}å>
                     <TabPane tab="Cross Section View" key="1">
                         <Crosssectionlayout></Crosssectionlayout>
                     </TabPane>

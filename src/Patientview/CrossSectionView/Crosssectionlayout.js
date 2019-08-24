@@ -16,29 +16,50 @@ import Todolayout from './Todo'
 class Crosssectionlayout extends Component {
 
     render() {
-        const crosssectioncontrollist = ["vital&I/O", "Lab", "RT", "Order", "Schedule&To Do List"]
+        const crosssectioncontrollist = [
+            {
+                "name": "vital&I/O",
+                "scrollpoint": "vitalsignIO"
+            },
+            {
+                "name": "Lab",
+                "scrollpoint": "lab"
+            },
+            {
+                "name": "RT",
+                "scrollpoint": "rt"
+            },
+            {
+                "name": "Order",
+                "scrollpoint": "order"
+            },
+            {
+                "name": "Schedule&To Do List",
+                "scrollpoint": "schedule"
+            }
+        ]
         return (
             <div>
                 <Controlbar btnlist={crosssectioncontrollist}></Controlbar>
                 <div style={{ maxHeight: '75vh', overflowY: 'auto' }}>
                     <Basicinformation></Basicinformation>
-                    <div style={{ display: "grid", gridTemplateColumns: "50% 50%", gridGap: "10px" }}>
+                    <div id={"vitalsignIO"} style={{ display: "grid", gridTemplateColumns: "50% 50%", gridGap: "10px" }}>
                         <Vitalsign></Vitalsign>
                         <IOpage></IOpage>
                     </div>
-                    <div style={{ display: "grid", gridTemplateColumns: "50% 50%", gridGap: "10px" }}>
+                    <div id={"lab"} style={{ display: "grid", gridTemplateColumns: "50% 50%", gridGap: "10px" }}>
                         <Labviewlayout></Labviewlayout>
                         <Nonlabviewlayout></Nonlabviewlayout>
                     </div>
-                    <div style={{ display: "grid", gridTemplateColumns: "50% 50%", gridGap: "10px" }}>
+                    <div id={"rt"} style={{ display: "grid", gridTemplateColumns: "50% 50%", gridGap: "10px" }}>
                         <RTviewlayout></RTviewlayout>
                         <RTbreathe></RTbreathe>
                     </div>
-                    <div style={{ display: "grid", gridTemplateColumns: "50% 50%", gridGap: "10px" }}>
+                    <div id={"order"} style={{ display: "grid", gridTemplateColumns: "50% 50%", gridGap: "10px" }}>
                         <Prescriptionorderlayout></Prescriptionorderlayout>
                         <Treatmentorderlayout></Treatmentorderlayout>
                     </div>
-                    <div>
+                    <div id={"schedule"}>
                         <Schedulelayout></Schedulelayout>
                     </div>
                     <div>
