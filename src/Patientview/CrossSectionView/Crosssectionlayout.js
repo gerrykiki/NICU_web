@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Vitalsign from './Vitalsign';
 import Basicinformation from './Basicinformation';
-import Controlbar from './Controlbar';
+import Controlbar from '../Controlbar';
 import IOpage from './iopage'
 import Labviewlayout from './Labview'
 import Nonlabviewlayout from './Nonlabview'
@@ -40,7 +40,7 @@ class Crosssectionlayout extends Component {
         ]
         return (
             <div>
-                <Controlbar btnlist={crosssectioncontrollist}></Controlbar>
+                <Controlbar btnlist={crosssectioncontrollist} tagdisplay={"flex"}></Controlbar>
                 <div style={{ maxHeight: '75vh', overflowY: 'auto' }}>
                     <Basicinformation></Basicinformation>
                     <div id={"vitalsignIO"} style={{ display: "grid", gridTemplateColumns: "50% 50%", gridGap: "10px" }}>

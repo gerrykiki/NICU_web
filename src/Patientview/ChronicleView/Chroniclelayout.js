@@ -1,13 +1,23 @@
 import React, { Component } from 'react';
-import Controlbar from '../CrossSectionView/Controlbar'
+import Controlbar from '../Controlbar'
+import IOlayout from '../BasicIO'
 import Chroniclevitalsign from './ChronicleVitalsign'
-import Chronicleio from './Chronicleiolayout'
 import Chroniclelab from './Chroniclelablayout'
 import Chroniclert from './Chromiclertlayout'
 import Chronicleorder from './Chronicorder'
 import Chronicleinfection from './Chronicleinfectionlayout'
 
 class Chroniclelayout extends Component {
+
+    simdata(){
+        const Inputarray = []
+        for (let index = 0; index < 24; index++) {
+            const element = Math.floor(Math.random() * 100);
+            Inputarray.push(element)
+        }
+        return Inputarray
+    }
+
     render() {
         
         const crosssectioncontrollist = [
@@ -36,13 +46,43 @@ class Chroniclelayout extends Component {
                 "scrollpoint": "infection"
             }
         ]
+
+        //Sim IO data
+        const IOsource = [
+            {
+                "item":"IV",
+                "data":this.simdata()
+            },
+            {
+                "item":"Feed",
+                "data":this.simdata()
+            },
+            {
+                "item":"Other",
+                "data":this.simdata()
+            },
+            {
+                "item":"Input",
+                "data":this.simdata()
+            },
+            {
+                "item":"Urine",
+                "data":this.simdata()
+            },
+            {
+                "item":"Output",
+                "data":this.simdata()
+            }
+        ]
+
+
         return (
             <div>
-                <Controlbar btnlist={crosssectioncontrollist}></Controlbar>
+                <Controlbar btnlist={crosssectioncontrollist} tagdisplay={"flex"}></Controlbar>
                 <div style={{ maxHeight: '75vh', overflowY: 'auto' }}>
                     <div>
                         <Chroniclevitalsign></Chroniclevitalsign>
-                        <Chronicleio></Chronicleio>
+                        <IOlayout IO_data={IOsource}></IOlayout>
                         <Chroniclelab></Chroniclelab>
                         <Chroniclert></Chroniclert>
                         <Chronicleorder></Chronicleorder>
