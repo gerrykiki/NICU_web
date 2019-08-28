@@ -3,6 +3,7 @@ import { Tabs } from 'antd';
 import Crosssectionlayout from './CrossSectionView/Crosssectionlayout'
 import Chroniclelayout from './ChronicleView/Chroniclelayout'
 import Flowsheetlayout from './FlootSheetView/Flootsheetlayout'
+import Examreport from './ExamReport/ExamReport'
 
 class Patientviewtapbar extends Component {
 
@@ -12,7 +13,7 @@ class Patientviewtapbar extends Component {
         const { TabPane } = Tabs;
         return (
             <div style={{paddingRight:"24px",paddingLeft:"24px"}}>
-                <Tabs defaultActiveKey="3" onChange={console.log("click")}å>
+                <Tabs defaultActiveKey="4" onChange={console.log("click")}å>
                     <TabPane tab="Cross Section View" key="1">
                         <Crosssectionlayout></Crosssectionlayout>
                     </TabPane>
@@ -23,7 +24,7 @@ class Patientviewtapbar extends Component {
                         <Flowsheetlayout></Flowsheetlayout>
                     </TabPane>
                     <TabPane tab="Exam & Report" key="4">
-                        Content of Tab Pane 3
+                        <Examreport></Examreport>
                     </TabPane>
                     <TabPane tab="Order view" key="5">
                         Content of Tab Pane 3
