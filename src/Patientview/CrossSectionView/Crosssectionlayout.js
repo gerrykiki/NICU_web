@@ -7,8 +7,8 @@ import Labviewlayout from './Labview'
 import Nonlabviewlayout from './Nonlabview'
 import RTviewlayout from './RTview'
 import RTbreathe from './RTbreathe'
-import Prescriptionorderlayout from './Prescriptionorder'
-import Treatmentorderlayout from './Treatmentorder'
+import Prescriptionorderlayout from '../Prescriptionorder'
+import Treatmentorderlayout from '../Treatmentorder'
 import Schedulelayout from './Schedule'
 import Todolayout from './Todo'
 
@@ -56,8 +56,8 @@ class Crosssectionlayout extends Component {
                         <RTbreathe></RTbreathe>
                     </div>
                     <div id={"order"} style={{ display: "grid", gridTemplateColumns: "50% 50%", gridGap: "10px" }}>
-                        <Prescriptionorderlayout></Prescriptionorderlayout>
-                        <Treatmentorderlayout></Treatmentorderlayout>
+                        <Prescriptionorderlayout searchbar={"none"}></Prescriptionorderlayout>
+                        <Treatmentorderlayout searchbar={"none"}></Treatmentorderlayout>
                     </div>
                     <div id={"schedule"}>
                         <Schedulelayout></Schedulelayout>

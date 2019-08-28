@@ -4,6 +4,8 @@ import Crosssectionlayout from './CrossSectionView/Crosssectionlayout'
 import Chroniclelayout from './ChronicleView/Chroniclelayout'
 import Flowsheetlayout from './FlootSheetView/Flootsheetlayout'
 import Examreport from './ExamReport/ExamReport'
+import Orderview from './Orderview/Orderview'
+import Noteview from './NoteView/Note'
 
 class Patientviewtapbar extends Component {
 
@@ -13,7 +15,7 @@ class Patientviewtapbar extends Component {
         const { TabPane } = Tabs;
         return (
             <div style={{paddingRight:"24px",paddingLeft:"24px"}}>
-                <Tabs defaultActiveKey="4" onChange={console.log("click")}å>
+                <Tabs defaultActiveKey="6" onChange={console.log("click")}å>
                     <TabPane tab="Cross Section View" key="1">
                         <Crosssectionlayout></Crosssectionlayout>
                     </TabPane>
@@ -27,10 +29,10 @@ class Patientviewtapbar extends Component {
                         <Examreport></Examreport>
                     </TabPane>
                     <TabPane tab="Order view" key="5">
-                        Content of Tab Pane 3
+                        <Orderview></Orderview>
                     </TabPane>
                     <TabPane tab="Note" key="6">
-                        Content of Tab Pane 3
+                        <Noteview></Noteview>
                     </TabPane>
                     <TabPane tab="RT" key="7">
                         Content of Tab Pane 3
