@@ -8,6 +8,8 @@ import Orderview from './Orderview/Orderview'
 import Noteview from './NoteView/Note'
 import RTview from './RT/RTview'
 import Nurtionview from './Nurtion/Nurtion'
+import Infectionview from './Infection/Infection'
+import Scheduleview from './Schedule/Scheduleview'
 
 class Patientviewtapbar extends Component {
 
@@ -17,7 +19,7 @@ class Patientviewtapbar extends Component {
         const { TabPane } = Tabs;
         return (
             <div style={{paddingRight:"24px",paddingLeft:"24px"}}>
-                <Tabs defaultActiveKey="8" onChange={console.log("click")}å>
+                <Tabs defaultActiveKey="10" onChange={console.log("click")}å>
                     <TabPane tab="Cross Section View" key="1">
                         <Crosssectionlayout></Crosssectionlayout>
                     </TabPane>
@@ -43,10 +45,10 @@ class Patientviewtapbar extends Component {
                         <Nurtionview></Nurtionview>
                     </TabPane>
                     <TabPane tab="Infection" key="9">
-                        Content of Tab Pane 3
+                        <Infectionview></Infectionview>
                     </TabPane>
                     <TabPane tab="Schedule" key="10">
-                        Content of Tab Pane 3
+                        <Scheduleview></Scheduleview>
                     </TabPane>
                 </Tabs>
             </div>
