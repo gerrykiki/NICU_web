@@ -13,13 +13,11 @@ import Scheduleview from './Schedule/Scheduleview'
 
 class Patientviewtapbar extends Component {
 
-
-
     render() {
         const { TabPane } = Tabs;
         return (
             <div style={{paddingRight:"24px",paddingLeft:"24px"}}>
-                <Tabs defaultActiveKey="10" onChange={console.log("click")}å>
+                <Tabs defaultActiveKey="1" onChange={console.log("click")}å>
                     <TabPane tab="Cross Section View" key="1">
                         <Crosssectionlayout></Crosssectionlayout>
                     </TabPane>

@@ -4,7 +4,7 @@ import "./Bedview.css";
 import Wardcard from './Wardcard';
 import Wardcarddetail from './Wardcarddetail';
 import { renderRoutes } from 'react-router-config';
-import { jsonResponse } from '../jsonResponse';
+import { jsonResponse,updatetime } from '../jsonResponse';
 
 class Bedview extends Component {
 
@@ -60,7 +60,14 @@ class Bedview extends Component {
             wardcardlist.push(<Wardcard key={i} data={source.Userdata.user[i]}/>)
             wardcarddetaillist.push(<Wardcarddetail key={i} data={source.Userdata.user[i]} />)
         }
+        const update = updatetime
+        console.log(update)
+        function Timestampformat(time) {
 
+            const months = "1,2,3,4,5,6,7,8,9,10,11,12".split(",");
+            const timestrimg = new Date(time).getFullYear() + '-' + months[new Date(time).getMonth()] + '-' + new Date(time).getDate()  + new Date(time).getHours() + ':' + new Date(time).getMinutes()
+            return timestrimg
+        }
 
         return (
             <div>
@@ -69,7 +76,7 @@ class Bedview extends Component {
                         病房總覽
                     </div>
                     <div>
-                        <span className="timeinformation">資料更新時間 {new Date().toLocaleString()}</span>
+                        <span className="timeinformation">資料更新時間 {Timestampformat(update.time)}</span>
                         <span>
                             <Switch style={{ margin: 5 }} checkedChildren="Detail" unCheckedChildren="Detail" defaultChecked onChange={this.onChangesimple} />
                             <Switch style={{ margin: 5 }} checkedChildren="Previw" unCheckedChildren="Previw" defaultChecked onChange={this.onChangedisplay} />

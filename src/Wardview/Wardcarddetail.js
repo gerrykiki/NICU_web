@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Icon } from 'antd';
+import "antd/dist/antd.css";
 
 
 class Wardcarddetail extends Component {
@@ -63,13 +64,13 @@ class Wardcarddetail extends Component {
             case "Leaf":
                 return "rgba(65, 165, 181, 1)"
             default:
-                return "rgba(65, 165, 181, 1)"
+                return null
         }
     }
 
     detaildatastylelist() {
         const detail = this.props.data.detaildata
-        let detaillist = detail.map((info,index) =>
+        let detaillist = detail.map((info, index) =>
             <div key={index} style={info.data ?
                 { height: "24px", borderWidth: "1px", borderRadius: "4px", textAlign: "center", lineHeight: "24px", paddingLeft: "4px", paddingRight: "4px", color: "rgba(255, 255, 255, 1)", backgroundColor: this.detailinformationswitchstyle(info.item) } :
                 { height: "24px", borderWidth: "1px", borderColor: "rgba(187, 187, 187, 1)", borderStyle: "solid", borderRadius: "4px", textAlign: "center", lineHeight: "24px", paddingLeft: "4px", paddingRight: "4px", color: "rgba(187, 187, 187, 1)" }}>
@@ -94,7 +95,7 @@ class Wardcarddetail extends Component {
             hoverstate: "none"
         });
     }
-    
+
     render() {
         const { data } = this.props
         const infotitlestyle = { paddingLeft: "2px", paddingRight: "2px", height: "20px", borderWidth: "1px", borderColor: "rgba(59, 151, 225, 1)", borderStyle: "solid", borderRadius: "4px", textAlign: "center", lineHeight: "20px" }
@@ -121,7 +122,7 @@ class Wardcarddetail extends Component {
             { Title: "SPO2", Data: 95, hightlight: false },
         ]
 
-        let infolists = infodata.map((info,index) =>
+        let infolists = infodata.map((info, index) =>
             <div key={index} style={{ display: 'flex' }}>
                 <div style={infotitlestyle}>{info.Title}</div>
                 <div style={info.hightlight ? infodatahightlightstyle : infodatastyle}>{info.Data}</div>
@@ -130,7 +131,7 @@ class Wardcarddetail extends Component {
 
 
         return (
-            <div style={{ height: '170px', width: "99%", marginBottom: "10px", borderRadius: "4px", borderWidth: "1px", borderStyle: "solid", borderColor: "rgba(215, 238, 255, 1)",position:'relative' }} onMouseMove={() => this.hoverbackground()} onMouseLeave={() => this.hoverbackgroundhover()}>
+            <div style={{ height: '170px', width: "99%", marginBottom: "10px", borderRadius: "4px", borderWidth: "1px", borderStyle: "solid", borderColor: "rgba(215, 238, 255, 1)", position: 'relative' }} onMouseMove={() => this.hoverbackground()} onMouseLeave={() => this.hoverbackgroundhover()}>
                 <div style={{ height: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: "rgba(215, 238, 255, 1)", padding: "10px" }}>
                     <span style={{ fontSize: '16px', color: "rgba(61, 119, 181, 1)", fontFamily: "PingFangSC-Regular" }}>
                         {this.switchbednumber(data.publishednumber)}
@@ -160,12 +161,13 @@ class Wardcarddetail extends Component {
                         {data.Note}
                     </span>
                 </div>
+                
                 <div style={style}>
-                    <Link to="/Main/Bedview/Warduser" style={{ height: "40px", width: "40px", backgroundColor: "rgba(255,255,255, 1)", borderRadius: "99em", textAlign: "center", lineHeight: "40px", margin: "10px" }}>
+                    <Link to={{ pathname: '/Main/Bedview/Warduser', state: data}} params={{ testvalue: "hello" }} style={{ height: "40px", width: "40px", backgroundColor: "rgba(255,255,255, 1)", borderRadius: "99em", textAlign: "center", lineHeight: "40px", margin: "10px" }}>
                         <Icon type="file-search" />
                     </Link>
                     <Link to="/Main/Patientview" style={{ height: "40px", width: "40px", backgroundColor: "rgba(255,255,255, 1)", borderRadius: "99em", textAlign: "center", lineHeight: "40px", margin: "10px" }}>
-                    <Icon type="database" />
+                        <Icon type="database" />
                     </Link>
                 </div>
             </div>

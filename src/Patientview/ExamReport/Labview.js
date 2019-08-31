@@ -16,7 +16,7 @@ class Labview extends Component {
         )
     }
     render() {
-        console.log(this.state.Datelist)
+        const tablewidth = (document.body.clientWidth - 160) * 0.5
         const { Option } = Select;
         const { RangePicker } = DatePicker;
         const dateFormat = 'YYYY/MM/DD';
@@ -80,7 +80,7 @@ class Labview extends Component {
                         <div style={{ padding: "15px", backgroundColor: "rgba(255,249,237,1)", height: "50px", width: "100px", textAlign: 'center' }}>Bun</div>
                         <div style={{ padding: "15px", backgroundColor: "rgba(255,249,237,1)", height: "50px", width: "100px", textAlign: 'center' }}>Cr</div>
                     </div>
-                    <div style={{ display: "flex",width: "auto", overflowY: "auto" }}>
+                    <div style={{ display: "flex",width:tablewidth, overflowY: "auto" }}>
                         {dataview}
                     </div>
                 </div>
