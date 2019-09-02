@@ -4,7 +4,7 @@ import "./Bedview.css";
 import Wardcard from './Wardcard';
 import Wardcarddetail from './Wardcarddetail';
 import { renderRoutes } from 'react-router-config';
-import { jsonResponse,updatetime } from '../jsonResponse';
+import { jsonResponse, updatetime } from '../jsonResponse';
 
 class Bedview extends Component {
 
@@ -57,16 +57,49 @@ class Bedview extends Component {
         const source = jsonResponse;
         console.log(source);
         for (let i = 0; i < 1; i++) {
-            wardcardlist.push(<Wardcard key={i} data={source.Userdata.user[i]}/>)
+            wardcardlist.push(<Wardcard key={i} data={source.Userdata.user[i]} />)
             wardcarddetaillist.push(<Wardcarddetail key={i} data={source.Userdata.user[i]} />)
         }
         const update = updatetime
-        console.log(update)
+
         function Timestampformat(time) {
 
             const months = "1,2,3,4,5,6,7,8,9,10,11,12".split(",");
-            const timestrimg = new Date(time).getFullYear() + '-' + months[new Date(time).getMonth()] + '-' + new Date(time).getDate()  + new Date(time).getHours() + ':' + new Date(time).getMinutes()
+            const timestrimg = new Date(time).getFullYear() + '-' + months[new Date(time).getMonth()] + '-' + new Date(time).getDate()
             return timestrimg
+        }  
+
+        function HourTimestampformat(time) {
+
+            const timestrimg = hourformat(new Date(time).getHours()) + ':' + hourformat(new Date(time).getMinutes())
+            return timestrimg
+        }
+
+        function hourformat(hour) {
+            switch (hour) {
+                case 0:
+                    return '00'
+                case 1:
+                    return '01'
+                case 2:
+                    return '02'
+                case 3:
+                    return '03'
+                case 4:
+                    return '04'
+                case 5:
+                    return '05'
+                case 6:
+                    return '06'
+                case 7:
+                    return '07'
+                case 8:
+                    return '08'
+                case 9:
+                    return '09'
+                default:
+                    return hour;
+            }
         }
 
         return (
@@ -76,7 +109,11 @@ class Bedview extends Component {
                         病房總覽
                     </div>
                     <div>
-                        <span className="timeinformation">資料更新時間 {Timestampformat(update.time)}</span>
+                        <span>
+                            <span className="timeinformation">資料更新時間</span>
+                            <span style={{marginLeft:"10px"}} className="timeinformation">{Timestampformat(update.time)}</span>
+                            <span style={{marginLeft:"10px"}} className="timeinformation">{HourTimestampformat(update.time)}</span>
+                        </span>
                         <span>
                             <Switch style={{ margin: 5 }} checkedChildren="Detail" unCheckedChildren="Detail" defaultChecked onChange={this.onChangesimple} />
                             <Switch style={{ margin: 5 }} checkedChildren="Previw" unCheckedChildren="Previw" defaultChecked onChange={this.onChangedisplay} />

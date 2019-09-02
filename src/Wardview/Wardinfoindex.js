@@ -1,21 +1,13 @@
 import React, { Component } from 'react';
-import { Input, Icon, Button } from 'antd';
 import { WardInfo } from '../jsonResponse';
-
-
+import WardcardNote from './Wardnote'
 
 
 class Wardinfoindex extends Component {
     state = {
-        editstate: "none",
-        newannocestate:true
+        newannocestate: true
     };
 
-    editlist() {
-        this.setState({
-            editstate: "inline"
-        });
-    }
 
     canceleditlist() {
         this.setState({
@@ -26,27 +18,42 @@ class Wardinfoindex extends Component {
 
 
     render() {
-        const editstyle = {
-            display: this.state.editstate,
-        }
         const info = WardInfo;
 
         function Timestampformat(time) {
 
             const months = "1,2,3,4,5,6,7,8,9,10,11,12".split(",");
             const weekdays = "週日,週一,週二,週三,週四,週五,週六".split(",");
-            const timestrimg = new Date(time).getFullYear() + '/' + months[new Date(time).getMonth()] + '/' + new Date(time).getDate() + '(' + weekdays[new Date(time).getDay()] + ')' + new Date(time).getHours() + ':' + new Date(time).getMinutes()
+            const timestrimg = new Date(time).getFullYear() + '/' + months[new Date(time).getMonth()] + '/' + new Date(time).getDate() + '(' + weekdays[new Date(time).getDay()] + ')' + hourformat(new Date(time).getHours()) + ':' + hourformat(new Date(time).getMinutes())
             return timestrimg
         }
-        const annouce = info.Announcement.sort(function (a, b) {
-            return a.time < b.time ? 1 : -1
-        });
 
-        const annouceview = annouce.map(
-            (item, index) =>
-                <div key={index} style={{ height: "40px", lineHeight: "20px", paddingTop: '10px', paddingBottom: '10px' }}>{item.text}</div>
-        )
-        console.log(annouce)
+        function hourformat(hour) {
+            switch (hour) {
+                case 0:
+                    return '00'
+                case 1:
+                    return '01'
+                case 2:
+                    return '02'
+                case 3:
+                    return '03'
+                case 4:
+                    return '04'
+                case 5:
+                    return '05'
+                case 6:
+                    return '06'
+                case 7:
+                    return '07'
+                case 8:
+                    return '08'
+                case 9:
+                    return '09'
+                default:
+                    return hour;
+            }
+        }
         return (
             <div style={{ borderWidth: "1px", borderColor: "rgba(238, 238, 238, 1)", borderStyle: "solid", borderRadius: "4px", overflow: "auto", height: "80vh" }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '45px' }}>
@@ -97,33 +104,7 @@ class Wardinfoindex extends Component {
                         有進行透析：{info.Hemodialysis}
                     </div>
                 </div>
-                <div style={{ margin: "20px" }}>
-                    <div style={{ backgroundColor: "rgba(238,238,238,1)", height: "50px", padding: "10px", fontSize: "14px", borderTopLeftRadius: "4px", borderTopRightRadius: "4px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                        病房主任留言板
-                        <Icon type="edit" style={{ fontSize: "20px" }} onClick={() => this.editlist()} />
-                    </div>
-                    <div style={{ borderColor: "rgba(238,238,238,1)", borderStyle: 'solid', borderWidth: '1px' }}>
-                        <div style={{ maxHeight: "40vh", overflowY: 'auto', paddingLeft: '40px', paddingRight: "40px" }}>
-                            {annouceview}
-                        </div>
-                        <div style={editstyle}>
-                            <div style={{ height: "40px", backgroundColor: "rgba(238,238,238,1)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                                <Input placeholder="Basic usage" style={{ width: "90%" }} />
-                                <Button type="primary" style={{ margin: "10px" }}>
-                                    新增
-                                </Button>
-                            </div>
-                            <div style={{ height: "50px", display: "flex", justifyContent: "center", alignItems: "center" }}>
-                                <Button style={{ margin: "10px" }} onClick={() => this.canceleditlist()}>
-                                    取消
-                            </Button>
-                                <Button type="primary" style={{ margin: "10px" }}>
-                                    儲存
-                            </Button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <WardcardNote annouce={info.Announcement}></WardcardNote>
             </div>
         );
     }

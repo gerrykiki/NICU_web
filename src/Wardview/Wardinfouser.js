@@ -114,11 +114,6 @@ class Wardinfouser extends Component {
         }
     }
 
-    SwitchVitalsignData(RowData) {
-        return RowData.map((item, index) => this.Switchitem(item))
-
-    }
-
     render() {
         const userinfo = this.props.location.state
         const userdata = Warduser;
@@ -210,7 +205,7 @@ class Wardinfouser extends Component {
                         </div>
                     </div>
                     <div id="wardvitalhr" style={{ marginRight: "20px", width: "71vw", height: "100px" }}>
-                        <WardcardvitalsignChart id={"wardvitalhr"} data={userdata.vitalsigndata.map((item) => this.Switchitem(item))} width={width} height={height} margin={margin} max={max} min={min} axisBot={false} axisTop={true} circlrcolor={"rgba(126, 211, 33, 1)"}></WardcardvitalsignChart>
+                        <WardcardvitalsignChart id={"wardvitalhr"} data={this.datarelease()} width={width} height={height} margin={margin} max={max} min={min} axisBot={false} axisTop={true} circlrcolor={"rgba(126, 211, 33, 1)"}></WardcardvitalsignChart>
                     </div>
                 </div>
                 <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", marginLeft: "20px" }}>
