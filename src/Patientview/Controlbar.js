@@ -26,6 +26,7 @@ class Controlbar extends Component {
                 <div style={{ display: tagdisplay, alignItems: 'center' }}>
                     <div style={{ fontSize: "16px" }}>項目切換：</div>
                     {btn}
+                    <Button>搜尋</Button>
                 </div>
             </div>
 

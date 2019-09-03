@@ -42,7 +42,7 @@ class Sidermenu extends Component {
                     <Link to="/Main/Historyview" style={{ backgroundColor: "rgba(0, 0, 0, 0)" }}>
                         <span className="linkfont">歷史病歷管理</span>
                     </Link>
-                    <Link to="/Main/Historyview"  style={{ backgroundColor: "rgba(0, 0, 0, 0)" }}>
+                    <Link to='/Main/Systemcontrol'  style={{ backgroundColor: "rgba(0, 0, 0, 0)" }}>
                         <Icon type="setting" style={{ fontSize: '16px', color: 'rgba(46, 100, 164, 1)' }} />
                         <span className="linkfont">系統設定</span>
                     </Link>

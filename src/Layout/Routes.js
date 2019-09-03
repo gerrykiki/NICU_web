@@ -6,6 +6,7 @@ import classinformation from '../Content/CaseInfo'
 import Wardinfoindex from '../Wardview/Wardinfoindex'
 import Wardinfouser from '../Wardview/Wardinfouser'
 import Patientviewlayout from '../Patientview/Patientviewlayout'
+import Systemcontrol from '../Content/Systemcontrol'
 
 const routes = [
     {
@@ -49,6 +50,11 @@ const routes = [
                 path: '/Main/Historyview',
                 component: Historyview,
                 breadcrumbName:'歷史病歷管理'
+            },
+            {
+                path: '/Main/Systemcontrol',
+                component: Systemcontrol,
+                breadcrumbName:'系統管理'
             }
         ]
     }

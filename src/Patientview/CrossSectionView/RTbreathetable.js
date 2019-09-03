@@ -25,7 +25,7 @@ class RTbreathetable extends Component {
         ]
         let RTbreathetable = RTbreathelist.map(
             (info ,index) =>
-                <div key={index} style={{ height: "100px", borderWidth: "1px", borderStyle: "solid", borderColor: "rgba(232,232,232,1)", borderTopWidth: "0px", display: "grid", gridTemplateColumns:"1fr 6fr", paddingLeft: "24px", paddingRight: "24px" }}>
+                <div key={index} style={{ height: "100px", borderWidth: "1px", borderStyle: "solid", borderColor: "rgba(232,232,232,1)", borderTopWidth: "0px", display: "grid", gridTemplateColumns:"1fr 6fr", paddingLeft: "10px", paddingRight: "10px" }}>
                     <div style={{ fontSize: "16px",display:"flex",alignItems:"center" }}>{info.time}</div>
                     <div style={{ display: "grid", gridTemplateRows: "50px 50px" }}>
                         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
@@ -38,7 +38,7 @@ class RTbreathetable extends Component {
         )
         return (
             <div>
-                <div style={{ height: "50px", borderWidth: "1px", borderStyle: "solid", borderColor: "rgba(232,232,232,1)", backgroundColor: "rgba(255,249,237,1)", display: "grid", gridTemplateColumns: "1fr 3fr 3fr", paddingLeft: "24px", paddingRight: "24px" }}>
+                <div style={{ height: "50px", borderWidth: "1px", borderStyle: "solid", borderColor: "rgba(232,232,232,1)", backgroundColor: "rgba(255,249,237,1)", display: "grid", gridTemplateColumns: "1fr 3fr 3fr", paddingLeft: "10px", paddingRight: "10px" }}>
                     <div style={{ fontSize: "14px", display:"flex",alignItems:"center" }}>紀錄日期</div>
                     <div style={{ fontSize: "14px", display:"flex",alignItems:"center" }}>Mode</div>
                     <div style={{ fontSize: "14px", display:"flex",alignItems:"center" }}>Setting</div>

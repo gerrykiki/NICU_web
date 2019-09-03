@@ -22,7 +22,7 @@ class Wardcard extends Component {
             hoverstate: "none"
         });
     }
-    switchbednumber(number){
+    switchbednumber(number) {
         if (number < 10) {
             return "0" + number;
         }
@@ -51,7 +51,7 @@ class Wardcard extends Component {
             alignItems: "center"
         }
 
-        const {data} = this.props
+        const { data } = this.props
         console.log(data);
         return (
             <div className="wardcardbuttonlayout" onMouseMove={() => this.hoverbackground()} onMouseLeave={() => this.hoverbackgroundhover()}>
@@ -60,10 +60,13 @@ class Wardcard extends Component {
                     <div style={{ fontSize: '14px', fontFamily: "PingFangSC-Regular", color: "rgba(61, 119, 181, 1)" }}>{data.Name}/{data.Channel}/{this.switchgender(data.Gender)}/{data.Week}週</div>
                 </div>
                 <div style={{ height: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: "10px", borderBottomWidth: "0.5px", borderBottomColor: "rgba(160, 213, 255, 1)", borderBottomStyle: "solid" }}>
-                    <span style={{ fontSize: '12px' }}>病歷號:{data.id}</span>
-                    <span style={{ fontSize: '12px' }}>{data.data.Weight}g (+{data.data.WeightDif}g)</span>
+                    <div style={{ fontSize: '12px' }}>病歷號:{data.id}</div>
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                        <div style={{ fontSize: '12px' }}>{data.data.Weight}g (+{data.data.WeightDif}g)/</div>
+                        <div style={{ fontSize: '12px'}}>E4V5M6</div>
+                    </div>
                 </div>
-                <div style={{ height: '30px', display: 'flex', alignItems: 'center',padding: "10px" }}>
+                <div style={{ height: '30px', display: 'flex', alignItems: 'center', padding: "10px" }}>
                     <span style={{ fontSize: '12px' }}>{data.Note}</span>
                 </div>
                 <div style={style}>
@@ -71,7 +74,7 @@ class Wardcard extends Component {
                         <Icon type="file-search" />
                     </Link>
                     <Link to="/Main/Patientview" style={{ height: "40px", width: "40px", backgroundColor: "rgba(255,255,255, 1)", borderRadius: "99em", textAlign: "center", lineHeight: "40px", margin: "10px" }}>
-                    <Icon type="database" />
+                        <Icon type="database" />
                     </Link>
                 </div>
             </div>

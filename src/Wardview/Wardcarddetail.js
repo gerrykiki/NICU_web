@@ -143,10 +143,11 @@ class Wardcarddetail extends Component {
                 <div style={{ height: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: "13px", borderBottomWidth: "0.5px", borderBottomColor: "rgba(215, 238, 255, 1)", borderBottomStyle: "solid" }}>
                     <span style={{ fontSize: '12px' }}>
                         病歷號:{data.id}
-                    </span>
-                    <span style={{ fontSize: '12px' }}>
-                        {data.data.Weight}g (+{data.data.WeightDif}g)
-                        </span>
+                    </span>                    
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                        <div style={{ fontSize: '12px' }}>{data.data.Weight}g (+{data.data.WeightDif}g)/</div>
+                        <div style={{ fontSize: '12px'}}>E4V5M6</div>
+                    </div>
                 </div>
                 <div style={{ borderBottomWidth: "0.5px", borderBottomColor: "rgba(215, 238, 255, 1)", borderBottomStyle: "solid" }}>
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr', gridTemplateRows: "1fr 1fr", paddingTop: "3px", paddingLeft: "10px", paddingRight: "10px", paddingBottom: "3px" }}>

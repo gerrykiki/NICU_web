@@ -4,13 +4,38 @@ import { Date } from 'core-js';
 class Schedulelayout extends Component {
     state = {
         detailstate: "none",
-        pressitemstate: "all"
+        pressitemstate: "all",
+        scheduleclick: 7
+    }
+
+    TimeDatsformat(days) {
+        switch (days) {
+            case 1:
+                return '01'
+            case 2:
+                return '02'
+            case 3:
+                return '03'
+            case 4:
+                return '04'
+            case 5:
+                return '05'
+            case 6:
+                return '06'
+            case 7:
+                return '07'
+            case 8:
+                return '08'
+            case 9:
+                return '09'
+            default:
+                return days;
+        }
     }
 
     ScheduleDatelist() {
         var nowdate = (+new Date());
         var datelist = [];
-        var days = "01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31".split(",");
         var months = "01,02,03,04,05,06,07,08,09,10,11,12".split(",");
         var weekdays = "(日),(一),(二),(三),(四),(五),(六)".split(",");
         for (let index = 0; index < 7; index++) {
@@ -18,10 +43,10 @@ class Schedulelayout extends Component {
             const elementdate = new Date(element);
             var elementdays
             if (index === 3) {
-                elementdays = months[elementdate.getMonth()] + "-" + days[elementdate.getDate()] + weekdays[elementdate.getDay()] + "(當日)"
+                elementdays = months[elementdate.getMonth()] + "-" + this.TimeDatsformat(elementdate.getDate()) + weekdays[elementdate.getDay()] + "(當日)"
             }
             else {
-                elementdays = months[elementdate.getMonth()] + "-" + days[elementdate.getDate()] + weekdays[elementdate.getDay()]
+                elementdays = months[elementdate.getMonth()] + "-" + this.TimeDatsformat(elementdate.getDate()) + weekdays[elementdate.getDay()]
             }
             datelist.push(elementdays)
         }
@@ -29,10 +54,12 @@ class Schedulelayout extends Component {
     }
 
 
-    detailchange() {
+    detailchange(index) {
+        console.log(index)
         this.setState(
             {
-                detailstate: "block"
+                detailstate: "block",
+                scheduleclick: index
             }
         );
     }
@@ -94,7 +121,7 @@ class Schedulelayout extends Component {
         switch (Eventstate) {
             case "all":
                 Eventlist = eventdatalist.map(
-                    (info,index) =>
+                    (info, index) =>
                         <div key={index} style={{ height: "50px", borderBottomWidth: "1px", borderBottomColor: "rgba(0,0,0,0.09)", borderBottomStyle: "solid", paddingLeft: "40px", paddingTop: "8px", paddingBottom: "8px", display: "flex", alignItems: "center" }}>
                             <div style={{ width: "50px", borderRadius: "4px", backgroundColor: "rgba(124,179,5,1)", fontSize: "16px", display: "flex", justifyContent: "center", alignItems: "center", color: "white" }}>{this.itemchange(info.item)}</div>
                             <div style={{ fontSize: "16px", marginLeft: "10px" }}>{this.timechange(info.time)}</div>
@@ -104,7 +131,7 @@ class Schedulelayout extends Component {
                 break;
             case "schedule":
                 Eventlist = eventdatalist.map(
-                    (info,index) =>
+                    (info, index) =>
                         info.item === "schedule" ?
                             <div key={index} style={{ height: "50px", borderBottomWidth: "1px", borderBottomColor: "rgba(0,0,0,0.09)", borderBottomStyle: "solid", paddingLeft: "40px", paddingTop: "8px", paddingBottom: "8px", display: "flex", alignItems: "center" }}>
                                 <div style={{ width: "50px", borderRadius: "4px", backgroundColor: "rgba(124,179,5,1)", fontSize: "16px", display: "flex", justifyContent: "center", alignItems: "center", color: "white" }}>{this.itemchange(info.item)}</div>
@@ -116,7 +143,7 @@ class Schedulelayout extends Component {
                 break;
             case "event":
                 Eventlist = eventdatalist.map(
-                    (info,index) =>
+                    (info, index) =>
                         info.item === "event" ?
                             <div key={index} style={{ height: "50px", borderBottomWidth: "1px", borderBottomColor: "rgba(0,0,0,0.09)", borderBottomStyle: "solid", paddingLeft: "40px", paddingTop: "8px", paddingBottom: "8px", display: "flex", alignItems: "center" }}>
                                 <div style={{ width: "50px", borderRadius: "4px", backgroundColor: "rgba(124,179,5,1)", fontSize: "16px", display: "flex", justifyContent: "center", alignItems: "center", color: "white" }}>{this.itemchange(info.item)}</div>
@@ -132,13 +159,65 @@ class Schedulelayout extends Component {
         return Eventlist
     }
 
+    clickstate(number) {
+        const nowstate = this.state.scheduleclick
+        if (number === nowstate) {
+            return true
+        }
+        else return false
+    }
 
     render() {
         const nowdate = this.ScheduleDatelist();
         console.log(nowdate)
+        const normalstyle = {
+            cursor: "pointer",
+            borderWidth: "1px",
+            borderColor: "rgba(238,238,238,1)",
+            borderStyle: "solid",
+            title: {
+                lineHeight: "50px",
+                textAlign: "center",
+                fontSize: "16px",
+                backgroundColor: "rgba(255, 249, 237, 1)",
+                height: "50px"
+            },
+            text: {
+                height: "150px",
+                borderWidth: "1px",
+                borderTopColor: "rgba(238,238,238,1)",
+                borderTopStyle: "solid",
+                borderTopWidth: '1px'
+            }
+        }
+        const clickstyle = {
+            cursor: "pointer",
+            borderWidth: "2px",
+            borderColor: "rgba(245, 166, 35, 1)",
+            borderStyle: "solid",
+            title: {
+                lineHeight: "50px",
+                textAlign: "center",
+                fontSize: "16px",
+                backgroundColor: "rgba(245, 166, 35, 1)",
+                color: 'white',
+                height: "50px"
+            },
+            text: {
+                height: "150px",
+                borderWidth: "1px",
+                borderTopColor: "rgba(238,238,238,1)",
+                borderTopStyle: "solid",
+                borderTopWidth: '1px'
+            }
+        }
+
         let scheduledate = nowdate.map(
-            (item,index) =>
-                <div key={index} style={{ lineHeight: "50px", textAlign: "center", fontSize: "16px", cursor: "pointer" }} onMouseUp={() => this.detailchange()}>{item}</div>
+            (item, index) =>
+                <div key={'table' + index} style={this.clickstate(index) ? clickstyle : normalstyle} onMouseUp={() => this.detailchange(index)}>
+                    <div style={this.clickstate(index) ? clickstyle.title : normalstyle.title}>{item}</div>
+                    <div style={this.clickstate(index) ? clickstyle.text : normalstyle.text}></div>
+                </div>
         )
         return (
             <div style={{ width: "100%", marginBottom: "20px" }}>
@@ -148,7 +227,7 @@ class Schedulelayout extends Component {
                     </div>
                 </div>
                 <div>
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr 1fr 1fr", backgroundColor: "rgba(255, 249, 237, 1)", height: "50px" }}>
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr 1fr 1fr" }}>
                         {scheduledate}
                     </div>
                 </div>
