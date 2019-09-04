@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Input, Icon, Button } from 'antd';
+import { Input, Button } from 'antd';
+import editlogo from '../Image/svg/Edit.svg'
 
 class WardcardNote extends Component{
     state = {
@@ -54,7 +55,7 @@ class WardcardNote extends Component{
             <div style={{ margin: "20px" }}>
                 <div style={{ backgroundColor: "rgba(238,238,238,1)", height: "50px", padding: "10px", fontSize: "14px", borderTopLeftRadius: "4px", borderTopRightRadius: "4px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                     病房主任留言板
-                    <Icon type="edit" style={{ fontSize: "20px" }} onClick={() => this.editlist()} />
+                    <img src={editlogo} alt='editlogo' style={{cursor:'pointer'}} onClick={() => this.editlist()} ></img>
                 </div>
                 <div style={{ borderColor: "rgba(238,238,238,1)", borderStyle: 'solid', borderWidth: '1px' }}>
                     <div style={{ maxHeight: "40vh", overflowY: 'auto', paddingLeft: '40px', paddingRight: "40px" }}>

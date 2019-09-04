@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './Wardcard.css'
 import { Link } from 'react-router-dom';
-import { Icon } from 'antd';
+import patientviewlogo from '../Image/svg/Patientviewclick.svg'
+import checklogo from '../Image/svg/Check.svg'
 
 
 class Wardcard extends Component {
@@ -63,7 +64,7 @@ class Wardcard extends Component {
                     <div style={{ fontSize: '12px' }}>病歷號:{data.id}</div>
                     <div style={{ display: "flex", alignItems: "center" }}>
                         <div style={{ fontSize: '12px' }}>{data.data.Weight}g (+{data.data.WeightDif}g)/</div>
-                        <div style={{ fontSize: '12px'}}>E4V5M6</div>
+                        <div style={{ fontSize: '12px' }}>E4V5M6</div>
                     </div>
                 </div>
                 <div style={{ height: '30px', display: 'flex', alignItems: 'center', padding: "10px" }}>
@@ -71,10 +72,10 @@ class Wardcard extends Component {
                 </div>
                 <div style={style}>
                     <Link to="/Main/Bedview/Warduser" style={{ height: "40px", width: "40px", backgroundColor: "rgba(255,255,255, 1)", borderRadius: "99em", textAlign: "center", lineHeight: "40px", margin: "10px" }}>
-                        <Icon type="file-search" />
+                        <img src={checklogo} alt='checklogo'></img>
                     </Link>
                     <Link to="/Main/Patientview" style={{ height: "40px", width: "40px", backgroundColor: "rgba(255,255,255, 1)", borderRadius: "99em", textAlign: "center", lineHeight: "40px", margin: "10px" }}>
-                        <Icon type="database" />
+                        <img src={patientviewlogo} alt='patientviewlogo'></img>
                     </Link>
                 </div>
             </div>

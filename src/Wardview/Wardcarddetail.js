@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Icon } from 'antd';
 import "antd/dist/antd.css";
+import patientviewlogo from '../Image/svg/Patientviewclick.svg'
+import checklogo from '../Image/svg/Check.svg'
 
 
 class Wardcarddetail extends Component {
@@ -143,10 +144,10 @@ class Wardcarddetail extends Component {
                 <div style={{ height: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: "13px", borderBottomWidth: "0.5px", borderBottomColor: "rgba(215, 238, 255, 1)", borderBottomStyle: "solid" }}>
                     <span style={{ fontSize: '12px' }}>
                         病歷號:{data.id}
-                    </span>                    
+                    </span>
                     <div style={{ display: "flex", alignItems: "center" }}>
                         <div style={{ fontSize: '12px' }}>{data.data.Weight}g (+{data.data.WeightDif}g)/</div>
-                        <div style={{ fontSize: '12px'}}>E4V5M6</div>
+                        <div style={{ fontSize: '12px' }}>E4V5M6</div>
                     </div>
                 </div>
                 <div style={{ borderBottomWidth: "0.5px", borderBottomColor: "rgba(215, 238, 255, 1)", borderBottomStyle: "solid" }}>
@@ -162,13 +163,13 @@ class Wardcarddetail extends Component {
                         {data.Note}
                     </span>
                 </div>
-                
+
                 <div style={style}>
-                    <Link to={{ pathname: '/Main/Bedview/Warduser', state: data}} params={{ testvalue: "hello" }} style={{ height: "40px", width: "40px", backgroundColor: "rgba(255,255,255, 1)", borderRadius: "99em", textAlign: "center", lineHeight: "40px", margin: "10px" }}>
-                        <Icon type="file-search" />
+                    <Link to={{ pathname: '/Main/Bedview/Warduser', state: data }} params={{ testvalue: "hello" }} style={{ height: "40px", width: "40px", backgroundColor: "rgba(255,255,255, 1)", borderRadius: "99em", textAlign: "center", lineHeight: "40px", margin: "10px" }}>
+                        <img src={checklogo} alt='checklogo'></img>
                     </Link>
                     <Link to="/Main/Patientview" style={{ height: "40px", width: "40px", backgroundColor: "rgba(255,255,255, 1)", borderRadius: "99em", textAlign: "center", lineHeight: "40px", margin: "10px" }}>
-                        <Icon type="database" />
+                        <img src={patientviewlogo} alt='patientviewlogo'></img>
                     </Link>
                 </div>
             </div>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, DatePicker } from 'antd';
+import displaylogo from '../Image/svg/Display.svg'
 
 
 class Controlbar extends Component {
@@ -26,7 +27,7 @@ class Controlbar extends Component {
                 <div style={{ display: tagdisplay, alignItems: 'center' }}>
                     <div style={{ fontSize: "16px" }}>項目切換：</div>
                     {btn}
-                    <Button>搜尋</Button>
+                    <img src={displaylogo} alt='displaylogo' style={{fontSize:'16px'}}></img>
                 </div>
             </div>
 
