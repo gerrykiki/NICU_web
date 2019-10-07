@@ -20,7 +20,7 @@ class Historyview extends Component {
     EditStyle(key){
         if (key === this.state.MouseClick) {
             return (
-                <Link to="/Main/Patientview" style={{ height: "40px", width: "40px", backgroundColor: "rgba(124,179,5, 1)", borderRadius: "99em" }}>10101010</Link>
+                <Link to="/Main/Historypatientview" style={{ height: "40px", width: "100px", borderRadius: "4px" }}>詳細</Link>
             );
         }
         else return null

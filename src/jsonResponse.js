@@ -155,7 +155,7 @@ const jsonResponse = {
 
                         },
                         {
-                            "item": "TH",
+                            "item": "HD",
                             "time": 1565395200,
                             "data": true
                             //透
@@ -168,9 +168,15 @@ const jsonResponse = {
 
                         },
                         {
-                            "item": "Leaf",
+                            "item": "Floey",
                             "time": 1565395200,
                             "data": true
+                            //葉
+                        },
+                        {
+                            "item": "Drain",
+                            "time": 1565395200,
+                            "data": false
                             //葉
                         }
                     ],

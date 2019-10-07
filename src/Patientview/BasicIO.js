@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 class IOlayout extends Component {
     state = {
         itemNumber: "day"
@@ -18,20 +17,23 @@ class IOlayout extends Component {
         }
     }
     render() {
+        const tablewidth = (window.screen.width * 0.9 - 50) / 46
+        const tabletitlewidth = window.screen.width - 48 - window.screen.width * 0.9 + 50 -tablewidth
         const intercalstyle = {
-            display: "grid",
-            gridTemplateColumns: this.switchitemNumber(),
-            height: "50px"
+            display: "flex",
+            width: '100%',
+            height: "50px",
+            alignItems:'center'
         }
         const { IO_data } = this.props
         console.log(IO_data)
         let IOview = IO_data.map(
             (item, index) =>
                 <div key={index} style={intercalstyle}>
-                    <div style={{ backgroundColor: "rgba(255,249,237,1)", fontSize: "11px", display:"flex",justifyContent:"center",alignItems:"center",textAlign:"center"}}>{item.item}</div>
+                    <div style={{ backgroundColor: "rgba(255,249,237,1)", fontSize: "11px", display:"flex",justifyContent:"center",alignItems:"center",width:tabletitlewidth,height:'50px'}}>{item.item}</div>
                     {item.data.map(
                         (item,index) =>
-                        <div key={index} style={{ fontSize: "16px", textAlign: "center", lineHeight: "50px" }}>{item}</div>
+                        <div key={index} style={{ fontSize: "16px", textAlign: "center", lineHeight: "50px",width:tablewidth * 2 }}>{item}</div>
                     )}
                 </div>
         )

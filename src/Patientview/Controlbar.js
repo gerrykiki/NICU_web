@@ -27,7 +27,7 @@ class Controlbar extends Component {
                 <div style={{ display: tagdisplay, alignItems: 'center' }}>
                     <div style={{ fontSize: "16px" }}>項目切換：</div>
                     {btn}
-                    <img src={displaylogo} alt='displaylogo' style={{fontSize:'16px'}}></img>
+                    <img src={displaylogo} alt='displaylogo' style={{width:'22px',height:'22px'}}></img>
                 </div>
             </div>
 

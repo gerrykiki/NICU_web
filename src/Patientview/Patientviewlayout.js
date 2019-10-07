@@ -16,7 +16,7 @@ class Patientviewlayout extends Component {
             <div>
                 <div style={{ background: 'rgba(238, 238, 238, 1)', display: 'flex', justifyContent: "space-between", alignItems: 'center', height: "50px", paddingLeft: "25px", paddingRight: "25px" }}>
                     <div style={{ display: 'flex', justifyContent: "space-between", alignItems: 'center', width: "80%" }}>
-                        <div style={{ fontSize: "1rem" }}>病床01/王ＯＯ/3週歲</div>
+                        <div style={{ fontSize: "1rem" }}>病床01/程子倩/3週歲</div>
                         <div style={{ fontSize: "1rem" }}>病歷號碼:0123456789</div>
                         <div style={{ fontSize: "1rem" }}>身分證字號:A123456789</div>
                         <div style={{ fontSize: "1rem" }}>主治醫師:陳ＯＯ醫師</div>

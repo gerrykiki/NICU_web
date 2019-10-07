@@ -8,8 +8,7 @@ class Crosssectionvitalsignchart extends Component {
     }
 
     drawChart() {
-        const { id, width, height, margin, max, min, axisBot, axisTop, circlrcolor, data } = this.props
-        //console.log(this.props)
+        const { id, width, height, margin, max, min, axisBot, axisTop, circlrcolor,colorshadow, data, axisstyle } = this.props
         var vertigo = data
         var svg
 
@@ -20,7 +19,7 @@ class Crosssectionvitalsignchart extends Component {
 
         var x = d3.scaleLinear()
             .domain([1, 24])
-            .range([0, width - 20])
+            .range([0, width - 50 - margin])
 
 
         var yAxis = d3.axisLeft(y)
@@ -45,7 +44,7 @@ class Crosssectionvitalsignchart extends Component {
             .ticks(20)
             .tickSize(0, 0)
             .tickPadding(margin);
-            
+
         if (axisTop) {
             svg = d3.select("#" + id)
                 .append("svg")
@@ -98,7 +97,7 @@ class Crosssectionvitalsignchart extends Component {
                 .call(xAxis)
                 .attr("class", "axis");
         }
-
+/*
         svg.append('line')
             .attr('x1', -margin)
             .attr('y1', y(min))
@@ -116,7 +115,7 @@ class Crosssectionvitalsignchart extends Component {
             .style('stroke', 'red')
             .style('stroke-width', 1)
             .style('stroke-dasharray', 5.5);
-
+*/
         svg.append('line')
             .attr('x1', -margin)
             .attr('y1', y(200))
@@ -140,9 +139,9 @@ class Crosssectionvitalsignchart extends Component {
             const mappingdata = vertigo[index]
             if (mappingdata > min && mappingdata < max) {
                 svg.append('line')
-                    .attr('x1', x(index + 1))
+                    .attr('x1', x(index + axisstyle))
                     .attr('y1', 0)
-                    .attr('x2', x(index + 1))
+                    .attr('x2', x(index + axisstyle))
                     .attr('y2', height)
                     .style('stroke', 'rgba(220,220,220,1)')
                     .style('stroke-width', 1)
@@ -150,15 +149,26 @@ class Crosssectionvitalsignchart extends Component {
             }
             else {
                 svg.append('line')
-                    .attr('x1', x(index + 1))
+                    .attr('x1', x(index + axisstyle))
                     .attr('y1', 0)
-                    .attr('x2', x(index + 1))
+                    .attr('x2', x(index + axisstyle))
                     .attr('y2', height)
-                    .style('stroke', 'black')
+                    .style('stroke', 'rgba(220,220,220,1)')
                     .style('stroke-width', 1)
                     .style('stroke-dasharray', 5.5);
             }
         }
+
+        vertigo.map((o, i) => (
+            svg.append('rect')
+                .attr('width', margin * 2 )
+                .attr('height', y(min)-y(max))
+                .attr("x", x(i + 0.5))
+                .attr("y", y(max))
+                .style('fill', colorshadow)
+        ))
+
+
 
         for (let index = 0; index < vertigo.length; index++) {
             const element = vertigo[index];

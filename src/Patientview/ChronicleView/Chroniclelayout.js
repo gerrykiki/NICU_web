@@ -8,8 +8,7 @@ import Chronicleorder from './Chronicorder'
 import Chronicleinfection from './Chronicleinfectionlayout'
 
 class Chroniclelayout extends Component {
-
-    simdata(){
+    simdata() {
         const Inputarray = []
         for (let index = 0; index < 24; index++) {
             const element = Math.floor(Math.random() * 100);
@@ -19,7 +18,7 @@ class Chroniclelayout extends Component {
     }
 
     render() {
-        
+
         const crosssectioncontrollist = [
             {
                 "name": "vital",
@@ -50,28 +49,28 @@ class Chroniclelayout extends Component {
         //Sim IO data
         const IOsource = [
             {
-                "item":"IV",
-                "data":this.simdata()
+                "item": "IV",
+                "data": this.simdata()
             },
             {
-                "item":"Feed",
-                "data":this.simdata()
+                "item": "Feed",
+                "data": this.simdata()
             },
             {
-                "item":"Other",
-                "data":this.simdata()
+                "item": "Other",
+                "data": this.simdata()
             },
             {
-                "item":"Input",
-                "data":this.simdata()
+                "item": "Input",
+                "data": this.simdata()
             },
             {
-                "item":"Urine",
-                "data":this.simdata()
+                "item": "Urine",
+                "data": this.simdata()
             },
             {
-                "item":"Output",
-                "data":this.simdata()
+                "item": "Output",
+                "data": this.simdata()
             }
         ]
 
@@ -79,9 +78,9 @@ class Chroniclelayout extends Component {
         return (
             <div>
                 <Controlbar btnlist={crosssectioncontrollist} tagdisplay={"flex"}></Controlbar>
-                <div style={{ maxHeight: '75vh', overflowY: 'auto' }}>
+                <div id='Chroniclelayout' style={{ maxHeight: '75vh', overflowY: 'auto' }} >
                     <div>
-                        <Chroniclevitalsign></Chroniclevitalsign>
+                        <div id='Chroniclevitalsign'><Chroniclevitalsign ></Chroniclevitalsign></div>
                         <IOlayout IO_data={IOsource}></IOlayout>
                         <Chroniclelab></Chroniclelab>
                         <Chroniclert></Chroniclert>

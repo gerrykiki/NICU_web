@@ -56,16 +56,19 @@ class Wardcard extends Component {
         console.log(data);
         return (
             <div className="wardcardbuttonlayout" onMouseMove={() => this.hoverbackground()} onMouseLeave={() => this.hoverbackgroundhover()}>
-                <div className="wardcardbuttonheader">
-                    <div style={{ fontSize: '16px', color: "rgba(61, 119, 181, 1)", fontFamily: "PingFangSC-Regular" }}>{this.switchbednumber(data.publishednumber)}</div>
-                    <div style={{ fontSize: '14px', fontFamily: "PingFangSC-Regular", color: "rgba(61, 119, 181, 1)" }}>{data.Name}/{data.Channel}/{this.switchgender(data.Gender)}/{data.Week}週</div>
-                </div>
-                <div style={{ height: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: "10px", borderBottomWidth: "0.5px", borderBottomColor: "rgba(160, 213, 255, 1)", borderBottomStyle: "solid" }}>
-                    <div style={{ fontSize: '12px' }}>病歷號:{data.id}</div>
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                        <div style={{ fontSize: '12px' }}>{data.data.Weight}g (+{data.data.WeightDif}g)/</div>
-                        <div style={{ fontSize: '12px' }}>E4V5M6</div>
+                <div style={{ height: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: "rgba(215, 238, 255, 1)", padding: "10px" }}>
+                    <div style={{ fontSize: '18px', color: "rgba(61, 119, 181, 1)"}}>
+                        {this.switchbednumber(data.publishednumber)}/{data.Name}
                     </div>
+                    <div style={{ fontSize: '18px',color: "rgba(61, 119, 181, 1)" }}>
+                        {this.switchgender(data.Gender)}/[20＋5]&rarr;[24+4]
+                    </div>
+                </div>
+                <div style={{ height: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: "10px", borderBottomWidth: "0.5px", borderBottomColor: "rgba(215, 238, 255, 1)", borderBottomStyle: "solid" }}>
+                    <div style={{ fontSize: '14px' }}>
+                        病歷號:{data.id}
+                    </div>
+                    <div style={{ fontSize: '14px' }}>500g&rarr;700g(+0.5g)</div>
                 </div>
                 <div style={{ height: '30px', display: 'flex', alignItems: 'center', padding: "10px" }}>
                     <span style={{ fontSize: '12px' }}>{data.Note}</span>

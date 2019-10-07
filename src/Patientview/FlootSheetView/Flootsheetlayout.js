@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import IOlayout from '../BasicIO'
 import Controlbar from '../Controlbar';
+import Flowsheetvitalsign from './Flootsheetvitalsign'
 
 class Flowsheetlayout extends Component {
 
@@ -86,7 +87,8 @@ class Flowsheetlayout extends Component {
         return (
             <div>
                 <Controlbar tagdisplay={"none"}></Controlbar>
-                <div style={{ maxHeight: '75vh', overflowY: 'auto' }}>
+                <div id='Flowsheetlayout' style={{ maxHeight: '75vh', overflowY: 'auto' }}>
+                <div><Flowsheetvitalsign></Flowsheetvitalsign></div>
                     <div>
                         <IOlayout IO_data={IOsource}></IOlayout>
                     </div>

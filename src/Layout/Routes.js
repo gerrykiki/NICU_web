@@ -1,6 +1,5 @@
 import Layoutframe from './Layout'
 import Bedview from '../Wardview/Bedview'
-import Caseview from '../Content/Caseview'
 import Historyview from '../Content/Historyview'
 import classinformation from '../Content/CaseInfo'
 import Wardinfoindex from '../Wardview/Wardinfoindex'
@@ -17,7 +16,7 @@ const routes = [
             {
                 path: '/Main/Bedview',
                 component: Bedview,
-                breadcrumbName:'病房總覽',
+                breadcrumbName:'wardview',
                 routes: [
                     {
                         path: '/Main/Bedview/Wardindex',
@@ -32,12 +31,12 @@ const routes = [
                 ]
             },
             {
-                path: '/Main/Caseview',
-                component: Caseview,
-                breadcrumbName:'個案資訊管理'
+                path: '/Main/Patientview',
+                component: Patientviewlayout,
+                breadcrumbName:'首頁/個案資訊管理/個案資訊'
             },
             {
-                path: '/Main/Patientview',
+                path: '/Main/Historypatientview',
                 component: Patientviewlayout,
                 breadcrumbName:'首頁/個案資訊管理/個案資訊'
             },

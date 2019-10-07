@@ -37,7 +37,6 @@ class Bedview extends Component {
     render() {
         const wardcardlist = []
         const wardcarddetaillist = []
-
         const detailstyle = {
             padding: '10px',
             width: '30%',
@@ -56,9 +55,9 @@ class Bedview extends Component {
 
         const source = jsonResponse;
         console.log(source);
-        for (let i = 0; i < 1; i++) {
-            wardcardlist.push(<Wardcard key={i} data={source.Userdata.user[i]} />)
-            wardcarddetaillist.push(<Wardcarddetail key={i} data={source.Userdata.user[i]} />)
+        for (let i = 0; i < source.Userdata.user.length; i++) {
+            wardcardlist.push(<Wardcard key={i} data={source.Userdata.user[0]} />)
+            wardcarddetaillist.push(<Wardcarddetail key={i} data={source.Userdata.user[0]} />)
         }
         const update = updatetime
 
@@ -67,7 +66,7 @@ class Bedview extends Component {
             const months = "1,2,3,4,5,6,7,8,9,10,11,12".split(",");
             const timestrimg = new Date(time).getFullYear() + '-' + months[new Date(time).getMonth()] + '-' + new Date(time).getDate()
             return timestrimg
-        }  
+        }
 
         function HourTimestampformat(time) {
 
@@ -104,29 +103,23 @@ class Bedview extends Component {
 
         return (
             <div>
-                <div className="wardcardlayout">
-                    <div className="wardcardheader">
-                        病房總覽
+                <div style={{ paddingLeft: "10px", paddingRight: "10px", fontSize: "16px", display: "flex", justifyContent: "space-between", alignItems: 'center' }}>病房總覽</div>
+                <div style={{ paddingLeft: "10px", paddingRight: "10px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                    <div>
+                        <span style={{ fontSize: "14px" }}>資料更新時間</span>
+                        <span style={{ marginLeft: "10px", fontSize: "14px" }}>{Timestampformat(update.time)}</span>
+                        <span style={{ marginLeft: "10px", fontSize: "14px" }}>{HourTimestampformat(update.time)}</span>
                     </div>
                     <div>
-                        <span>
-                            <span className="timeinformation">資料更新時間</span>
-                            <span style={{marginLeft:"10px"}} className="timeinformation">{Timestampformat(update.time)}</span>
-                            <span style={{marginLeft:"10px"}} className="timeinformation">{HourTimestampformat(update.time)}</span>
-                        </span>
-                        <span>
-                            <Switch style={{ margin: 5 }} checkedChildren="Detail" unCheckedChildren="Detail" defaultChecked onChange={this.onChangesimple} />
-                            <Switch style={{ margin: 5 }} checkedChildren="Previw" unCheckedChildren="Previw" defaultChecked onChange={this.onChangedisplay} />
-                        </span>
+                        <Switch style={{ marginRight: 5 }} checkedChildren="Detail" unCheckedChildren="Detail" defaultChecked onChange={this.onChangesimple} />
+                        <Switch checkedChildren="Previw" unCheckedChildren="Previw" defaultChecked onChange={this.onChangedisplay} />
                     </div>
                 </div>
-                <div>
-                    <div style={{ display: 'flex' }}>
-                        <div style={this.state.displaymode ? simplestyple : detailstyle}>
-                            {this.state.simplemode ? wardcardlist : wardcarddetaillist}
-                        </div>
-                        {this.previwbool()}
+                <div style={{ display: 'flex' }}>
+                    <div style={this.state.displaymode ? simplestyple : detailstyle}>
+                        {this.state.simplemode ? wardcardlist : wardcarddetaillist}
                     </div>
+                    {this.previwbool()}
                 </div>
             </div>
         );

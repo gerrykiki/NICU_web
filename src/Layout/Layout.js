@@ -27,6 +27,42 @@ class Layoutframe extends Component {
         });
     }
 
+    Localtimeformat() {
+        return new Date().getFullYear() + "-" + this.Monthformat(new Date().getMonth()) + "-" + new Date().getDate()
+    }
+
+
+    Monthformat(month) {
+        switch (month) {
+            case 0:
+                return "01";
+            case 1:
+                return "02";
+            case 2:
+                return "03";
+            case 3:
+                return "04";
+            case 4:
+                return "05";
+            case 5:
+                return "06";
+            case 6:
+                return "07";
+            case 7:
+                return "08";
+            case 8:
+                return "09";
+            case 9:
+                return "10";
+            case 10:
+                return "11";
+            case 11:
+                return "12";
+            default:
+                return null;
+        }
+    }
+
     renderSwitch(param) {
         switch (param) {
             case 1:
@@ -48,18 +84,20 @@ class Layoutframe extends Component {
         }
     }
 
+
     render() {
+        console.log(this.props.location);
+        const locationdata = this.props.location
         return (
             <Layout>
                 <Layout style={{ background: '#fff' }}>
                     <Header className="header">
                         {/*eslint-disable-next-line*/}
-                        <Sidermenu></Sidermenu>
-                        <div style={{ marginRight: 10 }}>
-                            <div className="hospitalbackground"></div>
-                            <div className="hospital"></div>
-                            <div style={{ fontFamily: "PingFangTC-Regular", fontSize: "14px", color: 'rgba(255, 255, 255, 1)', width: 'auto', position: "absolute", right: '50px', top: '0px' }}>陳國榮醫師 {new Date().toLocaleDateString()} {this.renderSwitch(new Date().getDay())}</div>
+                        <div style={{ display: 'flex', alignItems: 'center' }}>
+                            <div style={{ fontSize: "22px" }}>NICU</div>
+                            <Sidermenu id={locationdata} routes={this.props.route}></Sidermenu>
                         </div>
+                        <div style={{ fontSize: "16px", color: 'rgba(255, 255, 255, 1)' }}>陳國榮醫師 {this.Localtimeformat()} {this.renderSwitch(new Date().getDay())}</div>
                     </Header>
                     <Content>
                         <div style={{ background: '#fff' }}>

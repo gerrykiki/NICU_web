@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { Select } from 'antd';
 import Crosssectionvitalsignchart from '../CrossSectionView/Crossectionvitalsignchart'
-import Chroniclescale from './Chroniclescale'
+import Chroniclescale from '../ChronicleView/Chroniclescale'
 
 const width = window.screen.width * 0.9, height = width * 0.08, margin = (window.screen.width * 0.9 - 90) / 46, max = 150, min = 50
+const axisstyle = -0.5
 console.log(height)
 
-class Chroniclevitalsign extends Component {
-    constructor(){
+class Flowsheetvitalsign extends Component {
+    constructor() {
         super()
         this.state = {
             needFixed: false
@@ -15,31 +16,30 @@ class Chroniclevitalsign extends Component {
     }
 
     componentDidMount() {
-        document.getElementById("Chroniclelayout").addEventListener('scroll', this.handleScroll.bind(this));
+        document.getElementById("Flowsheetlayout").addEventListener('scroll', this.handleScroll.bind(this));
     }
 
     componentWillUnmount() {
-        document.getElementById("Chroniclelayout").removeEventListener('scroll', this.handleScroll);
+        document.getElementById("Flowsheetlayout").removeEventListener('scroll', this.handleScroll);
     }
 
     handleScroll() {
-        let scrollTop = document.getElementById("Chroniclelayout").scrollTop
+        let scrollTop = document.getElementById("Flowsheetlayout").scrollTop
         if (this.state.needFixed) {
             if (scrollTop < 50) {
                 this.setState({
-                    needFixed:!this.state.needFixed
+                    needFixed: !this.state.needFixed
                 })
             }
         }
-        else{
+        else {
             if (scrollTop > 50) {
                 this.setState({
-                    needFixed:!this.state.needFixed
+                    needFixed: !this.state.needFixed
                 })
             }
         }
     }
-
     datarelease() {
         var dataarray = [];
         for (var k = 0; k < 24; k++) {
@@ -58,7 +58,7 @@ class Chroniclevitalsign extends Component {
         const { Option } = Select;
         const scrollstyle = {
             position: "absolute",
-            top: 117,
+            top: 107,
             right: 0,
             backgroundColor:'white'
         }
@@ -87,7 +87,7 @@ class Chroniclevitalsign extends Component {
                         </Select>
                     </div>
                 </div>
-                <div style={this.state.needFixed ? scrollstyle : stablestyle}><Chroniclescale patid='chronicscale'></Chroniclescale></div>
+                <div style={this.state.needFixed ? scrollstyle : stablestyle}><Chroniclescale patid='flootsheetscale'></Chroniclescale></div>
                 <div>
                     <div style={{ display: "flex", justifyContent: "space-between", height: height + 50, width: "100%" }}>
                         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "10px" }}>
@@ -96,9 +96,9 @@ class Chroniclevitalsign extends Component {
                                 <div style={{ fontSize: "2rem", color: "rgba(126, 211, 33, 1)" }}>123</div>
                             </div>
                         </div>
-                        <div id="chronicvitalsignhr" style={{ width: width}}>
+                        <div id="flootsheethr" style={{ width: width }}>
                             <Crosssectionvitalsignchart
-                                id={"chronicvitalsignhr"}
+                                id={"flootsheethr"}
                                 data={this.datarelease()}
                                 width={width} height={height}
                                 margin={margin}
@@ -106,7 +106,7 @@ class Chroniclevitalsign extends Component {
                                 min={min}
                                 axisBot={false}
                                 axisTop={false}
-                                axisstyle = {1}
+                                axisstyle = {axisstyle}
                                 circlrcolor={"rgba(126, 211, 33, 1)"}
                                 colorshadow={"rgba(126, 211, 33, 0.5)"}>
                             </Crosssectionvitalsignchart>
@@ -119,9 +119,9 @@ class Chroniclevitalsign extends Component {
                                 <div style={{ fontSize: "2rem", color: "rgba(220, 150, 159, 1)" }}>90</div>
                             </div>
                         </div>
-                        <div id="chronicvitalsignbp" style={{ width: width }}>
+                        <div id="flootsheetbp" style={{ width: width }}>
                             <Crosssectionvitalsignchart
-                                id={"chronicvitalsignbp"}
+                                id={"flootsheetbp"}
                                 data={this.datarelease()}
                                 width={width} height={height}
                                 margin={margin}
@@ -129,7 +129,7 @@ class Chroniclevitalsign extends Component {
                                 min={min}
                                 axisBot={false}
                                 axisTop={false}
-                                axisstyle = {1}
+                                axisstyle = {axisstyle}
                                 circlrcolor={"rgba(220, 150, 159, 1)"}
                                 colorshadow={"rgba(220, 150, 159, 0.5)"}>
                             </Crosssectionvitalsignchart>
@@ -142,9 +142,9 @@ class Chroniclevitalsign extends Component {
                                 <div style={{ fontSize: "2rem", color: "rgba(59, 151, 225, 1)" }}>24</div>
                             </div>
                         </div>
-                        <div id="chronicvitalsignSpO" style={{ width: width }}>
+                        <div id="flootsheetSpO" style={{ width: width }}>
                             <Crosssectionvitalsignchart
-                                id={"chronicvitalsignSpO"}
+                                id={"flootsheetSpO"}
                                 data={this.datarelease()}
                                 width={width} height={height}
                                 margin={margin}
@@ -152,7 +152,7 @@ class Chroniclevitalsign extends Component {
                                 min={min}
                                 axisBot={false}
                                 axisTop={false}
-                                axisstyle = {1}
+                                axisstyle = {axisstyle}
                                 circlrcolor={"rgba(59, 151, 225, 1)"}
                                 colorshadow={"rgba(59, 151, 225, 0.5)"}>
                             </Crosssectionvitalsignchart>
@@ -165,9 +165,9 @@ class Chroniclevitalsign extends Component {
                                 <div style={{ fontSize: "2rem", color: "rgba(144, 19, 254, 1)" }}>90</div>
                             </div>
                         </div>
-                        <div id="chronicvitalsignBT" style={{ width: width }}>
+                        <div id="flootsheetBT" style={{ width: width }}>
                             <Crosssectionvitalsignchart
-                                id={"chronicvitalsignBT"}
+                                id={"flootsheetBT"}
                                 data={this.datarelease()}
                                 width={width} height={height}
                                 margin={margin}
@@ -175,7 +175,7 @@ class Chroniclevitalsign extends Component {
                                 min={min}
                                 axisBot={false}
                                 axisTop={false}
-                                axisstyle = {1}
+                                axisstyle = {axisstyle}
                                 circlrcolor={"rgba(144, 19, 254, 1)"}
                                 colorshadow={"rgba(144, 19, 254, 0.5)"}>
                             </Crosssectionvitalsignchart>
@@ -188,9 +188,9 @@ class Chroniclevitalsign extends Component {
                                 <div style={{ fontSize: "2rem", color: "rgba(245, 166, 35, 1)" }}>90</div>
                             </div>
                         </div>
-                        <div id="chronicvitalsignRR" style={{ width: width }}>
+                        <div id="flootsheetRR" style={{ width: width }}>
                             <Crosssectionvitalsignchart
-                                id={"chronicvitalsignRR"}
+                                id={"flootsheetRR"}
                                 data={this.datarelease()}
                                 width={width} height={height}
                                 margin={margin}
@@ -198,7 +198,7 @@ class Chroniclevitalsign extends Component {
                                 min={min}
                                 axisBot={false}
                                 axisTop={false}
-                                axisstyle = {1}
+                                axisstyle = {axisstyle}
                                 circlrcolor={"rgba(245, 166, 35, 1)"}
                                 colorshadow={"rgba(245, 166, 35, 0.5)"}>
                             </Crosssectionvitalsignchart>
@@ -208,7 +208,5 @@ class Chroniclevitalsign extends Component {
             </div>
         );
     }
-
 }
-
-export default Chroniclevitalsign;
+export default Flowsheetvitalsign

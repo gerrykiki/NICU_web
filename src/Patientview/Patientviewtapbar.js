@@ -33,7 +33,7 @@ class Patientviewtapbar extends Component {
                     <TabPane tab="Order view" key="5">
                         <Orderview></Orderview>
                     </TabPane>
-                    <TabPane tab="Note" key="6">
+                    {/* <TabPane tab="Note" key="6">
                         <Noteview></Noteview>
                     </TabPane>
                     <TabPane tab="RT" key="7">
@@ -44,7 +44,7 @@ class Patientviewtapbar extends Component {
                     </TabPane>
                     <TabPane tab="Infection" key="9">
                         <Infectionview></Infectionview>
-                    </TabPane>
+                    </TabPane> */}
                     <TabPane tab="Schedule" key="10">
                         <Scheduleview></Scheduleview>
                     </TabPane>

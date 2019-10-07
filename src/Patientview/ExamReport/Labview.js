@@ -16,37 +16,39 @@ class Labview extends Component {
         )
     }
     render() {
-        const tablewidth = (document.body.clientWidth - 160) * 0.5
-        const { Option } = Select;
-        const { RangePicker } = DatePicker;
-        const dateFormat = 'YYYY/MM/DD';
-        const datearray = []
-        var statetime = {
-            "starttime": (+new Date()),
-            "Endtime": (+new Date())
-        }
-        function onChange(value, dateString) {
-            statetime.starttime = (+new Date(dateString[0]))
-            statetime.Endtime = (+new Date(dateString[1]))
-            const diffcount = ((statetime.Endtime - statetime.starttime) / 86400000) + 1
-            datearray.length = 0
-            for (let index = 0; index < diffcount; index++) {
-                const element = statetime.starttime + (index * 86400000);
-                datearray.push(element)
-            }
-        }
+        const titlestyle = { height: "50px", backgroundColor: "rgba(238,238,238,1)", display: "flex", justifyContent: "center", alignItems: "center", fontSize: "16px" }
+        const textstyle = { height: "50px", display: "flex", justifyContent: "center", alignItems: "center", fontSize: "16px" }
+        // const tablewidth = (document.body.clientWidth - 160) * 0.5
+        // const { Option } = Select;
+        // const { RangePicker } = DatePicker;
+        // const dateFormat = 'YYYY/MM/DD';
+        // const datearray = []
+        // var statetime = {
+        //     "starttime": (+new Date()),
+        //     "Endtime": (+new Date())
+        // }
+        // function onChange(value, dateString) {
+        //     statetime.starttime = (+new Date(dateString[0]))
+        //     statetime.Endtime = (+new Date(dateString[1]))
+        //     const diffcount = ((statetime.Endtime - statetime.starttime) / 86400000) + 1
+        //     datearray.length = 0
+        //     for (let index = 0; index < diffcount; index++) {
+        //         const element = statetime.starttime + (index * 86400000);
+        //         datearray.push(element)
+        //     }
+        // }
 
-        let dataview = this.state.Datelist.map(
-            (item, index) =>
-                <div key={index} style={{width:"64px" ,height: "50px", lineHeight: "50px", textAlign: "center", paddingRight: "10px" ,paddingLeft:"10px",backgroundColor:"rgba(255,249,237,1)"}}>
-                    {timestampchange(item)}
-                </div>
-        )
+        // let dataview = this.state.Datelist.map(
+        //     (item, index) =>
+        //         <div key={index} style={{ width: "64px", height: "50px", lineHeight: "50px", textAlign: "center", paddingRight: "10px", paddingLeft: "10px", backgroundColor: "rgba(255,249,237,1)" }}>
+        //             {timestampchange(item)}
+        //         </div>
+        // )
 
-        function timestampchange(time) {
-            var months = "1,2,3,4,5,6,7,8,9,10,11,12".split(",");
-            return months[new Date(time).getMonth()] + "/" + new Date(time).getDate()
-        }
+        // function timestampchange(time) {
+        //     var months = "1,2,3,4,5,6,7,8,9,10,11,12".split(",");
+        //     return months[new Date(time).getMonth()] + "/" + new Date(time).getDate()
+        // }
 
         return (
             <div style={{ width: "100%", marginBottom: "20px" }}>
@@ -55,7 +57,7 @@ class Labview extends Component {
                         LAB(常規檢驗）
                     </div>
                 </div>
-                <div>
+                {/* <div>
                     <Select defaultValue="lucy" style={{ width: '20%' }}>
                         <Option value="jack">Jack</Option>
                         <Option value="lucy">Lucy</Option>
@@ -68,8 +70,8 @@ class Labview extends Component {
                         onChange={onChange}
                     />
                     <Button style={{ marginLeft: "10px" }} onClick={() => this.changedate(datearray)}>搜尋</Button>
-                </div>
-                <div style={{ display: "flex", marginTop: "10px", borderRadius: "4px" }}>
+                </div> */}
+                {/* <div style={{ display: "flex", marginTop: "10px", borderRadius: "4px" }}>
                     <div>
                         <div style={{ padding: "15px", backgroundColor: "rgba(255,249,237,1)", height: "50px", width: "100px", textAlign: 'center' }}>檢驗項目</div>
                         <div style={{ padding: "15px", backgroundColor: "rgba(255,249,237,1)", height: "50px", width: "100px", textAlign: 'center' }}>Na</div>
@@ -82,6 +84,129 @@ class Labview extends Component {
                     </div>
                     <div style={{ display: "flex",width:tablewidth, overflowY: "auto" }}>
                         {dataview}
+                    </div>
+                </div> */}
+                <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr" }}>
+                    <div style={titlestyle}>檢驗項目</div>
+                    <div style={titlestyle}>PH</div>
+                    <div style={titlestyle}>PCO2</div>
+                    <div style={titlestyle}>PO2</div>
+                    <div style={titlestyle}>HCO3</div>
+                    <div style={titlestyle}>BE</div>
+                    <div style={titlestyle}>O2</div>
+                    <div style={titlestyle}>TCO2</div>
+                    <div style={titlestyle}>SaCO2</div>
+                </div>
+                <div style={{ maxHeight: "400px", overflow: "auto" }}>
+                    <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr" }}>
+                        <div style={titlestyle}>2019-01-01 15:00</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                    </div>
+                    <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr" }}>
+                        <div style={titlestyle}>2019-01-01 15:00</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                    </div>
+                    <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr" }}>
+                        <div style={titlestyle}>2019-01-01 15:00</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                    </div>
+                    <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr" }}>
+                        <div style={titlestyle}>2019-01-01 15:00</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                    </div>
+                    <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr" }}>
+                        <div style={titlestyle}>2019-01-01 15:00</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                    </div>
+                    <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr" }}>
+                        <div style={titlestyle}>2019-01-01 15:00</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                    </div>
+                    <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr" }}>
+                        <div style={titlestyle}>2019-01-01 15:00</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                    </div>
+                    <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr" }}>
+                        <div style={titlestyle}>2019-01-01 15:00</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                    </div>
+                    <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr" }}>
+                        <div style={titlestyle}>2019-01-01 15:00</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                    </div>
+                    <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr" }}>
+                        <div style={titlestyle}>2019-01-01 15:00</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
+                        <div style={textstyle}>234</div>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Input, TimePicker, DatePicker } from 'antd'
 import moment from 'moment';
+import editlogo from '../../Image/svg/Edit.svg'
 
 class Todolayout extends Component {
     state = {
@@ -26,9 +27,7 @@ class Todolayout extends Component {
                     </div>
                 </div>
                 <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", height: "50px", backgroundColor: "rgba(255,249,237,1)", paddingRight: "20px" }}>
-                    <div onMouseUp={() => this.Editclick("block")}>
-                        編輯
-                    </div>
+                    <img src={editlogo} alt='todoedit' style={{width:'15px',height:'15px',cursor:'pointer'}} onMouseUp={() => this.Editclick("block")} ></img>
                 </div>
                 <div style={{ maxHeight: "180px", display: "flex", justifyContent: "space-between", flexWrap: 'wrap', height: "100px" }}>
                     {/*To do list */}

@@ -44,17 +44,18 @@ class Wardinfouser extends Component {
                 return "rgba(195,153,115,1)"
             case "NPO":
                 return "rgba(61, 119, 181, 1)"
-            case "TH":
+            case "HD":
                 return "rgba(241, 204, 115, 1)"
             case "Anti":
                 return "rgba(155, 202, 100, 1)"
-            case "Leaf":
+            case "Floey":
                 return "rgba(65, 165, 181, 1)"
+            case "Drain":
+                return "rgba(25,26,144,1)"
             default:
                 return null
         }
     }
-
     detailinformationswitch(item) {
         //console.log(item);
         switch (item) {
@@ -64,12 +65,14 @@ class Wardinfouser extends Component {
                 return "TPN"
             case "NPO":
                 return "NPO"
-            case "TH":
-                return "透"
+            case "HD":
+                return "HD"
             case "Anti":
-                return "抗"
-            case "Leaf":
-                return "葉"
+                return "Anti-B"
+            case "Floey":
+                return "Floey"
+            case "Drain":
+                return "Drain"
             default:
                 return item
         }
@@ -123,8 +126,8 @@ class Wardinfouser extends Component {
         let detaillist = userinfo.detaildata.map(
             (info, index) =>
                 <div key={index} style={info.data ?
-                    { fontSize: "14px", textAlign: "center", borderRadius: "4px", color: "rgba(255, 255, 255, 1)", marginRight: "10px", width: "40px", height: "40px", backgroundColor: this.detailinformationswitchstyle(info.item) } :
-                    { fontSize: "14px", textAlign: "center", borderRadius: "4px", borderWidth: "1px", borderStyle: "solid", borderColor: "rgba(187,187,187,1)", color: "rgba(187, 187, 187, 1)", marginRight: "10px", width: "40px", height: "40px" }}>
+                    { fontSize: "10px", textAlign: "center", borderRadius: "4px", color: "rgba(255, 255, 255, 1)", marginRight: "10px", width: "40px", height: "40px", backgroundColor: this.detailinformationswitchstyle(info.item) } :
+                    { fontSize: "10px", textAlign: "center", borderRadius: "4px", borderWidth: "1px", borderStyle: "solid", borderColor: "rgba(187,187,187,1)", color: "rgba(187, 187, 187, 1)", marginRight: "10px", width: "40px", height: "40px" }}>
                     {this.detailinformationswitch(info.item)}
                 </div>
         )

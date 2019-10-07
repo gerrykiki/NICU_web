@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Input, Button } from 'antd';
-import editlogo from '../Image/svg/Edit.svg'
 
 class WardcardNote extends Component{
     state = {
@@ -47,32 +46,31 @@ class WardcardNote extends Component{
 
         const annouceview = annouce.map(
             (item, index) =>
-                <div key={index} style={{ height: "40px", lineHeight: "20px", paddingTop: '10px', paddingBottom: '10px' }}>{item.text}</div>
+                <div key={index} style={{ height: "50px", lineHeight: "30px", paddingTop: '10px', paddingBottom: '10px',fontSize:"16px" }}>{item.text}</div>
         )
 
 
         return(
-            <div style={{ margin: "20px" }}>
+            <div style={{ marginTop:"10px" }}>
                 <div style={{ backgroundColor: "rgba(238,238,238,1)", height: "50px", padding: "10px", fontSize: "14px", borderTopLeftRadius: "4px", borderTopRightRadius: "4px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                     病房主任留言板
-                    <img src={editlogo} alt='editlogo' style={{cursor:'pointer'}} onClick={() => this.editlist()} ></img>
                 </div>
                 <div style={{ borderColor: "rgba(238,238,238,1)", borderStyle: 'solid', borderWidth: '1px' }}>
                     <div style={{ maxHeight: "40vh", overflowY: 'auto', paddingLeft: '40px', paddingRight: "40px" }}>
                         {annouceview}
                     </div>
-                    <div style={editstyle}>
+                    <div style={{display:"inline"}}>
                         <div style={{ height: "40px", backgroundColor: "rgba(238,238,238,1)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                             <Input id={'NewAnn'} placeholder="Basic usage" style={{ width: "90%" }}/>
-                            <Button type="primary" style={{ margin: "10px" }} onClick={()=>this.AddNewannouce()}>
+                            <Button type="primary" style={{ margin: "10px",width:"100px" }} onClick={()=>this.AddNewannouce()}>
                                 新增
                             </Button>
                         </div>
                         <div style={{ height: "50px", display: "flex", justifyContent: "center", alignItems: "center" }}>
-                            <Button style={{ margin: "10px" }} onClick={() => this.canceleditlist()}>
+                            <Button style={{ margin: "10px",width:"100px" }} onClick={() => this.canceleditlist()}>
                                 取消
                         </Button>
-                            <Button type="primary" style={{ margin: "10px" }}>
+                            <Button type="primary" style={{ margin: "10px",width:"100px" }}>
                                 儲存
                         </Button>
                         </div>
