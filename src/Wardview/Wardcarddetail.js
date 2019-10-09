@@ -100,23 +100,49 @@ class Wardcarddetail extends Component {
             hoverstate: "none"
         });
     }
+    sendData = (idnumber) => {
+        this.props.parentCallback(idnumber);
+    }
+
 
     render() {
-        const { data } = this.props
-        // const infotitlestyle = { paddingLeft: "2px", paddingRight: "2px", height: "20px", borderWidth: "1px", borderColor: "rgba(59, 151, 225, 1)", borderStyle: "solid", borderRadius: "4px", textAlign: "center", lineHeight: "20px" }
-        // const infodatastyle = { marginLeft: '2px' }
-        // const infodatahightlightstyle = { marginLeft: '3px', color: "red" }
-        const style = {
-            backgroundColor: "rgba(0, 0, 0, 0.3)",
-            width: "100%",
-            height: "100%",
-            position: "absolute",
-            top: "0px",
-            borderRadius: "4px",
-            display: this.state.hoverstate,
-            justifyContent: "center",
-            alignItems: "center"
+        const { data, selectstate } = this.props
+        var selectstyle = null
+        if (selectstate === data.id) {
+            selectstyle = {
+                width: "99%",
+                marginBottom: "10px",
+                borderRadius: "4px",
+                borderWidth: "1px",
+                borderStyle: "solid",
+                borderColor: "rgba(245, 166, 35, 1)",
+                position: 'relative'
+            }
         }
+        else {
+            selectstyle = {
+                width: "99%",
+                marginBottom: "10px",
+                borderRadius: "4px",
+                borderWidth: "2px",
+                borderStyle: "solid",
+                borderColor: "rgba(215, 238, 255, 1)",
+                position: 'relative'
+            }
+        }
+
+        // const hoverstyle = {
+        //     backgroundColor: "rgba(0, 0, 0, 0.3)",
+        //     width: "100%",
+        //     height: "100%",
+        //     position: "absolute",
+        //     top: "0px",
+        //     borderRadius: "4px",
+        //     display: this.state.hoverstate,
+        //     justifyContent: "center",
+        //     alignItems: "center"
+        // }
+
         // const infodata = [
         //     { Title: "BP", Data: 140 + "/" + 800, hightlight: false },
         //     { Title: "HR", Data: 120, hightlight: true },
@@ -136,70 +162,59 @@ class Wardcarddetail extends Component {
 
 
         return (
-            <div style={{ width: "99%", marginBottom: "10px", borderRadius: "4px", borderWidth: "1px", borderStyle: "solid", borderColor: "rgba(215, 238, 255, 1)", position: 'relative' }} onMouseMove={() => this.hoverbackground()} onMouseLeave={() => this.hoverbackgroundhover()}>
-                <div style={{ height: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: "rgba(215, 238, 255, 1)", padding: "10px" }}>
-                    <div style={{ fontSize: '18px', color: "rgba(61, 119, 181, 1)"}}>
-                        {this.switchbednumber(data.publishednumber)}/{data.Name}
+            <Link to={{ pathname: '/Main/Bedview/Warduser', state: data }} onClick={() => this.sendData(data.id)}>
+                <div style={selectstyle}>
+                    <div style={{ height: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: "rgba(215, 238, 255, 1)", padding: "10px" }}>
+                        <div style={{ fontSize: '18px', color: "rgba(61, 119, 181, 1)" }}>{this.switchbednumber(data.publishednumber)}/{data.Name}</div>
+                        <div style={{ fontSize: '18px', color: "rgba(61, 119, 181, 1)" }}>{this.switchgender(data.Gender)}/[20＋5]&rarr;[24+4]</div>
                     </div>
-                    <div style={{ fontSize: '18px',color: "rgba(61, 119, 181, 1)" }}>
-                        {this.switchgender(data.Gender)}/[20＋5]&rarr;[24+4]
+                    <div style={{ height: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: "10px", borderBottomWidth: "0.5px", borderBottomColor: "rgba(215, 238, 255, 1)", borderBottomStyle: "solid" }}>
+                        <div style={{ fontSize: '14px', color: "black" }}>
+                            病歷號:{data.id}
+                        </div>
+                        <div style={{ fontSize: '14px', color: "black" }}>500g&rarr;700g(+0.5g)</div>
                     </div>
-                </div>
-                <div style={{ height: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: "10px", borderBottomWidth: "0.5px", borderBottomColor: "rgba(215, 238, 255, 1)", borderBottomStyle: "solid" }}>
-                    <div style={{ fontSize: '14px' }}>
-                        病歷號:{data.id}
-                    </div>
-                    <div style={{ fontSize: '14px' }}>500g&rarr;700g(+0.5g)</div>
-                </div>
-                <div style={{ borderBottomWidth: "0.5px", borderBottomColor: "rgba(215, 238, 255, 1)", borderBottomStyle: "solid" }}>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', paddingTop: "3px", paddingLeft: "10px", paddingRight: "10px", paddingBottom: "3px" }}>
-                        <div style={{ display: 'grid', gridTemplateColumns: "1fr 2fr", gridColumnsGap: "5px" }}>
-                            <div style={{ display: "grid", gridTemplateRows: "1fr 1fr", gridRowGap: "5px" }}>
-                                <div>
-                                    <div style={{ fontSize: "12px" }}>HR</div>
-                                    <div style={{ fontSize: "18px" }}>120</div>
-                                </div>
-                                <div>
-                                    <div style={{ fontSize: "12px" }}>SpO2</div>
-                                    <div style={{ fontSize: "18px" }}>22</div>
-                                </div>
-                            </div>
-                            <div style={{ display: "grid", gridTemplateRows: "1fr 1fr", gridRowGap: "5px" }}>
-                                <div>
-                                    <div style={{ fontSize: "12px" }}>ABP</div>
-                                    <div style={{ fontSize: "18px" }}>140/30(40)</div>
-                                </div>
-                                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gridColumnsGap: "5px" }}>
+                    <div style={{ borderBottomWidth: "0.5px", borderBottomColor: "rgba(215, 238, 255, 1)", borderBottomStyle: "solid" }}>
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', paddingTop: "3px", paddingLeft: "10px", paddingRight: "10px", paddingBottom: "3px" }}>
+                            <div style={{ display: 'grid', gridTemplateColumns: "1fr 2fr", gridColumnsGap: "5px" }}>
+                                <div style={{ display: "grid", gridTemplateRows: "1fr 1fr", gridRowGap: "5px" }}>
                                     <div>
-                                        <div style={{ fontSize: "12px" }}>RR</div>
-                                        <div style={{ fontSize: "18px" }}>95%</div>
+                                        <div style={{ fontSize: "12px", color: "black" }}>HR</div>
+                                        <div style={{ fontSize: "18px", color: "black" }}>120</div>
                                     </div>
                                     <div>
-                                        <div style={{ fontSize: "12px" }}>BT</div>
-                                        <div style={{ fontSize: "18px" }}>40</div>
+                                        <div style={{ fontSize: "12px", color: "black" }}>SpO2</div>
+                                        <div style={{ fontSize: "18px", color: "black" }}>22</div>
+                                    </div>
+                                </div>
+                                <div style={{ display: "grid", gridTemplateRows: "1fr 1fr", gridRowGap: "5px" }}>
+                                    <div>
+                                        <div style={{ fontSize: "12px", color: "black" }}>ABP</div>
+                                        <div style={{ fontSize: "18px", color: "black" }}>140/30(40)</div>
+                                    </div>
+                                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gridColumnsGap: "5px" }}>
+                                        <div>
+                                            <div style={{ fontSize: "12px", color: "black" }}>RR</div>
+                                            <div style={{ fontSize: "18px", color: "black" }}>95%</div>
+                                        </div>
+                                        <div>
+                                            <div style={{ fontSize: "12px", color: "black" }}>BT</div>
+                                            <div style={{ fontSize: "18px", color: "black" }}>40</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gridTemplateRows: "1fr 1fr 1fr", gridGap: "5px" }}>
-                            {this.detaildatastylelist("rgba(61, 119, 181, 1)")}
+                            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gridTemplateRows: "1fr 1fr 1fr", gridGap: "5px" }}>
+                                {this.detaildatastylelist("rgba(61, 119, 181, 1)")}
+                            </div>
                         </div>
                     </div>
+                    <div style={{ height: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: "10px", borderBottomWidth: "0.5px", borderBottomColor: "rgba(215, 238, 255, 1)", borderBottomStyle: "solid", borderTopWidth: "0.5px", borderTopColor: "rgba(215, 238, 255, 1)", borderTopStyle: "solid" }}>
+                        <div style={{ fontSize: '10px', color: "black" }}>{data.Note}</div>
+                        <div href="/Main/Patientview" style={{ height: "20px", backgroundColor: "rgba(59, 151, 225, 1)", borderRadius: "4px", textAlign: "center", lineHeight: "20px", color: "white", paddingLeft: "3px", paddingRight: "3px" }}>進入病人資料頁面</div>
+                    </div>
                 </div>
-                <div style={{ height: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: "13px", borderBottomWidth: "0.5px", borderBottomColor: "rgba(215, 238, 255, 1)", borderBottomStyle: "solid", borderTopWidth: "0.5px", borderTopColor: "rgba(215, 238, 255, 1)", borderTopStyle: "solid" }}>
-                    <span style={{ fontSize: '14px' }}>
-                        {data.Note}
-                    </span>
-                </div>
-                <div style={style}>
-                    <Link to={{ pathname: '/Main/Bedview/Warduser', state: data }} params={{ testvalue: "hello" }} style={{ height: "40px", width: "40px", backgroundColor: "rgba(255,255,255, 1)", borderRadius: "99em", textAlign: "center", lineHeight: "40px", margin: "10px" }}>
-                        <img src={checklogo} alt='checklogo'></img>
-                    </Link>
-                    <Link to="/Main/Patientview" style={{ height: "40px", width: "40px", backgroundColor: "rgba(255,255,255, 1)", borderRadius: "99em", textAlign: "center", lineHeight: "40px", margin: "10px" }}>
-                        <img src={patientviewlogo} alt='patientviewlogo'></img>
-                    </Link>
-                </div>
-            </div>
+            </Link>
         );
     }
 }

@@ -15,15 +15,12 @@ class Wardinfousercheckbox extends Component{
     render() {
         
         const selectunstyle = {
-            lineHeight:"30px",
-
         }
         const selectstyle = {
-            lineHeight:"30px",
             textDecoration:"line-through"
         }
         return (
-            <div style={{height:"50px",padding:"15px"}}>
+            <div style={{height:"50px",paddingLeft:"15px",display:"flex",alignItems:"center"}}>
                 <Checkbox onChange={() => this.selectchange()} checked={this.state.checkboxselect} style={this.state.checkboxselect ? selectstyle:selectunstyle}>幫個案量體重</Checkbox>
             </div>
         )

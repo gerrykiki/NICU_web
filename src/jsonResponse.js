@@ -123,13 +123,116 @@ const WardInfo = {
 
 const jsonResponse = {
     "Userdata": {
-        "user": [
+        "user":  [
             {
                 "Name": "程子倩", //string
                 "Channel": "Ch01", //Channel
                 "Gender": "FeMale", //性別
                 "Week": 2, //週數
                 "id": "20190817001", //string
+                "published": true, //是否公開中
+                "publishednumber": 1,
+                "Note":"隨時注意病人血壓狀況隨時注意病人血壓狀況",
+                "detaildata":
+                    [
+                        {
+                            "item": "Depends",
+                            "time": 1565395200,
+                            "data": true
+                            //乎
+                            //time:最後紀錄時間
+                        },
+                        {
+                            "item": "TPN",
+                            "time": 1565395200,
+                            "data": true
+
+                        },
+                        {
+                            "item": "NPO",
+                            "time": 1565395200,
+                            "data": false
+
+                        },
+                        {
+                            "item": "HD",
+                            "time": 1565395200,
+                            "data": true
+                            //透
+                        },
+                        {
+                            "item": "Anti",
+                            "time": 1565395200,
+                            "data": false
+                            //抗
+
+                        },
+                        {
+                            "item": "Floey",
+                            "time": 1565395200,
+                            "data": true
+                            //葉
+                        },
+                        {
+                            "item": "Drain",
+                            "time": 1565395200,
+                            "data": false
+                            //葉
+                        }
+                    ],
+                "data": {
+                    "Weight": 5000,
+                    "WeightDif": 700,
+                    "RowData": [
+                        {
+                            "time": 1565395200,
+                            "item": "DBP",
+                            "data": 60
+                        },
+                        {
+                            "time": 1565395200,
+                            "item": "SBP",
+                            "data": 90
+                        },
+                        {
+                            "time": 1565395200,
+                            "item": "HR",
+                            "data": 90
+                        },
+                        {
+                            "time": 1565395200,
+                            "item": "RR",
+                            "data": 90
+                        },
+                        {
+                            "time": 1565395200,
+                            "item": "BT",
+                            "data": 90
+                        },
+                        {
+                            "time": 1565395200,
+                            "item": "Urine",
+                            "data": 90
+                        },
+                        {
+                            "time": 1565395200,
+                            "item": "Suger",
+                            "data": 90
+                        },
+                        {
+                            "time": 1565395200,
+                            "item": "SP",
+                            "data": 90
+                        }
+                    ]
+                }
+            },
+            {
+                "Name": "程子", //string
+                "Channel": "Ch01", //Channel
+                "Gender": "FeMale", //性別
+                "Week": 2, //週數
+                "id": "20190817002", //string
                 "published": true, //是否公開中
                 "publishednumber": 1,
                 "Note":"隨時注意病人血壓狀況隨時注意病人血壓狀況",

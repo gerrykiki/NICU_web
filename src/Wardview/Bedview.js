@@ -3,16 +3,22 @@ import { Switch } from 'antd';
 import "./Bedview.css";
 import Wardcard from './Wardcard';
 import Wardcarddetail from './Wardcarddetail';
+import Unpreviewwardcard from './UnpreviewWardCard'
+import Unpreviewwardcarddetail from './UnpreviewWardCardDetail'
 import { renderRoutes } from 'react-router-config';
 import { jsonResponse, updatetime } from '../jsonResponse';
 
 class Bedview extends Component {
 
     state = {
-        displaymode: false,
-        simplemode: false
+        previewmode: false,
+        simplemode: false,
+        select: null
     };
 
+    callbackFunction = (childData) => {
+        this.setState({ select: childData })
+    }
 
     onChangesimple = () => {
         this.setState({
@@ -22,21 +28,45 @@ class Bedview extends Component {
 
     onChangedisplay = () => {
         this.setState({
-            displaymode: !this.state.displaymode,
+            previewmode: !this.state.previewmode,
         });
     }
 
     previwbool() {
-        if (!this.state.displaymode) {
+        if (!this.state.previewmode) {
             return (
                 <div className="wardinfocontent">{renderRoutes(this.props.route.routes)}</div>
             );
         }
     }
 
-    render() {
+    previewswitch() {
+
         const wardcardlist = []
         const wardcarddetaillist = []
+        const Unpreview_Wardcardlist = []
+        const Unpreview_Wardcarddetaillist = []
+
+        const source = jsonResponse;
+        console.log(source.Userdata.user)
+        for (let i = 0; i < source.Userdata.user.length; i++) {
+            wardcardlist.push(<Wardcard key={i} data={source.Userdata.user[i]} parentCallback={this.callbackFunction} selectstate={this.state.select} />)
+            wardcarddetaillist.push(<Wardcarddetail key={i} data={source.Userdata.user[i]} parentCallback={this.callbackFunction} selectstate={this.state.select} />)
+        }
+
+        for (let i = 0; i < 12; i++) {
+            if (source.Userdata.user[i] == null) {
+                Unpreview_Wardcardlist.push(<Unpreviewwardcard key={i} data={null} selectstate={null} />)
+                Unpreview_Wardcarddetaillist.push(<Unpreviewwardcarddetail key={i} data={null} selectstate={null} />)
+            }
+            else {
+                Unpreview_Wardcardlist.push(<Unpreviewwardcard key={i} data={source.Userdata.user[i]} selectstate={null} />)
+                Unpreview_Wardcarddetaillist.push(<Unpreviewwardcarddetail key={i} data={source.Userdata.user[i]} selectstate={null} />)
+            }
+        }
+        if (this.props.location === "/Main/Bedview/Wardindex") {
+            console.log(123)
+        }
         const detailstyle = {
             padding: '10px',
             width: '30%',
@@ -44,23 +74,46 @@ class Bedview extends Component {
             maxHeight: '80vh'
         }
 
-        const simplestyple = {
+        const previewstyle = {
             margin: '10px',
             overflow: 'auto',
             maxHeight: '650px',
-            width: '100%',
+            width: '99%',
             display: 'grid',
             gridTemplateColumns: '1fr 1fr 1fr 1fr'
         }
-
-        const source = jsonResponse;
-        console.log(source);
-        for (let i = 0; i < source.Userdata.user.length; i++) {
-            wardcardlist.push(<Wardcard key={i} data={source.Userdata.user[0]} />)
-            wardcarddetaillist.push(<Wardcarddetail key={i} data={source.Userdata.user[0]} />)
+        if (this.state.previewmode) {
+            if (this.state.simplemode) {
+                return (
+                    <div style={previewstyle}>{Unpreview_Wardcardlist}</div>
+                );
+            } else {
+                return (
+                    <div style={previewstyle}>{Unpreview_Wardcarddetaillist}</div>
+                );
+            }
         }
-        const update = updatetime
+        else {
+            if (this.state.simplemode) {
+                return (
+                    <div style={{ display: 'flex' }}>
+                        <div style={detailstyle}>{wardcardlist}</div>
+                        <div className="wardinfocontent">{renderRoutes(this.props.route.routes)}</div>
+                    </div>
+                );
+            } else {
+                return (
+                    <div style={{ display: 'flex' }}>
+                        <div style={detailstyle}>{wardcarddetaillist}</div>
+                        <div className="wardinfocontent">{renderRoutes(this.props.route.routes)}</div>
+                    </div>
+                );
+            }
+        }
+    }
+    render() {
 
+        const update = updatetime
         function Timestampformat(time) {
 
             const months = "1,2,3,4,5,6,7,8,9,10,11,12".split(",");
@@ -115,11 +168,8 @@ class Bedview extends Component {
                         <Switch checkedChildren="Previw" unCheckedChildren="Previw" defaultChecked onChange={this.onChangedisplay} />
                     </div>
                 </div>
-                <div style={{ display: 'flex' }}>
-                    <div style={this.state.displaymode ? simplestyple : detailstyle}>
-                        {this.state.simplemode ? wardcardlist : wardcarddetaillist}
-                    </div>
-                    {this.previwbool()}
+                <div>
+                    {this.previewswitch()}
                 </div>
             </div>
         );

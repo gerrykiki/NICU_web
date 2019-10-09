@@ -39,8 +39,52 @@ class Wardcard extends Component {
                 return "未知"
         }
     }
+
+    sendData = (idnumber) => {
+        this.props.parentCallback(idnumber);
+    }
     render() {
-        const style = {
+        // const style = {
+        //     backgroundColor: "rgba(0, 0, 0, 0.3)",
+        //     width: "100%",
+        //     height: "100%",
+        //     position: "absolute",
+        //     top: "0px",
+        //     borderRadius: "4px",
+        //     display: this.state.hoverstate,
+        //     justifyContent: "center",
+        //     alignItems: "center"
+        // }
+
+        // const { data } = this.props
+        // console.log(data);
+
+        const { data,selectstate } = this.props
+        var selectstyle = null
+        if (selectstate === data.id) {
+            selectstyle = {
+                width: "99%",
+                marginBottom: "10px",
+                borderRadius: "4px",
+                borderWidth: "1px",
+                borderStyle: "solid",
+                borderColor: "rgba(245, 166, 35, 1)",
+                position: 'relative'
+            }     
+        }
+        else{
+            selectstyle = {
+                width: "99%",
+                marginBottom: "10px",
+                borderRadius: "4px",
+                borderWidth: "2px",
+                borderStyle: "solid",
+                borderColor: "rgba(215, 238, 255, 1)",
+                position: 'relative'
+            }     
+        }
+
+        const hoverstyle = {
             backgroundColor: "rgba(0, 0, 0, 0.3)",
             width: "100%",
             height: "100%",
@@ -52,10 +96,8 @@ class Wardcard extends Component {
             alignItems: "center"
         }
 
-        const { data } = this.props
-        console.log(data);
         return (
-            <div className="wardcardbuttonlayout" onMouseMove={() => this.hoverbackground()} onMouseLeave={() => this.hoverbackgroundhover()}>
+            <div style={selectstyle}onMouseMove={() => this.hoverbackground()} onMouseLeave={() => this.hoverbackgroundhover()}>
                 <div style={{ height: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: "rgba(215, 238, 255, 1)", padding: "10px" }}>
                     <div style={{ fontSize: '18px', color: "rgba(61, 119, 181, 1)"}}>
                         {this.switchbednumber(data.publishednumber)}/{data.Name}
@@ -73,8 +115,8 @@ class Wardcard extends Component {
                 <div style={{ height: '30px', display: 'flex', alignItems: 'center', padding: "10px" }}>
                     <span style={{ fontSize: '12px' }}>{data.Note}</span>
                 </div>
-                <div style={style}>
-                    <Link to="/Main/Bedview/Warduser" style={{ height: "40px", width: "40px", backgroundColor: "rgba(255,255,255, 1)", borderRadius: "99em", textAlign: "center", lineHeight: "40px", margin: "10px" }}>
+                <div style={hoverstyle}>
+                    <Link to={{ pathname: '/Main/Bedview/Warduser', state: data }} params={{ testvalue: "hello" }} style={{ height: "40px", width: "40px", backgroundColor: "rgba(255,255,255, 1)", borderRadius: "99em", textAlign: "center", lineHeight: "40px", margin: "10px" }} onClick={() => this.sendData(data.id)}>
                         <img src={checklogo} alt='checklogo'></img>
                     </Link>
                     <Link to="/Main/Patientview" style={{ height: "40px", width: "40px", backgroundColor: "rgba(255,255,255, 1)", borderRadius: "99em", textAlign: "center", lineHeight: "40px", margin: "10px" }}>
