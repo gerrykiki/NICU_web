@@ -10,172 +10,133 @@ class WardcardvitalsignChart extends Component {
     }
 
     drawChart() {
-        const { id, width, height, margin, max, min, axisBot, axisTop, circlrcolor, data } = this.props
+        const { id, width, height, min, max, margin, circlrcolor, data, colorshadow } = this.props
 
         var vertigo = data;
-
-
+        console.log(vertigo)
+        //x和y的比例尺
         var y = d3.scaleLinear()
-            .domain([0, 200])
+            .domain([min, max])
             .range([height, 0])
-
 
         var x = d3.scaleLinear()
             .domain([1, 24])
-            .range([0, width - 20])
-
+            .range([0, width])
 
         var yAxis = d3.axisLeft(y)
-            .tickValues([0, 200])
-            .tickFormat(n => (n))
-            .tickSize(0, 0)
-            .tickPadding(margin + 5);
-
-        var ylimitAxis = d3.axisLeft(y)
             .tickValues([min, max])
             .tickFormat(n => (n))
             .tickSize(0, 0)
-            .tickPadding(margin + 5);
+            .tickPadding(10);
 
 
         var xAxis = d3.axisTop(x)
-            .ticks(20)
+            .ticks(4)
             .tickSize(0, 0)
             .tickPadding(margin);
 
-        var xAxisbottom = d3.axisBottom(x)
-            .ticks(20)
-            .tickSize(0, 0)
-            .tickPadding(margin);
-
-
-
-        var svg = d3.select("#" + id)
+        var svg = d3
+            .select("#" + id)
+            .select("div")
             .append("svg")
             .attr("width", width)
             .attr("height", height)
             .append("g")
-            .attr("transform", "translate(" + 50 + "," + (margin + 20) + ")");
+            .attr("transform", "translate(" + 40 + "," + (margin + 30) + ")");
 
-
-
-
+        //y軸
         svg.append("g")
             .call(yAxis)
             .attr("class", "axis");
 
-
-
         svg.append("g")
-            .call(ylimitAxis)
-            .attr("class", "limitaxis")
-            .style('stroke', circlrcolor);
-/*
-        var line = d3.line()
-            .x(function (d, i) {
-                return x(i + 1); //利用尺度運算資料索引，傳回x的位置
-            })
-            .y(function (d) {
-                return y(d); //利用尺度運算資料的值，傳回y的位置
-            });
-*/
+            .call(xAxis)
+            .attr("class", "axis");
 
-        if (axisBot) {
-            console.log(axisBot)
-            svg.append("g")
-                .call(xAxisbottom)
-                .attr("class", "axis")
-                .attr("transform", "translate(" + 0 + ", " + height + ")");
-        }
+        // if (axisBot) {
+        //     console.log(axisBot)
+        //     svg.append("g")
+        //         .call(xAxisbottom)
+        //         .attr("class", "axis")
+        //         .attr("transform", "translate(" + 0 + ", " + height + ")");
+        // }
 
-        if (axisTop) {
-            console.log(axisTop)
-            svg.append("g")
-                .call(xAxis)
-                .attr("class", "axis");
-        }
+        // if (axisTop) {
+        //     console.log(axisTop)
+        //     svg.append("g")
+        //         .call(xAxis)
+        //         .attr("class", "axis");
+        // }
 
+        //上下警戒線
+        // svg.append('line')
+        //     .attr('x1', -margin)
+        //     .attr('y1', y(min))
+        //     .attr('x2', width)
+        //     .attr('y2', y(min))
+        //     .style('stroke', 'red')
+        //     .style('stroke-width', 1)
+        //     .style('stroke-dasharray', 5.5);
+
+        // svg.append('line')
+        //     .attr('x1', -margin)
+        //     .attr('y1', y(max))
+        //     .attr('x2', width)
+        //     .attr('y2', y(max))
+        //     .style('stroke', 'red')
+        //     .style('stroke-width', 1)
+        //     .style('stroke-dasharray', 5.5);
+
+        //上下虛線
         svg.append('line')
-            .attr('x1', -margin)
-            .attr('y1', y(min))
-            .attr('x2', width)
-            .attr('y2', y(min))
-            .style('stroke', 'red')
-            .style('stroke-width', 1)
-            .style('stroke-dasharray', 5.5);
-
-        svg.append('line')
-            .attr('x1', -margin)
+            .attr('x1', 0)
             .attr('y1', y(max))
             .attr('x2', width)
             .attr('y2', y(max))
-            .style('stroke', 'red')
-            .style('stroke-width', 1)
-            .style('stroke-dasharray', 5.5);
-
-        svg.append('line')
-            .attr('x1', -margin)
-            .attr('y1', y(200))
-            .attr('x2', width)
-            .attr('y2', y(200))
             .style('stroke', 'rgba(0, 0, 0, 0.1)')
             .style('stroke-width', 1)
             .style('stroke-dasharray', 5.5);
 
         svg.append('line')
-            .attr('x1', -margin)
-            .attr('y1', y(0))
+            .attr('x1', 0)
+            .attr('y1', y(min))
             .attr('x2', width)
-            .attr('y2', y(0))
+            .attr('y2', y(min))
             .style('stroke', 'rgba(0, 0, 0, 0.1)')
             .style('stroke-width', 1)
             .style('stroke-dasharray', 5.5);
 
+
+        for (let index = 0; index < vertigo.length; index++) {
+            svg.append('line')
+                .attr('x1', x(index + 1))
+                .attr('y1', 0)
+                .attr('x2', x(index + 1))
+                .attr('y2', height)
+                .style('stroke', 'rgba(0, 0, 0, 0.1)')
+                .style('stroke-width', 1)
+                .style('stroke-dasharray', 5.5);
+        }
 
         vertigo.map((o, i) => (
-            o > 0 && o < 200 ?
-                o > min && o < max ?
-                    svg.append('circle')
-                        .attr('cx', x(i + 1))
-                        .attr('cy', y(o))
-                        .attr('r', 2)
-                        .style('fill', circlrcolor)
-                        .on("mouseover", function (d) {
-                            var x0 = x.invert(d3.mouse(this)[0]);
-                            console.log(x0);
-                        })
-                    :
-                    svg.append('circle')
-                        .attr('cx', x(i + 1))
-                        .attr('cy', y(o))
-                        .attr('r', 2)
-                        .style('fill', 'red')
+            svg.append('rect')
+                .attr('width', width / 23)
+                .attr('height', y(o.Min) - y(o.Max))
+                .attr("x", x(i + 0.5))
+                .attr("y", y(o.Max))
+                .style('fill', colorshadow)
+        ))
+
+        vertigo.map((o, i) => (
+            o.Data > 0 && o.Data < 100 ?
+                svg.append('circle')
+                    .attr('cx', x(i + 1))
+                    .attr('cy', y(o.Data))
+                    .attr('r', 2.5)
+                    .style('fill', circlrcolor)
                 : null
         ))
 
-        for (let index = 0; index < vertigo.length; index++) {
-            const mappingdata = vertigo[index]
-            if (mappingdata > min && mappingdata < max) {
-                svg.append('line')
-                    .attr('x1', x(index + 1))
-                    .attr('y1', 0)
-                    .attr('x2', x(index + 1))
-                    .attr('y2', height)
-                    .style('stroke', 'rgba(0, 0, 0, 0.1)')
-                    .style('stroke-width', 1)
-                    .style('stroke-dasharray', 5.5);
-            }
-            else {
-                svg.append('line')
-                    .attr('x1', x(index + 1))
-                    .attr('y1', 0)
-                    .attr('x2', x(index + 1))
-                    .attr('y2', height)
-                    .style('stroke', 'black')
-                    .style('stroke-width', 1)
-                    .style('stroke-dasharray', 5.5);
-            }
-        }
 
 
 
