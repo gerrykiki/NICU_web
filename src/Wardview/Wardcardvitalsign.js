@@ -5,15 +5,25 @@ import './Wardcardvitalsign.css';
 
 
 class WardcardvitalsignChart extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { date: new Date() };
+    }
     componentDidMount() {
         this.drawChart();
     }
+    componentWillUnmount() {
+        clearInterval(this.timerID);
+    }
+    tick() {
+    }
+
 
     drawChart() {
-        const { id, width, height, min, max, margin, circlrcolor, data, colorshadow } = this.props
+        const { id, width, height, min, max, margin, circlrcolor, data, colorshadow, axisTop, data2, data_2_circlrcolor } = this.props
 
-        var vertigo = data;
-        console.log(vertigo)
+        var vertigo = datarelease();
+
         //x和y的比例尺
         var y = d3.scaleLinear()
             .domain([min, max])
@@ -35,23 +45,32 @@ class WardcardvitalsignChart extends Component {
             .tickSize(0, 0)
             .tickPadding(margin);
 
+        var svgwidth = width + 50
+
         var svg = d3
             .select("#" + id)
-            .select("div")
+            .append("div")
+            .style("height", "170px")
+            .style("width", svgwidth + "px")
             .append("svg")
             .attr("width", width)
             .attr("height", height)
             .append("g")
             .attr("transform", "translate(" + 40 + "," + (margin + 30) + ")");
 
+
         //y軸
         svg.append("g")
             .call(yAxis)
             .attr("class", "axis");
 
-        svg.append("g")
-            .call(xAxis)
-            .attr("class", "axis");
+
+        if (axisTop) {
+            console.log(axisTop)
+            svg.append("g")
+                .call(xAxis)
+                .attr("class", "axis");
+        }
 
         // if (axisBot) {
         //     console.log(axisBot)
@@ -61,12 +80,6 @@ class WardcardvitalsignChart extends Component {
         //         .attr("transform", "translate(" + 0 + ", " + height + ")");
         // }
 
-        // if (axisTop) {
-        //     console.log(axisTop)
-        //     svg.append("g")
-        //         .call(xAxis)
-        //         .attr("class", "axis");
-        // }
 
         //上下警戒線
         // svg.append('line')
@@ -93,7 +106,7 @@ class WardcardvitalsignChart extends Component {
             .attr('y1', y(max))
             .attr('x2', width)
             .attr('y2', y(max))
-            .style('stroke', 'rgba(0, 0, 0, 0.1)')
+            .style('stroke', 'rgba(187, 187, 187, 1)')
             .style('stroke-width', 1)
             .style('stroke-dasharray', 5.5);
 
@@ -102,7 +115,7 @@ class WardcardvitalsignChart extends Component {
             .attr('y1', y(min))
             .attr('x2', width)
             .attr('y2', y(min))
-            .style('stroke', 'rgba(0, 0, 0, 0.1)')
+            .style('stroke', 'rgba(187, 187, 187, 1)')
             .style('stroke-width', 1)
             .style('stroke-dasharray', 5.5);
 
@@ -113,7 +126,7 @@ class WardcardvitalsignChart extends Component {
                 .attr('y1', 0)
                 .attr('x2', x(index + 1))
                 .attr('y2', height)
-                .style('stroke', 'rgba(0, 0, 0, 0.1)')
+                .style('stroke', 'rgba(187, 187, 187, 1)')
                 .style('stroke-width', 1)
                 .style('stroke-dasharray', 5.5);
         }
@@ -130,6 +143,7 @@ class WardcardvitalsignChart extends Component {
         vertigo.map((o, i) => (
             o.Data > 0 && o.Data < 100 ?
                 svg.append('circle')
+                    .attr("id", "the_SVG_ID")
                     .attr('cx', x(i + 1))
                     .attr('cy', y(o.Data))
                     .attr('r', 2.5)
@@ -137,9 +151,98 @@ class WardcardvitalsignChart extends Component {
                 : null
         ))
 
+        if (data2 != null) {
+            console.log("there has data 2")
+            data2.map((o, i) => (
+                o.Data > 0 && o.Data < 100 ?
+                    svg.append('circle')
+                        .attr('cx', x(i + 1))
+                        .attr('cy', y(o.Data))
+                        .attr('r', 2.5)
+                        .style('fill', data_2_circlrcolor)
+                    : null
+            ))
+        }
+        else {
 
+            console.log("there not has data 2")
+        }
 
+        // function drawdata() {
+        //     svg.selectAll("#the_SVG_ID").remove()
+        //     const raw_data = datarelease()
+        //     raw_data.map((o, i) => (
+        //         o.Data > 0 && o.Data < 100 ?
+        //             svg.append('circle')
+        //                 .attr("id", "the_SVG_ID")
+        //                 .attr('cx', x(i + 1))
+        //                 .attr('cy', y(o.Data))
+        //                 .attr('r', 2.5)
+        //                 .style('fill', circlrcolor)
+        //             : null
+        //     ))
+        // }
 
+        function datarelease() {
+
+            var dataset = []; //建立空的資料陣列
+            /*
+            Data format = {
+                Data:data_source
+                Max:max
+                Min:min
+            }
+             */
+            if (dataset.length != 0) {
+
+                dataset.length = 0
+            }
+            for (let i = 0; i < 24; i++) {
+                const data = Math.floor(Math.random() * 50) + 50;
+                let min = 30;
+                let max = 60;
+                if (i > 18) {
+                    min = 50;
+                    max = 80;
+                }
+                dataset.push({
+                    Data: data,
+                    Min: min,
+                    Max: max
+                })
+            }
+            return dataset;
+        }
+
+        function data_2_release() {
+            var dataset = []; //建立空的資料陣列
+            /*
+            Data format = {
+                Data:data_source
+                Max:max
+                Min:min
+            }
+             */
+            for (let i = 0; i < 24; i++) {
+                const data = 40;
+                let min = 30;
+                let max = 60;
+                if (i > 18) {
+                    min = 50;
+                    max = 80;
+                }
+                dataset.push({
+                    Data: data,
+                    Min: min,
+                    Max: max
+                })
+            }
+            return dataset;
+        }
+
+        // var inter = setInterval(function next() {
+        //     drawdata();
+        // }, 3000);
     }
 
     render() {
