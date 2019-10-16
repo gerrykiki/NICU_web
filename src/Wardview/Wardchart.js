@@ -32,7 +32,7 @@ class WardChart extends Component {
             Min:min
         }
          */
-        if (dataset.length != 0) {
+        if (dataset.length !== 0) {
 
             dataset.length = 0
         }
@@ -89,7 +89,7 @@ class WardChart extends Component {
                             <div style={{ fontSize: "1.5rem", color: "rgba(126, 211, 33, 1)" }}>123</div>
                         </div>
                         <div id="wardvitalhr">
-                            <WardcardvitalsignChart id={"wardvitalhr"} data={this.datarelease()} width={width} height={100} margin={margin} max={100} min={0} axisBot={false} axisTop={true} colorshadow={"rgba(126, 211, 33, 0.1)"} circlrcolor={"rgba(126, 211, 33, 1)"}></WardcardvitalsignChart>
+                            <WardcardvitalsignChart id={"wardvitalhr"} data={true} width={width} height={100} margin={margin} max={100} min={0} axisBot={false} axisTop={true} colorshadow={"rgba(126, 211, 33, 0.1)"} circlrcolor={"rgba(126, 211, 33, 1)"}></WardcardvitalsignChart>
                         </div>
                     </div>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
@@ -98,7 +98,7 @@ class WardChart extends Component {
                             <div style={{ fontSize: "1.5rem", color: "rgba(240, 144, 144, 1)" }}>100/40</div>
                         </div>
                         <div id="wardvital_NBP">
-                            <WardcardvitalsignChart id={"wardvital_NBP"} data={this.datarelease()} data2={this.data_2_release()} width={width} height={100} margin={margin} max={100} min={0} axisBot={false} axisTop={false} colorshadow={"rgba(240, 144, 144, 0.1)"} circlrcolor={"rgba(240, 144, 144, 1)"} data_2_circlrcolor={"rgba(240, 144, 144, 0.5)"}></WardcardvitalsignChart>
+                            <WardcardvitalsignChart id={"wardvital_NBP"} data={true} data2={true} width={width} height={100} margin={margin} max={100} min={0} axisBot={false} axisTop={false} colorshadow={"rgba(240, 144, 144, 0.1)"} circlrcolor={"rgba(240, 144, 144, 1)"} data_2_circlrcolor={"rgba(240, 144, 144, 0.5)"}></WardcardvitalsignChart>
                         </div>
                     </div>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
@@ -107,7 +107,7 @@ class WardChart extends Component {
                             <div style={{ fontSize: "1.5rem", color: "rgba(240, 144, 144, 1)" }}>100/40</div>
                         </div>
                         <div id="wardvital_ABP">
-                            <WardcardvitalsignChart id={"wardvital_ABP"} data={this.datarelease()} data2={this.data_2_release()} width={width} height={100} margin={margin} max={100} min={0} axisBot={false} axisTop={false} colorshadow={"rgba(240, 144, 144, 0.1)"} circlrcolor={"rgba(240, 144, 144, 1)"} data_2_circlrcolor={"rgba(240, 144, 144, 0.5)"}></WardcardvitalsignChart>
+                            <WardcardvitalsignChart id={"wardvital_ABP"} data={true} data2={true} width={width} height={100} margin={margin} max={100} min={0} axisBot={false} axisTop={false} colorshadow={"rgba(240, 144, 144, 0.1)"} circlrcolor={"rgba(240, 144, 144, 1)"} data_2_circlrcolor={"rgba(240, 144, 144, 0.5)"}></WardcardvitalsignChart>
                         </div>
                     </div>
                 </div>
@@ -118,7 +118,7 @@ class WardChart extends Component {
                             <div style={{ fontSize: "1.5rem", color: "rgba(0, 183, 255, 1)" }}>70%</div>
                         </div>
                         <div id="wardvital_SpO2">
-                            <WardcardvitalsignChart id={"wardvital_SpO2"} data={this.datarelease()} width={width} height={100} margin={margin} max={100} min={0} axisBot={false} axisTop={true} colorshadow={"rgba(0, 183, 255, 0.1)"} circlrcolor={"rgba(0, 183, 255, 1)"}></WardcardvitalsignChart>
+                            <WardcardvitalsignChart id={"wardvital_SpO2"} data={true} width={width} height={100} margin={margin} max={100} min={0} axisBot={false} axisTop={true} colorshadow={"rgba(0, 183, 255, 0.1)"} circlrcolor={"rgba(0, 183, 255, 1)"}></WardcardvitalsignChart>
                         </div>
                     </div>
                     <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", marginLeft: "20px" }}>
@@ -127,7 +127,7 @@ class WardChart extends Component {
                             <div style={{ fontSize: "1.5rem", color: "rgba(199, 162, 244,1)" }}>36</div>
                         </div>
                         <div id="wardvital_BT">
-                            <WardcardvitalsignChart id={"wardvital_BT"} data={this.datarelease()} width={width} height={100} margin={margin} max={100} min={0} axisBot={false} axisTop={false} colorshadow={"rgba(199, 162, 244,0.1)"} circlrcolor={"rgba(199, 162, 244,1)"}></WardcardvitalsignChart>
+                            <WardcardvitalsignChart id={"wardvital_BT"} data={true} width={width} height={100} margin={margin} max={100} min={0} axisBot={false} axisTop={false} colorshadow={"rgba(199, 162, 244,0.1)"} circlrcolor={"rgba(199, 162, 244,1)"}></WardcardvitalsignChart>
                         </div>
                     </div>
                     <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", marginLeft: "20px" }}>
@@ -136,7 +136,7 @@ class WardChart extends Component {
                             <div style={{ fontSize: "1.5rem", color: "rgba(255, 152, 0, 1)" }}>24</div>
                         </div>
                         <div id="wardvital_RR">
-                            <WardcardvitalsignChart id={"wardvital_RR"} data={this.datarelease()} width={width} height={100} margin={margin} max={100} min={0} axisBot={false} axisTop={false} colorshadow={"rgba(255, 152, 0, 0.1)"} circlrcolor={"rgba(255, 152, 0, 1)"}></WardcardvitalsignChart>
+                            <WardcardvitalsignChart id={"wardvital_RR"} data={true} width={width} height={100} margin={margin} max={100} min={0} axisBot={false} axisTop={false} colorshadow={"rgba(255, 152, 0, 0.1)"} circlrcolor={"rgba(255, 152, 0, 1)"}></WardcardvitalsignChart>
                         </div>
                     </div>
                 </div>

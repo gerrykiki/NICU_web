@@ -15,8 +15,7 @@ class WardcardvitalsignChart extends Component {
     componentWillUnmount() {
         clearInterval(this.timerID);
     }
-    tick() {
-    }
+
 
 
     drawChart() {
@@ -140,20 +139,24 @@ class WardcardvitalsignChart extends Component {
                 .style('fill', colorshadow)
         ))
 
-        vertigo.map((o, i) => (
-            o.Data > 0 && o.Data < 100 ?
-                svg.append('circle')
-                    .attr("id", "the_SVG_ID")
-                    .attr('cx', x(i + 1))
-                    .attr('cy', y(o.Data))
-                    .attr('r', 2.5)
-                    .style('fill', circlrcolor)
-                : null
-        ))
+        if (data) {
+            vertigo.map((o, i) => (
+                o.Data > 0 && o.Data < 100 ?
+                    svg.append('circle')
+                        .attr("id", "the_SVG_ID")
+                        .attr('cx', x(i + 1))
+                        .attr('cy', y(o.Data))
+                        .attr('r', 2.5)
+                        .style('fill', circlrcolor)
+                    : null
+            ))
+        }
 
-        if (data2 != null) {
+
+        if (data2) {
             console.log("there has data 2")
-            data2.map((o, i) => (
+            const data_2 = data_2_release()
+            data_2.map((o, i) => (
                 o.Data > 0 && o.Data < 100 ?
                     svg.append('circle')
                         .attr('cx', x(i + 1))
@@ -168,20 +171,21 @@ class WardcardvitalsignChart extends Component {
             console.log("there not has data 2")
         }
 
-        // function drawdata() {
-        //     svg.selectAll("#the_SVG_ID").remove()
-        //     const raw_data = datarelease()
-        //     raw_data.map((o, i) => (
-        //         o.Data > 0 && o.Data < 100 ?
-        //             svg.append('circle')
-        //                 .attr("id", "the_SVG_ID")
-        //                 .attr('cx', x(i + 1))
-        //                 .attr('cy', y(o.Data))
-        //                 .attr('r', 2.5)
-        //                 .style('fill', circlrcolor)
-        //             : null
-        //     ))
-        // }
+        function drawdata() {
+            svg.selectAll("#the_SVG_ID").remove()
+            console.log("reflash")
+            const raw_data = datarelease()
+            raw_data.map((o, i) => (
+                o.Data > 0 && o.Data < 100 ?
+                    svg.append('circle')
+                        .attr("id", "the_SVG_ID")
+                        .attr('cx', x(i + 1))
+                        .attr('cy', y(o.Data))
+                        .attr('r', 2.5)
+                        .style('fill', circlrcolor)
+                    : null
+            ))
+        }
 
         function datarelease() {
 
@@ -240,13 +244,13 @@ class WardcardvitalsignChart extends Component {
             return dataset;
         }
 
-        // var inter = setInterval(function next() {
-        //     drawdata();
-        // }, 3000);
+        this.timerID = setInterval(function next() {
+            drawdata();
+        }, 3000);
     }
 
     render() {
-        return <div id={"#" + this.props.id}></div>
+        return null
     }
 }
 
