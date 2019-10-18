@@ -8,15 +8,39 @@ class WardcardvitalsignChart extends Component {
     constructor(props) {
         super(props);
         this.state = { date: new Date() };
+        //Update
     }
+
     componentDidMount() {
         this.drawChart();
     }
+
     componentWillUnmount() {
         clearInterval(this.timerID);
     }
 
+    cal_svg_hight(){
+        const { axisTop ,axisBot, hight, margin} = this.props
+        var svg_hight;
+        if (axisTop) {
+            if (axisBot) {
+                
+            }
+            else{
 
+            }
+        }
+        else{
+            if (axisBot) {
+                
+            }
+            else{
+
+            }
+
+        }
+
+    }
 
     drawChart() {
         const { id, width, height, min, max, margin, circlrcolor, data, colorshadow, axisTop, data2, data_2_circlrcolor } = this.props
@@ -46,6 +70,7 @@ class WardcardvitalsignChart extends Component {
 
         var svgwidth = width + 50
 
+        
         var svg = d3
             .select("#" + id)
             .append("div")

@@ -116,10 +116,10 @@ class Wardcard extends Component {
                     <span style={{ fontSize: '12px' }}>{data.Note}</span>
                 </div>
                 <div style={hoverstyle}>
-                    <Link to={{ pathname: '/Main/Bedview/Warduser', state: data }} params={{ testvalue: "hello" }} style={{ height: "40px", width: "40px", backgroundColor: "rgba(255,255,255, 1)", borderRadius: "99em", textAlign: "center", lineHeight: "40px", margin: "10px" }} onClick={() => this.sendData(data.id)}>
+                    <Link to={{ pathname: '/Bedview/Warduser', state: data }} params={{ testvalue: "hello" }} style={{ height: "40px", width: "40px", backgroundColor: "rgba(255,255,255, 1)", borderRadius: "99em", textAlign: "center", lineHeight: "40px", margin: "10px" }} onClick={() => this.sendData(data.id)}>
                         <img src={checklogo} alt='checklogo'></img>
                     </Link>
-                    <Link to="/Main/Patientview" style={{ height: "40px", width: "40px", backgroundColor: "rgba(255,255,255, 1)", borderRadius: "99em", textAlign: "center", lineHeight: "40px", margin: "10px" }}>
+                    <Link to="/Patientview" style={{ height: "40px", width: "40px", backgroundColor: "rgba(255,255,255, 1)", borderRadius: "99em", textAlign: "center", lineHeight: "40px", margin: "10px" }}>
                         <img src={patientviewlogo} alt='patientviewlogo'></img>
                     </Link>
                 </div>

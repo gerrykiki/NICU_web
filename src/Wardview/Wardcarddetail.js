@@ -162,7 +162,7 @@ class Wardcarddetail extends Component {
 
 
         return (
-            <Link to={{ pathname: '/Main/Bedview/Warduser', state: data }} onClick={() => this.sendData(data.id)}>
+            <Link to={{ pathname: '/Bedview/Warduser', state: data }} onClick={() => this.sendData(data.id)}>
                 <div style={selectstyle}>
                     <div style={{ height: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: "rgba(215, 238, 255, 1)", padding: "10px" }}>
                         <div style={{ fontSize: '18px', color: "rgba(61, 119, 181, 1)" }}>{this.switchbednumber(data.publishednumber)}/{data.Name}</div>
@@ -211,7 +211,7 @@ class Wardcarddetail extends Component {
                     </div>
                     <div style={{ height: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: "10px", borderBottomWidth: "0.5px", borderBottomColor: "rgba(215, 238, 255, 1)", borderBottomStyle: "solid", borderTopWidth: "0.5px", borderTopColor: "rgba(215, 238, 255, 1)", borderTopStyle: "solid" }}>
                         <div style={{ fontSize: '10px', color: "black" }}>{data.Note}</div>
-                        <Link to={{ pathname: "/Main/Patientview",state: data }} style={{ height: "20px", backgroundColor: "rgba(59, 151, 225, 1)", borderRadius: "4px", textAlign: "center", lineHeight: "20px", color: "white", paddingLeft: "3px", paddingRight: "3px" }}>進入病人資料頁面</Link>
+                        <Link to={{ pathname: "/Patientview",state: data }} style={{ height: "20px", backgroundColor: "rgba(59, 151, 225, 1)", borderRadius: "4px", textAlign: "center", lineHeight: "20px", color: "white", paddingLeft: "3px", paddingRight: "3px" }}>進入病人資料頁面</Link>
                     </div>
                 </div>
             </Link>

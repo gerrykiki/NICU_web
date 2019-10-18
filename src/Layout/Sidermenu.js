@@ -66,15 +66,15 @@ class Sidermenu extends Component {
         return (
             <div style={{ backgroundColor: "rgba(0, 0, 0, 0)", display: 'flex', alignItems: 'center', marginLeft: "20px", height: '100%' }}>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                    <Link to="/Main/Bedview/Wardindex" style={this.defaultkey(0) ? linkstate : dislinkstate}>
+                    <Link to="/Bedview/Wardindex" style={this.defaultkey(0) ? linkstate : dislinkstate}>
                         <img src={wardviewlogo} alt='wardviewlogo'></img>
                         <div style={this.defaultkey(0) ? linkfont : dislinkfont}>病床總覽</div>
                     </Link>
-                    <Link to="/Main/Historyview" style={this.defaultkey(1) ? linkstate : dislinkstate}>
+                    <Link to="/Historyview" style={this.defaultkey(1) ? linkstate : dislinkstate}>
                         <img src={historylogo} alt='historyviewlogo'></img>
                         <div style={this.defaultkey(1) ? linkfont : dislinkfont}>歷史病歷管理</div>
                     </Link>
-                    <Link to='/Main/Systemcontrol' style={this.defaultkey(2) ? linkstate : dislinkstate}>
+                    <Link to='/Systemcontrol' style={this.defaultkey(2) ? linkstate : dislinkstate}>
                         <img src={controllogo} alt='systemviewlogo'></img>
                         <div style={this.defaultkey(2) ? linkfont : dislinkfont}>系統設定</div>
                     </Link>

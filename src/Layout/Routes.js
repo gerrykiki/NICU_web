@@ -9,49 +9,49 @@ import Systemcontrol from '../Content/Systemcontrol'
 
 const routes = [
     {
-        path: '/Main',
+        path: '/',
         component: Layoutframe,
         breadcrumbName:'',
         routes: [
             {
-                path: '/Main/Bedview',
+                path: '/Bedview',
                 component: Bedview,
                 breadcrumbName:'wardview',
                 routes: [
                     {
-                        path: '/Main/Bedview/Wardindex',
+                        path: '/Bedview/Wardindex',
                         component: Wardinfoindex,
                         breadcrumbName:'病房總覽'
                     },
                     {
-                        path: '/Main/Bedview/Warduser',
+                        path: '/Bedview/Warduser',
                         component: Wardinfouser,
                         breadcrumbName:'病房總覽'
                     }
                 ]
             },
             {
-                path: '/Main/Patientview',
+                path: '/Patientview',
                 component: Patientviewlayout,
                 breadcrumbName:'首頁/個案資訊管理/個案資訊'
             },
             {
-                path: '/Main/Historypatientview',
+                path: '/Historypatientview',
                 component: Patientviewlayout,
                 breadcrumbName:'首頁/個案資訊管理/個案資訊'
             },
             {
-                path: '/Main/classinformation',
+                path: '/classinformation',
                 component: classinformation,
                 breadcrumbName:'個案資訊'
             },
             {
-                path: '/Main/Historyview',
+                path: '/Historyview',
                 component: Historyview,
                 breadcrumbName:'歷史病歷管理'
             },
             {
-                path: '/Main/Systemcontrol',
+                path: '/Systemcontrol',
                 component: Systemcontrol,
                 breadcrumbName:'系統管理'
             }
