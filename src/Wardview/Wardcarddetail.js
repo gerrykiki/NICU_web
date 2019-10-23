@@ -74,10 +74,16 @@ class Wardcarddetail extends Component {
         }
     }
 
-    detaildatastylelist() {
+    detaildatastylelist(bool) {
         //No API Data
-        const data = ward_bed_lastData
-        const detaillist = <div>123</div>
+        const detail = this.props.data.detaildata
+        let detaillist = detail.map((info, index) =>
+            <div key={index} style={info.data ?
+                { height: "24px", borderWidth: "1px", borderRadius: "4px", textAlign: "center", lineHeight: "24px", paddingLeft: "4px", paddingRight: "4px", color: "rgba(255, 255, 255, 1)", backgroundColor: this.detailinformationswitchstyle(info.item) } :
+                { height: "24px", borderWidth: "1px", borderColor: "rgba(187, 187, 187, 1)", borderStyle: "solid", borderRadius: "4px", textAlign: "center", lineHeight: "24px", paddingLeft: "4px", paddingRight: "4px", color: "rgba(187, 187, 187, 1)" }}>
+                {this.detailinformationswitch(info.item)}
+            </div>
+        )
         return detaillist;
 
     }
@@ -103,7 +109,7 @@ class Wardcarddetail extends Component {
 
     render() {
         const { data, selectstate } = this.props
-        const state_data = ward_bed_lastData
+        const status_data = data.detaildata
         var selectstyle = null
         if (selectstate === data.HISID) {
             selectstyle = {
@@ -130,15 +136,15 @@ class Wardcarddetail extends Component {
 
 
         return (
-            <div onClick={() => this.sendData(data.HISID)}>
+            <div onClick={() => this.sendData(data.id)}>
                 <div style={selectstyle}>
                     <div style={{ height: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: "rgba(215, 238, 255, 1)", padding: "10px" }}>
-                        <div style={{ fontSize: '18px', color: "rgba(61, 119, 181, 1)" }}>{this.switchbednumber(data.BedNumber)}/{data.Name}</div>
+                        <div style={{ fontSize: '18px', color: "rgba(61, 119, 181, 1)" }}>{data.Bednumber}/{data.Name}</div>
                         <div style={{ fontSize: '18px', color: "rgba(61, 119, 181, 1)" }}>{this.switchgender(data.Gender)}/[20＋5]&rarr;[24+4]</div>
                     </div>
                     <div style={{ height: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: "10px", borderBottomWidth: "0.5px", borderBottomColor: "rgba(215, 238, 255, 1)", borderBottomStyle: "solid" }}>
                         <div style={{ fontSize: '14px', color: "black" }}>
-                            病歷號:{data.IDNumber}
+                            病歷號:{data.id}
                         </div>
                         <div style={{ fontSize: '14px', color: "black" }}>500g&rarr;{data.Weight}g</div>
                     </div>
@@ -173,10 +179,9 @@ class Wardcarddetail extends Component {
                                 </div>
                             </div>
                             <div style={{ display: "grid", gridTemplateRows: "1fr 1fr 1fr", gridGap: "5px" }}>
-                                <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr" }}>
-                                    <div style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
-                                        <div>123
-                                        </div>
+                                <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr",gridGap: "5px"  }}>
+                                    <div style={{display:"flex",alignItems:"center",justifyContent:"center",width:"100%",background:"rgba(232,152,162,1)",color:"white",borderRadius:"4px"}}>
+                                        <div style={{background:"rgba(232,152,162,1)",color:"white",borderRadius:"4px"}}>123</div>
                                     </div>
                                     <div style={{display:"flex",alignItems:"center",justifyContent:"center"}}>123</div>
                                 </div>

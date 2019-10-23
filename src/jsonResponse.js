@@ -46,7 +46,7 @@ const ward_bed_lastData = [
             "RR":22
         },
         "Status":{
-            "Ventilator":true,
+            "Ventilator":false,
             "TPN":true,
             "NPO":false,
             "ECMO":false,
@@ -138,13 +138,13 @@ const jsonResponse = {
         "user":  [
             {
                 "Name": "程子倩", //string
-                "Channel": "Ch01", //Channel
+                "Bednumber": "01",
                 "Gender": "FeMale", //性別
                 "Week": 2, //週數
                 "id": "20190817001", //string
                 "published": true, //是否公開中
                 "publishednumber": 1,
-                "Note":"隨時注意病人血壓狀況隨時注意病人血壓狀況",
+                "Note":"隨時注意病人血壓狀況隨時注意病人血壓狀況", //20字
                 "detaildata":
                     [
                         {

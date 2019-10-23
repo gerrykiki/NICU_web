@@ -6,7 +6,7 @@ import Wardcarddetail from './Wardcarddetail';
 import Unpreviewwardcard from './UnpreviewWardCard'
 import Unpreviewwardcarddetail from './UnpreviewWardCardDetail'
 import { renderRoutes } from 'react-router-config';
-import { jsonResponse, updatetime,ward_bed_information } from '../jsonResponse';
+import { jsonResponse, updatetime } from '../jsonResponse';
 import { Routes } from '../Layout/Routes'
 import Wardinfoindex from './Wardinfoindex'
 import Wardinfouser from './Wardinfouser'
@@ -54,7 +54,7 @@ class Bedview extends Component {
         const wardcarddetaillist = []
         const Unpreview_Wardcardlist = []
         const Unpreview_Wardcarddetaillist = []
-        const source = ward_bed_information;
+        const source = jsonResponse.Userdata.user;
 
 
         for (let i = 0; i < source.length; i++) {

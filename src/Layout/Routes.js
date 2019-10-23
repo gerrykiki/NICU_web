@@ -9,7 +9,7 @@ class Routes extends Component {
     render() {
         return (
             <div>
-                <Route path="/" component={Bedview} />
+                <Route path="/" exact component={Bedview} />
                 <Route path="/history" component={Historyview} />
                 <Route path="/system" component={Systemcontrol} />
                 <Route path="/patient" component={Patientviewlayout} />
