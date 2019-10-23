@@ -4,11 +4,12 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter, Switch } from 'react-router-dom';
+import Layoutframe from './Layout/Layout'
 
 ReactDOM.render(
     <BrowserRouter>
         <Switch>
-            <App />
+            <Layoutframe></Layoutframe>
         </Switch>
     </BrowserRouter>,
     document.getElementById('root')

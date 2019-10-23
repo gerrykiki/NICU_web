@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import WardChart from './Wardchart'
 import Wardinfousercheckbox from './Wardunfousercheckbox'
-import { Warduser } from '../jsonResponse'
+import { ward_bed_information } from '../jsonResponse'
 import { Select } from 'antd';
 
 class Wardinfouser extends Component {
@@ -180,8 +180,8 @@ class Wardinfouser extends Component {
     }
 
     render() {
-        const userinfo = this.props.location.state
-        const userdata = Warduser;
+        const userinfo = this.props.data
+        const userdata = ward_bed_information;
         console.log(userdata)
         const alertX = document.body.clientWidth * 0.35
         const alertY = document.body.clientHeight * 0.25

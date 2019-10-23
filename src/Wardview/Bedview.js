@@ -6,18 +6,22 @@ import Wardcarddetail from './Wardcarddetail';
 import Unpreviewwardcard from './UnpreviewWardCard'
 import Unpreviewwardcarddetail from './UnpreviewWardCardDetail'
 import { renderRoutes } from 'react-router-config';
-import { jsonResponse, updatetime } from '../jsonResponse';
+import { jsonResponse, updatetime,ward_bed_information } from '../jsonResponse';
+import { Routes } from '../Layout/Routes'
+import Wardinfoindex from './Wardinfoindex'
+import Wardinfouser from './Wardinfouser'
 
 class Bedview extends Component {
 
     state = {
+        index: true,
         previewmode: false,
         simplemode: false,
         select: null
     };
 
-    callbackFunction = (childData) => {
-        this.setState({ select: childData })
+    callbackFunction = (wardinfo) => {
+        this.setState({ select: wardinfo })
     }
 
     onChangesimple = () => {
@@ -32,13 +36,17 @@ class Bedview extends Component {
         });
     }
 
-    previwbool() {
-        if (!this.state.previewmode) {
-            return (
-                <div className="wardinfocontent">{renderRoutes(this.props.route.routes)}</div>
-            );
+    switchwardinfo() {
+        console.log(this.state.select)
+        const source = jsonResponse;
+        if (this.state.select === null) {
+            return <Wardinfoindex></Wardinfoindex>
+        }
+        else {
+            return <Wardinfoindex></Wardinfoindex>
         }
     }
+
 
     previewswitch() {
 
@@ -46,24 +54,24 @@ class Bedview extends Component {
         const wardcarddetaillist = []
         const Unpreview_Wardcardlist = []
         const Unpreview_Wardcarddetaillist = []
+        const source = ward_bed_information;
 
-        const source = jsonResponse;
-        console.log(source.Userdata.user)
-        for (let i = 0; i < source.Userdata.user.length; i++) {
-            wardcardlist.push(<Wardcard key={i} data={source.Userdata.user[i]} parentCallback={this.callbackFunction} selectstate={this.state.select} />)
-            wardcarddetaillist.push(<Wardcarddetail key={i} data={source.Userdata.user[i]} parentCallback={this.callbackFunction} selectstate={this.state.select} />)
+
+        for (let i = 0; i < source.length; i++) {
+            wardcardlist.push(<Wardcard key={i} data={source[i]} parentCallback={this.callbackFunction} selectstate={this.state.select} />)
+            wardcarddetaillist.push(<Wardcarddetail key={i} data={source[i]} parentCallback={this.callbackFunction} selectstate={this.state.select} />)
         }
 
-        for (let i = 0; i < 12; i++) {
-            if (source.Userdata.user[i] == null) {
-                Unpreview_Wardcardlist.push(<Unpreviewwardcard key={i} data={null} selectstate={null} />)
-                Unpreview_Wardcarddetaillist.push(<Unpreviewwardcarddetail key={i} data={null} selectstate={null} />)
-            }
-            else {
-                Unpreview_Wardcardlist.push(<Unpreviewwardcard key={i} data={source.Userdata.user[i]} selectstate={null} />)
-                Unpreview_Wardcarddetaillist.push(<Unpreviewwardcarddetail key={i} data={source.Userdata.user[i]} selectstate={null} />)
-            }
-        }
+        // for (let i = 0; i < 12; i++) {
+        //     if (source.Userdata.user[i] == null) {
+        //         Unpreview_Wardcardlist.push(<Unpreviewwardcard key={i} data={null} selectstate={null} />)
+        //         Unpreview_Wardcarddetaillist.push(<Unpreviewwardcarddetail key={i} data={null} selectstate={null} />)
+        //     }
+        //     else {
+        //         Unpreview_Wardcardlist.push(<Unpreviewwardcard key={i} data={source.Userdata.user[i]} selectstate={null} />)
+        //         Unpreview_Wardcarddetaillist.push(<Unpreviewwardcarddetail key={i} data={source.Userdata.user[i]} selectstate={null} />)
+        //     }
+        // }
         if (this.props.location === "/Main/Bedview/Wardindex") {
             console.log(123)
         }
@@ -98,22 +106,27 @@ class Bedview extends Component {
                 return (
                     <div style={{ display: 'flex' }}>
                         <div style={detailstyle}>{wardcardlist}</div>
-                        <div className="wardinfocontent">{renderRoutes(this.props.route.routes)}</div>
+                        <div className="wardinfocontent">
+                            {this.switchwardinfo()}
+                        </div>
                     </div>
                 );
             } else {
                 return (
                     <div style={{ display: 'flex' }}>
                         <div style={detailstyle}>{wardcarddetaillist}</div>
-                        <div className="wardinfocontent">{renderRoutes(this.props.route.routes)}</div>
+                        {/* <div className="wardinfocontent">{renderRoutes(route[0].routes[0].routes)}</div> */}
+                        <div className="wardinfocontent">
+                            {this.switchwardinfo()}
+                        </div>
                     </div>
                 );
             }
         }
     }
     render() {
-
         const update = updatetime
+
         function Timestampformat(time) {
 
             const months = "1,2,3,4,5,6,7,8,9,10,11,12".split(",");
@@ -156,7 +169,7 @@ class Bedview extends Component {
 
         return (
             <div>
-                <div style={{ paddingLeft: "10px", paddingRight: "10px", fontSize: "16px", display: "flex", justifyContent: "space-between", alignItems: 'center' }}>病房總覽</div>
+                <div style={{ paddingLeft: "10px", paddingRight: "10px", fontSize: "16px", display: "flex", justifyContent: "space-between", alignItems: 'center' }}>病房總覽 > </div>
                 <div style={{ paddingLeft: "10px", paddingRight: "10px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                     <div>
                         <span style={{ fontSize: "14px" }}>資料更新時間</span>

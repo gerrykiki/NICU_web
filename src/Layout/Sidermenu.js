@@ -14,26 +14,22 @@ class Sidermenu extends Component {
 
     Selectkeynumber(key) {
         switch (key) {
-            case '/Main/Bedview/Wardindex':
+            case '/':
                 return 0;
-            case '/Main/Patientview':
-                return 0;
-            case '/Main/Bedview/Warduser':
-                return 0;
-            case '/Main/Systemcontrol':
+            case '/history':
+                return 1;
+            case '/system':
                 return 2;
-            case '/Main/Historyview':
-                return 1;
-            case '/Main/Historypatientview':
-                return 1;
+            case '/patient':
+                return 0;
             default:
                 return '';
         }
     }
 
-    defaultkey(value) {
-        const { id } = this.props
-        const keynumber = this.Selectkeynumber(id.pathname)
+    select_hover(value) {
+        const { path } = this.props
+        const keynumber = this.Selectkeynumber(path)
         if (keynumber === value) {
             return true
         }
@@ -52,31 +48,26 @@ class Sidermenu extends Component {
             paddingLeft: '15px',
             paddingRight: '15px'
         }
-        const linkfont = {
-            fontsize: "16px",
-            color: "rgba(255, 255, 255, 1)",
-            marginLeft: "10px"
-
-        }
+        const linkfont = {fontsize: "16px",color: "rgba(255, 255, 255, 1)",marginLeft: "10px"}
         const dislinkfont = {
             fontsize: "16px",
             color: "rgba(46, 100, 164, 1)",
             marginLeft: "10px"
         }
         return (
-            <div style={{ backgroundColor: "rgba(0, 0, 0, 0)", display: 'flex', alignItems: 'center', marginLeft: "20px", height: '100%' }}>
+            <div style={{ display: 'flex', alignItems: 'center', marginLeft: "20px", height: '100%' }}>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                    <Link to="/Bedview/Wardindex" style={this.defaultkey(0) ? linkstate : dislinkstate}>
+                    <Link to="/" style={this.select_hover(0) ? linkstate : dislinkstate}>
                         <img src={wardviewlogo} alt='wardviewlogo'></img>
-                        <div style={this.defaultkey(0) ? linkfont : dislinkfont}>病床總覽</div>
+                        <div style={this.select_hover(0) ? linkfont : dislinkfont}>病床總覽</div>
                     </Link>
-                    <Link to="/Historyview" style={this.defaultkey(1) ? linkstate : dislinkstate}>
+                    <Link to="/history" style={this.select_hover(1) ? linkstate : dislinkstate}>
                         <img src={historylogo} alt='historyviewlogo'></img>
-                        <div style={this.defaultkey(1) ? linkfont : dislinkfont}>歷史病歷管理</div>
+                        <div style={this.select_hover(1) ? linkfont : dislinkfont}>歷史病歷管理</div>
                     </Link>
-                    <Link to='/Systemcontrol' style={this.defaultkey(2) ? linkstate : dislinkstate}>
+                    <Link to='/system' style={this.select_hover(2) ? linkstate : dislinkstate}>
                         <img src={controllogo} alt='systemviewlogo'></img>
-                        <div style={this.defaultkey(2) ? linkfont : dislinkfont}>系統設定</div>
+                        <div style={this.select_hover(2) ? linkfont : dislinkfont}>系統設定</div>
                     </Link>
                 </div>
             </div>

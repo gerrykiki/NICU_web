@@ -1,12 +1,13 @@
 import React from 'react';
 import './App.css';
 import { renderRoutes } from 'react-router-config'
-import rotes from './Layout/Routes'
+import route from './Layout/Routes'
+import Layoutframe from './Layout/Layout'
 
 function App() {
   return (
     < div >
-      {renderRoutes(rotes)}
+      <Layoutframe></Layoutframe>
     </div >
   );
 }

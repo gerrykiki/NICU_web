@@ -4,12 +4,11 @@ import 'antd/dist/antd.css';
 import './Layout.css';
 import Sidermenu from './Sidermenu';
 import { renderRoutes } from 'react-router-config'
+import Routes from './Routes'
 
 const { Header, Content } = Layout;
 
 class Layoutframe extends Component {
-
-
     constructor(props) {
         super(props);
         console.log(props);
@@ -86,8 +85,8 @@ class Layoutframe extends Component {
 
 
     render() {
-        console.log(this.props.location);
-        const locationdata = this.props.location
+        const url_path = this.props.location.pathname
+        console.log(url_path)
         return (
             <Layout>
                 <Layout style={{ background: '#fff' }}>
@@ -95,14 +94,12 @@ class Layoutframe extends Component {
                         {/*eslint-disable-next-line*/}
                         <div style={{ display: 'flex', alignItems: 'center' }}>
                             <div style={{ fontSize: "22px" }}>NICU</div>
-                            <Sidermenu id={locationdata} routes={this.props.route}></Sidermenu>
+                            <Sidermenu path={url_path} routes={this.props.route}></Sidermenu>
                         </div>
                         <div style={{ fontSize: "16px", color: 'rgba(255, 255, 255, 1)' }}>陳國榮醫師 {this.Localtimeformat()} {this.renderSwitch(new Date().getDay())}</div>
                     </Header>
                     <Content>
-                        <div style={{ background: '#fff' }}>
-                            {renderRoutes(this.props.route.routes)}
-                        </div>
+                        <Routes></Routes>
                     </Content>
                 </Layout>
             </Layout>

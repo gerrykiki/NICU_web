@@ -1,91 +1,103 @@
+// Get api
+
+//資料更新時間
 const updatetime = {
     'time':1567051200000
 }
-const Warduser = {
-    "id":"20190817001",
-    "phoneNumber":'0912345678',
-    "MainDoctor":"陳ＯＯ",
-    'vitalsigndata':[
-        {
-            'item':'HR',
-            'data':datarelease()
-        },
-        {
-            'item':'BP',
-            'data':datarelease()
-        },
-        {
-            'item':'SpO2',
-            'data':datarelease()
-        },
-        {
-            'item':'BT',
-            'data':datarelease()
-        },
-        {
-            'item':'RR',
-            'data':datarelease()
-        },
-    ],
-    'Schedule':[
-        {
-            'time':1567051200000,
-            'data':'個案家屬來訪'
-        },
-        {
-            'time':1567051280000,
-            'data':'個案家屬來訪'
-        },
-        {
-            'time':1567051300000,
-            'data':'個案家屬來訪'
-        }
-    ],
-    'ToDo':[
-        {
-            'state':false,
-            'data':'幫個案量體重'
-        },
-        {
-            'state':false,
-            'data':'幫個案量身高'
-        },
-        {
-            'state':true,
-            'data':'帶個按到抽血站抽血'
-        },
-        {
-            'state':true,
-            'data':'把個案檢體送到檢驗室'
-        }
-    ],
-    'ToDolist':[
-        {
-            'state':false,
-            'data':'幫個案量體重'
-        },
-        {
-            'state':false,
-            'data':'幫個案量身高'
-        },
-        {
-            'state':true,
-            'data':'帶個按到抽血站抽血'
-        },
-        {
-            'state':true,
-            'data':'把個案檢體送到檢驗室'
-        }
-    ]
-}
 
-function datarelease() {
+//病床總覽 (Get all bed from ward)
+const ward_bed_information = [
+    {
+        "BedNumber":"01", 
+        "HISID":"123456789",  
+        "Name":"劉嘉慶",
+        "IDNumber":"A123456798",
+        "Gender":"female",
+        "Birthday":1566287810473,
+        "Height":90,
+        "Weight":700,
+        "Diff_Weight":5,
+        "Reports":3,
+        "Non_Reports":1,
+        "Remarks":"TEXT",
+        "GAWeek":20,
+        "GADay":2,
+        "Pregnant_Week":30,
+        "Pregnant_Day":6,
+        "ImportantMatters":[ 
+                            {
+                                "Content":"TEXT"
+                            }
+                        ]
+    }
+]
+
+//Ward_bed_vitalData_last POST
+const ward_bed_lastData = [
+    {
+        "MedicalNumber":"123456789",
+        "Data":{
+            "HR":120,
+            "ABP1":45,
+            "ABP2":30,
+            "ABP3":35,
+            "SpO2":96,
+            "BT":37.5,
+            "RR":22
+        },
+        "Status":{
+            "Ventilator":true,
+            "TPN":true,
+            "NPO":false,
+            "ECMO":false,
+            "Antibiotics":false,
+            "Hemodialysis":false,
+            "Foley":false,
+            "Drain":false
+        }
+    },
+    {
+        "MedicalNumber":"987654321",
+        "Data":{
+            "HR":120,
+            "ABP1":45,
+            "ABP2":30,
+            "ABP3":35,
+            "SpO2":96,
+            "BT":37.5,
+            "RR":22
+        }
+    },
+    {
+        "MedicalNumber":"123454321",
+        "Data":{
+            "HR":120,
+            "ABP1":45,
+            "ABP2":30,
+            "ABP3":35,
+            "SpO2":96,
+            "BT":37.5,
+            "RR":22
+        }
+    }
+]
+
+function simulate_vitaldata_day() {
+
     var dataset = []; //建立空的資料陣列
-    var Num = 100
-    for (var i = 0; i < 24; i++) {
-        var newNum = Num + (5 - Math.floor(Math.random() * 10));
-        dataset.push(newNum);
-        Num = newNum;
+    for (let i = 0; i < 24; i++) {
+        const data = Math.floor(Math.random() * 50) + 50;
+        let min = 30;
+        let max = 60;
+        if (i > 18) {
+            min = 50;
+            max = 80;
+        }
+        dataset.push({
+            Data: data,
+            Min: min,
+            Max: max
+        })
     }
     return dataset;
 }
@@ -385,4 +397,4 @@ const centerrowdata = {
         ]
     }
 }
-export { jsonResponse, centerrowdata, WardInfo, updatetime, Warduser };
+export { jsonResponse, centerrowdata, WardInfo, updatetime, ward_bed_information, ward_bed_lastData };
