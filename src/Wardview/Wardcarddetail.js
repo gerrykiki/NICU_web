@@ -112,7 +112,7 @@ class Wardcarddetail extends Component {
                     </div>
                     <div style={{ height: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: "10px", borderBottomWidth: "0.5px", borderBottomColor: "rgba(215, 238, 255, 1)", borderBottomStyle: "solid", borderTopWidth: "0.5px", borderTopColor: "rgba(215, 238, 255, 1)", borderTopStyle: "solid" }}>
                         <div style={{ fontSize: '10px', color: "black" }}>{data.Note}</div>
-                        <Link to={{ pathname: "/patient", state: data }} style={{ height: "20px", backgroundColor: "rgba(59, 151, 225, 1)", borderRadius: "4px", textAlign: "center", lineHeight: "20px", color: "white", paddingLeft: "3px", paddingRight: "3px" }}>進入病人資料頁面</Link>
+                        <Link to={{ pathname: "/nicu/patient", state: data }} style={{ height: "20px", backgroundColor: "rgba(59, 151, 225, 1)", borderRadius: "4px", textAlign: "center", lineHeight: "20px", color: "white", paddingLeft: "3px", paddingRight: "3px" }}>進入病人資料頁面</Link>
                     </div>
                 </div>
             </div>

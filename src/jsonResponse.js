@@ -210,6 +210,8 @@ const jsonResponse = {
                 "published": true, //是否公開中
                 "publishednumber": 1,
                 "Note": "隨時注意病人血壓狀況隨時注意病人血壓狀況", //20字
+                "phoneNumber": "0933123456",
+                "MainDoctor":"維大力",
                 "detaildata":
                     [
                         {

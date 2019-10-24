@@ -14,13 +14,13 @@ class Sidermenu extends Component {
 
     Selectkeynumber(key) {
         switch (key) {
-            case '/':
+            case '/nicu/ward':
                 return 0;
-            case '/history':
+            case '/nicu/history':
                 return 1;
-            case '/system':
+            case '/nicu/system':
                 return 2;
-            case '/patient':
+            case '/nicu/patient':
                 return 0;
             default:
                 return '';

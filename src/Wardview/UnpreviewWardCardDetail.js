@@ -8,7 +8,7 @@ class Unpreviewwardcarddetail extends Component {
     showModal = () => {
         this.setState({
             visible: true,
-            databool:false,
+            databool: false,
             data: null
         });
     };
@@ -32,7 +32,7 @@ class Unpreviewwardcarddetail extends Component {
         this.setState({
             visible: false,
             data: statedata,
-            databool:true
+            databool: false
         });
     };
 
@@ -47,14 +47,6 @@ class Unpreviewwardcarddetail extends Component {
         console.log(string)
     }
 
-    stathisdata() {
-        if (this.state.data === null) {
-            return null
-        }
-        else{
-
-        }
-    }
     render() {
         const number = this.props.bedbumber + 1
         var changedate
@@ -106,7 +98,7 @@ class Unpreviewwardcarddetail extends Component {
                 </div>
                 <div style={{ height: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: "10px", borderBottomWidth: "0.5px", borderBottomColor: "rgba(215, 238, 255, 1)", borderBottomStyle: "solid" }}>
                     <div style={{ fontSize: '14px', color: "black" }}>
-                        {this.state.databool?this.state.date.id:"無資料"}
+                        "無資料"
                     </div>
                 </div>
                 <div style={{ height: '100px', borderBottomWidth: "0.5px", borderBottomColor: "rgba(215, 238, 255, 1)", borderBottomStyle: "solid" }}></div>
