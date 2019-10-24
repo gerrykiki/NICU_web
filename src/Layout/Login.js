@@ -17,13 +17,13 @@ class Loginview extends Component {
         }
         const token = 123456787654345676543;
         // setter
-        localStorage.setItem('Logindata', token);
+        sessionStorage.setItem('Logindata', token);
         this.setState({
             redirect: true
         })
     }
     renderRedirect = () => {
-        const login = localStorage.getItem('Logindata');
+        const login = sessionStorage.getItem('Logindata');
         console.log(login)
         if (this.state.redirect) {
             return <Redirect from={"/login"} to={"nicu/ward"} />
