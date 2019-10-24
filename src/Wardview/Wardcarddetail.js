@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import "antd/dist/antd.css";
+import Wardcardvalue from './Wardcardvalue'
 import patientviewlogo from '../Image/svg/Patientviewclick.svg'
 import checklogo from '../Image/svg/Check.svg'
 import { ward_bed_lastData } from '../jsonResponse'
@@ -30,49 +31,8 @@ class Wardcarddetail extends Component {
         }
     }
 
-    detailinformationswitch(item) {
-        //console.log(item);
-        switch (item) {
-            case "Depends":
-                return "呼(侵入)"
-            case "TPN":
-                return "TPN"
-            case "NPO":
-                return "NPO"
-            case "HD":
-                return "HD"
-            case "Anti":
-                return "Anti-B"
-            case "Floey":
-                return "Floey"
-            case "Drain":
-                return "Drain"
-            default:
-                return item
-        }
-    }
 
-    detailinformationswitchstyle(item) {
-        //console.log(item);
-        switch (item) {
-            case "Depends":
-                return "rgba(232,152,162,1)"
-            case "TPN":
-                return "rgba(195,153,115,1)"
-            case "NPO":
-                return "rgba(61, 119, 181, 1)"
-            case "HD":
-                return "rgba(241, 204, 115, 1)"
-            case "Anti":
-                return "rgba(155, 202, 100, 1)"
-            case "Floey":
-                return "rgba(65, 165, 181, 1)"
-            case "Drain":
-                return "rgba(25,26,144,1)"
-            default:
-                return null
-        }
-    }
+
 
     detaildatastylelist(bool) {
         //No API Data
@@ -107,11 +67,11 @@ class Wardcarddetail extends Component {
     }
 
 
+
     render() {
         const { data, selectstate } = this.props
-        const status_data = data.detaildata
         var selectstyle = null
-        if (selectstate === data.HISID) {
+        if (selectstate === data.id) {
             selectstyle = {
                 width: "99%",
                 marginBottom: "10px",
@@ -133,8 +93,7 @@ class Wardcarddetail extends Component {
                 position: 'relative'
             }
         }
-
-
+        console.log(data)
         return (
             <div onClick={() => this.sendData(data.id)}>
                 <div style={selectstyle}>
@@ -146,57 +105,10 @@ class Wardcarddetail extends Component {
                         <div style={{ fontSize: '14px', color: "black" }}>
                             病歷號:{data.id}
                         </div>
-                        <div style={{ fontSize: '14px', color: "black" }}>500g&rarr;{data.Weight}g</div>
+                        <div style={{ fontSize: '14px', color: "black" }}>{data.data.Weight}g&rarr;{data.data.WeightDif}g</div>
                     </div>
                     <div style={{ borderBottomWidth: "0.5px", borderBottomColor: "rgba(215, 238, 255, 1)", borderBottomStyle: "solid" }}>
-                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', paddingTop: "3px", paddingLeft: "10px", paddingRight: "10px", paddingBottom: "3px" }}>
-                            <div style={{ display: 'grid', gridTemplateColumns: "1fr 2fr", gridColumnsGap: "5px" }}>
-                                <div style={{ display: "grid", gridTemplateRows: "1fr 1fr", gridRowGap: "5px" }}>
-                                    <div>
-                                        <div style={{ fontSize: "12px", color: "black" }}>HR</div>
-                                        <div style={{ fontSize: "18px", color: "black" }}>120</div>
-                                    </div>
-                                    <div>
-                                        <div style={{ fontSize: "12px", color: "black" }}>SpO2</div>
-                                        <div style={{ fontSize: "18px", color: "black" }}>22</div>
-                                    </div>
-                                </div>
-                                <div style={{ display: "grid", gridTemplateRows: "1fr 1fr", gridRowGap: "5px" }}>
-                                    <div>
-                                        <div style={{ fontSize: "12px", color: "black" }}>ABP</div>
-                                        <div style={{ fontSize: "18px", color: "black" }}>140/30(40)</div>
-                                    </div>
-                                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gridColumnsGap: "5px" }}>
-                                        <div>
-                                            <div style={{ fontSize: "12px", color: "black" }}>RR</div>
-                                            <div style={{ fontSize: "18px", color: "black" }}>95%</div>
-                                        </div>
-                                        <div>
-                                            <div style={{ fontSize: "12px", color: "black" }}>BT</div>
-                                            <div style={{ fontSize: "18px", color: "black" }}>40</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div style={{ display: "grid", gridTemplateRows: "1fr 1fr 1fr", gridGap: "5px" }}>
-                                <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr",gridGap: "5px"  }}>
-                                    <div style={{display:"flex",alignItems:"center",justifyContent:"center",width:"100%",background:"rgba(232,152,162,1)",color:"white",borderRadius:"4px"}}>
-                                        <div style={{background:"rgba(232,152,162,1)",color:"white",borderRadius:"4px"}}>123</div>
-                                    </div>
-                                    <div style={{display:"flex",alignItems:"center",justifyContent:"center"}}>123</div>
-                                </div>
-                                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr" }}>
-                                    <div style={{display:"flex",alignItems:"center",justifyContent:"center"}}>123</div>
-                                    <div style={{display:"flex",alignItems:"center",justifyContent:"center"}}>123</div>
-                                    <div style={{display:"flex",alignItems:"center",justifyContent:"center"}}>123</div>
-                                </div>
-                                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr" }}>
-                                    <div style={{display:"flex",alignItems:"center",justifyContent:"center"}}>123</div>
-                                    <div style={{display:"flex",alignItems:"center",justifyContent:"center"}}>123</div>
-                                    <div style={{display:"flex",alignItems:"center",justifyContent:"center"}}>123</div>
-                                </div>
-                            </div>
-                        </div>
+                        <Wardcardvalue source={data}></Wardcardvalue>
                     </div>
                     <div style={{ height: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: "10px", borderBottomWidth: "0.5px", borderBottomColor: "rgba(215, 238, 255, 1)", borderBottomStyle: "solid", borderTopWidth: "0.5px", borderTopColor: "rgba(215, 238, 255, 1)", borderTopStyle: "solid" }}>
                         <div style={{ fontSize: '10px', color: "black" }}>{data.Note}</div>

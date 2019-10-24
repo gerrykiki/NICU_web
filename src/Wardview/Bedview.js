@@ -37,13 +37,16 @@ class Bedview extends Component {
     }
 
     switchwardinfo() {
-        console.log(this.state.select)
-        const source = jsonResponse;
+        const source_array = jsonResponse.Userdata.user;
+        const select_id = this.state.select
+        const filteritem = source_array.filter(function (item, index, array) {
+            return item.id === select_id;  
+        });
         if (this.state.select === null) {
             return <Wardinfoindex></Wardinfoindex>
         }
         else {
-            return <Wardinfoindex></Wardinfoindex>
+            return <Wardinfouser data={filteritem[0]}></Wardinfouser>
         }
     }
 
@@ -52,8 +55,8 @@ class Bedview extends Component {
 
         const wardcardlist = []
         const wardcarddetaillist = []
-        const Unpreview_Wardcardlist = []
-        const Unpreview_Wardcarddetaillist = []
+        // const Unpreview_Wardcardlist = []
+        // const Unpreview_Wardcarddetaillist = []
         const source = jsonResponse.Userdata.user;
 
 
@@ -72,9 +75,7 @@ class Bedview extends Component {
         //         Unpreview_Wardcarddetaillist.push(<Unpreviewwardcarddetail key={i} data={source.Userdata.user[i]} selectstate={null} />)
         //     }
         // }
-        if (this.props.location === "/Main/Bedview/Wardindex") {
-            console.log(123)
-        }
+
         const detailstyle = {
             padding: '10px',
             width: '30%',
@@ -93,11 +94,11 @@ class Bedview extends Component {
         if (this.state.previewmode) {
             if (this.state.simplemode) {
                 return (
-                    <div style={previewstyle}>{Unpreview_Wardcardlist}</div>
+                    <div style={previewstyle}>{wardcardlist}</div>
                 );
             } else {
                 return (
-                    <div style={previewstyle}>{Unpreview_Wardcarddetaillist}</div>
+                    <div style={previewstyle}>{wardcarddetaillist}</div>
                 );
             }
         }

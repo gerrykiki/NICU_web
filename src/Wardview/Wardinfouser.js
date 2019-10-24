@@ -181,6 +181,7 @@ class Wardinfouser extends Component {
 
     render() {
         const userinfo = this.props.data
+        console.log(userinfo)
         const userdata = ward_bed_information;
         console.log(userdata)
         const alertX = document.body.clientWidth * 0.35
