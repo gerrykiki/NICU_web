@@ -1,14 +1,17 @@
 import React from 'react';
 import './App.css';
 import { renderRoutes } from 'react-router-config'
-import route from './Layout/Routes'
+import { Loginroutes } from './Layout/Routes'
 import Layoutframe from './Layout/Layout'
+import { Redirect, Link } from 'react-router-dom'
 
 function App() {
+  console.log("app view")
   return (
-    < div >
-      <Layoutframe></Layoutframe>
-    </div >
+    <div>
+      <Redirect from={"/"} to={"/login"} />
+      <Loginroutes></Loginroutes>
+    </div>
   );
 }
 

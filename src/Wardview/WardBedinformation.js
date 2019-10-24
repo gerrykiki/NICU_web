@@ -114,13 +114,18 @@ class Wardbedinformation extends Component {
             borderColor: "rgba(238, 238, 238, 1)",
             fontSize: "16px"
         }
+
+
+
         const weekbedinfo = []
         for (let i = 0; i < 14; i++) {
+            const dateTime = Date.now();
+            const localtime = Math.floor(dateTime) - (i * 86400000);
             weekbedinfo.push(
-                <Bedinformation selectkey={this.state.selectid} idkey={i} parentCallback={this.callbackFunction}></Bedinformation>
+                <Bedinformation key={i} localtime={localtime} selectkey={this.state.selectid} idkey={i} parentCallback={this.callbackFunction}></Bedinformation>
             )
         }
-
+        weekbedinfo.reverse()
         return (
             <div style={{ marginTop: "10px" }}>
                 <div style={{ backgroundColor: "rgba(238,238,238,1)", height: "50px", padding: "15px", fontSize: "16px" }}>床位資訊</div>

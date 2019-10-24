@@ -4,14 +4,36 @@ import WardChart from './Wardchart'
 import Wardinfousercheckbox from './Wardunfousercheckbox'
 import { ward_bed_information } from '../jsonResponse'
 import { Select } from 'antd';
+import Labviewlayout from '../Patientview/CrossSectionView/Labview'
+import { Modal, Button } from 'antd';
 
 class Wardinfouser extends Component {
     state = {
         alertstate: "none",
         test_items_interval: 0,
-        Data_change: true
+        Data_change: true,
+        visible: false
     }
 
+    showModal = () => {
+        this.setState({
+            visible: true,
+        });
+    };
+
+    handleOk = e => {
+        console.log(e);
+        this.setState({
+            visible: false,
+        });
+    };
+
+    handleCancel = e => {
+        console.log(e);
+        this.setState({
+            visible: false,
+        });
+    };
     datarelease() {
         var dataset = []; //建立空的資料陣列
         /*
@@ -178,7 +200,9 @@ class Wardinfouser extends Component {
             }
         )
     }
-
+    sendData = (idnumber) => {
+        this.props.parentCallback(idnumber);
+    }
     render() {
         const userinfo = this.props.data
         console.log(userinfo)
@@ -207,28 +231,11 @@ class Wardinfouser extends Component {
         return (
             <div style={{ borderColor: "rgba(232, 232, 232, 1)", borderWidth: "1px", borderStyle: "solid", borderRadius: "4px" }}>
                 <div style={{ display: this.state.alertstate, position: "absolute", top: alertY, left: alertX, borderWidth: "1px", borderColor: "rgba(238,238,238,1)", borderStyle: "solid", borderRadius: '4px' }}>
-                    <div style={{ padding: "10px", width: "30vw", borderRadius: "4px", backgroundColor: "white" }}>
-                        <div style={{ height: "50px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                            <div>醫療團隊資訊</div>
-                            <div onMouseUp={() => this.CancelMedgroupclick()} style={{ cursor: "pointer" }}>取消</div>
-                        </div>
-                        <hr></hr>
-                        <div>
-                            <div style={{ height: '50px', background: "rgba(255,249,237,1)", paddingLeft: "10px", lineHeight: "50px" }}>團隊人員</div>
-                            <div style={{ maxHeight: "300px", overflowY: "auto", paddingLeft: "10px", marginTop: "10px" }}>
-                                <div style={{ height: '50px', borderBottomColor: "rgba(238,238,238,1)", borderBottomWidth: "1px", borderBottomStyle: "1px", display: "flex", alignItems: "center" }}>主治醫師 陳ＯＯ</div>
-                                <div style={{ height: '50px', borderBottomColor: "rgba(238,238,238,1)", borderBottomWidth: "1px", borderBottomStyle: "1px", display: "flex", alignItems: "center" }}>住院醫師 劉ＯＯ</div>
-                                <div style={{ height: '50px', borderBottomColor: "rgba(238,238,238,1)", borderBottomWidth: "1px", borderBottomStyle: "1px", display: "flex", alignItems: "center" }}>專科護理師 林ＯＯ</div>
-                                <div style={{ height: '50px', borderBottomColor: "rgba(238,238,238,1)", borderBottomWidth: "1px", borderBottomStyle: "1px", display: "flex", alignItems: "center" }}>護理師 遊ＯＯ</div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
                 <div style={{ height: '50px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingLeft: "10px", paddingRight: "10px" }}>
                     <div style={{ width: "200px" }}>
-                        <Link to="/Main/Bedview/Wardindex">
-                            <div>&larr;返回病房資訊總覽</div>
-                        </Link>
+                            <div onClick={() => this.sendData(null)}>&larr;返回病房資訊總覽</div>
                     </div>
                     <div style={{ fontSize: "22px", width: "200px", textAlign: "center" }}>個案資訊摘要</div>
                     <div style={{ width: "200px", textAlign: "end" }}></div>
@@ -261,7 +268,20 @@ class Wardinfouser extends Component {
                             <div style={{ height: "30px", display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
                                 <span style={{ fontSize: "0.7rem" }}>主治醫師&nbsp;</span>
                                 <span style={{ fontSize: "0.7rem", marginRight: "14px" }}>{userdata.MainDoctor}</span>
-                                <span onMouseUp={() => this.Medgroupclick()} style={{ fontSize: "0.7rem", cursor: 'pointer', color: "blue" }}>查看醫療團隊資訊</span>
+                                <span onMouseUp={this.showModal} style={{ fontSize: "0.7rem", cursor: 'pointer', color: "blue" }}>查看醫療團隊資訊</span>
+                                <Modal
+                                    title="醫療資訊團隊"
+                                    visible={this.state.visible}                                    
+                                    onOk={this.handleOk}
+                                    onCancel={this.handleCancel}>
+                                    <div style={{ height: '50px', background: "rgba(255,249,237,1)", paddingLeft: "10px", lineHeight: "50px" }}>團隊人員</div>
+                                    <div style={{ maxHeight: "300px", overflowY: "auto", paddingLeft: "10px", marginTop: "10px" }}>
+                                        <div style={{ height: '50px', borderBottomColor: "rgba(238,238,238,1)", borderBottomWidth: "1px", borderBottomStyle: "1px", display: "flex", alignItems: "center" }}>主治醫師 陳ＯＯ</div>
+                                        <div style={{ height: '50px', borderBottomColor: "rgba(238,238,238,1)", borderBottomWidth: "1px", borderBottomStyle: "1px", display: "flex", alignItems: "center" }}>住院醫師 劉ＯＯ</div>
+                                        <div style={{ height: '50px', borderBottomColor: "rgba(238,238,238,1)", borderBottomWidth: "1px", borderBottomStyle: "1px", display: "flex", alignItems: "center" }}>專科護理師 林ＯＯ</div>
+                                        <div style={{ height: '50px', borderBottomColor: "rgba(238,238,238,1)", borderBottomWidth: "1px", borderBottomStyle: "1px", display: "flex", alignItems: "center" }}>護理師 遊ＯＯ</div>
+                                    </div>
+                                </Modal>
                             </div>
                         </div>
                     </div>
@@ -270,46 +290,45 @@ class Wardinfouser extends Component {
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr" }}>
                     <div></div>
                     <div style={{ fontSize: "16px", display: "flex", justifyContent: "center", alignItems: "center" }}>過去24小時生命徵象</div>
-                    <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", paddingRight: "10px" }}>
-                        <Select placeholder='選擇角色' style={{ width: 200 }} onChange={handleChange}>
-                            <Option value={0}>Center Monitor</Option>
-                            <Option value={1}>HIS</Option>
-                            <Option value={2}>NIS</Option>
-                        </Select>
-                    </div>
                 </div>
                 <WardChart></WardChart>
                 {/* */}
-                <div style={{ marginTop: "20px", display: "grid", gridColumnGap: "10px", gridRowGap: "20px", gridTemplateColumns: "1fr 1fr", gridTemplateRows: "350px 250px", padding: "10px" }}>
+                <div style={{ marginTop: "20px", display: "grid", gridColumnGap: "10px", gridTemplateColumns: "50% 50%", padding: "10px" }}>
                     {/*檢驗項目*/}
                     <div style={{ borderWidth: "1px", borderStyle: "solid", borderColor: "rgba(238, 238, 238, 1)", borderRadius: "4px" }}>
                         <div style={{ display: "flex", alignItems: 'center', justifyContent: "space-between", backgroundColor: "rgba(238, 238, 238, 1)", paddingLeft: "15px", paddingRight: "15px" }}>
                             <div style={{ display: "flex", alignItems: 'center', height: "50px", fontSize: "1rem" }}>檢驗項目</div>
-                            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gridColumnGap: "5px" }}>
-                                <div style={this.SwitchTestItemInterval(0)} onMouseUp={() => this.Onchangetimeinterval(0)}>24hr</div>
-                                <div style={this.SwitchTestItemInterval(1)} onMouseUp={() => this.Onchangetimeinterval(1)}>48hr</div>
-                                <div style={this.SwitchTestItemInterval(2)} onMouseUp={() => this.Onchangetimeinterval(2)}>72hr</div>
-                            </div>
                         </div>
-                        <div style={{ maxHeight: "200px", overflow: 'auto' }}>
-                            <div style={{ height: "50px", display: 'grid', gridTemplateColumns: "1fr 1.5fr 1.5fr", borderBottomWidth: "1px", borderBottomColor: "rgba(232, 232, 232, 1)", borderBottomStyle: "solid" }}>
-                                <div style={{ fontSize: "1rem", display: "flex", paddingLeft: "15px", alignItems: "center" }}>檢驗時間</div>
-                                <div style={{ fontSize: "1rem", display: "flex", paddingLeft: "15px", alignItems: "center" }}>檢驗項目</div>
-                                <div style={{ fontSize: "1rem", display: "flex", paddingLeft: "15px", alignItems: "center" }}>檢驗結果</div>
-                            </div>
-                        </div>
+                        <Labviewlayout></Labviewlayout>
                     </div>
                     {/*生長曲線*/}
                     <div style={{ borderWidth: "1px", borderStyle: "solid", borderColor: "rgba(238, 238, 238, 1)", borderRadius: "4px" }}>
-                        <div style={{ display: "flex", alignItems: 'center', height: "50px", backgroundColor: "rgba(238, 238, 238, 1)", borderTopLeftRadius: "4px", borderTopRightRadius: "4px", paddingLeft: "15px", fontSize: "1rem" }}>生長曲線圖</div>
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: 'center', height: "50px", backgroundColor: "rgba(238, 238, 238, 1)", borderTopLeftRadius: "4px", borderTopRightRadius: "4px", paddingLeft: "15px" }}>
+                            <div style={{ fontSize: "1rem" }}>生長曲線圖</div>
+                            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gridColumnGap: "5px" }}>
+                                <div style={this.SwitchTestItemInterval(0)} onMouseUp={() => this.Onchangetimeinterval(0)}>足月前</div>
+                                <div style={this.SwitchTestItemInterval(1)} onMouseUp={() => this.Onchangetimeinterval(1)}>足月後</div>
+                            </div>
+                        </div>
                     </div>
+                </div>
+                {/*排程*/}
+                <div style={{ borderWidth: "1px", borderStyle: "solid", borderColor: "rgba(238, 238, 238, 1)", borderRadius: "4px", height: "250px", padding: "10px" }}>
+                    <div style={{ display: "flex", alignItems: 'center', height: "50px", backgroundColor: "rgba(238, 238, 238, 1)", borderTopLeftRadius: "4px", borderTopRightRadius: "4px", paddingLeft: "15px", fontSize: "1rem" }}>病人重要注意事項</div>
+                    <div style={{ maxHeight: "200px", overflow: 'auto' }}>
+                        <div style={{ height: "50px", display: 'grid', gridTemplateColumns: "25% 75%", borderBottomWidth: "1px", borderBottomColor: "rgba(232, 232, 232, 1)", borderBottomStyle: "solid" }}>
+                            <div style={{ fontSize: "1rem", display: "flex", paddingLeft: "15px", alignItems: "center" }}>1.對甲殼類食物過敏</div>
+                        </div>
+                    </div>
+                </div>
+                <div style={{ marginTop: "20px", display: "grid", gridColumnGap: "10px", gridTemplateColumns: "1fr 1fr", padding: "10px" }}>
                     {/*排程*/}
                     <div style={{ borderWidth: "1px", borderStyle: "solid", borderColor: "rgba(238, 238, 238, 1)", borderRadius: "4px", height: "250px" }}>
                         <div style={{ display: "flex", alignItems: 'center', height: "50px", backgroundColor: "rgba(238, 238, 238, 1)", borderTopLeftRadius: "4px", borderTopRightRadius: "4px", paddingLeft: "15px", fontSize: "1rem" }}>排程</div>
                         <div style={{ maxHeight: "200px", overflow: 'auto' }}>
                             <div style={{ height: "50px", display: 'grid', gridTemplateColumns: "25% 75%", borderBottomWidth: "1px", borderBottomColor: "rgba(232, 232, 232, 1)", borderBottomStyle: "solid" }}>
-                                <div style={{ fontSize: "1rem", display: "flex", paddingLeft: "15px", alignItems: "center" }}>檢驗時間</div>
-                                <div style={{ fontSize: "1rem", display: "flex", paddingLeft: "15px", alignItems: "center" }}>排程事項</div>
+                                <div style={{ fontSize: "1rem", display: "flex", paddingLeft: "15px", alignItems: "center" }}>6/16 16:00</div>
+                                <div style={{ fontSize: "1rem", display: "flex", paddingLeft: "15px", alignItems: "center" }}>個案家屬來訪</div>
                             </div>
                         </div>
                     </div>
@@ -319,12 +338,6 @@ class Wardinfouser extends Component {
                         <div style={{ maxHeight: "200px", overflow: 'auto' }}>
                             <Wardinfousercheckbox selectstate={true}></Wardinfousercheckbox>
                         </div>
-                    </div>
-                </div>
-                <div style={{ padding: "10px" }}>
-                    <div style={{ borderWidth: "1px", borderStyle: "solid", borderColor: "rgba(238, 238, 238, 1)", borderRadius: "4px", height: "250px" }}>
-                        <div style={{ display: "flex", alignItems: 'center', height: "50px", backgroundColor: "rgba(238, 238, 238, 1)", borderTopLeftRadius: "4px", borderTopRightRadius: "4px", paddingLeft: "15px", fontSize: "1rem" }}>病人評論</div>
-                        <div style={{ padding: "15px", }}>123</div>
                     </div>
                 </div>
             </div>

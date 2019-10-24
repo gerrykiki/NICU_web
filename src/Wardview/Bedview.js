@@ -40,13 +40,13 @@ class Bedview extends Component {
         const source_array = jsonResponse.Userdata.user;
         const select_id = this.state.select
         const filteritem = source_array.filter(function (item, index, array) {
-            return item.id === select_id;  
+            return item.id === select_id;
         });
         if (this.state.select === null) {
             return <Wardinfoindex></Wardinfoindex>
         }
         else {
-            return <Wardinfouser data={filteritem[0]}></Wardinfouser>
+            return <Wardinfouser data={filteritem[0]} parentCallback={this.callbackFunction}></Wardinfouser>
         }
     }
 
@@ -55,8 +55,8 @@ class Bedview extends Component {
 
         const wardcardlist = []
         const wardcarddetaillist = []
-        // const Unpreview_Wardcardlist = []
-        // const Unpreview_Wardcarddetaillist = []
+        const Unpreview_Wardcardlist = []
+        const Unpreview_Wardcarddetaillist = []
         const source = jsonResponse.Userdata.user;
 
 
@@ -64,17 +64,17 @@ class Bedview extends Component {
             wardcardlist.push(<Wardcard key={i} data={source[i]} parentCallback={this.callbackFunction} selectstate={this.state.select} />)
             wardcarddetaillist.push(<Wardcarddetail key={i} data={source[i]} parentCallback={this.callbackFunction} selectstate={this.state.select} />)
         }
-
-        // for (let i = 0; i < 12; i++) {
-        //     if (source.Userdata.user[i] == null) {
-        //         Unpreview_Wardcardlist.push(<Unpreviewwardcard key={i} data={null} selectstate={null} />)
-        //         Unpreview_Wardcarddetaillist.push(<Unpreviewwardcarddetail key={i} data={null} selectstate={null} />)
-        //     }
-        //     else {
-        //         Unpreview_Wardcardlist.push(<Unpreviewwardcard key={i} data={source.Userdata.user[i]} selectstate={null} />)
-        //         Unpreview_Wardcarddetaillist.push(<Unpreviewwardcarddetail key={i} data={source.Userdata.user[i]} selectstate={null} />)
-        //     }
-        // }
+        for (let i = 0; i < 12; i++) {
+            console.log(source[i])
+            if (source[i] == null) {
+                Unpreview_Wardcardlist.push(<Unpreviewwardcard bedbumber={i} key={i} data={null} selectstate={null} />)
+                Unpreview_Wardcarddetaillist.push(<Unpreviewwardcarddetail bedbumber={i} key={i} data={null} selectstate={null} />)
+            }
+            else {
+                Unpreview_Wardcardlist.push(<Wardcard bedbumber={i} key={i} data={source[i]} selectstate={null} />)
+                Unpreview_Wardcarddetaillist.push(<Wardcarddetail bedbumber={i} key={i} data={source[i]} selectstate={null} />)
+            }
+        }
 
         const detailstyle = {
             padding: '10px',
@@ -94,11 +94,11 @@ class Bedview extends Component {
         if (this.state.previewmode) {
             if (this.state.simplemode) {
                 return (
-                    <div style={previewstyle}>{wardcardlist}</div>
+                    <div style={previewstyle}>{Unpreview_Wardcardlist}</div>
                 );
             } else {
                 return (
-                    <div style={previewstyle}>{wardcarddetaillist}</div>
+                    <div style={previewstyle}>{Unpreview_Wardcarddetaillist}</div>
                 );
             }
         }

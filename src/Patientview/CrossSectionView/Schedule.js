@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Date } from 'core-js';
 import editlogo from '../../Image/svg/Edit.svg'
+import Schedulelist from './Schedulelist'
 
 class Schedulelayout extends Component {
     state = {
@@ -237,26 +238,11 @@ class Schedulelayout extends Component {
                         <div style={{ fontSize: "22px", fontFamily: "PingFangTC-Medium" }}>詳細內容</div>
                     </div>
                     <div style={{ height: "400px", display: "grid", gridTemplateColumns: "1fr 1fr", gridColumnGap: "10px", padding: "24px", borderWidth: "1px", borderColor: "rgba(238,238,238,1)", borderStyle: "solid" }}>
+                        <Schedulelist editstatus={true}></Schedulelist>
                         <div style={{ borderRadius: "4px" }}>
-                            <div style={{ height: "50px", width: "100%", backgroundColor: "rgba(238,238,238,1)", paddingLeft: "24px", paddingRight: "24px",display:'flex',justifyContent:'space-between',alignItems:'center'}}>
-                                <div style={{ fontSize: "16px"}}> 排程與事件</div>
-                                <img src={editlogo} style={{height:'15px',width:'15px'}} alt="scheduleedit"/>
-                            </div>
-                            <div style={{ height: "300px", width: "100%", display: "grid", gridTemplateColumns: "1fr 4fr", borderWidth: "1px", borderStyle: "solid", borderColor: "rgba(238,238,238,1)" }}>
-                                <div style={{ paddingTop: "10px", paddingBottom: "10px", paddingRight: "15px", paddingLeft: "15px", display: "grid", gridTemplateRows: "1fr 1fr 1fr", gridRowGap: "10px" }}>
-                                    <div style={this.btnstatestyle("all")} onMouseUp={() => this.pressbtn("all")}>全部</div>
-                                    <div style={this.btnstatestyle("schedule")} onMouseUp={() => this.pressbtn("schedule")}>排程</div>
-                                    <div style={this.btnstatestyle("event")} onMouseUp={() => this.pressbtn("event")}>事件</div>
-                                </div>
-                                <div style={{ maxHeight: "300px", overflow: "auto" }}>
-                                    {this.eventdata()}
-                                </div>
-                            </div>
-                        </div>
-                        <div style={{ borderRadius: "4px" }}>
-                            <div style={{ height: "50px", width: "100%", backgroundColor: "rgba(238,238,238,1)", paddingLeft: "24px", paddingRight: "24px", display:'flex',justifyContent:'space-between',alignItems:'center' }}>
-                                <div style={{fontSize: "16px"}}>評論</div>
-                                <img src={editlogo} style={{height:'15px',width:'15px'}} alt="scheduleedit"/>
+                            <div style={{ height: "50px", width: "100%", backgroundColor: "rgba(238,238,238,1)", paddingLeft: "24px", paddingRight: "24px", display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                <div style={{ fontSize: "16px" }}>評論</div>
+                                <img src={editlogo} style={{ height: '15px', width: '15px' }} alt="scheduleedit" />
                             </div>
                             <div style={{ height: "300px", width: "100%", borderWidth: "1px", borderStyle: "solid", borderColor: "rgba(238,238,238,1)" }}>
                                 <div style={{ maxHeight: "300px", overflow: "auto" }}>

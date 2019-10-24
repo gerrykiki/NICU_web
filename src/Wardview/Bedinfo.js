@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Month_format } from '../Commonfunction'
 
 class Bedinformation extends Component {
     state = {
@@ -21,14 +22,16 @@ class Bedinformation extends Component {
         this.props.parentCallback(id);
     }
 
-    Selectswitch(id ,select){
+    Selectswitch(id, select) {
         if (id === select) {
             return true
         }
         else return false
     }
     render() {
-        const { selectkey,idkey } = this.props
+        const { selectkey, idkey, localtime } = this.props
+        console.log(localtime)
+        const day = Month_format(new Date(localtime).getMonth()) + "/" + new Date(localtime).getDate()
         const Unselect_tablestyle = {
             height: "50px",
             display: "flex",
@@ -39,10 +42,10 @@ class Bedinformation extends Component {
             borderColor: "rgba(238, 238, 238, 1)",
             fontSize: "16px"
         }
-        const select = this.Selectswitch(selectkey,idkey)
+        const select = this.Selectswitch(selectkey, idkey)
         return (
             <div style={select ? { borderWidth: "2px", borderStyle: "solid", borderColor: "rgba(59, 151, 225, 1)" } : { borderWidth: "1px", borderStyle: "solid", borderColor: "rgba(238, 238, 238, 1)" }} onMouseUp={() => this.sendReturnSelect(idkey)}>
-                <div style={Unselect_tablestyle}>MM/DD</div>
+                <div style={Unselect_tablestyle}>{day}</div>
                 <div style={Unselect_tablestyle}>
                     <div style={{ textAlign: "center" }}>
                         <div>8(13)</div>

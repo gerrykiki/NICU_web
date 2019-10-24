@@ -3,13 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { BrowserRouter, Switch } from 'react-router-dom';
-import Layoutframe from './Layout/Layout'
+import { BrowserRouter, Switch ,Route} from 'react-router-dom';
 
 ReactDOM.render(
     <BrowserRouter>
         <Switch>
-            <Layoutframe></Layoutframe>
+            <Route path="/" component={App} />
         </Switch>
     </BrowserRouter>,
     document.getElementById('root')

@@ -16,6 +16,7 @@ class WardChart extends Component {
     componentWillUnmount() {
         clearInterval(this.timerID);
     }
+
     tick() {
         this.setState({
             date: new Date()
@@ -24,6 +25,7 @@ class WardChart extends Component {
 
     datarelease() {
 
+        
         var dataset = []; //建立空的資料陣列
         /*
         Data format = {

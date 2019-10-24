@@ -45,6 +45,10 @@ class WardcardvitalsignChart extends Component {
     drawChart() {
         const { id, width, height, min, max, margin, circlrcolor, data, colorshadow, axisTop, data2, data_2_circlrcolor } = this.props
 
+        var d = new Date('2014,12,01,12:16:05');
+        var _a = d3.timeFormat("%a");
+        console.log(_a(d));
+
         var vertigo = datarelease();
 
         //x和y的比例尺

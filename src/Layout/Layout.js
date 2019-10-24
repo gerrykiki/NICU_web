@@ -4,7 +4,7 @@ import 'antd/dist/antd.css';
 import './Layout.css';
 import Sidermenu from './Sidermenu';
 import { renderRoutes } from 'react-router-config'
-import Routes from './Routes'
+import { Routes } from './Routes'
 
 const { Header, Content } = Layout;
 
