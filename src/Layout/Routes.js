@@ -21,10 +21,10 @@ const Routes = () => {
 
 const Loginroutes = () => {
     return (
-        <Switch>
+        <div>
             <Route path="/nicu"  component={Layoutframe} />
             <Route path="/login" component={Loginview} />
-        </Switch>
+        </div>
     );
 };
 

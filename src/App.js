@@ -5,8 +5,6 @@ import { Loginroutes } from './Layout/Routes'
 import Layoutframe from './Layout/Layout'
 import { Redirect, Link } from 'react-router-dom'
 
-
-
 function App() {
   console.log("app view")
   return (
