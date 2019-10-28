@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import Patientinfo from './Patientviewinfo'
+import { Switch, Route } from 'react-router-dom';
 import { Select } from 'antd';
-import Patientviewtapbar from './Patientviewtapbar'
+
 
 class Patientviewlayout extends Component {
 
@@ -9,25 +11,44 @@ class Patientviewlayout extends Component {
         console.log(props);
     }
 
-    render() {
-        const { Option } = Select;
 
+
+    fetch_userdata() {
+        const path_url = this.props.location.pathname
+
+    }
+    render() {
+        const path_url = this.props.location.pathname
+        const patient_data = this.props.location.state
+        // var breadcrumb
+        // if (path_url.match('patient')!=null) {
+
+        // }
+
+        const { Option } = Select;
         return (
             <div>
-                <div style={{ background: 'rgba(238, 238, 238, 1)', display: 'flex', justifyContent: "space-between", alignItems: 'center', height: "50px", paddingLeft: "25px", paddingRight: "25px" }}>
-                    <div style={{ display: 'flex', justifyContent: "space-between", alignItems: 'center', width: "80%" }}>
-                        <div style={{ fontSize: "1rem" }}>病床01/程子倩/3週歲</div>
-                        <div style={{ fontSize: "1rem" }}>病歷號碼:0123456789</div>
-                        <div style={{ fontSize: "1rem" }}>身分證字號:A123456789</div>
-                        <div style={{ fontSize: "1rem" }}>主治醫師:陳ＯＯ醫師</div>
-                        <div style={{ fontSize: "1rem" }}>備註:備註內容最多20字</div>
-                        <div><span style={{ fontSize: "1rem" }}>查看詳細內容</span></div>
-                    </div>
-                    <Select defaultValue="lucy" style={{ width: 120 }}>
-                        <Option value="lucy">病床</Option>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: 'center', paddingLeft: "20px", paddingRight: "20px",paddingTop:'5px',paddingBottom:"5px" }}>
+                    <div style={{ fontSize: "1.5rem" }}>病房總覽 > 病床 > Chronicle view</div>
+                    <Select defaultValue={"123"} style={{ width: 120 }}>
+                        <Option value="lucy">病床01</Option>
+                        <Option value="lucy">病床02</Option>
+                        <Option value="lucy">病床03</Option>
+                        <Option value="lucy">病床04</Option>
+                        <Option value="lucy">病床05</Option>
+                        <Option value="lucy">病床06</Option>
+                        <Option value="lucy">病床07</Option>
+                        <Option value="lucy">病床08</Option>
+                        <Option value="lucy">病床09</Option>
+                        <Option value="lucy">病床10</Option>
+                        <Option value="lucy">病床11</Option>
+                        <Option value="lucy">病床12</Option>
                     </Select>
                 </div>
-                <Patientviewtapbar></Patientviewtapbar>
+                <Switch>
+                    {/* The component will show here if the current URL matches the path */}
+                    <Route path={`${this.props.match.path}/:userid`} component={Patientinfo} />
+                </Switch>
             </div>
         );
     }

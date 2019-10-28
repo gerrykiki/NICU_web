@@ -228,6 +228,7 @@ const jsonResponse = {
                 "phoneNumber": "0933123456",
                 "Birthday": 1566287810473,
                 "MainDoctor": "維大力",
+                "Dateforward":1569859200000,
                 "detaildata":
                     [
                         {
@@ -257,7 +258,7 @@ const jsonResponse = {
 
                         },
                         {
-                            "item": "Floey",
+                            "item": "Foley",
                             "time": 1565395200,
                             "data": true
                             //葉

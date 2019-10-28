@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Vitalsign from './Vitalsign';
-import Basicinformation from './Basicinformation';
 import Controlbar from '../Controlbar';
 import IOpage from './iopage'
 import Labviewlayout from './Labview'
@@ -14,7 +13,26 @@ import Todolayout from './Todo'
 
 
 class Crosssectionlayout extends Component {
+    state = {
+        Cross_item: [0, 1, 2, 3, 4, 5]
+    }
+    callbackFunction = (item_array) => {
+        console.log(item_array)
+        this.setState(
+            {
+                Cross_item: item_array
+            }
+        )
+    }
 
+    display_item(number) {
+        const item = this.state.Cross_item
+        var filter = item.some(function (item, index, array) {
+            return item === number
+        });
+        console.log(filter)
+        return filter
+    }
     render() {
         const crosssectioncontrollist = [
             {
@@ -38,31 +56,33 @@ class Crosssectionlayout extends Component {
                 "scrollpoint": "schedule"
             }
         ]
+        const { userdata } = this.props
+        console.log(this.state.Cross_item)
+        this.display_item(1)
         return (
             <div>
-                <Controlbar btnlist={crosssectioncontrollist} tagdisplay={"flex"}></Controlbar>
-                <div style={{ maxHeight: '75vh', overflowY: 'auto' }}>
-                    <Basicinformation></Basicinformation>
-                    <div id={"vitalsignIO"} style={{ display: "grid", gridTemplateColumns: "50% 50%", gridGap: "10px" }}>
+                <Controlbar parentCallback={this.callbackFunction} userdata={userdata} btnlist={crosssectioncontrollist} item_array={this.state.Cross_item}></Controlbar>
+                <div style={{ maxHeight: '75vh', overflowY: 'auto' ,height:"75vh"}}>
+                    <div id={"vitalsignIO"} style={this.display_item(0) ? { display: "grid", gridTemplateColumns: "50% 50%", gridGap: "10px" } : { display: "none" }}>
                         <Vitalsign></Vitalsign>
                         <IOpage></IOpage>
                     </div>
-                    <div id={"lab"} style={{ display: "grid", gridTemplateColumns: "50% 50%", gridGap: "10px" }}>
+                    <div id={"lab"} style={this.display_item(1) ? { display: "grid", gridTemplateColumns: "50% 50%", gridGap: "10px" } : { display: "none" }}>
                         <Labviewlayout></Labviewlayout>
                         <Nonlabviewlayout></Nonlabviewlayout>
                     </div>
-                    <div id={"rt"} style={{ display: "grid", gridTemplateColumns: "50% 50%", gridGap: "10px" }}>
+                    <div id={"rt"} style={this.display_item(2) ? { display: "grid", gridTemplateColumns: "50% 50%", gridGap: "10px" } : { display: "none" }}>
                         <RTviewlayout></RTviewlayout>
                         <RTbreathe></RTbreathe>
                     </div>
-                    <div id={"order"} style={{ display: "grid", gridTemplateColumns: "50% 50%", gridGap: "10px" }}>
+                    <div id={"order"} style={this.display_item(3) ? { display: "grid", gridTemplateColumns: "50% 50%", gridGap: "10px" } : { display: "none" }}>
                         <Prescriptionorderlayout searchbar={"none"}></Prescriptionorderlayout>
                         <Treatmentorderlayout searchbar={"none"}></Treatmentorderlayout>
                     </div>
-                    <div id={"schedule"}>
+                    <div id={"schedule"} style={this.display_item(4) ? null : { display: "none" }}>
                         <Schedulelayout></Schedulelayout>
                     </div>
-                    <div>
+                    <div style={this.display_item(5) ? null : { display: "none" }}>
                         <Todolayout></Todolayout>
                     </div>
                 </div>

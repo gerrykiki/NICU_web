@@ -5,6 +5,7 @@ import { Modal, Input, DatePicker } from 'antd';
 
 class Unpreviewwardcarddetail extends Component {
     state = { visible: false };
+    
     showModal = () => {
         this.setState({
             visible: true,

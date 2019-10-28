@@ -15,11 +15,12 @@ class Patientviewtapbar extends Component {
 
     render() {
         const { TabPane } = Tabs;
+        const { userdata } = this.props
         return (
-            <div style={{paddingRight:"24px",paddingLeft:"24px"}}>
-                <Tabs defaultActiveKey="1" onChange={console.log("click")}å>
+            <div style={{ paddingRight: "24px", paddingLeft: "24px" }}>
+                <Tabs defaultActiveKey="1" onChange={console.log("click")} tabPosition={'top'}>
                     <TabPane tab="Cross Section View" key="1">
-                        <Crosssectionlayout></Crosssectionlayout>
+                        <Crosssectionlayout userdata={userdata}></Crosssectionlayout>
                     </TabPane>
                     <TabPane tab="Chronicle View" key="2">
                         <Chroniclelayout></Chroniclelayout>

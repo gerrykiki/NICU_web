@@ -13,6 +13,7 @@ class Sidermenu extends Component {
     }
 
     Selectkeynumber(key) {
+
         switch (key) {
             case '/nicu':
                 return 0;
@@ -20,9 +21,10 @@ class Sidermenu extends Component {
                 return 1;
             case '/nicu/system':
                 return 2;
-            case '/nicu/patient':
-                return 0;
             default:
+                if (key.match('patient')!=null) {
+                    return 0;
+                }
                 return '';
         }
     }

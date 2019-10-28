@@ -4,23 +4,18 @@ import React, { Component } from 'react';
 
 class Basicinformation extends Component {
     render() {
+        const { userdata } = this.props
+        console.log(userdata)
+        const info_style = { display: 'flex', alignItems: 'center', fontSize: '1.3rem' }
+        var DateDiff = function (sDate1) { 
+            const days = parseInt((new Date().getTime()-sDate1)/86400000)
+            return days
+          };
         return (
-            <div style={{ height: '50px', display: 'flex', alignItems: 'center', justifyContent:"center"}}>
-                <div style={{ display: 'flex', alignItems: 'center', marginLeft: '20px' }}>
-                    <div style={{ fontSize: '20px'}}>身高:44CM</div>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', marginLeft: '40px' }}>
-                    <div style={{ fontSize: '20px'}}>體重:2000g</div>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', marginLeft: '40px' }}>
-                    <div style={{ fontSize: '20px'}}>年齡:3週2天</div>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', marginLeft: '40px' }}>
-                    <div style={{ fontSize: '20px'}}>住院天數:22天</div>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', marginLeft: '40px' }}>
-                    <div style={{ fontSize: '20px'}}>住院日期:2019-01-01</div>
-                </div>
+            <div style={{ display: 'grid', gridTemplateColumns: "repeat(3,auto)", gridColumnGap: "40px" }}>
+                <div style={info_style}>週數:20＋5&rarr;24+4</div>
+                <div style={info_style}>體重:{userdata.data.Weight}&rarr;{userdata.data.WeightDif}</div>
+                <div style={info_style}>住院第{DateDiff(userdata.Dateforward)}天</div>
             </div>
         );
     }

@@ -15,7 +15,7 @@ class Wardcarstatus extends Component {
                 return "rgba(241, 204, 115, 1)"
             case "Anti":
                 return "rgba(155, 202, 100, 1)"
-            case "Floey":
+            case "Foley":
                 return "rgba(65, 165, 181, 1)"
             case "Drain":
                 return "rgba(25,26,144,1)"
@@ -37,7 +37,7 @@ class Wardcarstatus extends Component {
                 return "HD"
             case "Anti":
                 return "Anti"
-            case "Floey":
+            case "Foley":
                 return "Floey"
             case "Drain":
                 return "Drain"
