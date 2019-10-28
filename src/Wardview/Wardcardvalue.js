@@ -18,27 +18,27 @@ class Wardcardvalue extends Component {
                 <div style={{ display: 'grid', gridTemplateColumns: "1fr 2fr", gridColumnsGap: "5px" }}>
                     <div style={{ display: "grid", gridTemplateRows: "1fr 1fr", gridRowGap: "5px" }}>
                         <div>
-                            <div style={{ fontSize: "12px", color: "black" }}>HR</div>
-                            <div style={{ fontSize: "18px", color: "black" }}>{this.search_item(data.data.RowData, "HR")}</div>
+                            <div style={{ fontSize: "1rem", color: "green" }}>HR(/min)</div>
+                            <div style={{ fontSize: "1.5rem", color: "green" }}>{this.search_item(data.data.RowData, "HR")}</div>
                         </div>
                         <div>
-                            <div style={{ fontSize: "12px", color: "black" }}>SpO2</div>
-                            <div style={{ fontSize: "18px", color: "black" }}>{this.search_item(data.data.RowData, "SpO2")}</div>
+                            <div style={{ fontSize: "1rem", color: "brown" }}>RR(/min)</div>
+                            <div style={{ fontSize: "1.5rem", color: "brown" }}>{this.search_item(data.data.RowData, "RR")}%</div>
                         </div>
                     </div>
                     <div style={{ display: "grid", gridTemplateRows: "1fr 1fr", gridRowGap: "5px" }}>
                         <div>
-                            <div style={{ fontSize: "12px", color: "black" }}>ABP</div>
-                            <div style={{ fontSize: "18px", color: "black" }}>{this.search_item(data.data.RowData, "ABP_hight")}/{this.search_item(data.data.RowData, "ABP_low")}({this.search_item(data.data.RowData, "ABP_avg")})</div>
+                            <div style={{ fontSize: "1rem", color: "red" }}>ABP(mmHg)</div>
+                            <div style={{ fontSize: "1.5rem", color: "red" }}>{this.search_item(data.data.RowData, "ABP_hight")}/{this.search_item(data.data.RowData, "ABP_low")}({this.search_item(data.data.RowData, "ABP_avg")})</div>
                         </div>
                         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gridColumnsGap: "5px" }}>
                             <div>
-                                <div style={{ fontSize: "12px", color: "black" }}>RR</div>
-                                <div style={{ fontSize: "18px", color: "black" }}>{this.search_item(data.data.RowData, "RR")}%</div>
+                                <div style={{ fontSize: "1rem", color: "blue" }}>SpO2(%)</div>
+                                <div style={{ fontSize: "1.5rem", color: "blue" }}>{this.search_item(data.data.RowData, "SpO2")}</div>
                             </div>
                             <div>
-                                <div style={{ fontSize: "12px", color: "black" }}>BT</div>
-                                <div style={{ fontSize: "18px", color: "black" }}>{this.search_item(data.data.RowData, "BT")}</div>
+                                <div style={{ fontSize: "1rem", color: "black" }}>BT(<sup>&deg;</sup>C)</div>
+                                <div style={{ fontSize: "1.5rem", color: "black" }}>{this.search_item(data.data.RowData, "BT")}</div>
                             </div>
                         </div>
                     </div>

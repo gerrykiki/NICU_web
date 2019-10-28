@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button } from 'antd';
-import { Redirect, Link } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { Input } from 'antd'
 
 
@@ -9,12 +9,12 @@ class Loginview extends Component {
         redirect: false
     }
     setRedirect = () => {
-        const account = document.getElementById("account").value;
-        const password = document.getElementById("password").value;
-        const data = {
-            "account": account,
-            "password": password
-        }
+    //     const account = document.getElementById("account").value;
+    //     const password = document.getElementById("password").value;
+        // const data = {
+        //     "account": account,
+        //     "password": password
+        // }
         const token = 123456787654345676543;
         // setter
         sessionStorage.setItem('Logindata', token);
@@ -26,10 +26,10 @@ class Loginview extends Component {
         const login = sessionStorage.getItem('Logindata');
         console.log(login)
         if (this.state.redirect) {
-            return <Redirect from={"/login"} to={"/nicu/ward"} />
+            return <Redirect from={"/login"} to={"/nicu"} />
         }
         else if (login !== null) {
-            return <Redirect from={"/login"} to={"/nicu/ward"} />
+            return <Redirect from={"/login"} to={"/nicu"} />
         }
     }
 
@@ -38,7 +38,7 @@ class Loginview extends Component {
             <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh", width: "100vw", background: 'linear-gradient(to bottom, rgba(195, 239, 255, 1), rgba(46, 100, 164, 1))' }}>
                 {this.renderRedirect()}
                 <div style={{ textAlign: "center" }}>
-                    <div style={{ color: "white", fontSize: "26px" }}>台北榮民總醫院 ICD單一入口</div>
+                    <div style={{ color: "white", fontSize: "26px" }}>台北榮民總醫院 NICU智慧醫療系統</div>
                     <div style={{ width: "350px", height: "250px", borderRadius: "4px", backgroundColor: "white", textAlign: "center", padding: '25px', position: "relative" }}>
                         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                             <div style={{ height: "32px", width: "32px", borderRadius: "2px", backgroundColor: "rgba(46,100,164,1)", color: "white", display: "flex", alignItems: "center", justifyContent: "center" }}>L</div>

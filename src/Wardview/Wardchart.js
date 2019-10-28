@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import WardcardvitalsignChart from './Wardcardvitalsign'
 
 
-const width = window.screen.availWidth * 0.25, height = 50, margin = 20, max = 150, min = 50
 
 class WardChart extends Component {
 
@@ -25,7 +24,7 @@ class WardChart extends Component {
 
     datarelease() {
 
-        
+
         var dataset = []; //建立空的資料陣列
         /*
         Data format = {
@@ -83,63 +82,66 @@ class WardChart extends Component {
 
     render() {
         return (
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gridColumnGap: "5px", padding: "10px" }}>
-                <div style={{ display: "grid", gridTemplateRows: "1fr 1fr" }}>
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                        <div style={{ marginTop: "10px", width: "70px" }}>
-                            <div style={{ fontSize: "1rem", color: "rgba(126, 211, 33, 1)" }}>HR</div>
-                            <div style={{ fontSize: "1.5rem", color: "rgba(126, 211, 33, 1)" }}>123</div>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gridColumnGap: "5px", padding: "5px" }}>
+                <div style={{ display: "grid", gridTemplateRows: "auto,auto,auto", gridRowGap: '5px' }}>
+                    <div style={{ display: "grid", gridTemplateColumns: "80px auto", gridColumnGap: "5px" }}>
+                        <div style={{ marginTop: "20px", display: "flex", alignItems: "center",justifyContent:"center" }}>
+                            <div>
+                                <div style={{ fontSize: "1rem", color: "rgba(126, 211, 33, 1)", display: "flex", justifyContent: "center" }}>HR</div>
+                                <div style={{ fontSize: "2rem", color: "rgba(126, 211, 33, 1)", display: "flex", justifyContent: "center" }}>123</div>
+                            </div>
                         </div>
-                        <div id="wardvitalhr">
-                            <WardcardvitalsignChart id={"wardvitalhr"} data={true} width={width} height={100} margin={margin} max={100} min={0} axisBot={false} axisTop={true} colorshadow={"rgba(126, 211, 33, 0.1)"} circlrcolor={"rgba(126, 211, 33, 1)"}></WardcardvitalsignChart>
-                        </div>
+                        <WardcardvitalsignChart svg_key={"svg_hr"} id_key={"div_hr"} data={true} axisBot={false} axisTop={true} colorshadow={"rgba(126, 211, 33, 0.1)"} circlrcolor={"rgba(126, 211, 33, 1)"}></WardcardvitalsignChart>
                     </div>
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                        <div style={{ width: "70px" }}>
-                            <div style={{ fontSize: "1rem", color: "rgba(240, 144, 144, 1)" }}>NBP</div>
-                            <div style={{ fontSize: "1.5rem", color: "rgba(240, 144, 144, 1)" }}>100/40</div>
+                    <div style={{ display: "grid", gridTemplateColumns: "80px auto", gridColumnGap: "5px" }}>
+                        <div style={{ display: "flex", alignItems: "center" ,justifyContent:"center"}}>
+                            <div>
+                                <div style={{ fontSize: "1rem", color: "rgba(240, 144, 144, 1)", display: "flex", justifyContent: "center" }}>NBP</div>
+                                <div style={{ fontSize: "1.5rem", color: "rgba(240, 144, 144, 1)", display: "flex", justifyContent: "center" }}>100/40</div>
+                            </div>
                         </div>
-                        <div id="wardvital_NBP">
-                            <WardcardvitalsignChart id={"wardvital_NBP"} data={true} data2={true} width={width} height={100} margin={margin} max={100} min={0} axisBot={false} axisTop={false} colorshadow={"rgba(240, 144, 144, 0.1)"} circlrcolor={"rgba(240, 144, 144, 1)"} data_2_circlrcolor={"rgba(240, 144, 144, 0.5)"}></WardcardvitalsignChart>
-                        </div>
+                        <WardcardvitalsignChart svg_key={"svg_bp"} id_key={"div_bp"} data={true} data2={true} axisBot={false} axisTop={false} colorshadow={"rgba(240, 144, 144, 0.1)"} circlrcolor={"rgba(240, 144, 144, 1)"} data_2_circlrcolor={"rgba(240, 144, 144, 0.5)"}></WardcardvitalsignChart>
                     </div>
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                        <div style={{ width: "70px" }}>
-                            <div style={{ fontSize: "1rem", color: "rgba(240, 144, 144, 1)" }}>ABP</div>
-                            <div style={{ fontSize: "1.5rem", color: "rgba(240, 144, 144, 1)" }}>100/40</div>
+                    <div style={{ display: "grid", gridTemplateColumns: "80px auto", gridColumnGap: "5px" }}>
+                        <div style={{ display: "flex", alignItems: "center",justifyContent:"center" }}>
+                            <div>
+                                <div style={{ fontSize: "1rem", color: "rgba(240, 144, 144, 1)", display: "flex", justifyContent: "center" }}>ABP</div>
+                                <div style={{ fontSize: "1.5rem", color: "rgba(240, 144, 144, 1)", display: "flex", justifyContent: "center" }}>100/40</div>
+                            </div>
                         </div>
-                        <div id="wardvital_ABP">
-                            <WardcardvitalsignChart id={"wardvital_ABP"} data={true} data2={true} width={width} height={100} margin={margin} max={100} min={0} axisBot={false} axisTop={false} colorshadow={"rgba(240, 144, 144, 0.1)"} circlrcolor={"rgba(240, 144, 144, 1)"} data_2_circlrcolor={"rgba(240, 144, 144, 0.5)"}></WardcardvitalsignChart>
-                        </div>
+                        <WardcardvitalsignChart svg_key={"svg_abp"} id_key={"div_abp"} data={true} data2={true} axisBot={false} axisTop={false} colorshadow={"rgba(240, 144, 144, 0.1)"} circlrcolor={"rgba(240, 144, 144, 1)"} data_2_circlrcolor={"rgba(240, 144, 144, 0.5)"}></WardcardvitalsignChart>
+
                     </div>
                 </div>
-                <div style={{ display: "grid", gridTemplateRows: "1fr 1fr" }}>
-                    <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", marginLeft: "20px" }}>
-                        <div style={{ marginTop: "10px", width: "50px" }}>
-                            <div style={{ fontSize: "1rem", color: "rgba(0, 183, 255, 1)" }}>SpO2</div>
-                            <div style={{ fontSize: "1.5rem", color: "rgba(0, 183, 255, 1)" }}>70%</div>
+                <div style={{ display: "grid", gridTemplateRows: "auto,auto,auto", gridRowGap: '5px' }}>
+                    <div style={{ display: "grid", gridTemplateColumns: "80px auto", gridColumnGap: "5px" }}>
+                        <div style={{ marginTop: "20px", display: "flex", alignItems: "center" ,justifyContent:"center"}}>
+                            <div>
+                                <div style={{ fontSize: "1rem", color: "rgba(0, 183, 255, 1)", display: "flex", justifyContent: "center" }}>SpO2</div>
+                                <div style={{ fontSize: "2rem", color: "rgba(0, 183, 255, 1)", display: "flex", justifyContent: "center" }}>70%</div>
+                            </div>
                         </div>
-                        <div id="wardvital_SpO2">
-                            <WardcardvitalsignChart id={"wardvital_SpO2"} data={true} width={width} height={100} margin={margin} max={100} min={0} axisBot={false} axisTop={true} colorshadow={"rgba(0, 183, 255, 0.1)"} circlrcolor={"rgba(0, 183, 255, 1)"}></WardcardvitalsignChart>
-                        </div>
-                    </div>
-                    <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", marginLeft: "20px" }}>
-                        <div style={{ marginTop: "10px", width: "50px" }}>
-                            <div style={{ fontSize: "1rem", color: "rgba(199, 162, 244,1)" }}>BT</div>
-                            <div style={{ fontSize: "1.5rem", color: "rgba(199, 162, 244,1)" }}>36</div>
-                        </div>
-                        <div id="wardvital_BT">
-                            <WardcardvitalsignChart id={"wardvital_BT"} data={true} width={width} height={100} margin={margin} max={100} min={0} axisBot={false} axisTop={false} colorshadow={"rgba(199, 162, 244,0.1)"} circlrcolor={"rgba(199, 162, 244,1)"}></WardcardvitalsignChart>
+                        <div>
+                            <WardcardvitalsignChart svg_key={"svg_spo"} id_key={"div_spo"} data={true} axisBot={false} axisTop={true} colorshadow={"rgba(0, 183, 255, 0.1)"} circlrcolor={"rgba(0, 183, 255, 1)"}></WardcardvitalsignChart>
                         </div>
                     </div>
-                    <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", marginLeft: "20px" }}>
-                        <div style={{ marginTop: "10px", width: "50px" }}>
-                            <div style={{ fontSize: "1rem", color: "rgba(255, 152, 0, 1)" }}>RR</div>
-                            <div style={{ fontSize: "1.5rem", color: "rgba(255, 152, 0, 1)" }}>24</div>
+                    <div style={{ display: "grid", gridTemplateColumns: "80px auto", gridColumnGap: "5px" }}>
+                        <div style={{ display: "flex", alignItems: "center" ,justifyContent:"center"}}>
+                            <div>
+                                <div style={{ fontSize: "1rem", color: "rgba(199, 162, 244,1)", display: "flex", justifyContent: "center" }}>BT</div>
+                                <div style={{ fontSize: "2rem", color: "rgba(199, 162, 244,1)", display: "flex", justifyContent: "center" }}>36</div>
+                            </div>
                         </div>
-                        <div id="wardvital_RR">
-                            <WardcardvitalsignChart id={"wardvital_RR"} data={true} width={width} height={100} margin={margin} max={100} min={0} axisBot={false} axisTop={false} colorshadow={"rgba(255, 152, 0, 0.1)"} circlrcolor={"rgba(255, 152, 0, 1)"}></WardcardvitalsignChart>
+                        <WardcardvitalsignChart svg_key={"svg_bt"} id_key={"div_bt"} data={true} axisBot={false} axisTop={false} colorshadow={"rgba(199, 162, 244,0.1)"} circlrcolor={"rgba(199, 162, 244,1)"}></WardcardvitalsignChart>
+                    </div>
+                    <div style={{ display: "grid", gridTemplateColumns: "80px auto", gridColumnGap: "5px" }}>
+                        <div style={{ display: "flex", alignItems: "center" ,justifyContent:"center"}}>
+                            <div>
+                                <div style={{ fontSize: "1rem", color: "rgba(255, 152, 0, 1)", display: "flex", justifyContent: "center" }}>RR</div>
+                                <div style={{ fontSize: "2rem", color: "rgba(255, 152, 0, 1)", display: "flex", justifyContent: "center" }}>24</div>
+                            </div>
                         </div>
+                        <WardcardvitalsignChart svg_key={"svg_rr"} id_key={"div_rr"} data={true} axisBot={false} axisTop={false} colorshadow={"rgba(255, 152, 0, 0.1)"} circlrcolor={"rgba(255, 152, 0, 1)"}></WardcardvitalsignChart>
                     </div>
                 </div>
             </div>

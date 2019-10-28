@@ -12,7 +12,7 @@ const eventdata = [
         "result": "手術前檢查",
         "name": "林博偉",
         "bednumber": "01",
-        "writter":"林天財"
+        "writter": "林天財"
     },
     {
         "item": "event",
@@ -20,7 +20,7 @@ const eventdata = [
         "result": "傷口變大了",
         "name": "王添財",
         "bednumber": "02",
-        "writter":"林天財"
+        "writter": "林天財"
     }
 ]
 //病床總覽 (Get all bed from ward)
@@ -100,26 +100,6 @@ const ward_bed_lastData = [
     }
 ]
 
-function simulate_vitaldata_day() {
-
-    var dataset = []; //建立空的資料陣列
-    for (let i = 0; i < 24; i++) {
-        const data = Math.floor(Math.random() * 50) + 50;
-        let min = 30;
-        let max = 60;
-        if (i > 18) {
-            min = 50;
-            max = 80;
-        }
-        dataset.push({
-            Data: data,
-            Min: min,
-            Max: max
-        })
-    }
-    return dataset;
-}
-
 const WardInfo = {
     UpdateTime: 1567051200000,
     Director: "林又新",
@@ -144,6 +124,41 @@ const WardInfo = {
         {
             time: 1567051250000,
             text: "「超音波用完請記得歸還原位」",
+            writter: "邱獻章"
+        },
+        {
+            time: 1567051290000,
+            text: "「6月起擴大公費施打B型肝炎免疫球蛋白」",
+            writter: "邱獻章"
+        },
+        {
+            time: 1567051290000,
+            text: "「6月起擴大公費施打B型肝炎免疫球蛋白」",
+            writter: "邱獻章"
+        },
+        {
+            time: 1567051290000,
+            text: "「6月起擴大公費施打B型肝炎免疫球蛋白」",
+            writter: "邱獻章"
+        },
+        {
+            time: 1567051290000,
+            text: "「6月起擴大公費施打B型肝炎免疫球蛋白」",
+            writter: "邱獻章"
+        },
+        {
+            time: 1567051290000,
+            text: "「6月起擴大公費施打B型肝炎免疫球蛋白」",
+            writter: "邱獻章"
+        },
+        {
+            time: 1567051290000,
+            text: "「6月起擴大公費施打B型肝炎免疫球蛋白」",
+            writter: "邱獻章"
+        },
+        {
+            time: 1567051290000,
+            text: "「6月起擴大公費施打B型肝炎免疫球蛋白」",
             writter: "邱獻章"
         },
         {
@@ -211,7 +226,8 @@ const jsonResponse = {
                 "publishednumber": 1,
                 "Note": "隨時注意病人血壓狀況隨時注意病人血壓狀況", //20字
                 "phoneNumber": "0933123456",
-                "MainDoctor":"維大力",
+                "Birthday": 1566287810473,
+                "MainDoctor": "維大力",
                 "detaildata":
                     [
                         {
@@ -232,12 +248,6 @@ const jsonResponse = {
                             "time": 1565395200,
                             "data": false
 
-                        },
-                        {
-                            "item": "HD",
-                            "time": 1565395200,
-                            "data": true
-                            //透
                         },
                         {
                             "item": "Anti",
@@ -366,4 +376,80 @@ const centerrowdata = {
         ]
     }
 }
-export { jsonResponse, centerrowdata, WardInfo, updatetime, ward_bed_information, ward_bed_lastData, labdata, eventdata };
+
+const growdata = {
+    Male_befor: [
+        { y: 22, min: 420, max: 600 },
+        { y: 23, min: 470, max: 700 },
+        { y: 24, min: 510, max: 800 },
+        { y: 25, min: 570, max: 900 },
+        { y: 26, min: 610, max: 1040 },
+        { y: 27, min: 700, max: 1200 },
+        { y: 28, min: 790, max: 1340 },
+        { y: 29, min: 870, max: 1520 },
+        { y: 30, min: 1000, max: 1740 },
+        { y: 31, min: 1120, max: 2000 },
+        { y: 32, min: 1300, max: 2240 },
+        { y: 33, min: 1500, max: 2500 },
+        { y: 34, min: 1700, max: 2800 },
+        { y: 35, min: 1960, max: 3040 },
+        { y: 36, min: 2180, max: 3300 },
+        { y: 37, min: 2400, max: 3500 },
+        { y: 38, min: 2600, max: 3780 },
+        { y: 39, min: 2810, max: 3980 },
+        { y: 40, min: 3000, max: 4200 },
+        { y: 41, min: 3200, max: 4440 },
+        { y: 42, min: 3400, max: 4700 },
+        { y: 43, min: 3600, max: 5000 },
+        { y: 44, min: 3800, max: 5270 }
+    ],
+    FeMale_before: [
+        { y: 22, min: 400, max: 580 },
+        { y: 23, min: 430, max: 640 },
+        { y: 24, min: 490, max: 730 },
+        { y: 25, min: 550, max: 850 },
+        { y: 26, min: 580, max: 1000 },
+        { y: 27, min: 630, max: 1120 },
+        { y: 28, min: 700, max: 1300 },
+        { y: 29, min: 800, max: 1500 },
+        { y: 30, min: 900, max: 1700 },
+        { y: 31, min: 1050, max: 1910 },
+        { y: 32, min: 1200, max: 2180 },
+        { y: 33, min: 1400, max: 2400 },
+        { y: 34, min: 1600, max: 2680 },
+        { y: 35, min: 1850, max: 2930 },
+        { y: 36, min: 2050, max: 3200 },
+        { y: 37, min: 2300, max: 3490 },
+        { y: 38, min: 2480, max: 3700 },
+        { y: 39, min: 2680, max: 3900 },
+        { y: 40, min: 2820, max: 4100 },
+        { y: 41, min: 2980, max: 4300 },
+        { y: 42, min: 3150, max: 4520 },
+        { y: 43, min: 3300, max: 4740 },
+        { y: 44, min: 3500, max: 5000 }
+    ],
+    Male_after: [
+        { y: 0,min: 2500, max: 4300 },
+        { y: 1,min: 2600, max: 4500 },
+        { y: 2,min: 2800, max: 4900 },
+        { y: 3,min: 3100, max: 5200 },
+        { y: 4,min: 3400, max: 5600 },
+        { y: 5,min: 3600, max: 5900 },
+        { y: 6,min: 3800, max: 6300 }
+    ],
+    FeMale_after: [
+        { y: 0,min: 2400, max: 4200 },
+        { y: 1,min: 2500, max: 4400 },
+        { y: 2,min: 2700, max: 4600 },
+        { y: 3,min: 2900, max: 5000 },
+        { y: 4,min: 3100, max: 5300 },
+        { y: 5,min: 3300, max: 5600 },
+        { y: 6,min: 3500, max: 5900 }
+    ]
+}
+
+
+
+
+
+export { jsonResponse, centerrowdata, WardInfo, updatetime, ward_bed_information, ward_bed_lastData, labdata, eventdata, growdata };

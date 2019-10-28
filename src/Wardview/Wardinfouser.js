@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import WardChart from './Wardchart'
 import Wardinfousercheckbox from './Wardunfousercheckbox'
 import { ward_bed_information } from '../jsonResponse'
-import { Select } from 'antd';
 import Wardlabview from './Wardlab'
-import { Modal, Button } from 'antd';
+import { Modal } from 'antd';
+import WardlifeChart from './Wardlifechart'
+import Wardmonthafter from './Wardmonthafter'
 
 class Wardinfouser extends Component {
-    state = {
-        alertstate: "none",
-        test_items_interval: 0,
-        Data_change: true,
-        visible: false
+    constructor(props) {
+        super(props);
+        // 不要在這裡呼叫 this.setState()！
+        this.state = {
+            alertstate: "none",
+            test_items_interval: 0,
+            Data_change: true,
+            visible: false
+        };
     }
 
     showModal = () => {
@@ -203,14 +207,34 @@ class Wardinfouser extends Component {
     sendData = (idnumber) => {
         this.props.parentCallback(idnumber);
     }
+
+    switch_monthy() {
+        const userinfo = this.props.data
+        const switch_data = this.state.test_items_interval
+        console.log(switch_data)
+        switch (switch_data) {
+            case 0:
+                return <WardlifeChart id_key={"wardlife"} svg_key={"wardlife_svg"} gender={userinfo.Gender}></WardlifeChart>
+            case 1:
+                return <Wardmonthafter id_key={"wardlife_after"} svg_key={"wardlife_after_svg"} gender={userinfo.Gender}></Wardmonthafter>
+            default:
+                return null;
+        }
+    }
+
+    Birthday_format(bir) {
+        function Monthformat(month) {
+            return month + 1
+        }
+        const bir_time = new Date(bir).getFullYear() + "-" + Monthformat(new Date(bir).getMonth()) + '-' + new Date(bir).getDate()
+        return bir_time
+    }
     render() {
+
         const userinfo = this.props.data
         console.log(userinfo)
         const userdata = ward_bed_information;
         console.log(userdata)
-        const alertX = document.body.clientWidth * 0.35
-        const alertY = document.body.clientHeight * 0.25
-        const { Option } = Select;
 
 
         let detaillist = userinfo.detaildata.map(
@@ -222,48 +246,39 @@ class Wardinfouser extends Component {
                 </div>
         )
 
-        function handleChange(value) {
-            console.log(`selected ${value}`);
-        }
-
         return (
             <div style={{ borderColor: "rgba(232, 232, 232, 1)", borderWidth: "1px", borderStyle: "solid", borderRadius: "4px" }}>
                 <div style={{ height: '50px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingLeft: "10px", paddingRight: "10px" }}>
                     <div style={{ width: "200px" }}>
-                        <div onClick={() => this.sendData(null)}>&larr;返回病房資訊總覽</div>
+                        <div style={{ cursor: "pointer", color: "blue" }} onClick={() => this.sendData(null)}>&larr;返回病房資訊總覽</div>
                     </div>
-                    <div style={{ fontSize: "22px", width: "200px", textAlign: "center" }}>個案資訊摘要</div>
+                    <div style={{ fontSize: "2rem", textAlign: "center" }}>個案資訊摘要</div>
                     <div style={{ width: "200px", textAlign: "end" }}></div>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingLeft: "16px", paddingRight: "16px" }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', height: "70px", width: "100%" }}>
                         <div style={{ display: "flex" }}>
-                            <div style={{ width: "40px", height: '20px', lineHeight: "40px", fontSize: "1em" }}>病床</div>
-                            <div style={{ fontSize: '3rem', marginLeft: "5px", height: "70px" }}>01</div>
+                            <div style={{ height: '20px', lineHeight: "40px", fontSize: "1.5rem" }}>病床</div>
+                            <div style={{ fontSize: '3rem', marginLeft: "5px", height: "70px" }}>{userinfo.Bednumber}</div>
                             <div style={{ marginLeft: "5px" }}>
-                                <div style={{ height: "40px", display: "flex", alignItems: "center" }}>
-                                    <span style={{ fontSize: "10px" }}>{userinfo.Name}</span>
-                                    <span style={{ fontSize: "10px" }}>&nbsp;/&nbsp;</span>
-                                    <span style={{ fontSize: "10px" }}>CH{userinfo.Bednumber}</span>
-                                    <span style={{ fontSize: "10px" }}>&nbsp;/&nbsp;</span>
-                                    <span style={{ fontSize: "10px" }}>{this.Genderstring(userinfo.Gender)}</span>
-                                    <span style={{ fontSize: "10px" }}>&nbsp;/&nbsp;</span>
-                                    <span style={{ fontSize: "10px" }}>{userinfo.Week}</span>
+                                <div style={{ display: "flex", alignItems: "center" }}>
+                                    <div style={{ fontSize: "1.5rem" }}>{userinfo.Name}</div>
+                                    <div style={{ fontSize: "1.5rem", marginLeft: "10px" }}>{this.Genderstring(userinfo.Gender)}</div>
+                                    <div style={{ fontSize: "1.5rem", marginLeft: "10px" }}>{this.Birthday_format(userinfo.Birthday)}</div>
+                                    <div style={{ fontSize: "1.5rem", marginLeft: "10px" }}>病歷號:{userinfo.id}</div>
                                 </div>
-                                <div style={{ height: "30px", display: "flex", alignItems: "center" }}>
-                                    <span style={{ fontSize: "10px", marginRight: "1rem" }}>病歷號:{userinfo.id}</span>
-                                    <span style={{ fontSize: "10px", marginRight: "1rem" }}>{userinfo.data.Weight}g</span>
-                                    <span style={{ fontSize: "10px", marginRight: "1rem" }}>({userinfo.data.WeightDif}g)</span>
-                                    <span style={{ fontSize: "10px" }}>聯絡電話:{userinfo.phoneNumber}</span>
+                                <div style={{ display: "flex", alignItems: "center" }}>
+                                    <span style={{ fontSize: "1rem", marginRight: "1rem" }}>20＋5&rarr;24+4</span>
+                                    <span style={{ fontSize: "1rem", marginRight: "1rem" }}>{userinfo.data.Weight}g&rarr;({userinfo.data.WeightDif}g)</span>
                                 </div>
                             </div>
                         </div>
                         <div>
                             <div style={{ height: "40px", display: "flex", justifyContent: "flex-end", alignItems: "center" }}>{detaillist}</div>
                             <div style={{ height: "30px", display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
-                                <span style={{ fontSize: "0.7rem" }}>主治醫師&nbsp;</span>
-                                <span style={{ fontSize: "0.7rem", marginRight: "14px" }}>{userinfo.MainDoctor}</span>
-                                <span onMouseUp={this.showModal} style={{ fontSize: "0.7rem", cursor: 'pointer', color: "blue" }}>查看醫療團隊資訊</span>
+                                <span style={{ fontSize: "1rem" }}>主治醫師&nbsp;</span>
+                                <span style={{ fontSize: "1rem", marginRight: "14px" }}>{userinfo.MainDoctor}</span>
+                                <span onMouseUp={this.showModal} style={{ fontSize: "1rem", cursor: 'pointer', color: "blue" }}>查看醫療團隊資訊</span>
                                 <Modal
                                     title="醫療資訊團隊"
                                     visible={this.state.visible}
@@ -282,10 +297,10 @@ class Wardinfouser extends Component {
                     </div>
                 </div>
                 <div style={{ height: '1px', backgroundColor: "rgba(220, 220, 220, 1)", marginRight: "16px", marginLeft: "16px", marginBottom: "20px", marginTop: "20px" }}></div>
-                <div style={{overflow:"auto",maxHeight:"750px"}}>
+                <div style={{ overflow: "auto", maxHeight: "750px" }}>
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr" }}>
                         <div></div>
-                        <div style={{ fontSize: "16px", display: "flex", justifyContent: "center", alignItems: "center" }}>過去24小時生命徵象</div>
+                        <div style={{ fontSize: "1.5rem", display: "flex", justifyContent: "center", alignItems: "center" }}>過去24小時生命徵象</div>
                     </div>
                     <WardChart></WardChart>
                     {/* */}
@@ -293,24 +308,25 @@ class Wardinfouser extends Component {
                         {/*檢驗項目*/}
                         <div style={{ borderWidth: "1px", borderStyle: "solid", borderColor: "rgba(238, 238, 238, 1)", borderRadius: "4px" }}>
                             <div style={{ display: "flex", alignItems: 'center', justifyContent: "space-between", backgroundColor: "rgba(238, 238, 238, 1)", paddingLeft: "15px", paddingRight: "15px" }}>
-                                <div style={{ display: "flex", alignItems: 'center', height: "50px", fontSize: "1rem" }}>檢驗項目</div>
+                                <div style={{ display: "flex", alignItems: 'center', height: "50px", fontSize: "1.5rem" }}>檢驗項目</div>
                             </div>
-                            <Wardlabview></Wardlabview>
+                            <Wardlabview id={"wardlab"}></Wardlabview>
                         </div>
                         {/*生長曲線*/}
                         <div style={{ borderWidth: "1px", borderStyle: "solid", borderColor: "rgba(238, 238, 238, 1)", borderRadius: "4px" }}>
                             <div style={{ display: "flex", justifyContent: "space-between", alignItems: 'center', height: "50px", backgroundColor: "rgba(238, 238, 238, 1)", borderTopLeftRadius: "4px", borderTopRightRadius: "4px", paddingLeft: "15px" }}>
-                                <div style={{ fontSize: "1rem" }}>生長曲線圖</div>
+                                <div style={{ fontSize: "1.5rem" }}>生長曲線圖</div>
                                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gridColumnGap: "5px" }}>
                                     <div style={this.SwitchTestItemInterval(0)} onMouseUp={() => this.Onchangetimeinterval(0)}>足月前</div>
                                     <div style={this.SwitchTestItemInterval(1)} onMouseUp={() => this.Onchangetimeinterval(1)}>足月後</div>
                                 </div>
                             </div>
+                            {this.switch_monthy()}
                         </div>
                     </div>
                     {/*排程*/}
                     <div style={{ borderWidth: "1px", borderStyle: "solid", borderColor: "rgba(238, 238, 238, 1)", borderRadius: "4px", height: "250px", padding: "10px" }}>
-                        <div style={{ display: "flex", alignItems: 'center', height: "50px", backgroundColor: "rgba(238, 238, 238, 1)", borderTopLeftRadius: "4px", borderTopRightRadius: "4px", paddingLeft: "15px", fontSize: "1rem" }}>病人重要注意事項</div>
+                        <div style={{ display: "flex", alignItems: 'center', height: "50px", backgroundColor: "rgba(238, 238, 238, 1)", borderTopLeftRadius: "4px", borderTopRightRadius: "4px", paddingLeft: "15px", fontSize: "1.5rem" }}>病人重要注意事項</div>
                         <div style={{ maxHeight: "200px", overflow: 'auto' }}>
                             <div style={{ height: "50px", display: 'grid', gridTemplateColumns: "25% 75%", borderBottomWidth: "1px", borderBottomColor: "rgba(232, 232, 232, 1)", borderBottomStyle: "solid" }}>
                                 <div style={{ fontSize: "1rem", display: "flex", paddingLeft: "15px", alignItems: "center" }}>1.對甲殼類食物過敏</div>
@@ -320,7 +336,7 @@ class Wardinfouser extends Component {
                     <div style={{ marginTop: "20px", display: "grid", gridColumnGap: "10px", gridTemplateColumns: "1fr 1fr", padding: "10px" }}>
                         {/*排程*/}
                         <div style={{ borderWidth: "1px", borderStyle: "solid", borderColor: "rgba(238, 238, 238, 1)", borderRadius: "4px", height: "250px" }}>
-                            <div style={{ display: "flex", alignItems: 'center', height: "50px", backgroundColor: "rgba(238, 238, 238, 1)", borderTopLeftRadius: "4px", borderTopRightRadius: "4px", paddingLeft: "15px", fontSize: "1rem" }}>排程</div>
+                            <div style={{ display: "flex", alignItems: 'center', height: "50px", backgroundColor: "rgba(238, 238, 238, 1)", borderTopLeftRadius: "4px", borderTopRightRadius: "4px", paddingLeft: "15px", fontSize: "1.5rem" }}>排程</div>
                             <div style={{ maxHeight: "200px", overflow: 'auto' }}>
                                 <div style={{ height: "50px", display: 'grid', gridTemplateColumns: "25% 75%", borderBottomWidth: "1px", borderBottomColor: "rgba(232, 232, 232, 1)", borderBottomStyle: "solid" }}>
                                     <div style={{ fontSize: "1rem", display: "flex", paddingLeft: "15px", alignItems: "center" }}>6/16 16:00</div>
@@ -330,7 +346,7 @@ class Wardinfouser extends Component {
                         </div>
                         {/* 待辦事項 */}
                         <div style={{ borderWidth: "1px", borderStyle: "solid", borderColor: "rgba(238, 238, 238, 1)", borderRadius: "4px", height: "250px" }}>
-                            <div style={{ display: "flex", alignItems: 'center', height: "50px", backgroundColor: "rgba(238, 238, 238, 1)", borderTopLeftRadius: "4px", borderTopRightRadius: "4px", paddingLeft: "15px", fontSize: "1rem" }}>待辦事項</div>
+                            <div style={{ display: "flex", alignItems: 'center', height: "50px", backgroundColor: "rgba(238, 238, 238, 1)", borderTopLeftRadius: "4px", borderTopRightRadius: "4px", paddingLeft: "15px", fontSize: "1.5rem" }}>待辦事項</div>
                             <div style={{ maxHeight: "200px", overflow: 'auto' }}>
                                 <Wardinfousercheckbox selectstate={true}></Wardinfousercheckbox>
                             </div>

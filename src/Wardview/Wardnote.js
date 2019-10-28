@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Input, Button, Tooltip } from 'antd';
 import editlogo from '../Image/svg/Edit.svg'
 import deleteimg from '../Image/svg/delete.svg'
+import detail from '../Image/svg/details.svg'
 
 class WardcardNote extends Component {
     state = {
@@ -14,10 +15,19 @@ class WardcardNote extends Component {
             editstate: "none"
         });
     }
+
     editlist() {
-        this.setState({
-            editstate: "inline"
-        });
+        console.log(this.state.editstate)
+        if (this.state.editstate === "none") {
+            this.setState({
+                editstate: "inline"
+            });
+        }
+        else {
+            this.setState({
+                editstate: "none"
+            });
+        }
     }
 
     AddNewannouce() {
@@ -50,11 +60,14 @@ class WardcardNote extends Component {
 
         }
     }
-    styleedit(){
+    styleedit(string) {
         if (this.state.editstate === "none") {
-            return null
+            return (
+                <Tooltip placement="top" title={string}>
+                    <img src={detail} alt='detaillogo'></img>
+                </Tooltip>);
         }
-        else{
+        else {
 
             return <img src={deleteimg} alt='deletelogo'></img>
         }
@@ -65,13 +78,15 @@ class WardcardNote extends Component {
         var annoucelistview = []
         for (let index = 0; index < item.length; index++) {
             const element = item[index];
-            const text = <div>{element.text},{new Date(element.time).getMonth()}/{new Date(element.time).getDate()} {element.writter}醫師留</div>
-            const announce = <Tooltip placement="top" title={text}>
-                <div style={{display:'flex',justifyContent:"space-between",alignItems:"center"}}>
-                    <div key={index} style={{ height: "50px", lineHeight: "30px", paddingTop: '10px', paddingBottom: '10px', fontSize: "16px" }}>{element.text}</div>
-                    {this.styleedit()}
+            const text = <div>{new Date(element.time).getMonth()}/{new Date(element.time).getDate()} {element.writter}醫師留</div>
+            const announce =
+                <div key={index} style={{ display: 'grid', gridTemplateColumns: "15px auto", gridColumnGap: "5px", paddingTop: "5px", paddingBottom: "5px" }}>
+                    <div>{index + 1}.</div>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                        <div style={{ display: "flex", alignItems: "center" }}>{element.text}</div>
+                        {this.styleedit(text)}
+                    </div>
                 </div>
-            </Tooltip>
             annoucelistview.push(announce)
         }
         // const annouceview = annouce.map(
@@ -83,27 +98,20 @@ class WardcardNote extends Component {
         return annoucelistview
     }
     render() {
-
-
-
         const editstyle = {
             display: this.state.editstate,
         }
-
-
-
-
 
         return (
             <div style={{ marginTop: "10px" }}>
                 <div style={{ backgroundColor: "rgba(238,238,238,1)", height: "50px", padding: "10px", fontSize: "14px", borderTopLeftRadius: "4px", borderTopRightRadius: "4px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                     <div>病房公告</div>
-                    <div style={{ width: "30px" }} onMouseUp={() => this.editlist()}>
+                    <div style={{ width: "15px" }} onMouseUp={() => this.editlist()}>
                         <img src={editlogo} alt='editlogo'></img>
                     </div>
                 </div>
                 <div style={{ borderColor: "rgba(238,238,238,1)", borderStyle: 'solid', borderWidth: '1px' }}>
-                    <div style={{ maxHeight: "300px", overflowY: 'auto', paddingLeft: '40px', paddingRight: "40px", height: this.changehight() }}>
+                    <div style={{ maxHeight: this.changehight(), overflowY: 'auto', paddingLeft: '5px', paddingRight: "15px" }}>
                         {this.announcelist()}
                     </div>
                     <div style={editstyle}>

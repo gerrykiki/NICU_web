@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { DatePicker, Button, Select } from 'antd';
-import moment from 'moment';
+
 
 class Labview extends Component {
     state = {

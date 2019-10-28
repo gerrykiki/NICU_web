@@ -2,15 +2,17 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import "antd/dist/antd.css";
 import Wardcardvalue from './Wardcardvalue'
-import patientviewlogo from '../Image/svg/Patientviewclick.svg'
-import checklogo from '../Image/svg/Check.svg'
-import { ward_bed_lastData } from '../jsonResponse'
+import editlogo from '../Image/svg/edit2.svg'
+import fileLogo from '../Image/svg/file1.svg'
+import file2Logo from '../Image/svg/file2.svg'
 
 
 class Wardcarddetail extends Component {
     state = {
         hoverstate: "none",
-        clickstate: false
+        clickstate: false,
+        mouse_hover: false,
+        edit_hover: false
     };
 
     switchbednumber(number) {
@@ -62,12 +64,54 @@ class Wardcarddetail extends Component {
             hoverstate: "none"
         });
     }
+
     sendData = (idnumber) => {
-        this.props.parentCallback(idnumber);
+        const { previewmode } = this.props
+        if (previewmode) {
+            this.props.parentCallback(idnumber);
+        }
+    }
+
+    switch_hoverbackground() {
+        this.setState(
+            {
+                mouse_hover: true
+            }
+        )
+    }
+
+    switch_hoverbackground_leave(string) {
+        this.setState(
+            {
+                mouse_hover: false
+            }
+        )
     }
 
 
+    switch_editbackground() {
+        this.setState(
+            {
+                edit_hover: true
+            }
+        )
+    }
 
+    switch_editbackground_leave() {
+        this.setState(
+            {
+                edit_hover: false
+            }
+        )
+    }
+
+    Birthday_format(bir) {
+        function Monthformat(month) {
+            return month + 1
+        }
+        const bir_time = new Date(bir).getFullYear() + "-" + Monthformat(new Date(bir).getMonth()) + '-' + new Date(bir).getDate()
+        return bir_time
+    }
     render() {
         const { data, selectstate } = this.props
         var selectstyle = null
@@ -93,26 +137,32 @@ class Wardcarddetail extends Component {
                 position: 'relative'
             }
         }
-        console.log(data)
+        this.Birthday_format(data.Birthday)
         return (
-            <div onClick={() => this.sendData(data.id)}>
+            <div style={{ cursor: 'pointer' }} onClick={() => this.sendData(data.id)}>
                 <div style={selectstyle}>
-                    <div style={{ height: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: "rgba(215, 238, 255, 1)", padding: "10px" }}>
-                        <div style={{ fontSize: '18px', color: "rgba(61, 119, 181, 1)" }}>{data.Bednumber}/{data.Name}</div>
-                        <div style={{ fontSize: '18px', color: "rgba(61, 119, 181, 1)" }}>{this.switchgender(data.Gender)}/[20＋5]&rarr;[24+4]</div>
+                    <div style={{ height: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: "rgba(215, 238, 255, 1)", padding: "10px", position: 'relative' }}>
+                        <div style={{ fontSize: '1rem', color: "rgba(61, 119, 181, 1)" }}>{data.Bednumber} {data.Name} {this.switchgender(data.Gender)} {this.Birthday_format(data.Birthday)} 病歷號:{data.id}</div>
+                        <div onMouseMove={() => this.switch_editbackground()} onMouseLeave={() => this.switch_editbackground_leave()} style={{ height: "25px", width: "25px", borderRadius: "99em", backgroundColor: this.state.edit_hover ? "rgba(59, 151, 225, 1)" : "rgba(59, 151, 225, 0.5)", display: "flex", justifyContent: "center", alignItems: "center", position: 'absolute', right: "5px" }}>
+                            <img src={editlogo} alt='editlogo'></img>
+                        </div>
                     </div>
                     <div style={{ height: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: "10px", borderBottomWidth: "0.5px", borderBottomColor: "rgba(215, 238, 255, 1)", borderBottomStyle: "solid" }}>
-                        <div style={{ fontSize: '14px', color: "black" }}>
-                            病歷號:{data.id}
+                        <div style={{ fontSize: '1rem', color: "black" }}>20＋5&rarr;24+4</div>
+                        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",width:"100px"}}>
+                            <img src={fileLogo} alt='fileLogo'></img>
+                            <div style={{color:"blue"}}>3</div>
+                            <img src={file2Logo} alt='file2Logo'></img>
+                            <div style={{color:"black"}}>12</div>
                         </div>
-                        <div style={{ fontSize: '14px', color: "black" }}>{data.data.Weight}g&rarr;{data.data.WeightDif}g</div>
+                        <div style={{ fontSize: '1rem', color: "black" }}>{data.data.Weight}g&rarr;{data.data.WeightDif}g</div>
                     </div>
                     <div style={{ borderBottomWidth: "0.5px", borderBottomColor: "rgba(215, 238, 255, 1)", borderBottomStyle: "solid" }}>
                         <Wardcardvalue source={data}></Wardcardvalue>
                     </div>
-                    <div style={{ height: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: "10px", borderBottomWidth: "0.5px", borderBottomColor: "rgba(215, 238, 255, 1)", borderBottomStyle: "solid", borderTopWidth: "0.5px", borderTopColor: "rgba(215, 238, 255, 1)", borderTopStyle: "solid" }}>
-                        <div style={{ fontSize: '10px', color: "black" }}>{data.Note}</div>
-                        <Link to={{ pathname: "/nicu/patient", state: data }} style={{ height: "20px", backgroundColor: "rgba(59, 151, 225, 1)", borderRadius: "4px", textAlign: "center", lineHeight: "20px", color: "white", paddingLeft: "3px", paddingRight: "3px" }}>進入病人資料頁面</Link>
+                    <div style={{ height: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: "10px", borderBottomWidth: "0.5px", borderBottomColor: "rgba(215, 238, 255, 1)", borderBottomStyle: "solid", borderTopWidth: "0.5px", borderTopColor: "rgba(215, 238, 255, 1)", borderTopStyle: "solid", position: 'relative' }}>
+                        <div style={{ fontSize: '1rem', color: "black" }}>{data.Note}</div>
+                        <Link onMouseLeave={() => this.switch_hoverbackground_leave("string")} onMouseMove={() => this.switch_hoverbackground()} to={{ pathname: "/nicu/patient", state: data }} style={{ height: "20px", backgroundColor: this.state.mouse_hover ? "rgba(59, 151, 225, 1)" : "rgba(59, 151, 225, 0.5)", borderRadius: "4px", textAlign: "center", lineHeight: "20px", color: "white", position: 'absolute', right: "5px" }}>進入病人資料頁面</Link>
                     </div>
                 </div>
             </div>

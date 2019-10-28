@@ -3,22 +3,31 @@ import React, { Component } from 'react';
 import 'antd/dist/antd.css';
 import './Layout.css';
 import Sidermenu from './Sidermenu';
-import { renderRoutes } from 'react-router-config'
-import { Routes } from './Routes'
+import Bedview from '../Wardview/Bedview'
+import Historyview from '../Content/Historyview'
+import Patientviewlayout from '../Patientview/Patientviewlayout'
+import Systemcontrol from '../Content/Systemcontrol'
+import { Route, Switch } from 'react-router-dom';
 
 const { Header, Content } = Layout;
 
 class Layoutframe extends Component {
     constructor(props) {
         super(props);
-        console.log(props);
+        this.state = {
+            value: 1,
+            collapsed: false,
+            mode: 'inline',
+        };
+        this.handleResize = this.handleResize.bind(this);
     }
 
-    state = {
-        value: 1,
-        collapsed: false,
-        mode: 'inline',
-    };
+    handleResize() {
+        console.log("123")
+        var baseWidth = document.documentElement.clientWidth || document.body.clientWidth;
+        document.documentElement.style.fontSize = '12px'
+        console.log(baseWidth);
+    }
 
     toggle = () => {
         this.setState({
@@ -28,6 +37,14 @@ class Layoutframe extends Component {
 
     Localtimeformat() {
         return new Date().getFullYear() + "-" + this.Monthformat(new Date().getMonth()) + "-" + new Date().getDate()
+    }
+
+    componentDidMount() {
+        window.addEventListener('resize', this.handleResize);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.handleResize);
     }
 
 
@@ -87,19 +104,25 @@ class Layoutframe extends Component {
     render() {
         const url_path = this.props.location.pathname
         console.log(url_path)
+        document.documentElement.style.fontSize = '12px'
         return (
             <Layout>
                 <Layout style={{ background: '#fff' }}>
                     <Header className="header">
                         {/*eslint-disable-next-line*/}
                         <div style={{ display: 'flex', alignItems: 'center' }}>
-                            <div style={{ fontSize: "22px" }}>NICU</div>
+                            <div style={{ fontSize: "2rem" }}>NICU</div>
                             <Sidermenu path={url_path} routes={this.props.route}></Sidermenu>
                         </div>
-                        <div style={{ fontSize: "16px", color: 'rgba(255, 255, 255, 1)' }}>陳國榮醫師 {this.Localtimeformat()} {this.renderSwitch(new Date().getDay())}</div>
+                        <div style={{ fontSize: "1.5rem", color: 'rgba(255, 255, 255, 1)' }}>陳國榮醫師 {this.Localtimeformat()} {this.renderSwitch(new Date().getDay())}</div>
                     </Header>
                     <Content>
-                        <Routes></Routes>
+                        <Switch>
+                            <Route exact path={`${this.props.match.path}`} component={Bedview} />
+                            <Route path={`${this.props.match.path}/history`} component={Historyview} />
+                            <Route path={`${this.props.match.path}/system`} component={Systemcontrol} />
+                            <Route path={`${this.props.match.path}/patient`} component={Patientviewlayout} />
+                        </Switch>
                     </Content>
                 </Layout>
             </Layout>

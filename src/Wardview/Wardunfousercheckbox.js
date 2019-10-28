@@ -15,9 +15,10 @@ class Wardinfousercheckbox extends Component{
     render() {
         
         const selectunstyle = {
+            fontSize:"1rem"
         }
         const selectstyle = {
-            textDecoration:"line-through"
+            textDecoration:"line-through",fontSize:"1rem"
         }
         return (
             <div style={{height:"50px",paddingLeft:"15px",display:"flex",alignItems:"center"}}>

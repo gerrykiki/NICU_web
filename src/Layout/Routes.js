@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Bedview from '../Wardview/Bedview'
 import Historyview from '../Content/Historyview'
 import Patientviewlayout from '../Patientview/Patientviewlayout'
 import Systemcontrol from '../Content/Systemcontrol'
 import Layoutframe from './Layout'
 import Loginview from './Login'
-import { Route, Switch ,Redirect} from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 
 const Routes = () => {

@@ -5,9 +5,7 @@ import Wardcard from './Wardcard';
 import Wardcarddetail from './Wardcarddetail';
 import Unpreviewwardcard from './UnpreviewWardCard'
 import Unpreviewwardcarddetail from './UnpreviewWardCardDetail'
-import { renderRoutes } from 'react-router-config';
 import { jsonResponse, updatetime } from '../jsonResponse';
-import { Routes } from '../Layout/Routes'
 import Wardinfoindex from './Wardinfoindex'
 import Wardinfouser from './Wardinfouser'
 
@@ -24,107 +22,124 @@ class Bedview extends Component {
         this.setState({ select: wardinfo })
     }
 
-    onChangesimple = () => {
+    onChangesimple = (checked) => {
         this.setState({
             simplemode: !this.state.simplemode,
         });
     }
 
-    onChangedisplay = () => {
+    onChangedisplay = (checked) => {
         this.setState({
             previewmode: !this.state.previewmode,
         });
     }
 
-    switchwardinfo() {
-        const source_array = jsonResponse.Userdata.user;
-        const select_id = this.state.select
-        const filteritem = source_array.filter(function (item, index, array) {
-            return item.id === select_id;
-        });
-        if (this.state.select === null) {
-            return <Wardinfoindex></Wardinfoindex>
-        }
-        else {
-            return <Wardinfouser data={filteritem[0]} parentCallback={this.callbackFunction}></Wardinfouser>
-        }
-    }
 
 
-    previewswitch() {
+    previewmode_switch() {
 
+        const source = jsonResponse.Userdata.user;
         const wardcardlist = []
         const wardcarddetaillist = []
         const Unpreview_Wardcardlist = []
         const Unpreview_Wardcarddetaillist = []
-        const source = jsonResponse.Userdata.user;
 
-
-        for (let i = 0; i < source.length; i++) {
-            wardcardlist.push(<Wardcard key={i} data={source[i]} parentCallback={this.callbackFunction} selectstate={this.state.select} />)
-            wardcarddetaillist.push(<Wardcarddetail key={i} data={source[i]} parentCallback={this.callbackFunction} selectstate={this.state.select} />)
-        }
-        for (let i = 0; i < 12; i++) {
-            console.log(source[i])
-            if (source[i] == null) {
-                Unpreview_Wardcardlist.push(<Unpreviewwardcard bedbumber={i} key={i} data={null} selectstate={null} />)
-                Unpreview_Wardcarddetaillist.push(<Unpreviewwardcarddetail bedbumber={i} key={i} data={null} selectstate={null} />)
-            }
-            else {
-                Unpreview_Wardcardlist.push(<Wardcard bedbumber={i} key={i} data={source[i]} selectstate={null} />)
-                Unpreview_Wardcarddetaillist.push(<Wardcarddetail bedbumber={i} key={i} data={source[i]} selectstate={null} />)
-            }
-        }
-
-        const detailstyle = {
-            padding: '10px',
-            width: '30%',
-            overflow: 'auto',
-            maxHeight: '80vh'
-        }
-
-        const previewstyle = {
-            margin: '10px',
-            overflow: 'auto',
-            maxHeight: '650px',
-            width: '99%',
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr 1fr 1fr'
-        }
-        if (this.state.previewmode) {
-            if (this.state.simplemode) {
-                return (
-                    <div style={previewstyle}>{Unpreview_Wardcardlist}</div>
-                );
-            } else {
-                return (
-                    <div style={previewstyle}>{Unpreview_Wardcarddetaillist}</div>
-                );
+        if (!this.state.previewmode) {
+            for (let i = 0; i < source.length; i++) {
+                wardcardlist.push(<Wardcard key={i} data={source[i]} parentCallback={this.callbackFunction} selectstate={this.state.select} previewmode={true} />)
+                wardcarddetaillist.push(<Wardcarddetail key={i} data={source[i]} parentCallback={this.callbackFunction} selectstate={this.state.select} previewmode={true} />)
             }
         }
         else {
+            for (let i = 0; i < 12; i++) {
+                console.log(source[i])
+                if (source[i] == null) {
+                    Unpreview_Wardcardlist.push(<Unpreviewwardcard bedbumber={i} key={i} data={null} selectstate={null} previewmode={false} />)
+                    Unpreview_Wardcarddetaillist.push(<Unpreviewwardcarddetail bedbumber={i} key={i} data={null} selectstate={null} previewmode={false} />)
+                }
+                else {
+                    Unpreview_Wardcardlist.push(<Wardcard bedbumber={i} key={i} parentCallback={this.callbackFunction} data={source[i]} selectstate={null} previewmode={false} />)
+                    Unpreview_Wardcarddetaillist.push(<Wardcarddetail bedbumber={i} key={i} data={source[i]} selectstate={null} parentCallback={this.callbackFunction} previewmode={false} />)
+                }
+            }
+
+        }
+
+        const preview_style = { display: "grid", gridTemplateColumns: "1fr 3fr", gridColumnGap: "5px" }
+        const Unpreview_style = { display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gridTemplateRows: "1fr 1fr 1fr", gridGap: "5px" }
+        //true:Unpreview
+        if (this.state.previewmode) {
+            //true:sample
             if (this.state.simplemode) {
                 return (
-                    <div style={{ display: 'flex' }}>
-                        <div style={detailstyle}>{wardcardlist}</div>
-                        <div className="wardinfocontent">
-                            {this.switchwardinfo()}
+                    <div style={Unpreview_style}>{Unpreview_Wardcardlist}</div>
+                );
+            }
+            //false:detail 
+            else {
+                return (
+                    <div style={Unpreview_style}>{Unpreview_Wardcarddetaillist}</div>
+                );
+            }
+        }
+        //false:preview
+        else {
+            if (this.state.simplemode) {
+                //true:sample
+                return (
+                    <div style={preview_style}>
+                        <div>
+                            {wardcardlist}
                         </div>
+                        {this.switch_wardbednumber(source)}
                     </div>
                 );
-            } else {
+            }
+            //false:detail  
+            else {
                 return (
-                    <div style={{ display: 'flex' }}>
-                        <div style={detailstyle}>{wardcarddetaillist}</div>
-                        {/* <div className="wardinfocontent">{renderRoutes(route[0].routes[0].routes)}</div> */}
-                        <div className="wardinfocontent">
-                            {this.switchwardinfo()}
+                    <div style={preview_style}>
+                        <div>
+                            {wardcarddetaillist}
                         </div>
+                        {this.switch_wardbednumber(source)}
                     </div>
                 );
             }
         }
     }
+    select_warduser(source) {
+        var select = this.state.select
+        const filterData = source.filter(function (item, index, array) {
+            return item.id === select;
+        });
+        return filterData[0];
+    }
+
+    switch_wardbednumber(source) {
+        if (this.state.select === null) {
+            return <Wardinfoindex />
+        }
+        return <Wardinfouser data={this.select_warduser(source)} parentCallback={this.callbackFunction}></Wardinfouser>
+    }
+
+    switch_titile_string(){
+        const source = jsonResponse.Userdata.user
+        const id_item = this.state.select
+        if (this.state.select === null) {
+            return "病房資訊摘要"
+        }
+        else {
+            const filterdata = source.filter(function(item, index, array){
+                return item.id === id_item;       // 取得大於五歲的
+              });
+            const string = filterdata[0].Bednumber
+            return "床號" + string + "病人資訊摘要"
+
+        }
+
+    }
+
     render() {
         const update = updatetime
 
@@ -167,23 +182,22 @@ class Bedview extends Component {
                     return hour;
             }
         }
-
         return (
-            <div>
-                <div style={{ paddingLeft: "10px", paddingRight: "10px", fontSize: "16px", display: "flex", justifyContent: "space-between", alignItems: 'center' }}>病房總覽 > </div>
-                <div style={{ paddingLeft: "10px", paddingRight: "10px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <div style={{ paddingLeft: "20px", paddingRight: "20px" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: 'center' }}>住院中病人資訊 > {this.switch_titile_string()}</div>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                     <div>
-                        <span style={{ fontSize: "14px" }}>資料更新時間</span>
-                        <span style={{ marginLeft: "10px", fontSize: "14px" }}>{Timestampformat(update.time)}</span>
-                        <span style={{ marginLeft: "10px", fontSize: "14px" }}>{HourTimestampformat(update.time)}</span>
+                        <Switch style={{ marginRight: 5 }} checkedChildren="床頭卡顯示(繁)" unCheckedChildren="床頭卡顯示(簡)" defaultChecked onChange={this.onChangesimple} />
+                        <Switch checkedChildren="病人摘要檢視(開)" unCheckedChildren="病人摘要檢視(關)" defaultChecked onChange={this.onChangedisplay} />
                     </div>
                     <div>
-                        <Switch style={{ marginRight: 5 }} checkedChildren="Detail" unCheckedChildren="Detail" defaultChecked onChange={this.onChangesimple} />
-                        <Switch checkedChildren="Previw" unCheckedChildren="Previw" defaultChecked onChange={this.onChangedisplay} />
+                        <span>資料更新時間</span>
+                        <span style={{ marginLeft: "10px" }}>{Timestampformat(update.time)}</span>
+                        <span style={{ marginLeft: "10px" }}>{HourTimestampformat(update.time)}</span>
                     </div>
                 </div>
-                <div>
-                    {this.previewswitch()}
+                <div style={{ marginTop: "5px" }}>
+                    {this.previewmode_switch()}
                 </div>
             </div>
         );

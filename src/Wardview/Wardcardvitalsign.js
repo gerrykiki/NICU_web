@@ -19,35 +19,73 @@ class WardcardvitalsignChart extends Component {
         clearInterval(this.timerID);
     }
 
-    cal_svg_hight(){
-        const { axisTop ,axisBot, hight, margin} = this.props
-        var svg_hight;
+    cal_svg_hight() {
+        const { axisTop, axisBot } = this.props
         if (axisTop) {
             if (axisBot) {
-                
+                return 160
             }
-            else{
-
+            else {
+                return 130
             }
         }
-        else{
+        else {
             if (axisBot) {
-                
+                return 130
             }
-            else{
-
+            else {
+                return 90
             }
-
         }
+    }
 
+    cal_svg_transform() {
+        const { axisTop, axisBot } = this.props
+        console.log(axisTop)
+        if (axisTop) {
+            if (axisBot) {
+                return 70
+            }
+            else {
+                return 50
+            }
+        }
+        else {
+            if (axisBot) {
+                return 50
+            }
+            else {
+                return 5
+            }
+        }
     }
 
     drawChart() {
-        const { id, width, height, min, max, margin, circlrcolor, data, colorshadow, axisTop, data2, data_2_circlrcolor } = this.props
+        const { svg_key, circlrcolor, data, axisTop} = this.props
+        const width = window.screen.availWidth * 0.25, height = 70, transformmargin = this.cal_svg_transform(), max = 200, min = 0, margin = 20
+        var time_now = new Date(2019, new Date().getMonth(), 27, new Date().getHours());
 
-        var d = new Date('2014,12,01,12:16:05');
-        var _a = d3.timeFormat("%a");
-        console.log(_a(d));
+        var time_array = []
+
+        for (let index = 0; index < 25; index++) {
+            //const element = array[index];
+            time_array.push({ key: "time", x_axis_time: time_now - index * 60 * 60 * 1000 })
+        }
+        var time_array_reverse = time_array.reverse()
+
+        console.log(time_array_reverse)
+
+
+        var formatHour = d3.timeFormat("%H")
+        function multiFormat(date) {
+            return formatHour(date)
+        }
+
+        console.log(formatHour(1570251889258))
+        var x = d3.scaleLinear()
+            .domain([time_array_reverse[0].x_axis_time, time_array_reverse[24].x_axis_time])
+            .range([0, width - 31]);
+
 
         var vertigo = datarelease();
 
@@ -56,9 +94,7 @@ class WardcardvitalsignChart extends Component {
             .domain([min, max])
             .range([height, 0])
 
-        var x = d3.scaleLinear()
-            .domain([1, 24])
-            .range([0, width])
+
 
         var yAxis = d3.axisLeft(y)
             .tickValues([min, max])
@@ -68,23 +104,21 @@ class WardcardvitalsignChart extends Component {
 
 
         var xAxis = d3.axisTop(x)
-            .ticks(4)
+            .ticks(20)
             .tickSize(0, 0)
-            .tickPadding(margin);
+            .tickPadding(margin)
+            .tickFormat(function (d) { return multiFormat(d); });
 
-        var svgwidth = width + 50
-
-        
         var svg = d3
-            .select("#" + id)
-            .append("div")
-            .style("height", "170px")
-            .style("width", svgwidth + "px")
-            .append("svg")
-            .attr("width", width)
-            .attr("height", height)
+            .select("#" + svg_key)
+            // .style("height", "300px")
+            // .style("width", svgwidth + "px")
+            // .select("svg")
+            // .attr("width", width)
+            // .attr("height", this.cal_svg_hight())
+            .attr("viewBox", [0, 0, width, this.cal_svg_hight()])
             .append("g")
-            .attr("transform", "translate(" + 40 + "," + (margin + 30) + ")");
+            .attr("transform", "translate(" + 30 + "," + transformmargin + ")");
 
 
         //y軸
@@ -99,34 +133,6 @@ class WardcardvitalsignChart extends Component {
                 .call(xAxis)
                 .attr("class", "axis");
         }
-
-        // if (axisBot) {
-        //     console.log(axisBot)
-        //     svg.append("g")
-        //         .call(xAxisbottom)
-        //         .attr("class", "axis")
-        //         .attr("transform", "translate(" + 0 + ", " + height + ")");
-        // }
-
-
-        //上下警戒線
-        // svg.append('line')
-        //     .attr('x1', -margin)
-        //     .attr('y1', y(min))
-        //     .attr('x2', width)
-        //     .attr('y2', y(min))
-        //     .style('stroke', 'red')
-        //     .style('stroke-width', 1)
-        //     .style('stroke-dasharray', 5.5);
-
-        // svg.append('line')
-        //     .attr('x1', -margin)
-        //     .attr('y1', y(max))
-        //     .attr('x2', width)
-        //     .attr('y2', y(max))
-        //     .style('stroke', 'red')
-        //     .style('stroke-width', 1)
-        //     .style('stroke-dasharray', 5.5);
 
         //上下虛線
         svg.append('line')
@@ -148,138 +154,99 @@ class WardcardvitalsignChart extends Component {
             .style('stroke-dasharray', 5.5);
 
 
-        for (let index = 0; index < vertigo.length; index++) {
+        for (let index = 0; index < time_array_reverse.length; index++) {
             svg.append('line')
-                .attr('x1', x(index + 1))
+                .attr('x1', x(time_array_reverse[index].x_axis_time))
                 .attr('y1', 0)
-                .attr('x2', x(index + 1))
+                .attr('x2', x(time_array_reverse[index].x_axis_time))
                 .attr('y2', height)
                 .style('stroke', 'rgba(187, 187, 187, 1)')
                 .style('stroke-width', 1)
                 .style('stroke-dasharray', 5.5);
         }
 
-        vertigo.map((o, i) => (
-            svg.append('rect')
-                .attr('width', width / 23)
-                .attr('height', y(o.Min) - y(o.Max))
-                .attr("x", x(i + 0.5))
-                .attr("y", y(o.Max))
-                .style('fill', colorshadow)
-        ))
-
+        // vertigo.map((o, i) => (
+        //     svg.append('rect')
+        //         .attr('width', width / 23)
+        //         .attr('height', y(o.Min) - y(o.Max))
+        //         .attr("x", x(i + 0.5))
+        //         .attr("y", y(o.Max))
+        //         .style('fill', colorshadow)
+        // ))
+        console.log(vertigo)
         if (data) {
             vertigo.map((o, i) => (
-                o.Data > 0 && o.Data < 100 ?
+                o.Data > 0 && o.Data < 200 ?
                     svg.append('circle')
                         .attr("id", "the_SVG_ID")
-                        .attr('cx', x(i + 1))
+                        .attr('cx', x(o.time))
                         .attr('cy', y(o.Data))
-                        .attr('r', 2.5)
+                        .attr('r', 1)
                         .style('fill', circlrcolor)
                     : null
             ))
         }
 
 
-        if (data2) {
-            console.log("there has data 2")
-            const data_2 = data_2_release()
-            data_2.map((o, i) => (
-                o.Data > 0 && o.Data < 100 ?
-                    svg.append('circle')
-                        .attr('cx', x(i + 1))
-                        .attr('cy', y(o.Data))
-                        .attr('r', 2.5)
-                        .style('fill', data_2_circlrcolor)
-                    : null
-            ))
-        }
-        else {
+        // if (data2) {
+        //     console.log("there has data 2")
+        //     const data_2 = data_2_release()
+        //     data_2.map((o, i) => (
+        //         o.Data > 0 && o.Data < 100 ?
+        //             svg.append('circle')
+        //                 .attr('cx', x(i + 1))
+        //                 .attr('cy', y(o.Data))
+        //                 .attr('r', 2.5)
+        //                 .style('fill', data_2_circlrcolor)
+        //             : null
+        //     ))
+        // }
+        // else {
 
-            console.log("there not has data 2")
-        }
+        //     console.log("there not has data 2")
+        // }
 
-        function drawdata() {
-            svg.selectAll("#the_SVG_ID").remove()
-            console.log("reflash")
-            const raw_data = datarelease()
-            raw_data.map((o, i) => (
-                o.Data > 0 && o.Data < 100 ?
-                    svg.append('circle')
-                        .attr("id", "the_SVG_ID")
-                        .attr('cx', x(i + 1))
-                        .attr('cy', y(o.Data))
-                        .attr('r', 2.5)
-                        .style('fill', circlrcolor)
-                    : null
-            ))
-        }
+        // function drawdata() {
+        //     svg.selectAll("#the_SVG_ID").remove()
+        //     console.log("reflash")
+        //     const raw_data = datarelease()
+        //     raw_data.map((o, i) => (
+        //         o.Data > 0 && o.Data < 100 ?
+        //             svg.append('circle')
+        //                 .attr("id", "the_SVG_ID")
+        //                 .attr('cx', x(i + 1))
+        //                 .attr('cy', y(o.Data))
+        //                 .attr('r', 2.5)
+        //                 .style('fill', circlrcolor)
+        //             : null
+        //     ))
+        // }
 
         function datarelease() {
 
             var dataset = []; //建立空的資料陣列
-            /*
-            Data format = {
-                Data:data_source
-                Max:max
-                Min:min
-            }
-             */
-            if (dataset.length != 0) {
-
+            if (dataset.length !== 0) {
                 dataset.length = 0
             }
-            for (let i = 0; i < 24; i++) {
-                const data = Math.floor(Math.random() * 50) + 50;
-                let min = 30;
-                let max = 60;
-                if (i > 18) {
-                    min = 50;
-                    max = 80;
-                }
+            for (let i = 0; i < 4320; i++) {
+                const data = Math.floor(Math.random() * 40) + 140;
+                const time = (new Date(2019, new Date().getMonth(), 26,  new Date().getHours()).getTime() + (i * 20  * 1000))
                 dataset.push({
                     Data: data,
-                    Min: min,
-                    Max: max
+                    time: time
                 })
             }
             return dataset;
         }
-
-        function data_2_release() {
-            var dataset = []; //建立空的資料陣列
-            /*
-            Data format = {
-                Data:data_source
-                Max:max
-                Min:min
-            }
-             */
-            for (let i = 0; i < 24; i++) {
-                const data = 40;
-                let min = 30;
-                let max = 60;
-                if (i > 18) {
-                    min = 50;
-                    max = 80;
-                }
-                dataset.push({
-                    Data: data,
-                    Min: min,
-                    Max: max
-                })
-            }
-            return dataset;
-        }
-
-        this.timerID = setInterval(function next() {
-            drawdata();
-        }, 3000);
     }
 
     render() {
-        return null
+        const { id_key, svg_key } = this.props
+        return (
+            <div id={id_key}>
+                <svg id={svg_key}></svg>
+            </div>
+        );
     }
 }
 

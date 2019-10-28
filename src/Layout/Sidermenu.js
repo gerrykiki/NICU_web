@@ -14,7 +14,7 @@ class Sidermenu extends Component {
 
     Selectkeynumber(key) {
         switch (key) {
-            case '/nicu/ward':
+            case '/nicu':
                 return 0;
             case '/nicu/history':
                 return 1;
@@ -48,18 +48,14 @@ class Sidermenu extends Component {
             paddingLeft: '15px',
             paddingRight: '15px'
         }
-        const linkfont = {fontsize: "16px",color: "rgba(255, 255, 255, 1)",marginLeft: "10px"}
-        const dislinkfont = {
-            fontsize: "16px",
-            color: "rgba(46, 100, 164, 1)",
-            marginLeft: "10px"
-        }
+        const linkfont = { fontSize: "1.5rem", color: "rgba(255, 255, 255, 1)", marginLeft: "10px" }
+        const dislinkfont = { fontSize: "1.5rem", color: "rgba(46, 100, 164, 1)", marginLeft: "10px" }
         return (
             <div style={{ display: 'flex', alignItems: 'center', marginLeft: "20px", height: '100%' }}>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                    <Link to="/nicu/ward" style={this.select_hover(0) ? linkstate : dislinkstate}>
+                    <Link to="/nicu" style={this.select_hover(0) ? linkstate : dislinkstate}>
                         <img src={wardviewlogo} alt='wardviewlogo'></img>
-                        <div style={this.select_hover(0) ? linkfont : dislinkfont}>病床總覽</div>
+                        <div style={this.select_hover(0) ? linkfont : dislinkfont}>住院中病人資訊</div>
                     </Link>
                     <Link to="/nicu/history" style={this.select_hover(1) ? linkstate : dislinkstate}>
                         <img src={historylogo} alt='historyviewlogo'></img>
