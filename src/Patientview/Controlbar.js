@@ -44,7 +44,7 @@ class Controlbar extends Component {
         }
         console.log(this.state.item)
         return (
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: 'rgba(255, 249, 237, 1)', padding: "8px", height: "50px" }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: "8px", height: "50px" }}>
                 <div>
                     <DatePicker placeholder="資料時間" />
                 </div>

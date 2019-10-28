@@ -63,7 +63,7 @@ class Crosssectionlayout extends Component {
             <div>
                 <Controlbar parentCallback={this.callbackFunction} userdata={userdata} btnlist={crosssectioncontrollist} item_array={this.state.Cross_item}></Controlbar>
                 <div style={{ maxHeight: '75vh', overflowY: 'auto' ,height:"75vh"}}>
-                    <div id={"vitalsignIO"} style={this.display_item(0) ? { display: "grid", gridTemplateColumns: "50% 50%", gridGap: "10px" } : { display: "none" }}>
+                    <div id={"vitalsignIO"} style={this.display_item(0) ? { display: "grid", gridTemplateColumns: "2fr 1fr", gridGap: "10px" } : { display: "none" }}>
                         <Vitalsign></Vitalsign>
                         <IOpage></IOpage>
                     </div>
