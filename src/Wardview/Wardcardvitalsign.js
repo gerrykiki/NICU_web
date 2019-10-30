@@ -10,13 +10,19 @@ class WardcardvitalsignChart extends Component {
         this.state = { date: new Date() };
         //Update
     }
+    componentDidUpdate() {
+        const { svg_key } = this.props
+        d3.select("#" + svg_key).remove()
+        this.drawChart()
+        console.log("123")
 
+    }
     componentDidMount() {
         this.drawChart();
     }
 
     componentWillUnmount() {
-        clearInterval(this.timerID);
+        console.log("123");
     }
 
     cal_svg_hight() {
@@ -61,7 +67,7 @@ class WardcardvitalsignChart extends Component {
     }
 
     drawChart() {
-        const { svg_key, circlrcolor, data, axisTop} = this.props
+        const { svg_key, circlrcolor, data, axisTop ,id_key} = this.props
         const width = window.screen.availWidth * 0.25, height = 70, transformmargin = this.cal_svg_transform(), max = 200, min = 0, margin = 20
         var time_now = new Date(2019, new Date().getMonth(), 27, new Date().getHours());
 
@@ -109,13 +115,9 @@ class WardcardvitalsignChart extends Component {
             .tickPadding(margin)
             .tickFormat(function (d) { return multiFormat(d); });
 
-        var svg = d3
-            .select("#" + svg_key)
-            // .style("height", "300px")
-            // .style("width", svgwidth + "px")
-            // .select("svg")
-            // .attr("width", width)
-            // .attr("height", this.cal_svg_hight())
+        var svg = d3.select("#" + id_key)
+            .append("svg")
+            .attr("id", svg_key)
             .attr("viewBox", [0, 0, width, this.cal_svg_hight()])
             .append("g")
             .attr("transform", "translate(" + 30 + "," + transformmargin + ")");
@@ -181,7 +183,7 @@ class WardcardvitalsignChart extends Component {
                         .attr("id", "the_SVG_ID")
                         .attr('cx', x(o.time))
                         .attr('cy', y(o.Data))
-                        .attr('r', 1)
+                        .attr('r', 0.1)
                         .style('fill', circlrcolor)
                     : null
             ))
@@ -230,7 +232,7 @@ class WardcardvitalsignChart extends Component {
             }
             for (let i = 0; i < 4320; i++) {
                 const data = Math.floor(Math.random() * 40) + 140;
-                const time = (new Date(2019, new Date().getMonth(), 26,  new Date().getHours()).getTime() + (i * 20  * 1000))
+                const time = (new Date(2019, new Date().getMonth(), 26, new Date().getHours()).getTime() + (i * 20 * 1000))
                 dataset.push({
                     Data: data,
                     time: time
@@ -241,11 +243,9 @@ class WardcardvitalsignChart extends Component {
     }
 
     render() {
-        const { id_key, svg_key } = this.props
+        const { id_key } = this.props
         return (
-            <div id={id_key}>
-                <svg id={svg_key}></svg>
-            </div>
+            <div id={id_key}></div>
         );
     }
 }

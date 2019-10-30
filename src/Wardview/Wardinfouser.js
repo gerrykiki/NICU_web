@@ -3,7 +3,7 @@ import WardChart from './Wardchart'
 import Wardinfousercheckbox from './Wardunfousercheckbox'
 import { ward_bed_information } from '../jsonResponse'
 import Wardlabview from './Wardlab'
-import { Modal } from 'antd';
+import { Modal, Select } from 'antd';
 import WardlifeChart from './Wardlifechart'
 import Wardmonthafter from './Wardmonthafter'
 
@@ -15,7 +15,8 @@ class Wardinfouser extends Component {
             alertstate: "none",
             test_items_interval: 0,
             Data_change: true,
-            visible: false
+            visible: false,
+            source:false
         };
     }
 
@@ -87,7 +88,7 @@ class Wardinfouser extends Component {
                 return "rgba(241, 204, 115, 1)"
             case "Anti":
                 return "rgba(155, 202, 100, 1)"
-            case "Floey":
+            case "Foley":
                 return "rgba(65, 165, 181, 1)"
             case "Drain":
                 return "rgba(25,26,144,1)"
@@ -108,8 +109,8 @@ class Wardinfouser extends Component {
                 return "HD"
             case "Anti":
                 return "Anti-B"
-            case "Floey":
-                return "Floey"
+            case "Foley":
+                return "Foley"
             case "Drain":
                 return "Drain"
             default:
@@ -229,13 +230,32 @@ class Wardinfouser extends Component {
         const bir_time = new Date(bir).getFullYear() + "-" + Monthformat(new Date(bir).getMonth()) + '-' + new Date(bir).getDate()
         return bir_time
     }
+    sourcehandleChange = (value) => {
+        console.log(`selected ${value}`);
+        switch (value) {
+            case 0:
+                this.switch_source(false)
+                break;
+            case 1:
+                this.switch_source(true)
+                break;
+            default:
+                break;
+        }
+
+    }
+    switch_source(bool) {
+        this.setState(
+            {
+                source: bool
+            }
+        )
+    }
     render() {
 
         const userinfo = this.props.data
-        console.log(userinfo)
         const userdata = ward_bed_information;
-        console.log(userdata)
-
+        const { Option } = Select;
 
         let detaillist = userinfo.detaildata.map(
             (info, index) =>
@@ -301,6 +321,12 @@ class Wardinfouser extends Component {
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr" }}>
                         <div></div>
                         <div style={{ fontSize: "1.5rem", display: "flex", justifyContent: "center", alignItems: "center" }}>過去24小時生命徵象</div>
+                        <div style={{textAlign:'end'}}>
+                            <Select defaultValue={0} style={{ width: 200 }} onChange={this.sourcehandleChange}>
+                                <Option value={0}>Center Monitor</Option>
+                                <Option value={1}>NIS</Option>
+                            </Select>
+                        </div>
                     </div>
                     <WardChart></WardChart>
                     {/* */}
@@ -317,8 +343,8 @@ class Wardinfouser extends Component {
                             <div style={{ display: "flex", justifyContent: "space-between", alignItems: 'center', height: "50px", backgroundColor: "rgba(238, 238, 238, 1)", borderTopLeftRadius: "4px", borderTopRightRadius: "4px", paddingLeft: "15px" }}>
                                 <div style={{ fontSize: "1.5rem" }}>生長曲線圖</div>
                                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gridColumnGap: "5px" }}>
-                                    <div style={this.SwitchTestItemInterval(0)} onMouseUp={() => this.Onchangetimeinterval(0)}>足月前</div>
-                                    <div style={this.SwitchTestItemInterval(1)} onMouseUp={() => this.Onchangetimeinterval(1)}>足月後</div>
+                                    <div style={this.SwitchTestItemInterval(0)} onMouseUp={() => this.Onchangetimeinterval(0)}>滿足月</div>
+                                    <div style={this.SwitchTestItemInterval(1)} onMouseUp={() => this.Onchangetimeinterval(1)}>不滿足月</div>
                                 </div>
                             </div>
                             {this.switch_monthy()}

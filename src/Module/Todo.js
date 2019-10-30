@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Button, Input, TimePicker, DatePicker } from 'antd'
-import moment from 'moment';
-import editlogo from '../../Image/svg/Edit.svg'
+import { Checkbox ,Tooltip} from 'antd';
+import { todo_data } from '../jsonResponse'
+import detaillogo from '../Image/svg/details.svg'
 
 class Todolayout extends Component {
     state = {
@@ -17,22 +17,46 @@ class Todolayout extends Component {
         );
     }
 
+    updatetime_format(updatetime){
+
+        function monthformat(month){
+            return month + 1
+        }
+        
+        return new Date(updatetime).getFullYear() + "-" + monthformat(new Date(updatetime).getMonth()) + "-" +new Date(updatetime).getDate() + " " + new Date(updatetime).getHours() + ":" + new Date(updatetime).getMinutes()
+    }
+
+    detail_text(info){
+        return info.Editor + "醫師於" + this.updatetime_format(info.Time) + "更新" 
+    }
+    onChange = (checkedValues) => {
+        console.log('checked = ', checkedValues);
+        
+
+    }
     render() {
-        const format = 'HH:mm';
+        const { title } = this.props
+        const checkbox_list = todo_data.map((info, index) =>
+            <div key={index} style={{ height: "50px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <Checkbox style={{ fontSize: "1.3rem" }} defaultChecked={info.Flag} value={index}>{info.Content}</Checkbox>
+                <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                    <Tooltip placement="right" title={this.detail_text(info)}>
+                        <div>
+                            <img src={detaillogo} alt='detaillogo'></img>
+                        </div>
+                    </Tooltip>
+                </div>
+            </div>)
         return (
-            <div style={{ width: "100%", marginBottom: "20px", borderRadius: "4px" }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '40px' }}>
-                    <div style={{ fontSize: "22px", fontFamily: "PingFangTC-Medium" }}>
-                        待辦事項
-                    </div>
+            <div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '40px', paddingRight: "5px", paddingLeft: "5px", background: "rgba(238, 238, 238, 1)" }}>
+                    <div style={{ fontSize: "1.5rem" }}>{title}</div>
                 </div>
-                <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", height: "50px", backgroundColor: "rgba(255,249,237,1)", paddingRight: "20px" }}>
-                    <img src={editlogo} alt='todoedit' style={{width:'15px',height:'15px',cursor:'pointer'}} onMouseUp={() => this.Editclick("block")} ></img>
-                </div>
-                <div style={{ maxHeight: "180px", display: "flex", justifyContent: "space-between", flexWrap: 'wrap', height: "100px" }}>
+                <div style={{ maxHeight: "250px", paddingLeft: "15px",paddingRight: "15px" }}>
                     {/*To do list */}
+                    <Checkbox.Group style={{ width: '100%' }} onChange={this.onChange}>{checkbox_list}</Checkbox.Group>
                 </div>
-                <div style={{display:this.state.Editstate}}>
+                {/* <div style={{ display: this.state.Editstate }}>
                     <div style={{ display: "grid", gridTemplateRows: "50px 50px", paddingRight: "16px", paddingLeft: "16px", backgroundColor: "rgba(238,238,238,1)" }}>
                         <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr" }}>
                             <div style={{ display: "flex", alignItems: "center" }}>
@@ -49,7 +73,7 @@ class Todolayout extends Component {
                         <div style={{ display: "grid", gridTemplateColumns: "11fr 1fr" }}>
                             <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}><Input placeholder="待辦內容" /></div>
                             <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                                <Button type="primary" style={{width:"70%"}}>新增</Button>
+                                <Button type="primary" style={{ width: "70%" }}>新增</Button>
                             </div>
                         </div>
                     </div>
@@ -58,7 +82,7 @@ class Todolayout extends Component {
                         <div style={{ width: "20px" }}></div>
                         <Button type="primary" style={{ height: "35px", width: "100px", borderRadius: "4px" }}>儲存</Button>
                     </div>
-                </div>
+                </div> */}
             </div>
         );
     }

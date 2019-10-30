@@ -15,13 +15,11 @@ class Treatmentorderlayout extends Component{
             console.log(`selected ${value}`);
         }
         return(
-            <div style={{ width: "100%", marginBottom: "20px" }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '40px' }}>
-                    <div style={{ fontSize: "22px", fontFamily: "PingFangTC-Medium" }}>
-                    Treatment Order
-                    </div>
+            <div style={{marginBottom: "20px" }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '40px',paddingRight:"5px",paddingLeft:"5px",background:"rgba(238,238,238,1)" }}>
+                    <div style={{ fontSize: "2rem" }}>Treatment Order</div>
                 </div>
-                <div style={{ display: searchbar}}>
+                {/* <div style={{ display: searchbar}}>
                     <RangePicker onChange={onChange} style={{ marginBottom: "10px" }} />
                     <div style={{marginLeft:"10px"}}>
                         <Select defaultValue="lucy" style={{ width: 120 }} onChange={handleChange}>
@@ -32,7 +30,7 @@ class Treatmentorderlayout extends Component{
                     </div>
                     <Input placeholder="Basic usage" style={{width:"30%",marginLeft:"10px"}}/>
                     <Button style={{marginLeft:"10px"}}>搜尋</Button>
-                </div>
+                </div> */}
                 <Treatmentordertable></Treatmentordertable>
             </div>
         );

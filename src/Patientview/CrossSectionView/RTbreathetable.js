@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import chooseedit from '../../Image/svg/Chooseedit.svg'
+import RTbreathetablecell from './RTbreathtablecell'
 
 
 class RTbreathetable extends Component {
@@ -24,24 +26,15 @@ class RTbreathetable extends Component {
             },
         ]
         let RTbreathetable = RTbreathelist.map(
-            (info ,index) =>
-                <div key={index} style={{ height: "100px", borderWidth: "1px", borderStyle: "solid", borderColor: "rgba(232,232,232,1)", borderTopWidth: "0px", display: "grid", gridTemplateColumns:"1fr 6fr", paddingLeft: "10px", paddingRight: "10px" }}>
-                    <div style={{ fontSize: "16px",display:"flex",alignItems:"center" }}>{info.time}</div>
-                    <div style={{ display: "grid", gridTemplateRows: "50px 50px" }}>
-                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
-                            <div style={{ fontSize: "14px", display:"flex",alignItems:"center" }}>{info.Mode}</div>
-                            <div style={{ fontSize: "14px", display:"flex",alignItems:"center" }}>{info.Setting}</div>
-                        </div>
-                        <div style={{ fontSize: "14px", display:"flex",alignItems:"center" }}>{info.Note}</div>
-                    </div>
-                </div>
+            (info, index) =>
+                <RTbreathetablecell key={index} info={info}></RTbreathetablecell>
         )
         return (
             <div>
                 <div style={{ height: "50px", borderWidth: "1px", borderStyle: "solid", borderColor: "rgba(232,232,232,1)", backgroundColor: "rgba(255,249,237,1)", display: "grid", gridTemplateColumns: "1fr 3fr 3fr", paddingLeft: "10px", paddingRight: "10px" }}>
-                    <div style={{ fontSize: "14px", display:"flex",alignItems:"center" }}>紀錄日期</div>
-                    <div style={{ fontSize: "14px", display:"flex",alignItems:"center" }}>Mode</div>
-                    <div style={{ fontSize: "14px", display:"flex",alignItems:"center" }}>Setting</div>
+                    <div style={{ fontSize: "1.3rem", display: "flex", alignItems: "center" }}>紀錄日期</div>
+                    <div style={{ fontSize: "1.3rem", display: "flex", alignItems: "center" }}>Mode</div>
+                    <div style={{ fontSize: "1.3rem", display: "flex", alignItems: "center" }}>Setting</div>
                 </div>
                 <div style={{ maxHeight: "650px", overflow: "auto" }}>
                     {

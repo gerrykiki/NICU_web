@@ -449,12 +449,34 @@ const growdata = {
     ]
 }
 
-// const IO_data = {
-//     white_shift:{
-//         Feed:
-//     }
-// }
+const Note_data = [
+    {data:"林曉明醫師今天對這位病人下了第一筆註記",updatedoctor:"林曉明",updatetime:1572417000000},
+    {data:"林曉明醫師今天對這位病人下了第一筆註記",updatedoctor:"林曉明",updatetime:1572417000000},
+    {data:"林曉明醫師今天對這位病人下了第一筆註記",updatedoctor:"林曉明",updatetime:1572417000000},
+    {data:"林曉明醫師今天對這位病人下了第一筆註記",updatedoctor:"林曉明",updatetime:1572417000000},
+    {data:"林曉明醫師今天對這位病人下了第一筆註記",updatedoctor:"林曉明",updatetime:1572417000000},
+    {data:"林曉明醫師今天對這位病人下了第一筆註記",updatedoctor:"林曉明",updatetime:1572417000000}
+]
 
+const todo_data = [
+    {
+        Time:1566287810473,
+        Content:"幫大明量體重",
+        Flag:true,
+        Editor:"修改者"
+    },
+    {
+        Time:1566287810473,
+        Content:"幫大明量體重",
+        Flag:true,
+        Editor:"修改者"
+    },
+    {
+        Time:1566287810473,
+        Content:"幫大明量體重",
+        Flag:true,
+        Editor:"修改者"
+    }
+]
 
-
-export { jsonResponse, centerrowdata, WardInfo, updatetime, ward_bed_information, ward_bed_lastData, labdata, eventdata, growdata };
+export { jsonResponse, centerrowdata, WardInfo, updatetime, ward_bed_information, ward_bed_lastData, labdata, eventdata, growdata ,Note_data,todo_data};

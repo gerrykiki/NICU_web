@@ -8,25 +8,17 @@ import Chronicleorder from './Chronicorder'
 import Chronicleinfection from './Chronicleinfectionlayout'
 
 class Chroniclelayout extends Component {
-    simdata() {
-        const Inputarray = []
-        for (let index = 0; index < 24; index++) {
-            const element = Math.floor(Math.random() * 100);
-            Inputarray.push(element)
-        }
-        return Inputarray
-    }
 
     render() {
 
         const crosssectioncontrollist = [
             {
                 "name": "vital",
-                "scrollpoint": "vitalsign"
+                "scrollpoint": "vital_sign"
             },
             {
                 "name": "I/O",
-                "scrollpoint": "io"
+                "scrollpoint": "input_output"
             },
             {
                 "name": "Lab",
@@ -45,49 +37,9 @@ class Chroniclelayout extends Component {
                 "scrollpoint": "infection"
             }
         ]
-
-        //Sim IO data
-        const IOsource = [
-            {
-                "item": "IV",
-                "data": this.simdata()
-            },
-            {
-                "item": "Feed",
-                "data": this.simdata()
-            },
-            {
-                "item": "Other",
-                "data": this.simdata()
-            },
-            {
-                "item": "Input",
-                "data": this.simdata()
-            },
-            {
-                "item": "Urine",
-                "data": this.simdata()
-            },
-            {
-                "item": "Output",
-                "data": this.simdata()
-            }
-        ]
-
-
         return (
-            <div>
-                <Controlbar btnlist={crosssectioncontrollist} tagdisplay={"flex"}></Controlbar>
-                <div id='Chroniclelayout' style={{ maxHeight: '75vh', overflowY: 'auto' }} >
-                    <div>
-                        <div id='Chroniclevitalsign'><Chroniclevitalsign ></Chroniclevitalsign></div>
-                        <IOlayout IO_data={IOsource}></IOlayout>
-                        <Chroniclelab></Chroniclelab>
-                        <Chroniclert></Chroniclert>
-                        <Chronicleorder></Chronicleorder>
-                        <Chronicleinfection></Chronicleinfection>
-                    </div>
-                </div>
+            <div style={{ paddingLeft: "20px", paddingRight: "20px" }}>
+                <div></div>
             </div>
         );
     }

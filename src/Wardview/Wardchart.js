@@ -5,23 +5,6 @@ import WardcardvitalsignChart from './Wardcardvitalsign'
 
 class WardChart extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = { date: new Date() };
-    }
-    componentDidMount() {
-        this.timerID = setInterval(() => this.tick(), 1000);
-    }
-    componentWillUnmount() {
-        clearInterval(this.timerID);
-    }
-
-    tick() {
-        this.setState({
-            date: new Date()
-        });
-    }
-
     datarelease() {
 
 
@@ -91,7 +74,7 @@ class WardChart extends Component {
                                 <div style={{ fontSize: "2rem", color: "rgba(126, 211, 33, 1)", display: "flex", justifyContent: "center" }}>123</div>
                             </div>
                         </div>
-                        <WardcardvitalsignChart svg_key={"svg_hr"} id_key={"div_hr"} data={true} axisBot={false} axisTop={true} colorshadow={"rgba(126, 211, 33, 0.1)"} circlrcolor={"rgba(126, 211, 33, 1)"}></WardcardvitalsignChart>
+                        <WardcardvitalsignChart svg_key={"svg_hr"} id_key={"div_hr"} data={true} axisBot={false} axisTop={true} colorshadow={"rgba(126, 211, 33, 0.1)"} circlrcolor={"black"}></WardcardvitalsignChart>
                     </div>
                     <div style={{ display: "grid", gridTemplateColumns: "80px auto", gridColumnGap: "5px" }}>
                         <div style={{ display: "flex", alignItems: "center" ,justifyContent:"center"}}>

@@ -116,7 +116,7 @@ class WardcardNote extends Component {
                     </div>
                     <div style={editstyle}>
                         <div style={{ height: "40px", backgroundColor: "rgba(238,238,238,1)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                            <Input id={'NewAnn'} placeholder="Basic usage" style={{ width: "90%" }} />
+                            <Input id={'NewAnn'} placeholder="新增病房公告" style={{ width: "90%" }} />
                             <Button type="primary" style={{ margin: "10px", width: "100px" }} onClick={() => this.AddNewannouce()}>
                                 新增
                             </Button>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Prescriptionordertablecell from './Prescriptionordertablecell'
 
 
 class Prescriptionordertable extends Component {
@@ -35,33 +36,23 @@ class Prescriptionordertable extends Component {
                 "Note":"備註內容"
             }
         ]
+        const layout_style = {
+            title:{ fontSize: "1rem", display:"flex",alignItems:"center"}
+        }
         let Prescriptionordertabletable = Prescriptionordertablelist.map(
             (info ,index) =>
-                <div key={index} style={{ height: "130px", borderWidth: "1px", borderStyle: "solid", borderColor: "rgba(232,232,232,1)", borderTopWidth: "0px", display: "grid", gridTemplateColumns: "1fr 6fr", paddingLeft: "10px", paddingRight: "10px" }}>
-                    <div style={{ fontSize: "14px", lineHeight: "130px" }}>{info.time}</div>
-                    <div style={{ display: "grid", gridTemplateRows: "80px 50px" }}>
-                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1.5fr 0.5fr 1fr 1fr" }}>
-                            <div style={{ fontSize: "12px", display:"flex",alignItems:"center" }}>{info.Name}</div>
-                            <div style={{ fontSize: "12px", display:"flex",alignItems:"center" }}>{info.ProductName}</div>
-                            <div style={{ fontSize: "12px", display:"flex",alignItems:"center" }}>{info.Unit}</div>
-                            <div style={{ fontSize: "12px", display:"flex",alignItems:"center" }}>{info.State}</div>
-                            <div style={{ fontSize: "12px", display:"flex",alignItems:"center" }}>{info.StartTime}</div>
-                            <div style={{ fontSize: "12px", display:"flex",alignItems:"center" }}>{info.EndTime}</div>
-                        </div>
-                        <div style={{ fontSize: "14px", display:"flex",alignItems:"center" }}>{info.Note}</div>
-                    </div>
-                </div>
+                <Prescriptionordertablecell key={index} info={info}></Prescriptionordertablecell>
         )
         return (
             <div>
                 <div style={{ height: "50px", borderWidth: "1px", borderStyle: "solid", borderColor: "rgba(232,232,232,1)", backgroundColor: "rgba(255,249,237,1)", display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1.5fr 0.5fr 1fr 1fr", paddingLeft: "10px", paddingRight: "10px" }}>
-                    <div style={{ fontSize: "12px", display:"flex",alignItems:"center"}}>開立時間</div>
-                    <div style={{ fontSize: "12px", display:"flex",alignItems:"center" }}>學名</div>
-                    <div style={{ fontSize: "12px", display:"flex",alignItems:"center" }}>商品名</div>
-                    <div style={{ fontSize: "12px", display:"flex",alignItems:"center"}}>劑量/單位/途徑/頻次</div>
-                    <div style={{ fontSize: "12px", display:"flex",alignItems:"center" }}>狀態</div>
-                    <div style={{ fontSize: "12px", display:"flex",alignItems:"center"}}>開始日期</div>
-                    <div style={{ fontSize: "12px", display:"flex",alignItems:"center" }}>結束日期</div>
+                    <div style={layout_style.title}>開立時間</div>
+                    <div style={layout_style.title}>學名</div>
+                    <div style={layout_style.title}>商品名</div>
+                    <div style={layout_style.title}>劑量/單位/途徑/頻次</div>
+                    <div style={layout_style.title}>狀態</div>
+                    <div style={layout_style.title}>開始日期</div>
+                    <div style={layout_style.title}>結束日期</div>
                 </div>
                 <div style={{ maxHeight: "650px", overflow: "auto" }}>
                     {

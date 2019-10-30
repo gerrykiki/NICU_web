@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Button, DatePicker, Checkbox, Row, Col } from 'antd';
+import { Button, DatePicker, Checkbox} from 'antd';
+import moment from 'moment';
 import displaylogo from '../Image/svg/Display.svg'
 import Basicinformation from './CrossSectionView/Basicinformation';
 
@@ -11,6 +12,11 @@ class Controlbar extends Component {
     }
     sendData = (itwm_array) => {
         this.props.parentCallback(itwm_array);
+    }
+
+
+    sendDateData = (Datestring) => {
+        this.props.parentDateCallback(Datestring);
     }
     //快速滑動
     scrollToAnchor = (anchorName) => {
@@ -24,6 +30,14 @@ class Controlbar extends Component {
         this.sendData(checkedValues)
 
     }
+    onDateChange = (date,dateString) => {
+        if(date === null){
+            console.log(null)
+        }
+        else {
+            this.sendDateData(dateString)
+        }
+    }
     open_display() {
         this.setState({
             display_Mode: !this.state.display_Mode
@@ -34,8 +48,15 @@ class Controlbar extends Component {
         let btn = btnlist.map(
             (item, index) => <Button onClick={this.scrollToAnchor.bind(this, item.scrollpoint)} key={index} style={{ margin: '5px', borderRadius: "16px", height: "32px", color: "rgba(245, 166, 35, 1)", borderColor: "rgba(245, 166, 35, 1)", borderWidth: "1px", borderStyle: "solid" }}>{item.name}</Button>
         )
-        const { userdata } = this.props
+        const { userdata , Datestring} = this.props
+        const dateFormat = 'YYYY/MM/DD';
 
+        const date_string = new Date(Datestring).getFullYear() + "/" + Monthformat(new Date(Datestring).getMonth()) + "/" + new Date(Datestring).getDate()
+        function Monthformat(month){
+            return month + 1
+        }
+
+        console.log(date_string)
         const display_style = {
             displye_mode: { position: "absolute", right: '0px', top: "50px", width: "200px", background: "white", boxShadow: "3px 3px 12px" },
             non_display_mode: { display: "none" },
@@ -46,7 +67,7 @@ class Controlbar extends Component {
         return (
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: "8px", height: "50px" }}>
                 <div>
-                    <DatePicker placeholder="資料時間" />
+                    <DatePicker onChange={this.onDateChange} defaultValue={moment(date_string,dateFormat)} placeholder="資料時間" />
                 </div>
                 <Basicinformation userdata={userdata}></Basicinformation>
                 <div style={{ display: "flex", alignItems: 'center', position: "relative" }}>
