@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import * as d3 from "d3";
 import './Wardcardvitalsign.css';
+// { center_monitor } from '../Centormonitor_data'
 
 
 
 class WardcardvitalsignChart extends Component {
     constructor(props) {
         super(props);
-        this.state = { date: new Date() };
         //Update
     }
     componentDidUpdate() {
@@ -67,9 +67,11 @@ class WardcardvitalsignChart extends Component {
     }
 
     drawChart() {
-        const { svg_key, circlrcolor, data, axisTop ,id_key} = this.props
+        const { svg_key, circlrcolor, data, axisTop, id_key } = this.props
         const width = window.screen.availWidth * 0.25, height = 70, transformmargin = this.cal_svg_transform(), max = 200, min = 0, margin = 20
         var time_now = new Date(2019, new Date().getMonth(), 27, new Date().getHours());
+        //var time_now = new Date(2019, 6, 4, 15);
+        //var time_now = 1562223595;
 
         var time_array = []
 
@@ -78,8 +80,7 @@ class WardcardvitalsignChart extends Component {
             time_array.push({ key: "time", x_axis_time: time_now - index * 60 * 60 * 1000 })
         }
         var time_array_reverse = time_array.reverse()
-
-        console.log(time_array_reverse)
+    
 
 
         var formatHour = d3.timeFormat("%H")
@@ -87,13 +88,12 @@ class WardcardvitalsignChart extends Component {
             return formatHour(date)
         }
 
-        console.log(formatHour(1570251889258))
         var x = d3.scaleLinear()
             .domain([time_array_reverse[0].x_axis_time, time_array_reverse[24].x_axis_time])
             .range([0, width - 31]);
 
 
-        var vertigo = datarelease();
+        var vertigo = datarelease
 
         //x和y的比例尺
         var y = d3.scaleLinear()
@@ -174,20 +174,26 @@ class WardcardvitalsignChart extends Component {
         //         .attr("x", x(i + 0.5))
         //         .attr("y", y(o.Max))
         //         .style('fill', colorshadow)
-        // ))
-        console.log(vertigo)
-        if (data) {
-            vertigo.map((o, i) => (
-                o.Data > 0 && o.Data < 200 ?
-                    svg.append('circle')
-                        .attr("id", "the_SVG_ID")
-                        .attr('cx', x(o.time))
-                        .attr('cy', y(o.Data))
-                        .attr('r', 0.1)
-                        .style('fill', circlrcolor)
-                    : null
-            ))
+        // )))
+
+        for (let index = 0; index < vertigo.length; index++) {
+            const element = vertigo[index];
+            svg.append('circle')
+                .attr("id", "the_SVG_ID")
+                .attr('cx', x(element.time * 1000))
+                .attr('cy', y(element.Data))
+                .attr('r', 0.1)
+                .style('fill', circlrcolor)
+            
         }
+        // vertigo.map((o, i) => (
+        //     svg.append('circle')
+        //         .attr("id", "the_SVG_ID")
+        //         .attr('cx', x(o.time * 1000))
+        //         .attr('cy', y(o.Data))
+        //         .attr('r', 0.1)
+        //         .style('fill', circlrcolor)
+        // ))
 
 
         // if (data2) {

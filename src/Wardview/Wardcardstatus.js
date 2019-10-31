@@ -38,7 +38,7 @@ class Wardcarstatus extends Component {
             case "Anti":
                 return "Anti"
             case "Foley":
-                return "Floey"
+                return "Foley"
             case "Drain":
                 return "Drain"
             default:

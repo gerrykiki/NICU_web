@@ -23,7 +23,7 @@ class Patientviewtapbar extends Component {
                         <Crosssectionlayout userdata={userdata}></Crosssectionlayout>
                     </TabPane>
                     <TabPane tab="Chronicle View" key="2">
-                        <Chroniclelayout></Chroniclelayout>
+                        <Chroniclelayout userdata={userdata}></Chroniclelayout>
                     </TabPane>
                     <TabPane tab="Flow Sheet" key="3">
                         <Flowsheetlayout></Flowsheetlayout>

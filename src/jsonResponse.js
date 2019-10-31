@@ -479,4 +479,5 @@ const todo_data = [
     }
 ]
 
+
 export { jsonResponse, centerrowdata, WardInfo, updatetime, ward_bed_information, ward_bed_lastData, labdata, eventdata, growdata ,Note_data,todo_data};
