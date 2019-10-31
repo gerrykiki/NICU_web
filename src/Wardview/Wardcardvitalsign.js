@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import * as d3 from "d3";
 import './Wardcardvitalsign.css';
-// { center_monitor } from '../Centormonitor_data'
+import { center_monitor } from '../Centormonitor_data'
 
 
 
@@ -69,18 +69,19 @@ class WardcardvitalsignChart extends Component {
     drawChart() {
         const { svg_key, circlrcolor, data, axisTop, id_key } = this.props
         const width = window.screen.availWidth * 0.25, height = 70, transformmargin = this.cal_svg_transform(), max = 200, min = 0, margin = 20
-        var time_now = new Date(2019, new Date().getMonth(), 27, new Date().getHours());
-        //var time_now = new Date(2019, 6, 4, 15);
+        //var time_now = new Date(2019, new Date().getMonth(), 27, new Date().getHours());
+        var time_now = new Date(2019, 6, 4, 15);
         //var time_now = 1562223595;
 
         var time_array = []
-
+        var time_axis = []
         for (let index = 0; index < 25; index++) {
             //const element = array[index];
             time_array.push({ key: "time", x_axis_time: time_now - index * 60 * 60 * 1000 })
+            time_axis.push(time_now - index * 60 * 60 * 1000)
         }
         var time_array_reverse = time_array.reverse()
-    
+
 
 
         var formatHour = d3.timeFormat("%H")
@@ -93,7 +94,7 @@ class WardcardvitalsignChart extends Component {
             .range([0, width - 31]);
 
 
-        var vertigo = datarelease
+        var vertigo = center_monitor
 
         //x和y的比例尺
         var y = d3.scaleLinear()
@@ -110,7 +111,7 @@ class WardcardvitalsignChart extends Component {
 
 
         var xAxis = d3.axisTop(x)
-            .ticks(20)
+            .tickValues(time_axis)
             .tickSize(0, 0)
             .tickPadding(margin)
             .tickFormat(function (d) { return multiFormat(d); });
@@ -118,7 +119,7 @@ class WardcardvitalsignChart extends Component {
         var svg = d3.select("#" + id_key)
             .append("svg")
             .attr("id", svg_key)
-            .attr("viewBox", [0, 0, width, this.cal_svg_hight()])
+            .attr("viewBox", [0, 0, width + 10, this.cal_svg_hight()])
             .append("g")
             .attr("transform", "translate(" + 30 + "," + transformmargin + ")");
 
@@ -184,7 +185,7 @@ class WardcardvitalsignChart extends Component {
                 .attr('cy', y(element.Data))
                 .attr('r', 0.1)
                 .style('fill', circlrcolor)
-            
+
         }
         // vertigo.map((o, i) => (
         //     svg.append('circle')

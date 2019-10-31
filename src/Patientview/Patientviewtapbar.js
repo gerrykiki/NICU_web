@@ -28,7 +28,7 @@ class Patientviewtapbar extends Component {
                     <TabPane tab="Flow Sheet" key="3">
                         <Flowsheetlayout></Flowsheetlayout>
                     </TabPane>
-                    <TabPane tab="Exam & Report" key="4">
+                    {/* <TabPane tab="Exam & Report" key="4">
                         <Examreport></Examreport>
                     </TabPane>
                     <TabPane tab="Order view" key="5">
@@ -48,7 +48,7 @@ class Patientviewtapbar extends Component {
                     </TabPane>
                     <TabPane tab="Schedule" key="10">
                         <Scheduleview></Scheduleview>
-                    </TabPane>
+                    </TabPane> */}
                 </Tabs>
             </div>
         );

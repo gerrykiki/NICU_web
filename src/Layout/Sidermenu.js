@@ -59,10 +59,10 @@ class Sidermenu extends Component {
                         <img src={wardviewlogo} alt='wardviewlogo'></img>
                         <div style={this.select_hover(0) ? linkfont : dislinkfont}>住院中病人資訊</div>
                     </Link>
-                    <Link to="/nicu/history" style={this.select_hover(1) ? linkstate : dislinkstate}>
+                    {/* <Link to="/nicu/history" style={this.select_hover(1) ? linkstate : dislinkstate}>
                         <img src={historylogo} alt='historyviewlogo'></img>
                         <div style={this.select_hover(1) ? linkfont : dislinkfont}>歷史病歷管理</div>
-                    </Link>
+                    </Link> */}
                     <Link to='/nicu/system' style={this.select_hover(2) ? linkstate : dislinkstate}>
                         <img src={controllogo} alt='systemviewlogo'></img>
                         <div style={this.select_hover(2) ? linkfont : dislinkfont}>系統設定</div>
