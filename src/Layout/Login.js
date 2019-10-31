@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button } from 'antd';
 import { Redirect } from 'react-router-dom'
-import { Input } from 'antd'
+import { Input ,Icon} from 'antd'
 
 
 class Loginview extends Component {
@@ -55,7 +55,7 @@ class Loginview extends Component {
                             </div>
                             <Button style={{ width: "280px", backgroundColor: "rgba(46, 100, 164, 1)", color: "white", marginTop: "70px" }} onClick={this.setRedirect}>登入</Button>
                         </div>
-
+                        <Icon type="up-circle" />
                     </div>
                 </div>
             </div>
