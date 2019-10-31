@@ -4,6 +4,8 @@ import filterlogo from '../../Image/svg/filter.svg'
 import Chronic_io from './Chronic_io'
 import Chronic_lab from './Chronic_lab'
 import Chronic_rt from './Chronic_rt'
+import Chronic_order from './Chronic_order'
+import Chronic_weight from './Chronic_weight'
 
 class Chroniclelayout extends Component {
     state = {
@@ -91,7 +93,9 @@ class Chroniclelayout extends Component {
                 {/* RT */}
                 <Chronic_rt userdata={userdata} title=""></Chronic_rt>
                 {/* Order */}
+                <Chronic_order userdata={userdata} title=""></Chronic_order>
                 {/* 體重 */}
+                <Chronic_weight userdata={userdata} title=""></Chronic_weight>
             </div>
         );
     }

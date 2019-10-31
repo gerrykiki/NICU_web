@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Chronic_table from './Chronic_table'
+import Chronicordertable from './Chronic_ordertable'
 
 class Chronic_order extends Component {
     render() {
@@ -7,7 +7,7 @@ class Chronic_order extends Component {
         const item_title = [{ title: "order" }]
         return (
             <div style={{marginTop:"15px"}}>
-                <Chronic_table title={item_title} userdata={userdata} chronic_state={0}></Chronic_table>
+                <Chronicordertable title={item_title} userdata={userdata} chronic_state={0}></Chronicordertable>
             </div>
         );
     }
