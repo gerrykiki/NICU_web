@@ -2,13 +2,13 @@
   "name": "nicu",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "npm": "6.10.0",
+    "node": "12.7.0"
+  },
   "dependencies": {
-    "@material-ui/core": "^4.5.2",
-    "@material-ui/icons": "^4.5.1",
     "antd": "^3.22.2",
-    "antd-iconfont": "^3.0.3",
     "d3": "^5.9.7",
-    "net": "^1.0.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router": "^5.0.1",
@@ -37,6 +37,5 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }
