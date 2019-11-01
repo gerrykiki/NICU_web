@@ -38,8 +38,6 @@ class Notelist extends Component {
             "Content": "notenotenote",
         }]
 
-
-
     }
 
     dateformat(startTime, interval) {

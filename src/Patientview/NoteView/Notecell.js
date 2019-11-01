@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 class Notecell extends Component {
+    
     render() {
         function remoteMonth(month) {
             return month + 1
