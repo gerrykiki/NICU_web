@@ -1,48 +1,79 @@
 import React, { Component } from 'react';
-import {Button} from 'antd'
+import { Button } from 'antd'
+import Notecell from './Notecell'
 
 class Notelist extends Component {
     state = {
-        display:true
+        display: true
     }
-    statechange(){
+    statechange() {
         this.setState(
             {
-                display:!this.state.display
+                display: !this.state.display
             }
         )
     }
-    displayMode(){
+    displayMode() {
         if (this.state.display) {
             return "none"
         }
-        else{
+        else {
             return "block"
         }
     }
 
-    Dateformat(){
-        return new Date().getFullYear() + "-" + (new Date().getMonth() + 1) + "-" + new Date().getDate()
+    Dataformat() {
+        const { start, End } = this.props
+        const startTime = new Date(start).getTime() - (8 * 60 * 60 * 1000)
+        const endTime = new Date(End).getTime() - (8 * 60 * 60 * 1000)
+        const interval = (endTime - startTime) / (1000 * 60 * 60 * 24)
+
+        const note_data = [{
+            "NoteTime": 1566287810473,
+            "Type": "Progress Note",
+            "Content": "notenotenote",
+        }, {
+            "NoteTime": 1566374210000,
+            "Type": "Progress Note",
+            "Content": "notenotenote",
+        }]
+
+
+
     }
-    render() {
-        const listdisplaystyle = {
-            display:this.displayMode(),
-            borderRadius:0,
-            borderTopWidth:"0px",
-            width:"100%",
-            lineHeight:"32px",
-            height:"32px",
-            textAlign:"Left"
+
+    dateformat(startTime, interval) {
+        var array = []
+        for (let index = 0; index < interval + 1; index++) {
+            const element = startTime + (index * 24 * 60 * 60 * 1000)
+            array.push(element)
         }
-        //const {date} = this.props
-        const date = new Date().getMonth() + 1
-        console.log(date)
+        console.log(array)
+        return array
+    }
+
+    render() {
+
+        const { start, End } = this.props
+        const startTime = new Date(start).getTime() - (8 * 60 * 60 * 1000)
+        const endTime = new Date(End).getTime() - (8 * 60 * 60 * 1000)
+        const interval = (endTime - startTime) / (1000 * 60 * 60 * 24)
+        console.log(interval)
+        var arraydata
+        var date_item
+        if (interval === 0) {
+            arraydata = null
+        }
+        else {
+            arraydata = this.dateformat(startTime, interval)
+            date_item = arraydata.map((info, index) =>
+                <Notecell key={index} infoDate={info}></Notecell>
+            )
+        }
+        
         return (
-            <div>
-                <Button onClick={()=>this.statechange()} style={{borderRadius:0,width:"100%",lineHeight:"32px",height:"32px",textAlign:"Left"}}>
-                    {this.Dateformat()}
-                </Button>
-                <Button style={listdisplaystyle} >16:00</Button>
+            <div style={{ maxHeight: '60vh', overflowY: 'auto' }}>
+                {date_item}
             </div>
         );
     }

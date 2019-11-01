@@ -187,49 +187,6 @@ class WardcardvitalsignChart extends Component {
                 .style('fill', circlrcolor)
 
         }
-        // vertigo.map((o, i) => (
-        //     svg.append('circle')
-        //         .attr("id", "the_SVG_ID")
-        //         .attr('cx', x(o.time * 1000))
-        //         .attr('cy', y(o.Data))
-        //         .attr('r', 0.1)
-        //         .style('fill', circlrcolor)
-        // ))
-
-
-        // if (data2) {
-        //     console.log("there has data 2")
-        //     const data_2 = data_2_release()
-        //     data_2.map((o, i) => (
-        //         o.Data > 0 && o.Data < 100 ?
-        //             svg.append('circle')
-        //                 .attr('cx', x(i + 1))
-        //                 .attr('cy', y(o.Data))
-        //                 .attr('r', 2.5)
-        //                 .style('fill', data_2_circlrcolor)
-        //             : null
-        //     ))
-        // }
-        // else {
-
-        //     console.log("there not has data 2")
-        // }
-
-        // function drawdata() {
-        //     svg.selectAll("#the_SVG_ID").remove()
-        //     console.log("reflash")
-        //     const raw_data = datarelease()
-        //     raw_data.map((o, i) => (
-        //         o.Data > 0 && o.Data < 100 ?
-        //             svg.append('circle')
-        //                 .attr("id", "the_SVG_ID")
-        //                 .attr('cx', x(i + 1))
-        //                 .attr('cy', y(o.Data))
-        //                 .attr('r', 2.5)
-        //                 .style('fill', circlrcolor)
-        //             : null
-        //     ))
-        // }
 
         function datarelease() {
 

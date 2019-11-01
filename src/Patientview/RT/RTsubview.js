@@ -1,22 +1,23 @@
 import React, { Component } from 'react'
 import { DatePicker, Input, Button } from 'antd'
-import Table from './Gastable'
+import Rttable from './RT_table'
+import searchlogo from '../../Image/svg/Search.svg'
 
 class RTsubview extends Component {
     TableSelect(item) {
         switch (item) {
             case 0:
-                return (<Table gridcount={"Gas"} />);
+                return (<Rttable gridcount={"Gas"} />);
             case 1:
-                return (<Table gridcount={"Breath"} />);
+                return (<Rttable gridcount={"Breath"} />);
             case 2:
-                return (<Table gridcount={"xRay"} />);
+                return (<Rttable gridcount={"xRay"} />);
             default:
                 break;
         }
     }
 
-    Titlestate(item){
+    title(item){
         switch (item) {
             case 0:
                 return "Gas 血氧分析";
@@ -37,14 +38,14 @@ class RTsubview extends Component {
         }
         const { tableState } = this.props
         return (
-            <div style={{ width: "100%" }}>
+            <div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '40px' }}>
-                    <div style={{ fontSize: "22px", fontFamily: "PingFangTC-Medium" }}>{this.Titlestate(tableState)}</div>
+                    <div style={{ fontSize: "2rem" }}>{this.title(tableState)}</div>
                 </div>
-                <div style={{ display: 'flex' }}>
+                <div style={{ display: 'flex' ,alignItems:"center"}}>
                     <RangePicker onChange={onChange} />
-                    <Input placeholder="Basic usage" style={{ width: "30%", marginLeft: "10px" }} />
-                    <Button style={{ marginLeft: "10px" }}>搜尋</Button>
+                    <Input placeholder="Basic usage" style={{ width: "40%",margin:"0px 10px" }} />
+                    <img src={searchlogo} alt="searchlogo"/>
                 </div>
                 {this.TableSelect(tableState)}
             </div>

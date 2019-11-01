@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import { DatePicker, Button } from 'antd';
 import filterlogo from '../../Image/svg/filter.svg'
 import Chronic_io from './Chronic_io'
+import Chronic_lab from './Chronic_lab'
+import Chronic_rt from './Chronic_rt'
+import Chronic_order from './Chronic_order'
+import Chronic_weight from './Chronic_weight'
+import Chronic_vital from './Chronic_vital'
 
 class Chroniclelayout extends Component {
     state = {
@@ -82,12 +87,17 @@ class Chroniclelayout extends Component {
                     </div>
                 </div>
                 {/* Vital sign */}
+                <Chronic_vital userdata={userdata} title="Vital"></Chronic_vital>
                 {/* I/O */}
                 <Chronic_io userdata={userdata} title="I/O"></Chronic_io>
                 {/* Lab */}
+                <Chronic_lab userdata={userdata} title="Lab"></Chronic_lab>
                 {/* RT */}
+                <Chronic_rt userdata={userdata} title=""></Chronic_rt>
                 {/* Order */}
+                <Chronic_order userdata={userdata} title=""></Chronic_order>
                 {/* 體重 */}
+                <Chronic_weight userdata={userdata} title=""></Chronic_weight>
             </div>
         );
     }

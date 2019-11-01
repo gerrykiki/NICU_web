@@ -22,21 +22,26 @@ class Nonlabviewtable extends Component {
                 "result": "negative"
             }
         ]
+        const string_style = {
+            title: { fontSize: "1.3rem",display:"flex",justifyContent:"center",alignItems:"center" },
+            item:{ fontSize: "1rem",display:"flex",justifyContent:"center",alignItems:"center" }
+        }
         let labtable = lablist.map(
-            (info,index) =>
+            (info, index) =>
                 <div key={index} style={{ height: "50px", borderWidth: "1px", borderStyle: "solid", borderColor: "rgba(232,232,232,1)", borderTopWidth: "0px", display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", paddingLeft: "5px", paddingRight: "5px" }}>
-                    <div style={{ fontSize: "16px", lineHeight: "50px" }}>{info.time}</div>
-                    <div style={{ fontSize: "16px", lineHeight: "50px" }}>{info.item}</div>
-                    <div style={{ fontSize: "16px", lineHeight: "50px" }}>{info.result}</div>
+                    <div style={string_style.item}>{info.time}</div>
+                    <div style={string_style.item}>{info.item}</div>
+                    <div style={string_style.item}>{info.result}</div>
                 </div>
         )
+
         return (
             <div>
                 <div style={{ height: "50px", borderWidth: "1px", borderStyle: "solid", borderColor: "rgba(232,232,232,1)", backgroundColor: "rgba(255,249,237,1)", display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", paddingLeft: "5px", paddingRight: "5px" }}>
-                    <div style={{ fontSize: "16px", lineHeight: "50px" }}>檢驗日期</div>
-                    <div style={{ fontSize: "16px", lineHeight: "50px" }}>檢驗項目名稱</div>
-                    <div style={{ fontSize: "16px", lineHeight: "50px" }}>檢驗項目狀態</div>
-                    <div style={{ fontSize: "16px", lineHeight: "50px" }}>檢驗結果</div>
+                    <div style={string_style.title}>檢驗日期</div>
+                    <div style={string_style.title}>檢驗項目名稱</div>
+                    <div style={string_style.title}>檢驗項目狀態</div>
+                    <div style={string_style.title}>檢驗結果</div>
                 </div>
                 <div style={{ maxHeight: "650px", overflow: "auto" }}>
                     {labtable}
