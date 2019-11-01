@@ -49,7 +49,7 @@ class Chronicweighttable extends Component {
         return (
             <div style={{ display: "grid", gridTemplateColumns: "140px 1fr" ,height:"100px"}}>
                 <div style={{display:"flex",justifyContent:"center",alignItems:"center",fontSize:"2rem"}}>體重</div>
-                <div>123</div>
+                <div></div>
             </div>
         );
     }

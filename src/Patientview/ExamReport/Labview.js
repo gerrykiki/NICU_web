@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { Select } from 'antd';
 
 
 class Labview extends Component {
     state = {
-        Datelist: []
+        Datelist: [],
+        selectstate: 0
     }
 
     changedate(list) {
@@ -14,198 +16,66 @@ class Labview extends Component {
             }
         )
     }
+    title_list(listarray) {
+        console.log(listarray)
+        const list = listarray.map((info, index) =>
+            <div key={index} style={{ height: "50px", display: "flex", justifyContent: "center", alignItems: "center", fontSize: "1.3rem", textoverflow: "ellipsis", width: "100%", backgroundColor: "rgba(238,238,238,1)" }}>{info}</div>
+        )
+        return list;
+    }
+    handleChange = (value) => {
+        console.log(`selected ${value}`);
+        this.setState(
+            {
+                selectstate: value
+            }
+        )
+    }
     render() {
-        const titlestyle = { height: "50px", backgroundColor: "rgba(238,238,238,1)", display: "flex", justifyContent: "center", alignItems: "center", fontSize: "16px" }
-        const textstyle = { height: "50px", display: "flex", justifyContent: "center", alignItems: "center", fontSize: "16px" }
-        // const tablewidth = (document.body.clientWidth - 160) * 0.5
-        // const { Option } = Select;
-        // const { RangePicker } = DatePicker;
-        // const dateFormat = 'YYYY/MM/DD';
-        // const datearray = []
-        // var statetime = {
-        //     "starttime": (+new Date()),
-        //     "Endtime": (+new Date())
-        // }
-        // function onChange(value, dateString) {
-        //     statetime.starttime = (+new Date(dateString[0]))
-        //     statetime.Endtime = (+new Date(dateString[1]))
-        //     const diffcount = ((statetime.Endtime - statetime.starttime) / 86400000) + 1
-        //     datearray.length = 0
-        //     for (let index = 0; index < diffcount; index++) {
-        //         const element = statetime.starttime + (index * 86400000);
-        //         datearray.push(element)
-        //     }
-        // }
+        const titlestyle = { height: "50px", backgroundColor: "rgba(238,238,238,1)", display: "flex", justifyContent: "center", alignItems: "center", fontSize: "1.3rem" }
+        const { Option } = Select;
+        const lab_item_list = [
+            { item: "CBC檢驗:WBC、Hb、Hct、PLT" },
+            { item: "電解質與腎功能檢驗:Na、K、Ca(Free)、Ca(Total)、Mg、P、BUN、Cr" },
+            { item: "肝功能檢驗:AST、ALT、rGGT、Alkp、Alb" },
+            { item: "心臟功能檢驗:ck、ck-MB、BNP、Troponin I" },
+            { item: "凝血功能檢驗:PT、APTT、INR" },
+            { item: "GAS檢驗:PH、pCO2、pO2、HCO3、BE、Sample、O2Sat、Hb、Hct、Na、K、Ca(Free)、Bun、Cr" },
+            { item: "Glucose檢驗:Glu (BedSide)、Glu(Lab)" },
+        ]
 
-        // let dataview = this.state.Datelist.map(
-        //     (item, index) =>
-        //         <div key={index} style={{ width: "64px", height: "50px", lineHeight: "50px", textAlign: "center", paddingRight: "10px", paddingLeft: "10px", backgroundColor: "rgba(255,249,237,1)" }}>
-        //             {timestampchange(item)}
-        //         </div>
-        // )
-
-        // function timestampchange(time) {
-        //     var months = "1,2,3,4,5,6,7,8,9,10,11,12".split(",");
-        //     return months[new Date(time).getMonth()] + "/" + new Date(time).getDate()
-        // }
+        const row_title = [
+            { item: 0, title: ["WBC", "Hb", "Hct", "PLT"] },
+            { item: 1, title: ["Na", "K", "Ca(Free)", "Ca(Total)", "Mg", "P", "BUN", "Cr"] },
+            { item: 2, title: ["AST", "ALT", "rGGT", "Alkp", "Alb"] },
+            { item: 3, title: ["ck", "ck-MB", "BNP", "Troponin I"] },
+            { item: 4, title: ["PT", "APTT", "INR"] },
+            { item: 5, title: ["PH", "pCO2", "pO2", "HCO3", "BE", "Sample", "O2Sat", "Hb", "Hct", "Na", "K", "Ca(Free)", "Bun", "Cr"] },
+            { item: 6, title: ["Glu(BedSide)", "Glu(Lab)"] }
+        ]
+        const select_list = lab_item_list.map((info, index) =>
+            <Option key={index} value={index}>{info.item}</Option>
+        )
 
         return (
-            <div style={{ width: "100%", marginBottom: "20px" }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '40px' }}>
-                    <div style={{ fontSize: "22px", fontFamily: "PingFangTC-Medium" }}>
-                        LAB(常規檢驗）
+            <div>
+                <div style={{ fontSize: "2rem" }}>累積報告</div>
+                <div style={{ display: "grid", gridTemplateColumns: "20% 80%" }}>
+                    <div style={{ fontSize: "1.5rem", display: "flex", justifyContent: "center", alignItems: "center" }}>檢驗類別</div>
+                    <div style={{ padding: "2px 10px" }}>
+                        <Select defaultValue={0} style={{ width: "80%" }} onChange={this.handleChange}>
+                            {select_list}
+                        </Select>
                     </div>
                 </div>
-                {/* <div>
-                    <Select defaultValue="lucy" style={{ width: '20%' }}>
-                        <Option value="jack">Jack</Option>
-                        <Option value="lucy">Lucy</Option>
-                        <Option value="Yiminghe">yiminghe</Option>
-                    </Select>
-                    <RangePicker
-                        defaultValue={[moment('2015/01/01', dateFormat), moment('2015/01/01', dateFormat)]}
-                        format={dateFormat}
-                        style={{ marginLeft: "10px" }}
-                        onChange={onChange}
-                    />
-                    <Button style={{ marginLeft: "10px" }} onClick={() => this.changedate(datearray)}>搜尋</Button>
-                </div> */}
-                {/* <div style={{ display: "flex", marginTop: "10px", borderRadius: "4px" }}>
+                <div style={{ display: "grid", gridTemplateColumns: "20% 80%"}}>
                     <div>
-                        <div style={{ padding: "15px", backgroundColor: "rgba(255,249,237,1)", height: "50px", width: "100px", textAlign: 'center' }}>檢驗項目</div>
-                        <div style={{ padding: "15px", backgroundColor: "rgba(255,249,237,1)", height: "50px", width: "100px", textAlign: 'center' }}>Na</div>
-                        <div style={{ padding: "15px", backgroundColor: "rgba(255,249,237,1)", height: "50px", width: "100px", textAlign: 'center' }}>K</div>
-                        <div style={{ padding: "15px", backgroundColor: "rgba(255,249,237,1)", height: "50px", width: "100px", textAlign: 'center' }}>Ca</div>
-                        <div style={{ padding: "15px", backgroundColor: "rgba(255,249,237,1)", height: "50px", width: "100px", textAlign: 'center' }}>Mg</div>
-                        <div style={{ padding: "15px", backgroundColor: "rgba(255,249,237,1)", height: "50px", width: "100px", textAlign: 'center' }}>p</div>
-                        <div style={{ padding: "15px", backgroundColor: "rgba(255,249,237,1)", height: "50px", width: "100px", textAlign: 'center' }}>Bun</div>
-                        <div style={{ padding: "15px", backgroundColor: "rgba(255,249,237,1)", height: "50px", width: "100px", textAlign: 'center' }}>Cr</div>
+                        <div style={titlestyle}>檢驗項目</div>
                     </div>
-                    <div style={{ display: "flex",width:tablewidth, overflowY: "auto" }}>
-                        {dataview}
-                    </div>
-                </div> */}
-                <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr" }}>
-                    <div style={titlestyle}>檢驗項目</div>
-                    <div style={titlestyle}>PH</div>
-                    <div style={titlestyle}>PCO2</div>
-                    <div style={titlestyle}>PO2</div>
-                    <div style={titlestyle}>HCO3</div>
-                    <div style={titlestyle}>BE</div>
-                    <div style={titlestyle}>O2</div>
-                    <div style={titlestyle}>TCO2</div>
-                    <div style={titlestyle}>SaCO2</div>
-                </div>
-                <div style={{ maxHeight: "400px", overflow: "auto" }}>
-                    <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr" }}>
-                        <div style={titlestyle}>2019-01-01 15:00</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                    </div>
-                    <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr" }}>
-                        <div style={titlestyle}>2019-01-01 15:00</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                    </div>
-                    <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr" }}>
-                        <div style={titlestyle}>2019-01-01 15:00</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                    </div>
-                    <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr" }}>
-                        <div style={titlestyle}>2019-01-01 15:00</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                    </div>
-                    <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr" }}>
-                        <div style={titlestyle}>2019-01-01 15:00</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                    </div>
-                    <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr" }}>
-                        <div style={titlestyle}>2019-01-01 15:00</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                    </div>
-                    <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr" }}>
-                        <div style={titlestyle}>2019-01-01 15:00</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                    </div>
-                    <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr" }}>
-                        <div style={titlestyle}>2019-01-01 15:00</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                    </div>
-                    <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr" }}>
-                        <div style={titlestyle}>2019-01-01 15:00</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                    </div>
-                    <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr" }}>
-                        <div style={titlestyle}>2019-01-01 15:00</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
-                        <div style={textstyle}>234</div>
+                    <div style={{ maxWidth: "100%", overflowX: "auto" }}>
+                        <div style={{ display: "grid", gridTemplateColumns: "repeat(" + row_title[this.state.selectstate].title.length + ",100px)" }}>
+                            {this.title_list(row_title[this.state.selectstate].title)}
+                        </div>
                     </div>
                 </div>
             </div>

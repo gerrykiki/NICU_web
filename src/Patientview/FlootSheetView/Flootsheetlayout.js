@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import IOlayout from '../BasicIO'
 import Controlbar from '../Controlbar';
 import Flowsheetvitalsign from './Flootsheetvitalsign'
+import { DatePicker } from 'antd';
 
 class Flowsheetlayout extends Component {
 
@@ -82,16 +83,36 @@ class Flowsheetlayout extends Component {
                 "data": this.simdata()
             }
         ]
-
-
         return (
             <div>
-                <Controlbar tagdisplay={"none"}></Controlbar>
-                <div id='Flowsheetlayout' style={{ maxHeight: '75vh', overflowY: 'auto' }}>
-                <div><Flowsheetvitalsign></Flowsheetvitalsign></div>
-                    <div>
-                        <IOlayout IO_data={IOsource}></IOlayout>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 8fr" }}>
+                    <div style={{ display: "grid", gridTemplateRows: "1fr 1fr 1fr" }}>
+                        <div style={{ padding: "5px 10px" }}>
+                            <DatePicker placeholder="請選擇時間" />
+                        </div>
                     </div>
+                    <div style={{ display: "grid", gridTemplateRows: "1fr 1fr 1fr" }}>
+                        <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                            特殊護理事件:<div style={{ width: "20px", height: "20px", borderRadius: "99em", background: "black", color: "white", textAlign: "center" }}>1</div>
+                        </div>
+                    </div>
+                    <div style={{ padding: "5px 10px" }}>
+                        <div style={{ border: "rgba(238,238,238,1) 1px solid", borderRadius: "4px",maxHeight:"100px",height:"100px" ,overflow:"auto"}}>
+                            <div style={{ display: "flex" ,color:"rgba(59, 151, 225, 1)"}}>10 : 00 特殊護理事件</div>
+                            <div style={{ display: "flex" ,color:"rgba(59, 151, 225, 1)"}}>11 : 00 特殊護理事件</div>
+                            <div style={{ display: "flex" ,color:"rgba(59, 151, 225, 1)"}}>12 : 00 特殊護理事件</div>
+                            <div style={{ display: "flex" ,color:"rgba(59, 151, 225, 1)"}}>11 : 00 特殊護理事件</div>
+                            <div style={{ display: "flex" ,color:"rgba(59, 151, 225, 1)"}}>12 : 00 特殊護理事件</div>
+                            <div style={{ display: "flex" ,color:"rgba(59, 151, 225, 1)"}}>11 : 00 特殊護理事件</div>
+                            <div style={{ display: "flex" ,color:"rgba(59, 151, 225, 1)"}}>12 : 00 特殊護理事件</div>
+                            <div style={{ display: "flex" ,color:"rgba(59, 151, 225, 1)"}}>11 : 00 特殊護理事件</div>
+                            <div style={{ display: "flex" ,color:"rgba(59, 151, 225, 1)"}}>12 : 00 特殊護理事件</div>
+                        </div>
+                    </div>
+                </div>
+                <div id='Flowsheetlayout' style={{ maxHeight: '60vh', overflowY: 'auto' }}>
+                    <div><Flowsheetvitalsign></Flowsheetvitalsign></div>
+                    <div><IOlayout IO_data={IOsource}></IOlayout></div>
                 </div>
             </div>
         );

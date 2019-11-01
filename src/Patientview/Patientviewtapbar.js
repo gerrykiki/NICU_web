@@ -32,7 +32,7 @@ class Patientviewtapbar extends Component {
                         <Examreport></Examreport>
                     </TabPane>
                     <TabPane tab="Order view" key="5">
-                        <Orderview></Orderview>
+                        <Orderview searchbar={true}></Orderview>
                     </TabPane>
                     <TabPane tab="Note" key="6">
                         <Noteview></Noteview>

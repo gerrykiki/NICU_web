@@ -84,8 +84,8 @@ class Crosssectionlayout extends Component {
                         <RTbreathe userdata={userdata}></RTbreathe>
                     </div>
                     <div id={"order"} style={this.display_item(3) ? { display: "grid", gridTemplateColumns: "50% 50%", gridGap: "10px" } : { display: "none" }}>
-                        <Prescriptionorderlayout userdata={userdata} searchbar={"none"}></Prescriptionorderlayout>
-                        <Treatmentorderlayout userdata={userdata} searchbar={"none"}></Treatmentorderlayout>
+                        <Prescriptionorderlayout userdata={userdata} searchbar={false}></Prescriptionorderlayout>
+                        <Treatmentorderlayout userdata={userdata} searchbar={false}></Treatmentorderlayout>
                     </div>
                     <div id={"schedule"} style={this.display_item(4) ? null : { display: "none" }}>
                         <Crossection_schedule userdata={userdata}></Crossection_schedule>

@@ -6,6 +6,7 @@ import Chronic_lab from './Chronic_lab'
 import Chronic_rt from './Chronic_rt'
 import Chronic_order from './Chronic_order'
 import Chronic_weight from './Chronic_weight'
+import Chronic_vital from './Chronic_vital'
 
 class Chroniclelayout extends Component {
     state = {
@@ -86,6 +87,7 @@ class Chroniclelayout extends Component {
                     </div>
                 </div>
                 {/* Vital sign */}
+                <Chronic_vital userdata={userdata} title="Vital"></Chronic_vital>
                 {/* I/O */}
                 <Chronic_io userdata={userdata} title="I/O"></Chronic_io>
                 {/* Lab */}

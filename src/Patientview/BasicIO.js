@@ -38,9 +38,9 @@ class IOlayout extends Component {
                 </div>
         )
         return (
-            <div style={{ width: "100%", marginBottom: "20px" }}>
+            <div style={{ marginBottom: "20px" }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '40px' }}>
-                    <div style={{ fontSize: "22px", fontFamily: "PingFangTC-Medium" }}>
+                    <div style={{ fontSize: "2rem"}}>
                         I/O
                     </div>
                 </div>
