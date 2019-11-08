@@ -23,8 +23,8 @@ class Nonlabviewtable extends Component {
             }
         ]
         const string_style = {
-            title: { fontSize: "1.3rem",display:"flex",justifyContent:"center",alignItems:"center" },
-            item:{ fontSize: "1rem",display:"flex",justifyContent:"center",alignItems:"center" }
+            title: { fontSize: "1rem",display:"flex",alignItems:"center" },
+            item:{ fontSize: "1rem",display:"flex",alignItems:"center" }
         }
         let labtable = lablist.map(
             (info, index) =>
@@ -36,8 +36,8 @@ class Nonlabviewtable extends Component {
         )
 
         return (
-            <div>
-                <div style={{ height: "50px", borderWidth: "1px", borderStyle: "solid", borderColor: "rgba(232,232,232,1)", backgroundColor: "rgba(255,249,237,1)", display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", paddingLeft: "5px", paddingRight: "5px" }}>
+            <div style={{marginTop:"10px"}}>
+                <div style={{ height: "50px", borderWidth: "1px", borderStyle: "solid", borderColor: "rgba(238,238,238,1)", backgroundColor:  "rgba(238,238,238,1)", display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", paddingLeft: "5px", paddingRight: "5px" }}>
                     <div style={string_style.title}>檢驗日期</div>
                     <div style={string_style.title}>檢驗項目名稱</div>
                     <div style={string_style.title}>檢驗項目狀態</div>

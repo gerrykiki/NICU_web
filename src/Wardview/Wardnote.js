@@ -3,6 +3,8 @@ import { Input, Button, Tooltip } from 'antd';
 import editlogo from '../Image/svg/Edit.svg'
 import deleteimg from '../Image/svg/delete.svg'
 import detail from '../Image/svg/details.svg'
+import { WardInfo } from '../jsonResponse'
+import { dev_path } from '../API/Apidata'
 
 class WardcardNote extends Component {
     state = {
@@ -10,14 +12,46 @@ class WardcardNote extends Component {
         AnnoceData: this.props.annouce
     }
 
+    componentDidMount() {
+        fetch(dev_path+"/nicu/GetAnnouncement",{
+            method: "GET",
+            mode: 'cors',
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'Authorization': sessionStorage.getItem("Logindata")
+            })
+        }).then(res => {
+            // if (res.ok) {
+            //     this.setState(
+            //         {
+            //             AnnoceData: res.json
+            //         }
+            //     )
+            // }
+            // else{
+
+            // }
+            console.log(res)
+        })
+    }
     canceleditlist() {
+        console.log(WardInfo.Announcement)
+        //抓尚未改變
         this.setState({
-            editstate: "none"
+            editstate: "none",
+            AnnoceData: WardInfo.Announcement
+        });
+    }
+
+    okeditlist() {
+        const item = this.props.annouce
+        this.setState({
+            editstate: "none",
+            AnnoceData: item
         });
     }
 
     editlist() {
-        console.log(this.state.editstate)
         if (this.state.editstate === "none") {
             this.setState({
                 editstate: "inline"
@@ -39,7 +73,6 @@ class WardcardNote extends Component {
             'time': +(new Date()),
             'text': document.getElementById("NewAnn").value
         }
-        console.log(announce)
         announce.push(newData)
         this.setState({
             AnnoceData: announce
@@ -60,7 +93,17 @@ class WardcardNote extends Component {
 
         }
     }
-    styleedit(string) {
+
+    onClickDeleteAnnounce(index) {
+        const item = this.state.AnnoceData
+        item.splice(index, 1)
+        this.setState(
+            {
+                AnnoceData: item
+            }
+        )
+    }
+    styleedit(string, index) {
         if (this.state.editstate === "none") {
             return (
                 <Tooltip placement="top" title={string}>
@@ -68,34 +111,31 @@ class WardcardNote extends Component {
                 </Tooltip>);
         }
         else {
-
-            return <img src={deleteimg} alt='deletelogo'></img>
+            return <img src={deleteimg} alt='deletelogo' onClick={() => this.onClickDeleteAnnounce(index)}></img>
         }
     }
     announcelist() {
         const item = this.props.annouce
-        console.log(item)
         var annoucelistview = []
-        for (let index = 0; index < item.length; index++) {
-            const element = item[index];
-            const text = <div>{new Date(element.time).getMonth()}/{new Date(element.time).getDate()} {element.writter}醫師留</div>
-            const announce =
-                <div key={index} style={{ display: 'grid', gridTemplateColumns: "15px auto", gridColumnGap: "5px", paddingTop: "5px", paddingBottom: "5px" }}>
-                    <div>{index + 1}.</div>
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                        <div style={{ display: "flex", alignItems: "center" }}>{element.text}</div>
-                        {this.styleedit(text)}
-                    </div>
-                </div>
-            annoucelistview.push(announce)
+        if (item === null) {
+            return null
         }
-        // const annouceview = annouce.map(
-        //     (item, index) =>
-        //         <Tooltip placement="left" title={text}>
-        //             <div key={index} style={{ height: "50px", lineHeight: "30px", paddingTop: '10px', paddingBottom: '10px', fontSize: "16px" }}>{item.text}</div>
-        //         </Tooltip>
-        // )
-        return annoucelistview
+        else {
+            for (let index = 0; index < item.length; index++) {
+                const element = item[index];
+                const text = <div>{new Date(element.time).getMonth()}/{new Date(element.time).getDate()} {element.writter}醫師留</div>
+                const announce =
+                    <div key={index} style={{ display: 'grid', gridTemplateColumns: "15px auto", gridColumnGap: "5px", paddingTop: "5px", paddingBottom: "5px" }}>
+                        <div>{index + 1}.</div>
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                            <div style={{ display: "flex", alignItems: "center" }}>{element.text}</div>
+                            {this.styleedit(text, index)}
+                        </div>
+                    </div>
+                annoucelistview.push(announce)
+            }
+            return annoucelistview
+        }
     }
     render() {
         const editstyle = {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as d3 from "d3";
 import './Crosssectionvitalsignchart.css'
+import { center_monitor } from '../../Centormonitor_data'
 
 class Crosssectionvitalsignchart extends Component {
     state = {
@@ -25,6 +26,7 @@ class Crosssectionvitalsignchart extends Component {
         //console.log(dataarray);
         return dataarray;
     }
+
 
     componentDidMount() {
         this.drawChart();
@@ -89,7 +91,7 @@ class Crosssectionvitalsignchart extends Component {
         function timeBotmultiFormat(date) {
             return formatDay(date)
         }
-
+        //vitaldays true:threeday
         const { id_key, svg_id, datasource, axisBot, axisTop, circlrcolor, colorshadow, max, min, defaultdate, source, vitaldays } = this.props
         const width = window.screen.availWidth * 0.25, height = 100, viewwidth = width - 50, rect_width = width / 46
         const LocalDate = new Date(new Date(defaultdate).getFullYear() + ',' + monthformat(new Date(defaultdate).getMonth()) + ',' + new Date(defaultdate).getDate()).getTime()
@@ -149,14 +151,14 @@ class Crosssectionvitalsignchart extends Component {
                     .append("g")
                     .attr("transform", "translate(" + 40 + "," + 5 + ")");
             }
-            else{
+            else {
 
                 svg = d3.select("#" + id_key)
-                .append("svg")
-                .attr("id", svg_id)
-                .attr("viewBox", [0, 0, width, height + 10])
-                .append("g")
-                .attr("transform", "translate(" + 40 + "," + 5 + ")");
+                    .append("svg")
+                    .attr("id", svg_id)
+                    .attr("viewBox", [0, 0, width, height + 10])
+                    .append("g")
+                    .attr("transform", "translate(" + 40 + "," + 5 + ")");
             }
         }
 
@@ -178,7 +180,6 @@ class Crosssectionvitalsignchart extends Component {
             .attr("class", "axis");
 
 
-        const data = this.simulation_data()
         svg.append('line')
             .attr('x1', x(vital_interval))
             .attr('y1', y(max))
@@ -246,6 +247,22 @@ class Crosssectionvitalsignchart extends Component {
             }
         }
 
+        // const data = center_monitor
+        // if (vitaldays) {
+
+        // }
+        // else {
+        //     for (let index = 0; index < data.length; index++) {
+        //         const element = data[index];
+        //         svg.append('circle')
+        //             .attr("id", "the_SVG_ID")
+        //             .attr('cx', x(element.time * 1000))
+        //             .attr('cy', y(element.Data))
+        //             .attr('r', 0.1)
+        //             .style('fill', circlrcolor)
+
+        //     }
+        // }
         // for (let index = 0; index < data.length; index++) {
         //     const mappingdata = data[index]
         //     if (mappingdata > min && mappingdata < max) {

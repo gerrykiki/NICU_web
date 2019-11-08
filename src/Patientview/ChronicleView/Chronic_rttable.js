@@ -35,7 +35,7 @@ class Chronicrttable extends Component {
                     <img src={rtlogo} alt="rtlogo" />
                 </div>)
             const title_cell =
-                <div style={{ display: "grid", gridTemplateRows: "repeat(" + title.length + ",1fr)" }}>
+                <div key={index} style={{ display: "grid", gridTemplateRows: "repeat(" + title.length + ",1fr)" }}>
                     {title_list}
                 </div>
             table_item.push(title_cell)

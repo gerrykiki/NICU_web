@@ -1,23 +1,16 @@
 import React, { Component } from 'react';
 import WardChart from './Wardchart'
 import Wardinfousercheckbox from './Wardunfousercheckbox'
-import { ward_bed_information } from '../jsonResponse'
 import Wardlabview from './Wardlab'
 import { Modal, Select } from 'antd';
-import WardlifeChart from './Wardlifechart'
-import Wardmonthafter from './Wardmonthafter'
+import Wardgrewchart from './Wardgrewchart'
 
 class Wardinfouser extends Component {
-    constructor(props) {
-        super(props);
-        // 不要在這裡呼叫 this.setState()！
-        this.state = {
-            alertstate: "none",
-            test_items_interval: 0,
-            Data_change: true,
-            visible: false,
-            source:false
-        };
+    state = {
+        alertstate: "none",
+        Data_change: true,
+        visible: false,
+        source:false
     }
 
     showModal = () => {
@@ -27,14 +20,12 @@ class Wardinfouser extends Component {
     };
 
     handleOk = e => {
-        console.log(e);
         this.setState({
             visible: false,
         });
     };
 
     handleCancel = e => {
-        console.log(e);
         this.setState({
             visible: false,
         });
@@ -118,11 +109,6 @@ class Wardinfouser extends Component {
         }
     }
 
-    detaildatastylelist(detail) {
-        console.log(detail)
-
-    }
-
     Medgroupclick() {
         this.setState(
             {
@@ -164,64 +150,12 @@ class Wardinfouser extends Component {
                 return null
         }
     }
-    //測驗項目功能_區間按鈕樣式
-    SwitchTestItemInterval(testiteminterval) {
-        const time_selectbtn_style = {
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "40px",
-            paddingRight: "10px",
-            paddingLeft: "10px",
-            borderRadius: "16px",
-            backgroundColor: "rgba(245,166,35,1)",
-            color: "white",
-            fontSize: "1rem",
-            borderWidth: "1px",
-            borderStyle: "solid",
-            borderColor: "rgba(245,166,35,1)",
-            cursor: "pointer"
-        }
-        const time_unselectbtn_style = {
-            display: "flex", justifyContent: "center",
-            alignItems: "center", height: "40px",
-            paddingRight: "10px", paddingLeft: "10px",
-            borderRadius: "16px", backgroundColor: "white",
-            color: "rgba(245,166,35,1)", fontSize: "1rem",
-            borderWidth: "1px", borderStyle: "solid",
-            borderColor: "rgba(245,166,35,1)",
-            cursor: "pointer"
-        }
-        if (testiteminterval === this.state.test_items_interval) {
-            return time_selectbtn_style
-        }
-        else return time_unselectbtn_style
-    }
-    //測驗項目功能_區間按鈕選擇
-    Onchangetimeinterval(changestate) {
-        this.setState(
-            {
-                test_items_interval: changestate
-            }
-        )
-    }
+
     sendData = (idnumber) => {
         this.props.parentCallback(idnumber);
     }
 
-    switch_monthy() {
-        const userinfo = this.props.data
-        const switch_data = this.state.test_items_interval
-        console.log(switch_data)
-        switch (switch_data) {
-            case 0:
-                return <WardlifeChart id_key={"wardlife"} svg_key={"wardlife_svg"} gender={userinfo.Gender}></WardlifeChart>
-            case 1:
-                return <Wardmonthafter id_key={"wardlife_after"} svg_key={"wardlife_after_svg"} gender={userinfo.Gender}></Wardmonthafter>
-            default:
-                return null;
-        }
-    }
+
 
     Birthday_format(bir) {
         function Monthformat(month) {
@@ -231,7 +165,7 @@ class Wardinfouser extends Component {
         return bir_time
     }
     sourcehandleChange = (value) => {
-        console.log(`selected ${value}`);
+        // console.log(`selected ${value}`);
         switch (value) {
             case 0:
                 this.switch_source(false)
@@ -254,9 +188,8 @@ class Wardinfouser extends Component {
     render() {
 
         const userinfo = this.props.data
-        const userdata = ward_bed_information;
         const { Option } = Select;
-
+        // console.log(userinfo)
         let detaillist = userinfo.detaildata.map(
             (info, index) =>
                 <div key={index} style={info.data ?
@@ -328,7 +261,8 @@ class Wardinfouser extends Component {
                             </Select>
                         </div>
                     </div>
-                    <WardChart></WardChart>
+                    {/* 統計圖表 */}
+                    <WardChart hisid={userinfo.id}></WardChart>
                     {/* */}
                     <div style={{ marginTop: "20px", display: "grid", gridColumnGap: "10px", gridTemplateColumns: "50% 50%", padding: "10px" }}>
                         {/*檢驗項目*/}
@@ -339,16 +273,7 @@ class Wardinfouser extends Component {
                             <Wardlabview id={"wardlab"}></Wardlabview>
                         </div>
                         {/*生長曲線*/}
-                        <div style={{ borderWidth: "1px", borderStyle: "solid", borderColor: "rgba(238, 238, 238, 1)", borderRadius: "4px" }}>
-                            <div style={{ display: "flex", justifyContent: "space-between", alignItems: 'center', height: "50px", backgroundColor: "rgba(238, 238, 238, 1)", borderTopLeftRadius: "4px", borderTopRightRadius: "4px", paddingLeft: "15px" }}>
-                                <div style={{ fontSize: "1.5rem" }}>生長曲線圖</div>
-                                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gridColumnGap: "5px" }}>
-                                    <div style={this.SwitchTestItemInterval(0)} onMouseUp={() => this.Onchangetimeinterval(0)}>滿足月</div>
-                                    <div style={this.SwitchTestItemInterval(1)} onMouseUp={() => this.Onchangetimeinterval(1)}>不滿足月</div>
-                                </div>
-                            </div>
-                            {this.switch_monthy()}
-                        </div>
+                        <Wardgrewchart userinfo={userinfo}></Wardgrewchart>
                     </div>
                     {/*排程*/}
                     <div style={{ borderWidth: "1px", borderStyle: "solid", borderColor: "rgba(238, 238, 238, 1)", borderRadius: "4px", height: "250px", padding: "10px" }}>

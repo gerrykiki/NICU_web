@@ -29,8 +29,8 @@ class Wardinfoindex extends Component {
                         主任 : {info.Director}  護理長 : {info.HeadNurse}
                     </div>
                 </div>
-                <div style={{ display: "grid", gridTemplateColumns: "50% 50%", gridColumnGap: "5px",height:"400px" }}>
-                    <WardcardNote annouce={info.Announcement}></WardcardNote>
+                <div style={{ display: "grid", gridTemplateColumns: "50% 50%", gridColumnGap: "5px" }}>
+                    <WardcardNote annouce={null}></WardcardNote>
                     <Wardschedule editstatus={false}></Wardschedule>
                 </div>
                 <Wardbedinformation></Wardbedinformation>

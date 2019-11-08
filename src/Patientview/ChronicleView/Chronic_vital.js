@@ -1,19 +1,20 @@
 import React, { Component } from 'react'
 import Chronicrttable from './Chronic_rttable'
+import Chronicvitalchart from './Chronic_vital_chart'
 
 class Chronic_vital extends Component {
 
     render() {
-        const { userdata } = this.props
+        const { userdata, select_interval, select_date } = this.props
         const title_list = [{ item: "HR" }, { item: "ABP" }, { item: "NBP" }, { item: "SpO2" }, { item: "BT" }, { item: "RR" }]
         const vital_style = {
             title_style: { fontSize: "1rem", display: "flex", justifyContent: "center" }
         }
         const vital_title = title_list.map((info, index) =>
-            <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <div key={index} style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                 <div>
-                    <div style={{ fontSize: "1rem", display: "flex", justifyContent: "center" ,color:title_color(info.item)}}>{info.item}</div>
-                    <div style={{ fontSize: "2rem", display: "flex", justifyContent: "center" ,color:title_color(info.item)}}>123</div>
+                    <div style={{ fontSize: "1rem", display: "flex", justifyContent: "center", color: title_color(info.item) }}>{info.item}</div>
+                    <div style={{ fontSize: "2rem", display: "flex", justifyContent: "center", color: title_color(info.item) }}>123</div>
                 </div>
             </div>
         )
@@ -35,14 +36,23 @@ class Chronic_vital extends Component {
                     break;
             }
         }
+        console.log(select_date)
         return (
             <div>
                 <div style={{ display: "flex", alignItems: "center" }}>
                     <div style={{ fontSize: "2rem" }}>Vital</div>
                 </div>
-                <div style={{ display: "grid", gridTemplateColumns: "90px 50px 1fr" }}>
-                    <div style={{ display: "grid", gridTemplateRows: "repeat(6,65px)" }}>
+                <div style={{ display: "grid", gridTemplateColumns: "90px 1fr" }}>
+                    <div style={{ display: "grid", gridTemplateRows: "repeat(6,100px)" }}>
                         {vital_title}
+                    </div>
+                    <div style={{ display: "grid", gridTemplateRows: "repeat(6,100px)" }}>
+                        <Chronicvitalchart max={200} min={0} select_interval={select_interval} select_date={select_date} id_key="hr_id_chronic" svg_id="hr_svg_chronic"></Chronicvitalchart>
+                        <Chronicvitalchart max={200} min={0} select_interval={select_interval} select_date={select_date} id_key="abp_id_chronic" svg_id="abp_svg_chronic"></Chronicvitalchart>
+                        <Chronicvitalchart max={200} min={0} select_interval={select_interval} select_date={select_date} id_key="nbp_id_chronic" svg_id="nbp_svg_chronic"></Chronicvitalchart>
+                        <Chronicvitalchart max={200} min={0} select_interval={select_interval} select_date={select_date} id_key="spo2_id_chronic" svg_id="spo2_svg_chronic"></Chronicvitalchart>
+                        <Chronicvitalchart max={200} min={0} select_interval={select_interval} select_date={select_date} id_key="bt_id_chronic" svg_id="bt_svg_chronic"></Chronicvitalchart>
+                        <Chronicvitalchart max={200} min={0} select_interval={select_interval} select_date={select_date} id_key="rr_id_chronic" svg_id="rr_svg_chronic"></Chronicvitalchart>
                     </div>
                 </div>
             </div>

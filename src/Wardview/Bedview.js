@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Switch } from 'antd';
-import "./Bedview.css";
 import Wardcard from './Wardcard';
 import Wardcarddetail from './Wardcarddetail';
 import Unpreviewwardcard from './UnpreviewWardCard'
@@ -14,7 +13,7 @@ class Bedview extends Component {
     state = {
         index: true,
         previewmode: false,
-        simplemode: false,
+        simplemode: true,
         select: null
     };
 
@@ -34,8 +33,6 @@ class Bedview extends Component {
         });
     }
 
-
-
     previewmode_switch() {
 
         const source = jsonResponse.Userdata.user;
@@ -46,8 +43,8 @@ class Bedview extends Component {
 
         if (!this.state.previewmode) {
             for (let i = 0; i < source.length; i++) {
-                wardcardlist.push(<Wardcard key={i} data={source[i]} parentCallback={this.callbackFunction} selectstate={this.state.select} previewmode={true} />)
-                wardcarddetaillist.push(<Wardcarddetail key={i} data={source[i]} parentCallback={this.callbackFunction} selectstate={this.state.select} previewmode={true} />)
+                wardcardlist.push(<Wardcard  bedbumber={i} key={i} data={source[i]} parentCallback={this.callbackFunction} selectstate={this.state.select} previewmode={true} />)
+                wardcarddetaillist.push(<Wardcarddetail  bedbumber={i} key={i} data={source[i]} parentCallback={this.callbackFunction} selectstate={this.state.select} previewmode={true} />)
             }
         }
         else {
@@ -187,8 +184,8 @@ class Bedview extends Component {
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: 'center' }}>住院中病人資訊 > {this.switch_titile_string()}</div>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                     <div>
-                        <Switch style={{ marginRight: 5 }} checkedChildren="床頭卡顯示(繁)" unCheckedChildren="床頭卡顯示(簡)" defaultChecked onChange={this.onChangesimple} />
-                        <Switch checkedChildren="病人摘要檢視(開)" unCheckedChildren="病人摘要檢視(關)" defaultChecked onChange={this.onChangedisplay} />
+                        <Switch style={{ marginRight: 5 }} checkedChildren="床頭卡顯示(繁)" unCheckedChildren="床頭卡顯示(簡)" defaultChecked={this.state.previewmode} onChange={this.onChangesimple} />
+                        <Switch checkedChildren="病人摘要檢視(開)" unCheckedChildren="病人摘要檢視(關)" defaultChecked={this.state.simplemode} onChange={this.onChangedisplay} />
                     </div>
                     <div>
                         <span>資料更新時間</span>

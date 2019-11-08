@@ -84,16 +84,18 @@ class Schedule_event_list extends Component {
             else {
                 if (eventstate === info.item) {
                     listarray.push(
-                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingLeft: "20px", paddingRight: "20px" }}>
+                        <div key={index} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingLeft: "20px", paddingRight: "20px" }}>
                             <div key={index} style={{ height: "50px", borderBottomWidth: "1px", borderBottomColor: "rgba(0,0,0,0.09)", borderBottomStyle: "solid", paddingTop: "8px", paddingBottom: "8px", display: "flex", alignItems: "center" }}>
                                 <div style={{ width: "30px", borderRadius: "4px", backgroundColor: checkbackground(info.item), fontSize: "1.5rem", display: "flex", justifyContent: "center", alignItems: "center", color: "white" }}>{itemchange(info.item)}</div>
                                 <div style={{ fontSize: "1.5rem", marginLeft: "10px" }}>床{info.bednumber}/{info.name}</div>
                                 <div style={{ fontSize: "1.5rem", marginLeft: "10px" }}>{this.timechange(info.time)}</div>
                                 <div style={{ fontSize: "1.5rem", marginLeft: "10px" }}>{info.result}</div>
                             </div>
-                            <div>
-                                <img src={detaillogo} alt='detaillogo'></img>
-                            </div>
+                            <Tooltip placement="right" title={text}>
+                                <div>
+                                    <img src={detaillogo} alt='detaillogo'></img>
+                                </div>
+                            </Tooltip>
                         </div>
                     )
                 }
@@ -166,10 +168,8 @@ class Schedule_event_list extends Component {
                         <div style={this.SwitchTestItemInterval("event")} onClick={() => this.pressbtn("event")}>事件</div>
                     </div>
                 </div>
-                <div style={{ height: "250px" }}>
-                    <div style={{ maxHeight: "250px", overflow: "auto" }}>
-                        {this.eventdata()}
-                    </div>
+                <div style={{ maxHeight: "250px", overflow: "auto" }}>
+                    {this.eventdata()}
                 </div>
             </div>
 

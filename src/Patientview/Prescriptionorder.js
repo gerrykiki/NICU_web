@@ -3,29 +3,49 @@ import Prescriptionordertable from './Prescriptionordertable'
 import { DatePicker, Select, Input, Button } from 'antd';
 import searchlogo from '../Image/svg/Search.svg'
 
+var DateRange, SelectData
 class Prescriptionorderlayout extends Component {
-
+    state = {
+        selectMode: 0,
+        inputmode:null,
+        DateRangeMode:null
+    }
+    handleChange = (value) => {
+        console.log(`selected ${value}`);
+        SelectData = value
+        // this.setState(
+        //     {
+        //         selectMode: value
+        //     }
+        // )
+    }
+    onDateRangeChange = (date, dateString) => {
+        console.log(date, dateString);
+        DateRange = dateString
+    }
+    onClickSearch(){
+        const inputdata = document.getElementById("prescriptionorderinput").value
+        if (DateRange === undefined || SelectData === undefined || inputdata === undefined) {
+            console.log("data undefined")
+        }
+    }
     Search_bar() {
         const { searchbar } = this.props
         const { RangePicker } = DatePicker;
         const { Option } = Select;
-        function onChange(date, dateString) {
-            console.log(date, dateString);
-        }
 
-        function handleChange(value) {
-            console.log(`selected ${value}`);
-        }
         if (searchbar) {
             return (
-                <div style={{ display: "grid", gridTemplateColumns: "2fr 200px 2fr 1fr", gridColumnGap: "10px" ,marginBottom:"5px"}}>
-                    <RangePicker placeholder={["請輸入日期","請輸入日期"]} onChange={onChange} />
-                    <Select defaultValue="lucy" style={{ width: 200 }} onChange={handleChange}>
+                <div style={{ display: "grid", gridTemplateColumns: "4fr 150px 2fr 50px", gridColumnGap: "10px", marginBottom: "5px" }}>
+                    <RangePicker placeholder={["請輸入日期", "請輸入日期"]} onChange={this.onDateRangeChange} />
+                    <Select defaultValue={this.state.selectMode} style={{ width: 150 }} onChange={this.handleChange}>
                         <Option value={0}>生效中</Option>
-                        <Option value={1}>失效/以結束/取消</Option>
+                        <Option value={1}>失效/已結束/取消</Option>
                     </Select>
-                    <Input placeholder="輸入藥囑關鍵字" />
-                    <img src={searchlogo} alt="searchlogo"/>
+                    <Input id="prescriptionorderinput" placeholder="輸入藥囑關鍵字" />
+                    <div onClick={()=>this.onClickSearch()} style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                        <img src={searchlogo} alt="searchlogo" />
+                    </div>
                 </div>
             );
         }

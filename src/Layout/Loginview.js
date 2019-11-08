@@ -2,33 +2,47 @@ import React, { Component } from 'react';
 import { Button } from 'antd';
 import { Redirect } from 'react-router-dom'
 import { Input } from 'antd'
-
+import { dev_path } from '../API/Apidata'
 
 class Loginview extends Component {
-    state = {
-        redirect: false
-    }
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            redirect: false,
+            permission: true
+        }
+        this.setRedirect = this.setRedirect.bind(this);   //把元件中的this繫結到handleClick方法中，這樣就會保持this一致          
+    };
     setRedirect = () => {
         const account = document.getElementById("account").value;
         const password = document.getElementById("password").value;
-        const data = {
-            "account": account,
-            "password": password
-        }
-        var token = null;
-        if (data.account === "gerrykiki" && data.password === "210599") {
-            token = 123456787654345676543;
-            sessionStorage.setItem('Logindata', token);
-        }
-
-        // setter
-        this.setState({
-            redirect: true
+        const data = { username: account, password: password }
+        console.log(JSON.stringify(data))
+        fetch(dev_path + "/authenticate", {
+            method: "POST",
+            body: JSON.stringify(data),
+            mode: 'cors',
+            headers: new Headers({
+                'Content-Type': 'application/json',
+            })
+        }).then(res => {
+            if (res.ok) {
+                sessionStorage.setItem('Logindata', data.token);
+                this.setState({
+                    redirect: true
+                })
+            }
+            else {
+                this.setState({
+                    permission: false
+                })
+            }
         })
+
     }
     renderRedirect = () => {
         const login = sessionStorage.getItem('Logindata');
-        console.log(login)
         if (login !== null) {
             return <Redirect from={"/login"} to={"/nicu"} />
         }
@@ -54,9 +68,10 @@ class Loginview extends Component {
                                 <Input type="password" id="password" style={{ marginLeft: "20px" }} placeholder="請輸入密碼"></Input>
                             </div>
                             <Button style={{ width: "280px", backgroundColor: "rgba(46, 100, 164, 1)", color: "white", marginTop: "70px" }} onClick={this.setRedirect}>登入</Button>
+                            <div style={{ display: this.state.permission ? "none" : "block", color: "red", fontSize: "1rem" }}>帳號密碼錯誤</div>
                         </div>
-
                     </div>
+                    <div style={{ width: "100%", justifyContent: "center", alignItems: "center", display: "flex" }}>191102.001-T</div>
                 </div>
             </div>
         );

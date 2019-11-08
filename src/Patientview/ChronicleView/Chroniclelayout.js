@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { DatePicker, Button } from 'antd';
+import { DatePicker, Button, Select } from 'antd';
 import filterlogo from '../../Image/svg/filter.svg'
 import Chronic_io from './Chronic_io'
 import Chronic_lab from './Chronic_lab'
@@ -7,12 +7,17 @@ import Chronic_rt from './Chronic_rt'
 import Chronic_order from './Chronic_order'
 import Chronic_weight from './Chronic_weight'
 import Chronic_vital from './Chronic_vital'
+import Vitalxaxis from '../../Module/Vitalxaxis'
+import Vitalxaxisbot from '../../Module/Vitalxaxisbot'
+import moment from 'moment'
 
 class Chroniclelayout extends Component {
     state = {
         display_Mode: false,
         item: this.props.item_array,
-        scrollstate: 0
+        scrollstate: 0,
+        select_date: new Date().getTime(),
+        select_interval: 0
     }
     componentDidMount() {
         var el = document.getElementById("crossection");
@@ -53,7 +58,30 @@ class Chroniclelayout extends Component {
         }
         else return false
     }
+    onChange = (date, dateString) => {
+        console.log(date, dateString);
+        this.setState(
+            {
+                select_date: new Date(dateString).getTime()
+            }
+        )
+    }
+    onSelectchange = (value) => {
+        this.setState(
+            {
+                select_interval: value
+            }
+        )
+    }
     render() {
+        function monthformat(month) {
+            return month + 1
+        }
+        function timeformat(time) {
+            return new Date(time).getFullYear() + "/" + monthformat(new Date(time).getMonth()) + "/" + new Date(time).getDate()
+        }
+        const { Option } = Select;
+        const dateFormat = 'YYYY/MM/DD';
         const { userdata } = this.props
         const crosssectioncontrollist =
             [{ "name": "vital", "scrollpoint": "vital_sign" },
@@ -69,14 +97,18 @@ class Chroniclelayout extends Component {
         }
         let btn = crosssectioncontrollist.map(
             (item, index) => <Button onClick={this.scrollToAnchor.bind(this, item.scrollpoint)} key={index} style={this.scroll_btn_style(index) ? btn_style.click_style : btn_style.unclick_style}>{item.name}</Button>);
-        function onChange(date, dateString) {
-            console.log(date, dateString);
-        }
+
         return (
             <div style={{ paddingLeft: "20px", paddingRight: "20px" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                     <div>
-                        <DatePicker onChange={onChange} />
+                        <DatePicker onChange={this.onChange} defaultValue={moment(timeformat(this.state.select_date), dateFormat)} />
+                        <Select defaultValue={this.state.select_interval} style={{ width: 120 ,marginLeft:"20px"}} onChange={this.onSelectchange}>
+                            <Option value={0}>一天</Option>
+                            <Option value={1}>三天</Option>
+                            <Option value={2}>一週</Option>
+                            <Option value={3}>兩週</Option>
+                        </Select>
                     </div>
                     <div style={{ display: "grid", gridTemplateColumns: "repeat(8,auto)", gridColumnGap: "15px" }}>
                         <div style={{ fontSize: "1.3rem", display: "flex", justifyContent: "center", alignItems: "center" }}>項目切換:</div>
@@ -86,18 +118,28 @@ class Chroniclelayout extends Component {
                         </div>
                     </div>
                 </div>
-                {/* Vital sign */}
-                <Chronic_vital userdata={userdata} title="Vital"></Chronic_vital>
-                {/* I/O */}
-                <Chronic_io userdata={userdata} title="I/O"></Chronic_io>
-                {/* Lab */}
-                <Chronic_lab userdata={userdata} title="Lab"></Chronic_lab>
-                {/* RT */}
-                <Chronic_rt userdata={userdata} title=""></Chronic_rt>
-                {/* Order */}
-                <Chronic_order userdata={userdata} title=""></Chronic_order>
-                {/* 體重 */}
-                <Chronic_weight userdata={userdata} title=""></Chronic_weight>
+                <div style={{ display: "grid", gridTemplateColumns: "90px 1fr", height: "10px", marginTop: "10px" }}>
+                    <div></div>
+                    <Vitalxaxis max={200} min={0} select_interval={this.state.select_interval} select_date={this.state.select_date} id_key="xaxis_chronic" svg_id="xaxis_svg_chronic"></Vitalxaxis>
+                </div>
+                <div style={{ maxHeight: "670px", overflowY: "auto" }}>
+                    {/* Vital sign */}
+                    <Chronic_vital  select_date={this.state.select_date}  select_interval={this.state.select_interval} userdata={userdata} title="Vital"></Chronic_vital>
+                    {/* I/O */}
+                    <Chronic_io select_interval={this.state.select_interval} userdata={userdata} title="I/O"></Chronic_io>
+                    {/* Lab */}
+                    <Chronic_lab select_interval={this.state.select_interval} userdata={userdata} title="Lab"></Chronic_lab>
+                    {/* RT */}
+                    <Chronic_rt select_interval={this.state.select_interval} userdata={userdata} title=""></Chronic_rt>
+                    {/* Order */}
+                    <Chronic_order select_interval={this.state.select_interval} userdata={userdata} title=""></Chronic_order>
+                    {/* 體重 */}
+                    <Chronic_weight select_interval={this.state.select_interval} userdata={userdata} title=""></Chronic_weight>
+                </div>
+                <div style={{ display: "grid", gridTemplateColumns: "90px 1fr", height: "10px", marginTop: "30px" }}>
+                    <div></div>
+                    <Vitalxaxisbot max={200} min={0} select_interval={this.state.select_interval} select_date={this.state.select_date} id_key="xaxis_bot_chronic" svg_id="xaxis_bot_svg_chronic"></Vitalxaxisbot>
+                </div>
             </div>
         );
     }

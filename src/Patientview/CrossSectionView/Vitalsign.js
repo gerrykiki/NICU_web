@@ -9,6 +9,7 @@ const width = (window.screen.width - 58) * 0.425, height = 100
 const margin = (width - 90) / 46, max = 150, min = 50
 console.log(height)
 class Vitalsign extends Component {
+
     state = {
         vital_days: false, //false:一天 true:三天
         source: false, //false:中央站 true:NIS
@@ -85,26 +86,31 @@ class Vitalsign extends Component {
     }
 
     render() {
-        const days_btn_style = {
-            select_style: {
-                select_border: { border: "1px orange solid", borderRadius: "16px", fontSize: "1.5rem", cursor: 'pointer' },
-                select_title: { display: "flex", justifyContent: 'center', alignItems: "center", color: "orange" }
-            },
-            Unselect_style: {
-                Unselect_border: { border: "1px orange solid", borderRadius: "16px", fontSize: "1.5rem", backgroundColor: "orange", cursor: 'pointer' },
-                Unselect_title: { display: "flex", justifyContent: 'center', alignItems: "center", color: "white" }
-            }
-        }
-        const source_btn_style = {
-            select_style: {
-                select_border: { border: "1px blue solid", borderRadius: "16px", fontSize: "1.5rem", cursor: 'pointer' },
-                select_title: { display: "flex", justifyContent: 'center', alignItems: "center", color: "blue" }
-            },
-            Unselect_style: {
-                Unselect_border: { border: "1px blue solid", borderRadius: "16px", fontSize: "1.5rem", backgroundColor: "blue", cursor: 'pointer' },
-                Unselect_title: { display: "flex", justifyContent: 'center', alignItems: "center", color: "white" }
-            }
-        }
+        // const days_btn_style = {
+        //     select_style: {
+        //         select_border: { border: "1px orange solid", borderRadius: "16px", fontSize: "1.5rem", cursor: 'pointer' },
+        //         select_title: { display: "flex", justifyContent: 'center', alignItems: "center", color: "orange" }
+        //     },
+        //     Unselect_style: {
+        //         Unselect_border: { border: "1px orange solid", borderRadius: "16px", fontSize: "1.5rem", backgroundColor: "orange", cursor: 'pointer' },
+        //         Unselect_title: { display: "flex", justifyContent: 'center', alignItems: "center", color: "white" }
+        //     }
+        // }
+        // const source_btn_style = {
+        //     select_style: {
+        //         select_border: { border: "1px blue solid", borderRadius: "16px", fontSize: "1.5rem", cursor: 'pointer' },
+        //         select_title: { display: "flex", justifyContent: 'center', alignItems: "center", color: "blue" }
+        //     },
+        //     Unselect_style: {
+        //         Unselect_border: { border: "1px blue solid", borderRadius: "16px", fontSize: "1.5rem", backgroundColor: "blue", cursor: 'pointer' },
+        //         Unselect_title: { display: "flex", justifyContent: 'center', alignItems: "center", color: "white" }
+        //     }
+        // }
+
+        
+
+        const data = true
+
         const { defaultdate } = this.props
         const { userdata } = this.props
         const { Option } = Select;
@@ -297,17 +303,17 @@ class Vitalsign extends Component {
                             <div style={{ display: "grid", gridTemplateColumns: "70px auto" }}>
                                 <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                                     <div>
-                                        <div style={{ fontSize: "1rem", color: "green", width: "100px", display: "flex", justifyContent: "center" }}>HR</div>
-                                        <div style={{ fontSize: "2rem", color: "green", width: "100px", display: "flex", justifyContent: "center" }}>123</div>
+                                        <div style={{ fontSize: "1rem", color: "#779F50", width: "100px", display: "flex", justifyContent: "center" }}>HR</div>
+                                        <div style={{ fontSize: "2rem", color: "#779F50", width: "100px", display: "flex", justifyContent: "center" }}>123</div>
                                     </div>
                                 </div>
                                 <Crosssectionvitalsignchart
                                     svg_id={"HR_svg"}
                                     id_key={"HR_div"}
-                                    datasource={userdata}
+                                    datasource={data}
                                     axisBot={false}
                                     axisTop={true}
-                                    circlrcolor={"rgba(126, 211, 33, 1)"}
+                                    circlrcolor="#779F50"
                                     colorshadow={"rgba(126, 211, 33, 0.5)"}
                                     min={0}
                                     max={200}
@@ -319,18 +325,18 @@ class Vitalsign extends Component {
                             <div style={{ display: "grid", gridTemplateColumns: "70px auto" }}>
                                 <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                                     <div>
-                                        <div style={{ fontSize: "1rem", color: "red", width: "100px", display: "flex", justifyContent: "center" }}>NBP</div>
-                                        <div style={{ fontSize: "1rem", color: "red", width: "100px", display: "flex", justifyContent: "center" }}>100/40</div>
-                                        <div style={{ fontSize: "1rem", color: "red", width: "100px", display: "flex", justifyContent: "center" }}>(60)</div>
+                                        <div style={{ fontSize: "1rem", color: "#C12528", width: "100px", display: "flex", justifyContent: "center" }}>NBP</div>
+                                        <div style={{ fontSize: "1rem", color: "#C12528", width: "100px", display: "flex", justifyContent: "center" }}>100/40</div>
+                                        <div style={{ fontSize: "1rem", color: "#C12528", width: "100px", display: "flex", justifyContent: "center" }}>(60)</div>
                                     </div>
                                 </div>
                                 <Crosssectionvitalsignchart
                                     svg_id={"NBP_svg"}
                                     id_key={"NBP_div"}
-                                    datasource={userdata}
+                                    datasource={data}
                                     axisBot={false}
                                     axisTop={false}
-                                    circlrcolor={"rgba(126, 211, 33, 1)"}
+                                    circlrcolor={"#C12528"}
                                     colorshadow={"rgba(126, 211, 33, 0.5)"}
                                     min={0}
                                     max={200}
@@ -342,18 +348,18 @@ class Vitalsign extends Component {
                             <div style={{ display: "grid", gridTemplateColumns: "70px auto" }}>
                                 <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                                     <div>
-                                        <div style={{ fontSize: "1rem", color: "red", width: "100px", display: "flex", justifyContent: "center" }}>ABP</div>
-                                        <div style={{ fontSize: "1rem", color: "red", width: "100px", display: "flex", justifyContent: "center" }}>100/40</div>
-                                        <div style={{ fontSize: "1rem", color: "red", width: "100px", display: "flex", justifyContent: "center" }}>60</div>
+                                        <div style={{ fontSize: "1rem", color: "#C12528", width: "100px", display: "flex", justifyContent: "center" }}>ABP</div>
+                                        <div style={{ fontSize: "1rem", color: "#C12528", width: "100px", display: "flex", justifyContent: "center" }}>100/40</div>
+                                        <div style={{ fontSize: "1rem", color: "#C12528", width: "100px", display: "flex", justifyContent: "center" }}>60</div>
                                     </div>
                                 </div>
                                 <Crosssectionvitalsignchart
                                     svg_id={"ABP_svg"}
                                     id_key={"ABP_div"}
-                                    datasource={userdata}
+                                    datasource={data}
                                     axisBot={true}
                                     axisTop={false}
-                                    circlrcolor={"rgba(126, 211, 33, 1)"}
+                                    circlrcolor={"#C12528"}
                                     colorshadow={"rgba(126, 211, 33, 0.5)"}
                                     min={0}
                                     max={200}
@@ -367,20 +373,20 @@ class Vitalsign extends Component {
                             <div style={{ display: "grid", gridTemplateColumns: "70px auto" }}>
                                 <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                                     <div>
-                                        <div style={{ fontSize: "1rem", color: "blue", width: "100px", display: "flex", justifyContent: "center" }}>
+                                        <div style={{ fontSize: "1rem", color: "#4773B8", width: "100px", display: "flex", justifyContent: "center" }}>
                                             SpO<sub style={{ bottom: "-1em" }}>2</sub>
                                         </div>
-                                        <div style={{ fontSize: "2rem", color: "blue", width: "100px", display: "flex", justifyContent: "center" }}>45%</div>
+                                        <div style={{ fontSize: "2rem", color: "#4773B8", width: "100px", display: "flex", justifyContent: "center" }}>45%</div>
                                     </div>
                                 </div>
                                 <Crosssectionvitalsignchart
                                     svg_id={"SpO2_svg"}
                                     id_key={"SpO2_div"}
-                                    datasource={userdata}
+                                    datasource={data}
                                     axisBot={false}
                                     axisTop={true}
-                                    circlrcolor={"rgba(126, 211, 33, 1)"}
-                                    colorshadow={"rgba(126, 211, 33, 0.5)"}
+                                    circlrcolor={"#4773B8"}
+                                    colorshadow={"#4773B8"}
                                     min={0}
                                     max={200}
                                     defaultdate={defaultdate}
@@ -391,17 +397,17 @@ class Vitalsign extends Component {
                             <div style={{ display: "grid", gridTemplateColumns: "70px auto" }}>
                                 <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                                     <div>
-                                        <div style={{ fontSize: "1rem", color: "purple", width: "100px", display: "flex", justifyContent: "center" }}>BT</div>
-                                        <div style={{ fontSize: "2rem", color: "purple", width: "100px", display: "flex", justifyContent: "center" }}>24&deg;C</div>
+                                        <div style={{ fontSize: "1rem", color: "#7F3DB5", width: "100px", display: "flex", justifyContent: "center" }}>BT</div>
+                                        <div style={{ fontSize: "2rem", color: "#7F3DB5", width: "100px", display: "flex", justifyContent: "center" }}>24&deg;C</div>
                                     </div>
                                 </div>
                                 <Crosssectionvitalsignchart
                                     svg_id={"BT_svg"}
                                     id_key={"BT_div"}
-                                    datasource={userdata}
+                                    datasource={data}
                                     axisBot={false}
                                     axisTop={false}
-                                    circlrcolor={"rgba(126, 211, 33, 1)"}
+                                    circlrcolor={"#7F3DB5"}
                                     colorshadow={"rgba(126, 211, 33, 0.5)"}
                                     min={0}
                                     max={200}
@@ -413,17 +419,17 @@ class Vitalsign extends Component {
                             <div style={{ display: "grid", gridTemplateColumns: "70px auto" }}>
                                 <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                                     <div>
-                                        <div style={{ fontSize: "1rem", color: "orange", width: "100px", display: "flex", justifyContent: "center" }}>RR</div>
-                                        <div style={{ fontSize: "2rem", color: "orange", width: "100px", display: "flex", justifyContent: "center" }}>24</div>
+                                        <div style={{ fontSize: "1rem", color: "#DE7531", width: "100px", display: "flex", justifyContent: "center" }}>RR</div>
+                                        <div style={{ fontSize: "2rem", color: "#DE7531", width: "100px", display: "flex", justifyContent: "center" }}>24</div>
                                     </div>
                                 </div>
                                 <Crosssectionvitalsignchart
                                     svg_id={"RR_svg"}
                                     id_key={"RR_div"}
-                                    datasource={userdata}
+                                    datasource={data}
                                     axisBot={true}
                                     axisTop={false}
-                                    circlrcolor={"rgba(126, 211, 33, 1)"}
+                                    circlrcolor={"#DE7531"}
                                     colorshadow={"rgba(126, 211, 33, 0.5)"}
                                     min={0}
                                     max={200}

@@ -30,19 +30,19 @@ class Patientviewlayout extends Component {
             <div>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: 'center', paddingLeft: "20px", paddingRight: "20px",paddingTop:'5px',paddingBottom:"5px" }}>
                     <div style={{ fontSize: "1.5rem" }}>病房總覽 > 病床 > Chronicle view</div>
-                    <Select defaultValue={"123"} style={{ width: 120 }}>
-                        <Option value="lucy">病床01</Option>
-                        <Option value="lucy">病床02</Option>
-                        <Option value="lucy">病床03</Option>
-                        <Option value="lucy">病床04</Option>
-                        <Option value="lucy">病床05</Option>
-                        <Option value="lucy">病床06</Option>
-                        <Option value="lucy">病床07</Option>
-                        <Option value="lucy">病床08</Option>
-                        <Option value="lucy">病床09</Option>
-                        <Option value="lucy">病床10</Option>
-                        <Option value="lucy">病床11</Option>
-                        <Option value="lucy">病床12</Option>
+                    <Select defaultValue={1} style={{ width: 120 }}>
+                        <Option value={1}>病床01</Option>
+                        <Option value={2}>病床02</Option>
+                        <Option value={3}>病床03</Option>
+                        <Option value={4}>病床04</Option>
+                        <Option value={5}>病床05</Option>
+                        <Option value={6}>病床06</Option>
+                        <Option value={7}>病床07</Option>
+                        <Option value={8}>病床08</Option>
+                        <Option value={9}>病床09</Option>
+                        <Option value={10}>病床10</Option>
+                        <Option value={11}>病床11</Option>
+                        <Option value={12}>病床12</Option>
                     </Select>
                 </div>
                 <Switch>

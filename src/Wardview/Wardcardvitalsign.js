@@ -14,7 +14,6 @@ class WardcardvitalsignChart extends Component {
         const { svg_key } = this.props
         d3.select("#" + svg_key).remove()
         this.drawChart()
-        console.log("123")
 
     }
     componentDidMount() {
@@ -22,7 +21,6 @@ class WardcardvitalsignChart extends Component {
     }
 
     componentWillUnmount() {
-        console.log("123");
     }
 
     cal_svg_hight() {
@@ -58,7 +56,7 @@ class WardcardvitalsignChart extends Component {
         }
         else {
             if (axisBot) {
-                return 50
+                return 5
             }
             else {
                 return 5
@@ -67,33 +65,59 @@ class WardcardvitalsignChart extends Component {
     }
 
     drawChart() {
-        const { svg_key, circlrcolor, data, axisTop, id_key } = this.props
+        function monthformat(month) {
+            return month + 1
+        }
+
+        function formatbotaxis(time, interval) {
+            var xAxisarray = []
+            if (interval) {
+                xAxisarray.push(time + (17 * 60 * 60 * 1000))
+            }
+            else {
+                for (let index = 0; index < 3; index++) {
+                    xAxisarray.push(time + (((index * 24) + 17) * 60 * 60 * 1000))
+                }
+
+            }
+            return xAxisarray
+        }
+
+
+        const { svg_key, circlrcolor, data, axisTop, id_key ,axisBot} = this.props
         const width = window.screen.availWidth * 0.25, height = 70, transformmargin = this.cal_svg_transform(), max = 200, min = 0, margin = 20
-        var time_now = new Date(2019, new Date().getMonth(), 27, new Date().getHours());
-        //var time_now = new Date(2019, 6, 4, 15);
-        //var time_now = 1562223595;
+        var time_now = new Date().getTime();
 
         var time_array = []
+        var time_axis_array = []
 
         for (let index = 0; index < 25; index++) {
-            //const element = array[index];
             time_array.push({ key: "time", x_axis_time: time_now - index * 60 * 60 * 1000 })
+            time_axis_array.push(time_now - index * 60 * 60 * 1000)
         }
         var time_array_reverse = time_array.reverse()
-    
+        var time_axis_array_reverse = time_axis_array.reverse()
+
 
 
         var formatHour = d3.timeFormat("%H")
+
+        var formatMonth = d3.timeFormat("%b %d")
         function multiFormat(date) {
             return formatHour(date)
         }
-
+        function multibotformat(date){
+            if (new Date(date).getHours() === 0) {
+                return formatMonth(date)
+            }
+            else return null
+        }
         var x = d3.scaleLinear()
             .domain([time_array_reverse[0].x_axis_time, time_array_reverse[24].x_axis_time])
-            .range([0, width - 31]);
+            .range([0, width - 40]);
 
 
-        var vertigo = datarelease
+        var vertigo = data
 
         //x和y的比例尺
         var y = d3.scaleLinear()
@@ -108,9 +132,15 @@ class WardcardvitalsignChart extends Component {
             .tickSize(0, 0)
             .tickPadding(10);
 
+        var xAxisBottom = d3.axisBottom(x)
+            .tickValues(time_axis_array_reverse)
+            .tickSize(0, 0)
+            .tickPadding(height + 10)
+            .tickFormat(function (d) { return multibotformat(d); });
+
 
         var xAxis = d3.axisTop(x)
-            .ticks(20)
+            .tickValues(time_axis_array_reverse)
             .tickSize(0, 0)
             .tickPadding(margin)
             .tickFormat(function (d) { return multiFormat(d); });
@@ -130,9 +160,14 @@ class WardcardvitalsignChart extends Component {
 
 
         if (axisTop) {
-            console.log(axisTop)
             svg.append("g")
                 .call(xAxis)
+                .attr("class", "axis");
+        }
+
+        if (axisBot) {
+            svg.append("g")
+                .call(xAxisBottom)
                 .attr("class", "axis");
         }
 
@@ -180,29 +215,13 @@ class WardcardvitalsignChart extends Component {
             const element = vertigo[index];
             svg.append('circle')
                 .attr("id", "the_SVG_ID")
-                .attr('cx', x(element.time * 1000))
+                .attr('cx', x(element.Time))
                 .attr('cy', y(element.Data))
                 .attr('r', 0.1)
                 .style('fill', circlrcolor)
-            
+
         }
 
-        function datarelease() {
-
-            var dataset = []; //建立空的資料陣列
-            if (dataset.length !== 0) {
-                dataset.length = 0
-            }
-            for (let i = 0; i < 4320; i++) {
-                const data = Math.floor(Math.random() * 40) + 140;
-                const time = (new Date(2019, new Date().getMonth(), 26, new Date().getHours()).getTime() + (i * 20 * 1000))
-                dataset.push({
-                    Data: data,
-                    time: time
-                })
-            }
-            return dataset;
-        }
     }
 
     render() {

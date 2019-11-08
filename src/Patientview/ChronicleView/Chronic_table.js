@@ -8,7 +8,7 @@ class Chronic_table extends Component {
             case 0:
                 return 24
             case 1:
-                return 21
+                return 18
             case 2:
                 return 21
             case 3:
@@ -31,7 +31,7 @@ class Chronic_table extends Component {
         for (let index = 0; index < this.switch_state(); index++) {
             const title_list = title.map((info, index) => <div key={index} style={io_style.row_item_title_style}>{info.title}</div>)
             const title_cell =
-                <div style={{ display: "grid", gridTemplateRows: "repeat(" + title.length + ",1fr)" }}>
+                <div key={index} style={{ display: "grid", gridTemplateRows: "repeat(" + title.length + ",1fr)" }}>
                     {title_list}
                 </div>
             table_item.push(title_cell)

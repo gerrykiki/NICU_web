@@ -12,7 +12,7 @@ class Basicinformation extends Component {
             return days
           };
         return (
-            <div style={{ display: 'grid', gridTemplateColumns: "repeat(3,auto)", gridColumnGap: "40px" }}>
+            <div style={{ display: 'grid', gridTemplateColumns: "repeat(3,auto)", gridColumnGap: "5px" }}>
                 <div style={info_style}>週數:20＋5&rarr;24+4</div>
                 <div style={info_style}>體重:{userdata.data.Weight}&rarr;{userdata.data.WeightDif}</div>
                 <div style={info_style}>住院第{DateDiff(userdata.Dateforward)}天</div>

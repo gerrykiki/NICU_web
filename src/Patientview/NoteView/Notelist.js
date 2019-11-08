@@ -6,41 +6,18 @@ class Notelist extends Component {
     state = {
         display: true
     }
-    statechange() {
-        this.setState(
-            {
-                display: !this.state.display
-            }
-        )
-    }
-    displayMode() {
-        if (this.state.display) {
-            return "none"
-        }
-        else {
-            return "block"
-        }
+    callbackFunction = (item_array) => {
+        console.log(item_array)
+        this.sendData(item_array)
+ 
     }
 
-    Dataformat() {
-        const { start, End } = this.props
-        const startTime = new Date(start).getTime() - (8 * 60 * 60 * 1000)
-        const endTime = new Date(End).getTime() - (8 * 60 * 60 * 1000)
-        const interval = (endTime - startTime) / (1000 * 60 * 60 * 24)
-
-        const note_data = [{
-            "NoteTime": 1566287810473,
-            "Type": "Progress Note",
-            "Content": "notenotenote",
-        }, {
-            "NoteTime": 1566374210000,
-            "Type": "Progress Note",
-            "Content": "notenotenote",
-        }]
-
+    sendData(info) {
+        console.log(info)
+        this.props.parentCallback(info);
     }
 
-    dateformat(startTime, interval) {
+    Date_format(startTime, interval) {
         var array = []
         for (let index = 0; index < interval + 1; index++) {
             const element = startTime + (index * 24 * 60 * 60 * 1000)
@@ -51,21 +28,20 @@ class Notelist extends Component {
     }
 
     render() {
-
-        const { start, End } = this.props
+        const { start, End,note_data,display_data } = this.props
         const startTime = new Date(start).getTime() - (8 * 60 * 60 * 1000)
         const endTime = new Date(End).getTime() - (8 * 60 * 60 * 1000)
         const interval = (endTime - startTime) / (1000 * 60 * 60 * 24)
-        console.log(interval)
+        console.log(display_data)
         var arraydata
         var date_item
         if (interval === 0) {
             arraydata = null
         }
         else {
-            arraydata = this.dateformat(startTime, interval)
+            arraydata = this.Date_format(startTime, interval)
             date_item = arraydata.map((info, index) =>
-                <Notecell key={index} infoDate={info}></Notecell>
+                <Notecell display_date={display_data} parentCallback={this.callbackFunction}  rowdata={note_data} key={index} infoDate={info}></Notecell>
             )
         }
         

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="100%" height="100%" viewBox="0 0 15 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="15px" height="15px" viewBox="0 0 15 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 52.4 (67378) - http://www.bohemiancoding.com/sketch -->
     <title>Group 129</title>
     <desc>Created with Sketch.</desc>
     <g id="Faye" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="Group-129" transform="translate(-1.000000, 0.000000)">
             <rect id="Rectangle-44" x="0" y="0" width="16" height="16"></rect>
-            <g id="edit" transform="translate(1.000000, 0.200000)" fill="#000000" fill-rule="nonzero">
+            <g id="edit" transform="translate(1.000000, 0.200000)" fill="black" fill-rule="nonzero">
                 <path d="M1.45623425,14.1498121 L5.97553648,12.236266 C6.04845941,12.2055571 6.11370623,12.1614131 6.17127696,12.1057533 L13.7936415,4.48227746 C14.3328873,3.94295301 14.3367254,3.06391174 13.7974795,2.52458729 L12.2756933,1.00257915 C11.7364474,0.463254707 10.8575343,0.467093315 10.3182885,1.00641776 L2.69592395,8.62989359 C2.64027225,8.68555341 2.59613469,8.75272905 2.5654303,8.82566261 L0.650244047,13.3437044 C0.542778687,13.5970526 0.617620634,13.85232 0.7807377,14.0173802 C0.943854765,14.1824403 1.20100402,14.2572932 1.45623425,14.1498121 Z M11.2950718,1.98334354 L11.2989099,1.97950493 L12.8187771,3.49959377 L12.8149391,3.50343238 L11.625144,4.69340091 L10.1052768,3.17331207 L11.2950718,1.98334354 Z M3.77825366,9.50125764 L9.12849341,4.15023785 L10.6483607,5.67032669 L5.2981209,11.0213465 L2.66138151,12.1383815 L3.77825366,9.50125764 Z" id="Shape"></path>
             </g>
         </g>

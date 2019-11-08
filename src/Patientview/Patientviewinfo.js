@@ -61,30 +61,30 @@ class Patientinfo extends Component {
                     visible={this.state.visible}
                     onOk={this.handleOk}
                     onCancel={this.handleCancel}>
-                    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", fontSize: "1.5rem", height: "50px" }}>病床:{patient_data.Bednumber}/{patient_data.Name}/{this.gender_format(patient_data.Gender)}/3週歲</div>
+                    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", fontSize: "1rem", height: "50px" }}>病床:{patient_data.Bednumber}/{patient_data.Name}/{this.gender_format(patient_data.Gender)}/3週歲</div>
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 3fr" }}>
-                        <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", fontSize: "1.5rem" }}>病歷號碼:</div>
-                        <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", fontSize: "1.5rem" }}>{patient_data.id}</div>
+                        <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", fontSize: "1rem" }}>病歷號碼:</div>
+                        <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", fontSize: "1rem" }}>{patient_data.id}</div>
                     </div>
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 3fr", marginTop: "10px" }}>
-                        <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", fontSize: "1.5rem" }}>住院編號:</div>
-                        <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", fontSize: "1.5rem" }}>{patient_data.id}</div>
+                        <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", fontSize: "1rem" }}>住院編號:</div>
+                        <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", fontSize: "1rem" }}>{patient_data.id}</div>
                     </div>
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 3fr", marginTop: "10px" }}>
-                        <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", fontSize: "1.5rem" }}>主治醫師:</div>
-                        <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", fontSize: "1.5rem" }}>{patient_data.MainDoctor}醫師</div>
+                        <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", fontSize: "1rem" }}>主治醫師:</div>
+                        <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", fontSize: "1rem" }}>{patient_data.MainDoctor}醫師</div>
                     </div>
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 3fr", marginTop: "10px" }}>
-                        <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", fontSize: "1.5rem" }}>出生日期:</div>
-                        <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", fontSize: "1.5rem" }}>{new Date(patient_data.Birthday).getFullYear()}-{this.time_month_format(patient_data.Birthday)}-{new Date(patient_data.Birthday).getDate()}</div>
+                        <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", fontSize: "1rem" }}>出生日期:</div>
+                        <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", fontSize: "1rem" }}>{new Date(patient_data.Birthday).getFullYear()}-{this.time_month_format(patient_data.Birthday)}-{new Date(patient_data.Birthday).getDate()}</div>
                     </div>
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 3fr", marginTop: "10px" }}>
-                        <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", fontSize: "1.5rem" }}>轉出日期:</div>
-                        <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", fontSize: "1.5rem" }}>{new Date(patient_data.Birthday).getFullYear()}-{this.time_month_format(patient_data.Birthday)}-{new Date(patient_data.Birthday).getDate()}</div>
+                        <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", fontSize: "1rem" }}>轉出日期:</div>
+                        <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", fontSize: "1rem" }}>{new Date(patient_data.Birthday).getFullYear()}-{this.time_month_format(patient_data.Birthday)}-{new Date(patient_data.Birthday).getDate()}</div>
                     </div>
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 3fr", marginTop: "10px" }}>
-                        <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", fontSize: "1.5rem" }}>備註:</div>
-                        <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", fontSize: "1.5rem" }}>{patient_data.Note}</div>
+                        <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", fontSize: "1rem" }}>備註:</div>
+                        <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", fontSize: "1rem" }}>{patient_data.Note}</div>
                     </div>
                 </Modal>
                 <Patientviewtapbar userdata={patient_data}></Patientviewtapbar>

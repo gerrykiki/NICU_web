@@ -53,26 +53,26 @@ class Controlbar extends Component {
 
         var eq = document.getElementById("crossection").scrollTop;
         console.log(eq)
-        if(eq < 480 && eq >=0) {
-            this.setState({scrollstate:0})
+        if (eq < 480 && eq >= 0) {
+            this.setState({ scrollstate: 0 })
         }
-        if(eq < 1200 && eq >=480) {
-            this.setState({scrollstate:1})
+        if (eq < 1200 && eq >= 480) {
+            this.setState({ scrollstate: 1 })
         }
-        if(eq < 1600 && eq >=1200) {
-            this.setState({scrollstate:2})
+        if (eq < 1600 && eq >= 1200) {
+            this.setState({ scrollstate: 2 })
         }
-        if(eq < 1900 && eq >=1600) {
-            this.setState({scrollstate:3})
+        if (eq < 1900 && eq >= 1600) {
+            this.setState({ scrollstate: 3 })
         }
-        if( eq >=1900) {
-            this.setState({scrollstate:4})
+        if (eq >= 1900) {
+            this.setState({ scrollstate: 4 })
         }
 
     }
 
     scroll_btn_style(index) {
-        console.log(index,this.state.scrollstate)
+        console.log(index, this.state.scrollstate)
         if (index === this.state.scrollstate) {
             return true
         }
@@ -104,10 +104,10 @@ class Controlbar extends Component {
 
         return (
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: "8px", height: "50px" }}>
-                <div>
+                <div style={{display:"grid",gridTemplateColumns:"auto auto",gridColumnGap:"10px"}}>
                     <DatePicker onChange={this.onDateChange} defaultValue={moment(date_string, dateFormat)} placeholder="資料時間" />
+                    <Basicinformation userdata={userdata}></Basicinformation>
                 </div>
-                <Basicinformation userdata={userdata}></Basicinformation>
                 <div style={{ display: "flex", alignItems: 'center', position: "relative" }}>
                     <div style={{ fontSize: "1.3rem" }}>項目切換：</div>
                     <div style={{ display: "grid", gridTemplateColumns: "repeat(5,auto)", gridColumnGap: "5px" }}>{btn}</div>

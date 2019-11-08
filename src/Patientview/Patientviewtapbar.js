@@ -19,35 +19,35 @@ class Patientviewtapbar extends Component {
         return (
             <div style={{ paddingRight: "24px", paddingLeft: "24px" }}>
                 <Tabs defaultActiveKey="1" onChange={console.log("click")} tabPosition={'top'}>
-                    <TabPane tab="Cross Section View" key="1">
+                    <TabPane tab="時間點檢視" key="1">
                         <Crosssectionlayout userdata={userdata}></Crosssectionlayout>
                     </TabPane>
-                    <TabPane tab="Chronicle View" key="2">
+                    <TabPane tab="時間軸檢視" key="2">
                         <Chroniclelayout userdata={userdata}></Chroniclelayout>
                     </TabPane>
-                    <TabPane tab="Flow Sheet" key="3">
+                    <TabPane tab="輸出入細節" key="3">
                         <Flowsheetlayout></Flowsheetlayout>
                     </TabPane>
-                    <TabPane tab="Exam & Report" key="4">
+                    <TabPane tab="檢驗及報告" key="4">
                         <Examreport></Examreport>
                     </TabPane>
-                    <TabPane tab="Order view" key="5">
+                    <TabPane tab="醫囑及藥囑" key="5">
                         <Orderview searchbar={true}></Orderview>
                     </TabPane>
-                    <TabPane tab="Note" key="6">
+                    <TabPane tab="跨團隊紀錄" key="6">
                         <Noteview></Noteview>
                     </TabPane>
-                    <TabPane tab="RT" key="7">
+                    <TabPane tab="呼吸評估" key="7">
                         <RTview></RTview>
                     </TabPane>
-                    <TabPane tab="Nurtion" key="8">
-                        <Nurtionview></Nurtionview>
+                    <TabPane tab="營養評估" key="8">
+                        <Nurtionview userdata={userdata}></Nurtionview>
                     </TabPane>
-                    <TabPane tab="Infection" key="9">
+                    <TabPane tab="感染評估" key="9">
                         <Infectionview></Infectionview>
                     </TabPane>
-                    <TabPane tab="Schedule" key="10">
-                        <Scheduleview></Scheduleview>
+                    <TabPane tab="行事曆及註記" key="10">
+                        <Scheduleview userdata={userdata}></Scheduleview>
                     </TabPane>
                 </Tabs>
             </div>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import "antd/dist/antd.css";
 import Wardcardvalue from './Wardcardvalue'
 import editlogo from '../Image/svg/edit2.svg'
 import fileLogo from '../Image/svg/file1.svg'
@@ -185,13 +184,8 @@ class Wardcarddetail extends Component {
             changedate = dateString
         }
         return (
-            <div style={{ cursor: 'pointer' }} onClick={() => this.sendData(data.id)}>
-                <Modal
-                    title="填寫病床資訊"
-                    visible={this.state.visible}
-                    onOk={() => this.handleOk(changedate)}
-                    onCancel={this.handleCancel}
-                >
+            <div>
+                <Modal title="填寫病床資訊" visible={this.state.visible} onOk={() => this.handleOk(changedate)} onCancel={this.handleCancel}>
                     <div style={{ display: "grid", gridTemplateRowss: "1fr 1fr 1fr 1fr 1fr", gridRowGap: "10px" }}>
                         <div style={{ display: "grid", gridTemplateColumns: "20% 80%" }}>
                             <div style={{ width: "100px" }}>病床號碼</div>
@@ -203,7 +197,7 @@ class Wardcarddetail extends Component {
                         </div>
                         <div style={{ display: "grid", gridTemplateColumns: "20% 80%" }}>
                             <div style={{ width: "100px" }}>出生週數</div>
-                            <div style={{ display: 'flex' }}><Input placeholder="120" id="birweek" />&nbsp;週</div>
+                            <div style={{ display: 'flex' }}><Input placeholder="120" id="birweek"></Input>&nbsp;週</div>
                         </div>
                         <div style={{ display: "grid", gridTemplateColumns: "20% 80%" }}>
                             <div style={{ width: "100px", "textAlign": "justify" }}>生日</div>
@@ -222,22 +216,24 @@ class Wardcarddetail extends Component {
                             <img src={editlogo} alt='editlogo'></img>
                         </div>
                     </div>
-                    <div style={{ height: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: "10px", borderBottomWidth: "0.5px", borderBottomColor: "rgba(215, 238, 255, 1)", borderBottomStyle: "solid" }}>
-                        <div style={{ fontSize: '1rem', color: "black" }}>20＋5&rarr;24+4</div>
-                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100px" }}>
-                            <img src={fileLogo} alt='fileLogo'></img>
-                            <div style={{ color: "blue" }}>3</div>
-                            <img src={file2Logo} alt='file2Logo'></img>
-                            <div style={{ color: "black" }}>12</div>
+                    <div style={{ cursor: 'pointer' }} onClick={() => this.sendData(data.id)}>
+                        <div style={{ height: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: "10px", borderBottomWidth: "0.5px", borderBottomColor: "rgba(215, 238, 255, 1)", borderBottomStyle: "solid" }}>
+                            <div style={{ fontSize: '1rem', color: "rgba(59, 151, 225, 1)" }}>[20＋5]&rarr;[24+4]</div>
+                            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100px" }}>
+                                <img src={fileLogo} alt='fileLogo'></img>
+                                <div style={{ color: "blue" }}>3</div>
+                                <img src={file2Logo} alt='file2Logo'></img>
+                                <div style={{ color: "black" }}>12</div>
+                            </div>
+                            <div style={{ fontSize: '1rem', color: "black" }}>{data.data.Weight}g&rarr;{data.data.WeightDif}g</div>
                         </div>
-                        <div style={{ fontSize: '1rem', color: "black" }}>{data.data.Weight}g&rarr;{data.data.WeightDif}g</div>
-                    </div>
-                    <div style={{ borderBottomWidth: "0.5px", borderBottomColor: "rgba(215, 238, 255, 1)", borderBottomStyle: "solid" }}>
-                        <Wardcardvalue source={data}></Wardcardvalue>
-                    </div>
-                    <div style={{ height: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: "10px", borderBottomWidth: "0.5px", borderBottomColor: "rgba(215, 238, 255, 1)", borderBottomStyle: "solid", borderTopWidth: "0.5px", borderTopColor: "rgba(215, 238, 255, 1)", borderTopStyle: "solid", position: 'relative' }}>
-                        <div style={{ fontSize: '1rem', color: "black" }}>{data.Note}</div>
-                        <Link onMouseLeave={() => this.switch_hoverbackground_leave("string")} onMouseMove={() => this.switch_hoverbackground()} to={{ pathname: "/nicu/patient/" + data.id, state: data }} style={{ height: "20px", backgroundColor: this.state.mouse_hover ? "rgba(59, 151, 225, 1)" : "rgba(59, 151, 225, 0.5)", borderRadius: "4px", textAlign: "center", lineHeight: "20px", color: "white", position: 'absolute', right: "5px" }}>進入病人資料頁面</Link>
+                        <div style={{ borderBottomWidth: "0.5px", borderBottomColor: "rgba(215, 238, 255, 1)", borderBottomStyle: "solid" }}>
+                            <Wardcardvalue source={data}></Wardcardvalue>
+                        </div>
+                        <div style={{ height: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: "10px", borderBottomWidth: "0.5px", borderBottomColor: "rgba(215, 238, 255, 1)", borderBottomStyle: "solid", borderTopWidth: "0.5px", borderTopColor: "rgba(215, 238, 255, 1)", borderTopStyle: "solid", position: 'relative' }}>
+                            <div style={{ fontSize: '1rem', color: "black" }}>{data.Note}</div>
+                            <Link onMouseLeave={() => this.switch_hoverbackground_leave("string")} onMouseMove={() => this.switch_hoverbackground()} to={{ pathname: "/nicu/patient/" + data.id, state: data }} style={{ height: "20px", backgroundColor: this.state.mouse_hover ? "rgba(59, 151, 225, 1)" : "rgba(59, 151, 225, 0.5)", borderRadius: "4px", textAlign: "center", lineHeight: "20px", color: "white", position: 'absolute', right: "5px" }}>進入病人資料頁面</Link>
+                        </div>
                     </div>
                 </div>
             </div>

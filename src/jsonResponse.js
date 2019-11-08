@@ -23,32 +23,6 @@ const eventdata = [
         "writter": "林天財"
     }
 ]
-//病床總覽 (Get all bed from ward)
-const ward_bed_information = [
-    {
-        "BedNumber": "01",
-        "HISID": "123456789",
-        "Name": "劉嘉慶",
-        "IDNumber": "A123456798",
-        "Gender": "female",
-        "Birthday": 1566287810473,
-        "Height": 90,
-        "Weight": 700,
-        "Diff_Weight": 5,
-        "Reports": 3,
-        "Non_Reports": 1,
-        "Remarks": "TEXT",
-        "GAWeek": 20,
-        "GADay": 2,
-        "Pregnant_Week": 30,
-        "Pregnant_Day": 6,
-        "ImportantMatters": [
-            {
-                "Content": "TEXT"
-            }
-        ]
-    }
-]
 
 //Ward_bed_vitalData_last POST
 const ward_bed_lastData = [
@@ -217,7 +191,7 @@ const jsonResponse = {
     "Userdata": {
         "user": [
             {
-                "Name": "程子倩", //string
+                "Name": "程子倩之女", //string
                 "Bednumber": "01",
                 "Gender": "FeMale", //性別
                 "Week": 2, //週數
@@ -480,4 +454,4 @@ const todo_data = [
 ]
 
 
-export { jsonResponse, centerrowdata, WardInfo, updatetime, ward_bed_information, ward_bed_lastData, labdata, eventdata, growdata ,Note_data,todo_data};
+export { jsonResponse, centerrowdata, WardInfo, updatetime, ward_bed_lastData, labdata, eventdata, growdata ,Note_data,todo_data};

@@ -11,7 +11,7 @@ class IOpage extends Component {
             case 1:
                 return 24
             case 2:
-                return 21
+                return 18
             case 3:
                 return 21
             case 4:

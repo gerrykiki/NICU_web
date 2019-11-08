@@ -5,7 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter ,Route,Redirect} from 'react-router-dom';
 import Layoutframe from './Layout/Layout'
-import Loginview from './Layout/Login'
+import Loginview from './Layout/Loginview'
 
 ReactDOM.render(
     <BrowserRouter>
