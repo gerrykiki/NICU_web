@@ -10,7 +10,8 @@ class Loginview extends Component {
         super(props);
         this.state = {
             redirect: false,
-            permission: true
+            permission: true,
+            statusstring: null
         }
         this.setRedirect = this.setRedirect.bind(this);   //把元件中的this繫結到handleClick方法中，這樣就會保持this一致          
     };
@@ -19,26 +20,74 @@ class Loginview extends Component {
         const password = document.getElementById("password").value;
         const data = { username: account, password: password }
         console.log(JSON.stringify(data))
-        fetch(dev_path + "/authenticate", {
-            method: "POST",
-            body: JSON.stringify(data),
-            mode: 'cors',
-            headers: new Headers({
-                'Content-Type': 'application/json',
+        // fetch(dev_path + "/authenticate", {
+        //     method: "POST",
+        //     body: JSON.stringify(data),
+        //     mode: 'cors',
+        //     headers: new Headers({
+        //         'Content-Type': 'application/json',
+        //     })
+        // }).then(res => {
+        //     if (res.ok) {
+        //         sessionStorage.setItem('Logindata', data.token);
+        //         this.setState({
+        //             redirect: true
+        //         })
+        //     }
+        //     else {
+        //         this.setState({
+        //             permission: false
+        //         })
+        //     }
+        // }).catch(error => {
+        //     this.setState({
+        //         permission: false
+        //     })
+        // })
+        const fetchRequest = (url, params = {}, timeout = 10000) => {
+            let isTimeout = false;
+            return new Promise(function (resolve, reject) {
+                const TO = setTimeout(function () {
+                    isTimeout = true;
+                    reject(new Error('Fetch timeout'));
+                }, timeout);
+
+                fetch(url, params)
+                    .then(res => {
+                        clearTimeout(TO)
+                        if (!isTimeout) {
+                            resolve(res)
+                        }
+                    }).catch(e => {
+                        if (isTimeout) {
+                            return
+                        }
+                        reject(e)
+                    })
             })
-        }).then(res => {
-            if (res.ok) {
-                sessionStorage.setItem('Logindata', data.token);
+        }
+
+        fetchRequest(dev_path + "/authenticate", null, 10000)
+            .then(res => {
+                if (res.ok) {
+                    sessionStorage.setItem('Logindata', data.token);
+                    this.setState({
+                        redirect: true
+                    })
+                }
+                else {
+                    this.setState({
+                        permission: false,
+                        statusstring: "帳號密碼錯誤"
+                    })
+                }
+            }).catch(e => {
+                console.log(e)
                 this.setState({
-                    redirect: true
+                    permission: false,
+                    statusstring: "網路異常"
                 })
-            }
-            else {
-                this.setState({
-                    permission: false
-                })
-            }
-        })
+            })
 
     }
     renderRedirect = () => {
@@ -68,7 +117,7 @@ class Loginview extends Component {
                                 <Input type="password" id="password" style={{ marginLeft: "20px" }} placeholder="請輸入密碼"></Input>
                             </div>
                             <Button style={{ width: "280px", backgroundColor: "rgba(46, 100, 164, 1)", color: "white", marginTop: "70px" }} onClick={this.setRedirect}>登入</Button>
-                            <div style={{ display: this.state.permission ? "none" : "block", color: "red", fontSize: "1rem" }}>帳號密碼錯誤</div>
+                            <div style={{ display: this.state.permission ? "none" : "block", color: "red", fontSize: "1rem" }}>{this.state.statusstring}</div>
                         </div>
                     </div>
                     <div style={{ width: "100%", justifyContent: "center", alignItems: "center", display: "flex" }}>191102.001-T</div>
