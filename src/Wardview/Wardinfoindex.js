@@ -16,21 +16,53 @@ class Wardinfoindex extends Component {
 
     render() {
         const info = WardInfo;
+        const item = [
+            {
+                "announcement":"TEXT",
+                "updateTime":1566287810473,
+                "editor":"修改者"
+            },
+            {
+                "announcement":"TEXT",
+                "updateTime":1566287810473,
+                "editor":"修改者"
+            },
+            {
+                "announcement":"TEXT",
+                "updateTime":1566287810473,
+                "editor":"修改者"
+            }
+        ]
+        const item2 = [
+            {
+                "announcement":"TEXT",
+                "updateTime":1566287810473,
+                "editor":"修改者"
+            },
+            {
+                "announcement":"TEXT",
+                "updateTime":1566287810473,
+                "editor":"修改者"
+            },
+            {
+                "announcement":"TEXT",
+                "updateTime":1566287810473,
+                "editor":"修改者"
+            }
+        ]
         return (
-            <div style={{ borderWidth: "1px", borderColor: "rgba(238, 238, 238, 1)", borderStyle: "solid", borderRadius: "4px", overflow: "auto", height: "80vh", paddingRight: "10px", paddingLeft: "10px" }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '45px' }}>
-                    <div style={{ fontSize: '16px', marginLeft: '20px' }}>
-
-                    </div>
-                    <div style={{ fontSize: "22px" }}>
+            <div style={{ borderWidth: "1px", borderColor: "rgba(238, 238, 238, 1)", borderStyle: "solid", borderRadius: "4px", overflow: "auto", height: "85vh", padding:"10px" }}>
+                <div style={{ display: 'grid',gridTemplateColumns:"1fr 1fr 1fr", height: '45px' }}>
+                    <div></div>
+                    <div style={{ fontSize: '1.5rem',display:"flex",alignItems:"center",justifyContent:"center"}}>
                         病房資訊摘要
                     </div>
-                    <div style={{ fontSize: '16px', marginRight: '20px' }}>
+                    <div style={{ fontSize: '1.5rem',display:"flex",alignItems:"center",justifyContent:"flex-end"}}>
                         主任 : {info.Director}  護理長 : {info.HeadNurse}
                     </div>
                 </div>
                 <div style={{ display: "grid", gridTemplateColumns: "50% 50%", gridColumnGap: "5px" }}>
-                    <WardcardNote annouce={null}></WardcardNote>
+                    <WardcardNote announce={item} changedate={item2}></WardcardNote>
                     <Wardschedule editstatus={false}></Wardschedule>
                 </div>
                 <Wardbedinformation></Wardbedinformation>

@@ -20,31 +20,7 @@ class Loginview extends Component {
         const password = document.getElementById("password").value;
         const data = { username: account, password: password }
         console.log(JSON.stringify(data))
-        // fetch(dev_path + "/authenticate", {
-        //     method: "POST",
-        //     body: JSON.stringify(data),
-        //     mode: 'cors',
-        //     headers: new Headers({
-        //         'Content-Type': 'application/json',
-        //     })
-        // }).then(res => {
-        //     if (res.ok) {
-        //         sessionStorage.setItem('Logindata', data.token);
-        //         this.setState({
-        //             redirect: true
-        //         })
-        //     }
-        //     else {
-        //         this.setState({
-        //             permission: false
-        //         })
-        //     }
-        // }).catch(error => {
-        //     this.setState({
-        //         permission: false
-        //     })
-        // })
-        const fetchRequest = (url, params = {}, timeout = 10000) => {
+        const fetchRequest = (url, params, timeout) => {
             let isTimeout = false;
             return new Promise(function (resolve, reject) {
                 const TO = setTimeout(function () {
@@ -67,7 +43,14 @@ class Loginview extends Component {
             })
         }
 
-        fetchRequest(dev_path + "/authenticate", null, 10000)
+        fetchRequest(dev_path + "/authenticate", {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }, 10000)
             .then(res => {
                 if (res.ok) {
                     sessionStorage.setItem('Logindata', data.token);
@@ -88,6 +71,11 @@ class Loginview extends Component {
                     statusstring: "網路異常"
                 })
             })
+
+        // sessionStorage.setItem('Logindata', data.token);
+        // this.setState({
+        //     redirect: true
+        // })
 
     }
     renderRedirect = () => {

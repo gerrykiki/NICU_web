@@ -28,7 +28,7 @@ class Patientviewlayout extends Component {
         const { Option } = Select;
         return (
             <div>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: 'center', paddingLeft: "20px", paddingRight: "20px",paddingTop:'5px',paddingBottom:"5px" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: 'center',padding:"5px 20px"}}>
                     <div style={{ fontSize: "1.5rem" }}>病房總覽 > 病床 > Chronicle view</div>
                     <Select defaultValue={1} style={{ width: 120 }}>
                         <Option value={1}>病床01</Option>

@@ -122,7 +122,7 @@ class Chroniclelayout extends Component {
                     <div></div>
                     <Vitalxaxis max={200} min={0} select_interval={this.state.select_interval} select_date={this.state.select_date} id_key="xaxis_chronic" svg_id="xaxis_svg_chronic"></Vitalxaxis>
                 </div>
-                <div style={{ maxHeight: "670px", overflowY: "auto" }}>
+                <div style={{ maxHeight: "60vh", overflowY: "auto" }}>
                     {/* Vital sign */}
                     <Chronic_vital  select_date={this.state.select_date}  select_interval={this.state.select_interval} userdata={userdata} title="Vital"></Chronic_vital>
                     {/* I/O */}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, DatePicker, Checkbox } from 'antd';
 import moment from 'moment';
-import displaylogo from '../Image/svg/Display.svg'
+import displaylogo from '../Image/svg/filter.svg'
 import Basicinformation from './CrossSectionView/Basicinformation';
 
 

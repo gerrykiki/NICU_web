@@ -5,7 +5,7 @@ import { Modal, Input, DatePicker } from 'antd';
 
 class Unpreviewwardcarddetail extends Component {
     state = { visible: false };
-    
+
     showModal = () => {
         this.setState({
             visible: true,
@@ -48,14 +48,22 @@ class Unpreviewwardcarddetail extends Component {
         console.log(string)
     }
 
-    render() {
+    render() {        
+        function modedisplay(mode){
+        if (mode) {
+            return "none"
+        }
+        else{
+            return "block"
+        }
+    }
         const number = this.props.bedbumber + 1
         var changedate
         function ondatechange(date, dateString) {
             console.log(date, dateString);
             changedate = dateString
         }
-
+        const { simplemode } = this.props
         return (
             <div style={{ width: "99%", marginBottom: "10px", borderRadius: "4px", borderWidth: "2px", borderStyle: "solid", borderColor: "rgba(215, 238, 255, 1)", position: 'relative' }}>
                 <div style={{ height: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: "rgba(215, 238, 255, 1)", padding: "10px" }}>
@@ -97,13 +105,15 @@ class Unpreviewwardcarddetail extends Component {
                         </div>
                     </Modal>
                 </div>
-                <div style={{ height: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: "10px", borderBottomWidth: "0.5px", borderBottomColor: "rgba(215, 238, 255, 1)", borderBottomStyle: "solid" }}>
+                <div style={{ height: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: "10px" }}>
                     <div style={{ fontSize: '14px', color: "black" }}>
                         "無資料"
                     </div>
                 </div>
-                <div style={{ height: '100px', borderBottomWidth: "0.5px", borderBottomColor: "rgba(215, 238, 255, 1)", borderBottomStyle: "solid" }}></div>
-                <div style={{ height: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: "10px", borderBottomWidth: "0.5px", borderBottomColor: "rgba(215, 238, 255, 1)", borderBottomStyle: "solid", borderTopWidth: "0.5px", borderTopColor: "rgba(215, 238, 255, 1)", borderTopStyle: "solid" }}></div>
+                <div style={{display:modedisplay(simplemode)}}>
+                    <div style={{ height: '100px' }}></div>
+                    <div style={{ height: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: "10px" }}></div>
+                </div>
             </div>
         );
     }

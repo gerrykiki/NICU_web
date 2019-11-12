@@ -46,23 +46,23 @@ class Crosssectionlayout extends Component {
     render() {
         const crosssectioncontrollist = [
             {
-                "name": "vital&I/O",
+                "name": "生命徵象/輸出入",
                 "scrollpoint": "vitalsignIO"
             },
             {
-                "name": "Lab",
+                "name": "檢驗結果",
                 "scrollpoint": "lab"
             },
             {
-                "name": "RT",
+                "name": "呼吸評估",
                 "scrollpoint": "rt"
             },
             {
-                "name": "Order",
+                "name": "醫藥囑",
                 "scrollpoint": "order"
             },
             {
-                "name": "Schedule&To Do List",
+                "name": "行事曆及註記",
                 "scrollpoint": "schedule"
             }
         ]
@@ -70,7 +70,7 @@ class Crosssectionlayout extends Component {
         return (
             <div>
                 <Controlbar Datestring={this.state.PickerDate} parentDateCallback={this.callbackDateFunction} parentCallback={this.callbackFunction} userdata={userdata} btnlist={crosssectioncontrollist} item_array={this.state.Cross_item}></Controlbar>
-                <div id="crossection" style={{ maxHeight: '75vh', overflowY: 'auto', height: "75vh" }}>
+                <div id="crossection" style={{ maxHeight: '70vh', overflowY: 'auto' }}>
                     <div id={"vitalsignIO"} style={this.display_item(0) ? { display: "grid", gridTemplateColumns: "2fr 1fr", gridGap: "10px" } : { display: "none" }}>
                         <Vitalsign userdata={userdata} defaultdate={this.state.PickerDate}></Vitalsign>
                         <Crossection_io userdata={userdata} title="I/O"></Crossection_io>

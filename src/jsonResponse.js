@@ -1,5 +1,7 @@
 // Get api
 
+
+
 //資料更新時間
 const updatetime = {
     'time': 1567051200000

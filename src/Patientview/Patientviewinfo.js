@@ -43,7 +43,7 @@ class Patientinfo extends Component {
         const title_style = { fontSize: "1.3rem" }
         return (
             <div>
-                <div style={{ background: 'rgba(238, 238, 238, 1)', display: 'flex', justifyContent: "space-between", alignItems: 'center', height: "50px", paddingLeft: "20px", paddingRight: "20px" }}>
+                <div style={{ background: 'rgba(238, 238, 238, 1)', display: 'flex', justifyContent: "space-between", alignItems: 'center', height: "50px", padding:"0px 20px" }}>
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                         <div style={{ display: "grid", gridTemplateColumns: "repeat(7,auto)", gridColumnGap: "20px" }}>
                             <div style={title_style}>{patient_data.Name}</div>

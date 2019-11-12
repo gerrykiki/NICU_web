@@ -10,7 +10,7 @@ class Wardinfouser extends Component {
         alertstate: "none",
         Data_change: true,
         visible: false,
-        source:false
+        source: false
     }
 
     showModal = () => {
@@ -200,7 +200,7 @@ class Wardinfouser extends Component {
         )
 
         return (
-            <div style={{ borderColor: "rgba(232, 232, 232, 1)", borderWidth: "1px", borderStyle: "solid", borderRadius: "4px" }}>
+            <div style={{ borderRadius: "4px" }}>
                 <div style={{ height: '50px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingLeft: "10px", paddingRight: "10px" }}>
                     <div style={{ width: "200px" }}>
                         <div style={{ cursor: "pointer", color: "blue" }} onClick={() => this.sendData(null)}>&larr;返回病房資訊總覽</div>
@@ -249,12 +249,11 @@ class Wardinfouser extends Component {
                         </div>
                     </div>
                 </div>
-                <div style={{ height: '1px', backgroundColor: "rgba(220, 220, 220, 1)", marginRight: "16px", marginLeft: "16px", marginBottom: "20px", marginTop: "20px" }}></div>
-                <div style={{ overflow: "auto", maxHeight: "750px" }}>
+                <div style={{ overflow: "auto", height: "65vh" }}>
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr" }}>
                         <div></div>
                         <div style={{ fontSize: "1.5rem", display: "flex", justifyContent: "center", alignItems: "center" }}>過去24小時生命徵象</div>
-                        <div style={{textAlign:'end'}}>
+                        <div style={{ textAlign: 'end' }}>
                             <Select defaultValue={0} style={{ width: 200 }} onChange={this.sourcehandleChange}>
                                 <Option value={0}>Center Monitor</Option>
                                 <Option value={1}>NIS</Option>
@@ -262,7 +261,7 @@ class Wardinfouser extends Component {
                         </div>
                     </div>
                     {/* 統計圖表 */}
-                    <WardChart hisid={userinfo.id}></WardChart>
+                    {/* <WardChart hisid={userinfo.id}></WardChart> */}
                     {/* */}
                     <div style={{ marginTop: "20px", display: "grid", gridColumnGap: "10px", gridTemplateColumns: "50% 50%", padding: "10px" }}>
                         {/*檢驗項目*/}
@@ -276,7 +275,7 @@ class Wardinfouser extends Component {
                         <Wardgrewchart userinfo={userinfo}></Wardgrewchart>
                     </div>
                     {/*排程*/}
-                    <div style={{ borderWidth: "1px", borderStyle: "solid", borderColor: "rgba(238, 238, 238, 1)", borderRadius: "4px", height: "250px", padding: "10px" }}>
+                    <div style={{ borderRadius: "4px", height: "250px", padding: "10px" }}>
                         <div style={{ display: "flex", alignItems: 'center', height: "50px", backgroundColor: "rgba(238, 238, 238, 1)", borderTopLeftRadius: "4px", borderTopRightRadius: "4px", paddingLeft: "15px", fontSize: "1.5rem" }}>病人重要注意事項</div>
                         <div style={{ maxHeight: "200px", overflow: 'auto' }}>
                             <div style={{ height: "50px", display: 'grid', gridTemplateColumns: "25% 75%", borderBottomWidth: "1px", borderBottomColor: "rgba(232, 232, 232, 1)", borderBottomStyle: "solid" }}>

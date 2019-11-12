@@ -39,7 +39,6 @@ class Crosssectionvitalsignchart extends Component {
             return month + 1
         }
         function intervaldays(days, interval) {
-            console.log(days)
             //false:一天 true:三天
             if (interval) {
                 return days - 86400000 * 3
@@ -84,7 +83,6 @@ class Crosssectionvitalsignchart extends Component {
 
         var formatDay = d3.timeFormat("%b %d")
         function multiFormat(date) {
-            console.log(date)
             return formatHour(date)
         }
 
@@ -96,9 +94,7 @@ class Crosssectionvitalsignchart extends Component {
         const width = window.screen.availWidth * 0.25, height = 100, viewwidth = width - 50, rect_width = width / 46
         const LocalDate = new Date(new Date(defaultdate).getFullYear() + ',' + monthformat(new Date(defaultdate).getMonth()) + ',' + new Date(defaultdate).getDate()).getTime()
         const LocalTime = nowtime(LocalDate)
-        console.log(new Date(LocalTime))
         var vital_interval = intervaldays(LocalTime, vitaldays)
-        console.log(new Date(vital_interval))
 
         var y = d3.scaleLinear()
             .domain([min, max])
@@ -138,7 +134,9 @@ class Crosssectionvitalsignchart extends Component {
             svg = d3.select("#" + id_key)
                 .append("svg")
                 .attr("id", svg_id)
-                .attr("viewBox", [0, 0, width, height + 25])
+                // .attr("viewBox", [0, 0, width, height + 25])
+                .style("width", width)
+                .style("height", height + 25)
                 .append("g")
                 .attr("transform", "translate(" + 40 + "," + 20 + ")");
         }
@@ -147,7 +145,9 @@ class Crosssectionvitalsignchart extends Component {
                 svg = d3.select("#" + id_key)
                     .append("svg")
                     .attr("id", svg_id)
-                    .attr("viewBox", [0, 0, width, height + 25])
+                    // .attr("viewBox", [0, 0, width, height + 25])
+                    .style("width", width)
+                    .style("height", height + 25)
                     .append("g")
                     .attr("transform", "translate(" + 40 + "," + 5 + ")");
             }
@@ -156,7 +156,9 @@ class Crosssectionvitalsignchart extends Component {
                 svg = d3.select("#" + id_key)
                     .append("svg")
                     .attr("id", svg_id)
-                    .attr("viewBox", [0, 0, width, height + 10])
+                    // .attr("viewBox", [0, 0, width, height + 10])
+                    .style("width", width)
+                    .style("height", height + 10)
                     .append("g")
                     .attr("transform", "translate(" + 40 + "," + 5 + ")");
             }
@@ -200,7 +202,6 @@ class Crosssectionvitalsignchart extends Component {
 
         if (vitaldays) {
             for (let index = 0; index < 19; index++) {
-                console.log(vital_interval + (index * 60 * 60 * 1000))
                 if (index % 2 === 0) {
                     svg.append('line')
                         .attr('x1', x(vital_interval + (index * 60 * 60 * 1000 * 4)))
@@ -224,7 +225,6 @@ class Crosssectionvitalsignchart extends Component {
         }
         else {
             for (let index = 0; index < 25; index++) {
-                console.log(vital_interval + (index * 60 * 60 * 1000))
                 if (index % 8 === 0) {
                     svg.append('line')
                         .attr('x1', x(vital_interval + (index * 60 * 60 * 1000)))
@@ -349,7 +349,6 @@ class Crosssectionvitalsignchart extends Component {
     }
     render() {
         const { svg_id, source, id_key } = this.props
-        console.log(source)
         return (
             <div id={id_key}>
             </div>
