@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="8px" viewBox="0 0 12 8" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.4 (67378) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 57</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Faye" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-57" transform="translate(-2.000000, -4.000000)">
+            <rect id="Rectangle-36-Copy-6" x="0" y="0" width="16" height="16"></rect>
+            <g id="down" transform="translate(2.000000, 4.000000)" fill="#000000" fill-rule="nonzero">
+                <path d="M11.9953125,0.6890625 C11.9953125,0.8390625 11.9453125,0.990625 11.8453125,1.1171875 L6.51875,7.7390625 C6.3890625,7.9 6.19375,7.99375 5.9859375,7.99375 C5.7796875,7.99375 5.5828125,7.9 5.4546875,7.7390625 L0.15625,1.1453125 C-0.0796875,0.8515625 -0.0328125,0.421875 0.2609375,0.1859375 C0.5546875,-0.05 0.984375,-0.003125 1.2203125,0.290625 L5.9875,6.221875 L10.78125,0.2609375 C11.0171875,-0.0328125 11.446875,-0.0796875 11.740625,0.15625 C11.9078125,0.2921875 11.9953125,0.4890625 11.9953125,0.6890625 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

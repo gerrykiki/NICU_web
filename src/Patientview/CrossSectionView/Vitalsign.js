@@ -159,6 +159,11 @@ class Vitalsign extends Component {
         const { Option } = Select;
         const { TabPane } = Tabs;
         const width = window.screen.availWidth * 0.25
+        const waringsettingarray = []
+        for (let index = 0; index < 20; index++) {
+            waringsettingarray.push(<Warningsetting key={index}></Warningsetting>)
+
+        }
         return (
             <div style={{ marginBottom: "20px" }}>
                 <Modal
@@ -172,7 +177,9 @@ class Vitalsign extends Component {
                             <Addwarningsetting></Addwarningsetting>
                         </TabPane>
                         <TabPane tab="警示設定清單" key="2">
-                            <Warningsetting></Warningsetting>
+                            <div style={{maxHeight:"400px",overflow:"auto"}}>
+                                {waringsettingarray}
+                            </div>
                         </TabPane>
                     </Tabs>
                 </Modal>

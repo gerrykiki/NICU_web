@@ -87,7 +87,7 @@ class Patientinfo extends Component {
                         <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", fontSize: "1rem" }}>{patient_data.Note}</div>
                     </div>
                 </Modal>
-                <Patientviewtapbar userdata={patient_data}></Patientviewtapbar>
+                <Patientviewtapbar  userdata={patient_data}></Patientviewtapbar>
             </div>
         );
     }

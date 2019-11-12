@@ -29,7 +29,7 @@ class Patientviewlayout extends Component {
         return (
             <div>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: 'center',padding:"5px 20px"}}>
-                    <div style={{ fontSize: "1.5rem" }}>病房總覽 > 病床 > Chronicle view</div>
+                    <div style={{ fontSize: "1.5rem" }}>病房總覽 > 病床</div>
                     <Select defaultValue={1} style={{ width: 120 }}>
                         <Option value={1}>病床01</Option>
                         <Option value={2}>病床02</Option>

@@ -48,7 +48,7 @@ class Chronicordertable extends Component {
         const title_list = title.map((info, index) => <div key={index} style={io_style.row_item_title_style}>{info.title}</div>)
         return (
             <div style={{ display: "grid", gridTemplateColumns: "140px 1fr" ,height:"240px"}}>
-                <div style={{display:"flex",justifyContent:"center",alignItems:"center",fontSize:"2rem"}}>Order</div>
+                <div style={{display:"flex",justifyContent:"center",alignItems:"center",fontSize:"2rem"}}>醫藥囑</div>
                 <div>123</div>
             </div>
         );

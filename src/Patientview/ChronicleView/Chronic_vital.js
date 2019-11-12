@@ -150,7 +150,7 @@ class Chronic_vital extends Component {
         return (
             <div>
                 <div style={{ display: "flex", alignItems: "center" }}>
-                    <div style={{ fontSize: "2rem" }}>Vital Sign</div>
+                    <div style={{ fontSize: "2rem" }}>生命徵象</div>
                 </div>
                 <div style={{ display: "grid", gridTemplateColumns: "90px 1fr" }}>
                     <div style={{ display: "grid", gridTemplateRows: "repeat(6,100px)" }}>

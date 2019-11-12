@@ -52,7 +52,7 @@ class Chronicrttable extends Component {
         const title_list = title.map((info, index) => <div key={index} style={io_style.row_item_title_style}>{info.title}</div>)
         return (
             <div style={{ display: "grid", gridTemplateColumns: "140px 1fr", height: "40px" }}>
-                <div style={{ display: "flex", justifyContent: "center", alignItems: "center", fontSize: "2rem" }}>RT</div>
+                <div style={{ display: "flex", justifyContent: "center", alignItems: "center", fontSize: "2rem" }}>呼吸評估</div>
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(" + this.switch_state() + ",1fr)" }}>
                     {this.table_content()}
                 </div>
