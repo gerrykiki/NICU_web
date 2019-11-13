@@ -97,11 +97,11 @@ class Wardcarddetail extends Component {
         console.log(dateString)
     }
     render() {
-        function switchgender(gender){
+        function switchgender(gender) {
             if (gender === "Male") {
                 return "男"
             }
-            else{
+            else {
                 return "女"
 
             }
@@ -109,7 +109,7 @@ class Wardcarddetail extends Component {
         function monthformat(month) {
             return month + 1
         }
-        function dateformat(date){
+        function dateformat(date) {
             return new Date(date).getFullYear() + "-" + monthformat(new Date(date).getMonth()) + '-' + new Date(date).getDate()
         }
         function switchbednumber(number) {
@@ -158,6 +158,108 @@ class Wardcarddetail extends Component {
         const dateFormat = 'YYYY/MM/DD';
         const { data, selectstate, simplemode, previewmode, bedbumber } = this.props
         var selectstyle = selectstyle(selectstate, data.id)
+        const datafiliter = data.filter(function (item, index) {
+            return parseInt(item.bedNumber) === bedbumber
+        })
+        console.log(datafiliter[0])
+        const source = datafiliter[0]
+        if (source === undefined) {
+            return null
+        }
+        const rowdata = {
+            "detaildata":
+                [
+                    {
+                        "item": "Depends",
+                        "time": 1565395200,
+                        "data": true
+                        //乎
+                        //time:最後紀錄時間
+                    },
+                    {
+                        "item": "TPN",
+                        "time": 1565395200,
+                        "data": true
+
+                    },
+                    {
+                        "item": "NPO",
+                        "time": 1565395200,
+                        "data": false
+
+                    },
+                    {
+                        "item": "Anti",
+                        "time": 1565395200,
+                        "data": false
+                        //抗
+
+                    },
+                    {
+                        "item": "Foley",
+                        "time": 1565395200,
+                        "data": true
+                        //葉
+                    },
+                    {
+                        "item": "Drain",
+                        "time": 1565395200,
+                        "data": false
+                        //葉
+                    }
+                ],
+            "data": {
+                "Weight": 500,
+                "WeightDif": 700,
+                "RowData": [
+                    {
+                        "time": 1565395200,
+                        "item": "ABP_hight",
+                        "data": 140
+                    },
+                    {
+                        "time": 1565395200,
+                        "item": "ABP_low",
+                        "data": 30
+                    },
+                    {
+                        "time": 1565395200,
+                        "item": "ABP_avg",
+                        "data": 40
+                    },
+                    {
+                        "time": 1565395200,
+                        "item": "HR",
+                        "data": 90
+                    },
+                    {
+                        "time": 1565395200,
+                        "item": "RR",
+                        "data": 90
+                    },
+                    {
+                        "time": 1565395200,
+                        "item": "BT",
+                        "data": 90
+                    },
+                    {
+                        "time": 1565395200,
+                        "item": "Urine",
+                        "data": 90
+                    },
+                    {
+                        "time": 1565395200,
+                        "item": "Suger",
+                        "data": 90
+                    },
+                    {
+                        "time": 1565395200,
+                        "item": "SpO2",
+                        "data": 90
+                    }
+                ]
+            }
+        }
         return (
             <div>
                 <Modal title="填寫病床資訊" visible={this.state.visible} footer={[
@@ -171,7 +273,7 @@ class Wardcarddetail extends Component {
                         </div>
                         <div style={{ display: "grid", gridTemplateColumns: "20% 80%" }}>
                             <div style={{ width: "100px" }}>病歷號碼</div>
-                            <Input placeholder="XXXX-OOOOO" id="hisid_wardcard" defaultValue={data.id} />
+                            <Input placeholder="XXXX-OOOOO" id="hisid_wardcard" defaultValue={source.hisid} />
                         </div>
                         <div style={{ display: "grid", gridTemplateColumns: "20% 80%" }}>
                             <div style={{ width: "100px" }}>出生週數</div>
@@ -184,38 +286,38 @@ class Wardcarddetail extends Component {
                         </div>
                         <div style={{ display: "grid", gridTemplateColumns: "20% 80%" }}>
                             <div style={{ width: "100px", "textAlign": "justify" }}>生日</div>
-                            <DatePicker placeholder="選擇日期" id="birthday" defaultValue={moment(dateformat(data.Birthday), dateFormat)} />
+                            <DatePicker placeholder="選擇日期" id="birthday" defaultValue={moment(dateformat(source.birthday), dateFormat)} />
                         </div>
                         <div style={{ display: "grid", gridTemplateColumns: "20% 80%" }}>
                             <div style={{ width: "100px", "textAlign": "justify" }}>出生體重</div>
-                            <div style={{ display: 'flex' }}><Input placeholder="120" id="weight" defaultValue={data.data.Weight} />&nbsp;g</div>
+                            <div style={{ display: 'flex' }}><Input placeholder="120" id="weight" defaultValue={source.weight} />&nbsp;g</div>
                         </div>
                     </div>
                 </Modal>
                 <div style={selectstyle}>
                     <div style={{ height: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: "rgba(215, 238, 255, 1)", padding: "10px", position: 'relative' }}>
-                        <div style={{ fontSize: '1rem', color: "rgba(61, 119, 181, 1)" }}>{data.Bednumber} {data.Name} {switchgender(data.Gender)} {dateformat(data.Birthday)} 病歷號:{data.id}</div>
+                        <div style={{ fontSize: '1rem', color: "rgba(61, 119, 181, 1)" }}>{source.bedNumber} {source.name} {switchgender(source.gender)} {dateformat(source.birthday)} 病歷號:{source.hisid}</div>
                         <div onClick={this.showModal} onMouseMove={() => this.switch_editbackground()} onMouseLeave={() => this.switch_editbackground_leave()} style={{ height: "25px", width: "25px", borderRadius: "99em", backgroundColor: this.state.edit_hover ? "rgba(59, 151, 225, 1)" : "rgba(59, 151, 225, 0.5)", display: "flex", justifyContent: "center", alignItems: "center", position: 'absolute', right: "5px", zIndex: 200 }}>
                             <img src={editlogo} alt='editlogo'></img>
                         </div>
                     </div>
                     <div style={{ cursor: modecursor(previewmode) }} onClick={() => this.sendData(data.id)}>
                         <div style={{ height: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: "10px", borderBottomWidth: "0.5px", borderBottomColor: "rgba(215, 238, 255, 1)", borderBottomStyle: "solid" }}>
-                            <div style={{ fontSize: '1rem', color: "rgba(59, 151, 225, 1)" }}>[20＋5]&rarr;[24+4]</div>
+                            <div style={{ fontSize: '1rem', color: "rgba(59, 151, 225, 1)" }}>[{source.pregnant_Week}＋{source.pregnant_Day}]&rarr;[24+4]</div>
                             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100px" }}>
                                 <img src={fileLogo} alt='fileLogo'></img>
                                 <div style={{ color: "blue" }}>3</div>
                                 <img src={file2Logo} alt='file2Logo'></img>
                                 <div style={{ color: "black" }}>12</div>
                             </div>
-                            <div style={{ fontSize: '1rem', color: "black" }}>{data.data.Weight}g&rarr;{data.data.WeightDif}g</div>
+                            <div style={{ fontSize: '1rem', color: "black" }}>{source.weight}g&rarr;{source.weight}g</div>
                         </div>
                         <div style={{ display: modedisplay(simplemode), borderBottomWidth: "0.5px", borderBottomColor: "rgba(215, 238, 255, 1)", borderBottomStyle: "solid" }}>
-                            <Wardcardvalue source={data}></Wardcardvalue>
+                            <Wardcardvalue source={rowdata}></Wardcardvalue>
                         </div>
                         <div style={{ height: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: "10px", borderBottomWidth: "0.5px", borderBottomColor: "rgba(215, 238, 255, 1)", borderBottomStyle: "solid", borderTopWidth: "0.5px", borderTopColor: "rgba(215, 238, 255, 1)", borderTopStyle: "solid", position: 'relative' }}>
-                            <div style={{ fontSize: '1rem', color: "black" }}>{data.Note}</div>
-                            <Link onMouseLeave={() => this.switch_hoverbackground_leave("string")} onMouseMove={() => this.switch_hoverbackground()} to={{ pathname: "/nicu/patient/" + data.id, state: data }} style={{ height: "20px", backgroundColor: this.state.mouse_hover ? "rgba(59, 151, 225, 1)" : "rgba(59, 151, 225, 0.5)", borderRadius: "4px", textAlign: "center", lineHeight: "20px", color: "white", position: 'absolute', right: "5px" }}>進入病人資料頁面</Link>
+                            <div style={{ fontSize: '1rem', color: "black" }}>{source.remark}</div>
+                            <Link onMouseLeave={() => this.switch_hoverbackground_leave("string")} onMouseMove={() => this.switch_hoverbackground()} to={{ pathname: "/nicu/patient/" + source.hisid, state: source }} style={{ height: "20px", backgroundColor: this.state.mouse_hover ? "rgba(59, 151, 225, 1)" : "rgba(59, 151, 225, 0.5)", borderRadius: "4px", textAlign: "center", lineHeight: "20px", color: "white", position: 'absolute', right: "5px" }}>進入病人資料頁面</Link>
                         </div>
                     </div>
                 </div>

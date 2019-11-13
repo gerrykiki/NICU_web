@@ -1,49 +1,95 @@
 import React, { Component } from 'react';
-import { Input, Button} from 'antd';
+import { Input, Button } from 'antd';
 import editlogo from '../Image/svg/Edit.svg'
 import { WardInfo } from '../jsonResponse'
 import { dev_path } from '../API/Apidata'
 import Wardnoteannounce from './Wardnoteannounce'
 
 class WardcardNote extends Component {
+    _isMounted = false;
     state = {
         editstate: "none",
-        AnnoceData: this.props.announce
+        AnnoceData: null
     }
-
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
     componentDidMount() {
-        fetch(dev_path+"/nicu/GetAnnouncement",{
-            method: "GET",
+        this._isMounted = true;
+        if (this._isMounted) {
+            this._isMounted = false
+            fetch(dev_path + 'nicu/GetAnnouncement', {
+                method: "Get",
+                mode: 'cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': sessionStorage.getItem("Logindata")
+                }
+            })
+                .then(res => res.json())
+                .then(data => {
+                    this.setState(
+                        {
+                            AnnoceData: data
+                        }
+                    )
+                })
+                .catch(e => { console.log(e) });
+        }
+    }
+    componentDidUpdate() {
+        if (this._isMounted) {
+            this._isMounted = false
+            fetch(dev_path + 'nicu/GetAnnouncement', {
+                method: "Get",
+                mode: 'cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': sessionStorage.getItem("Logindata")
+                }
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    this.setState(
+                        {
+                            AnnoceData: data
+                        }
+                    )
+                })
+                .catch(e => { console.log(e) });
+        }
+    }
+    storage_announce() {
+        this._isMounted = true
+        const data = {
+            "announcement": "TEXT",
+            "updateTime": 1566287810473,
+            "editor": "修改者"
+        }
+        fetch(dev_path + 'nicu/AddAnnouncement', {
+            method: "POST",
             mode: 'cors',
-            headers: new Headers({
+            headers: {
                 'Content-Type': 'application/json',
                 'Authorization': sessionStorage.getItem("Logindata")
-            })
-        }).then(res => {
-            // if (res.ok) {
-            //     this.setState(
-            //         {
-            //             AnnoceData: res.json
-            //         }
-            //     )
-            // }
-            // else{
-
-            // }
-            console.log(res)
+            },
+            body:JSON.stringify(data)
         })
-    }
-    storage_announce(){
-        console.log(this.state.AnnoceData)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                this.setState({
+                    editstate: "none"
+                });
+            })
+            .catch(e => { console.log(e) });
         //更換完上傳到server
-        this.setState({
-            editstate: "none",
-            AnnoceData: this.state.AnnoceData
-        });
+
 
     }
     cancel_edit() {
-        console.log(this.props.changedate)
+        this._isMounted = true
         //抓server data 在更換
         this.setState({
             editstate: "none"
@@ -77,7 +123,7 @@ class WardcardNote extends Component {
         }
         const announce = this.state.AnnoceData;
         const newData = {
-            'announcement':document.getElementById("NewAnn").value ,
+            'announcement': document.getElementById("NewAnn").value,
             'updateTime': +(new Date()),
             'editor': "K"
         }
@@ -114,7 +160,6 @@ class WardcardNote extends Component {
     announcelist() {
         //const item = this.props.announce
         const item = this.state.AnnoceData
-        console.log(item)
         var annoucelistview = []
         if (item === null) {
             return null
@@ -136,7 +181,7 @@ class WardcardNote extends Component {
         return (
             <div style={{ marginTop: "10px" }}>
                 <div style={{ backgroundColor: "rgba(238,238,238,1)", height: "50px", padding: "10px", fontSize: "14px", borderTopLeftRadius: "4px", borderTopRightRadius: "4px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <div style={{fontSize:"1.5rem"}}>病房公告</div>
+                    <div style={{ fontSize: "1.5rem" }}>病房公告</div>
                     <div style={{ width: "15px" }} onMouseUp={() => this.editlist()}>
                         <img src={editlogo} alt='editlogo'></img>
                     </div>
