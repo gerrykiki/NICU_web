@@ -13,6 +13,7 @@ class Wardcardvalue extends Component {
     render() {
         const data = this.props.source
         const status_data = data.detaildata
+        console.log(status_data)
         return (
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', paddingTop: "3px", paddingLeft: "10px", paddingRight: "10px", paddingBottom: "3px" }}>
                 <div style={{ display: 'grid', gridTemplateColumns: "1fr 2fr", gridColumnsGap: "5px" }}>

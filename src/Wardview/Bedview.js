@@ -5,27 +5,76 @@ import Unpreviewwardcarddetail from './UnpreviewWardCardDetail'
 import { jsonResponse, updatetime } from '../jsonResponse';
 import Wardinfoindex from './Wardinfoindex'
 import Wardinfouser from './Wardinfouser'
+import { dev_path } from '../API/Apidata'
 
 class Bedview extends Component {
-
+    _isMounted = false;
     state = {
         index: true,
         previewmode: false,
         simplemode: true,
-        select: null
+        select: null,
+        source: []
     };
+    componentDidMount() {
+        this._isMounted = true;
+        if (this._isMounted) {
+            this._isMounted = false
+            fetch(dev_path + 'nicu/wardPatients', {
+                method: "Get",
+                mode: 'cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': sessionStorage.getItem("Logindata")
+                }
+            })
+                .then(res => res.json())
+                .then(data => {
+                    this.setState(
+                        {
+                            source: data
+                        }
+                    )
+                })
+                .catch(e => { console.log(e) });
+        }
+    }
 
+    componentDidUpdate() {
+        if (this._isMounted) {
+            this._isMounted = false
+            fetch(dev_path + 'nicu/wardPatients', {
+                method: "Get",
+                mode: 'cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': sessionStorage.getItem("Logindata")
+                }
+            })
+                .then(res => res.json())
+                .then(data => {
+                    this.setState(
+                        {
+                            source: data
+                        }
+                    )
+                })
+                .catch(e => { console.log(e) });
+        }
+    }
     callbackFunction = (wardinfo) => {
         this.setState({ select: wardinfo })
     }
 
     onChangesimple = (checked) => {
+        this._isMounted = true;
         this.setState({
             simplemode: !this.state.simplemode,
         });
     }
 
     onChangedisplay = (checked) => {
+        this._isMounted = true;
         this.setState({
             previewmode: !this.state.previewmode,
         });
@@ -33,57 +82,29 @@ class Bedview extends Component {
 
     onWardcardDisplay() {
         //userdata
-        const source = jsonResponse.Userdata.user;
-        const basicinformation = [
-            {
-                "BedNumber":"01",
-                "HISID":"123456789", 
-                "Name":"劉嘉慶",
-                "IDNumber":"A123456798",
-                "Gender":"female",
-                "Birthday":1566287810473,
-                "Height":90,
-                "Weight":700,
-                "Diff_Weight":5,
-                "Reports":3,
-                "Non_Reports":1,
-                "Remarks":"TEXT",
-                "GAWeek":20,
-                "GADay":2,
-                "Pregnant_Week":30,
-                "Pregnant_Day":6,
-                "CASENO":"xxxx-xxxx",
-                "CASEID":"xxxx-xxxx",
-                "ICUInTime":1566287810473,
-                "Doctor":"陳國榮",
-                "ImportantMatters":[ 
-                                    {
-                                        "Content":"TEXT"
-                                    }
-                                ]
-            }
-        ]
+        const source = this.state.source;
         const wardcarddetaillist = []
         const Unpreview_Wardcarddetaillist = []
+        console.log("12312312")
         //simplemode true:簡 false:繁
         if (!this.state.previewmode) {
             for (let i = 0; i < source.length; i++) {
-                wardcarddetaillist.push(<Wardcarddetail bedbumber={i} key={i} data={source[0]} parentCallback={this.callbackFunction} selectstate={this.state.select} previewmode={true}  simplemode={this.state.simplemode}/>)
+                wardcarddetaillist.push(<Wardcarddetail bedbumber={i+1} key={i} data={source} parentCallback={this.callbackFunction} selectstate={this.state.select} previewmode={true} simplemode={this.state.simplemode} />)
             }
         }
         else {
             for (let i = 0; i < 12; i++) {
                 console.log(source[i])
                 if (source[i] == null) {
-                    Unpreview_Wardcarddetaillist.push(<Unpreviewwardcarddetail bedbumber={i} key={i} data={null} selectstate={null} previewmode={false}  simplemode={this.state.simplemode}/>)
+                    Unpreview_Wardcarddetaillist.push(<Unpreviewwardcarddetail bedbumber={i+1} key={i} data={null} selectstate={null} previewmode={false} simplemode={this.state.simplemode} />)
                 }
                 else {
-                    Unpreview_Wardcarddetaillist.push(<Wardcarddetail bedbumber={i} key={i} data={source[i]} selectstate={null} parentCallback={this.callbackFunction} previewmode={false} simplemode={this.state.simplemode} />)
+                    Unpreview_Wardcarddetaillist.push(<Wardcarddetail bedbumber={i+1} key={i} data={source} selectstate={null} parentCallback={this.callbackFunction} previewmode={false} simplemode={this.state.simplemode} />)
                 }
             }
 
         }
-
+        console.log(Unpreview_Wardcarddetaillist)
         const preview_style = { display: "grid", gridTemplateColumns: "1fr 3fr", gridColumnGap: "5px" }
         const Unpreview_style = { display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gridTemplateRows: "1fr 1fr 1fr", gridGap: "5px" }
         //true:Unpreview
@@ -107,7 +128,7 @@ class Bedview extends Component {
                 //true:sample
                 return (
                     <div style={preview_style}>
-                        <div style={{overflow:"auto",maxHeight:"85vh",display:"grid",gridTemplateRows:"repeat(12,auto)",gridRowGap:"10px"}}>
+                        <div style={{ overflow: "auto", maxHeight: "85vh", display: "grid", gridTemplateRows: "repeat(12,auto)", gridRowGap: "10px" }}>
                             {wardcarddetaillist}
                         </div>
                         {this.switch_wardbednumber(source)}
@@ -118,7 +139,7 @@ class Bedview extends Component {
             else {
                 return (
                     <div style={preview_style}>
-                    <div style={{overflow:"auto",maxHeight:"85vh",display:"grid",gridTemplateRows:"repeat(12,auto)",gridRowGap:"10px"}}>
+                        <div style={{ overflow: "auto", maxHeight: "85vh", display: "grid", gridTemplateRows: "repeat(12,auto)", gridRowGap: "10px" }}>
                             {wardcarddetaillist}
                         </div>
                         {this.switch_wardbednumber(source)}
@@ -135,7 +156,7 @@ class Bedview extends Component {
         return filterData[0];
     }
 
-     switch_wardbednumber(source) {
+    switch_wardbednumber(source) {
         if (this.state.select === null) {
             return <Wardinfoindex />
         }
@@ -182,9 +203,9 @@ class Bedview extends Component {
         }
 
         return (
-            <div style={{ paddingLeft: "20px", paddingRight: "20px"}}>
-                <div style={{height:"25px", display: "flex", justifyContent: "space-between", alignItems: 'center' }}>住院中病人資訊 > {this.switch_titile_string()}</div>
-                <div style={{height:"25px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <div style={{ paddingLeft: "20px", paddingRight: "20px" }}>
+                <div style={{ height: "25px", display: "flex", justifyContent: "space-between", alignItems: 'center' }}>住院中病人資訊 > {this.switch_titile_string()}</div>
+                <div style={{ height: "25px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                     <div>
                         <Switch style={{ marginRight: 5 }} checkedChildren="床頭卡顯示(繁)" unCheckedChildren="床頭卡顯示(簡)" defaultChecked={this.state.previewmode} onChange={this.onChangesimple} />
                         <Switch checkedChildren="病人摘要檢視(開)" unCheckedChildren="病人摘要檢視(關)" defaultChecked={this.state.simplemode} onChange={this.onChangedisplay} />

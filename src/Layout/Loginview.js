@@ -43,40 +43,26 @@ class Loginview extends Component {
             })
         }
 
-        // fetchRequest(dev_path + "/authenticate", {
-        //     method: 'POST',
-        //     headers: {
-        //         'Accept': 'application/json',
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(data)
-        // }, 10000)
-        //     .then(res => {
-        //         if (res.ok) {
-        //             sessionStorage.setItem('Logindata', data.token);
-        //             this.setState({
-        //                 redirect: true
-        //             })
-        //         }
-        //         else {
-        //             this.setState({
-        //                 permission: false,
-        //                 statusstring: "帳號密碼錯誤"
-        //             })
-        //         }
-        //     }).catch(e => {
-        //         console.log(e)
-        //         this.setState({
-        //             permission: false,
-        //             statusstring: "網路異常"
-        //         })
-        //     })
-
-        sessionStorage.setItem('Logindata', data.token);
-        this.setState({
-            redirect: true
-        })
-
+        fetchRequest(dev_path + "authenticate", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }, 10000)
+            .then(res => res.json())
+            .then(data => {
+                sessionStorage.setItem('Logindata', data.token);
+                this.setState({
+                    redirect: true
+                })
+            }).catch(e => {
+                console.log(e)
+                this.setState({
+                    permission: false,
+                    statusstring: "網路異常"
+                })
+            })
     }
     renderRedirect = () => {
         const login = sessionStorage.getItem('Logindata');
