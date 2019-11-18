@@ -6,6 +6,7 @@ import fileLogo from '../Image/svg/file1.svg'
 import file2Logo from '../Image/svg/file2.svg'
 import { Modal, Input, DatePicker, Button } from 'antd';
 import moment from 'moment';
+import { wardstatedata } from '../Data/Wardviewdata'
 
 
 class Wardcarddetail extends Component {
@@ -166,106 +167,17 @@ class Wardcarddetail extends Component {
         if (source === undefined) {
             return null
         }
-        const rowdata = {
-            "detaildata":
-                [
-                    {
-                        "item": "Depends",
-                        "time": 1565395200,
-                        "data": true
-                        //乎
-                        //time:最後紀錄時間
-                    },
-                    {
-                        "item": "TPN",
-                        "time": 1565395200,
-                        "data": true
 
-                    },
-                    {
-                        "item": "NPO",
-                        "time": 1565395200,
-                        "data": false
-
-                    },
-                    {
-                        "item": "Anti",
-                        "time": 1565395200,
-                        "data": false
-                        //抗
-
-                    },
-                    {
-                        "item": "Foley",
-                        "time": 1565395200,
-                        "data": true
-                        //葉
-                    },
-                    {
-                        "item": "Drain",
-                        "time": 1565395200,
-                        "data": false
-                        //葉
-                    }
-                ],
-            "data": {
-                "Weight": 500,
-                "WeightDif": 700,
-                "RowData": [
-                    {
-                        "time": 1565395200,
-                        "item": "ABP_hight",
-                        "data": 140
-                    },
-                    {
-                        "time": 1565395200,
-                        "item": "ABP_low",
-                        "data": 30
-                    },
-                    {
-                        "time": 1565395200,
-                        "item": "ABP_avg",
-                        "data": 40
-                    },
-                    {
-                        "time": 1565395200,
-                        "item": "HR",
-                        "data": 90
-                    },
-                    {
-                        "time": 1565395200,
-                        "item": "RR",
-                        "data": 90
-                    },
-                    {
-                        "time": 1565395200,
-                        "item": "BT",
-                        "data": 90
-                    },
-                    {
-                        "time": 1565395200,
-                        "item": "Urine",
-                        "data": 90
-                    },
-                    {
-                        "time": 1565395200,
-                        "item": "Suger",
-                        "data": 90
-                    },
-                    {
-                        "time": 1565395200,
-                        "item": "SpO2",
-                        "data": 90
-                    }
-                ]
-            }
-        }
         return (
             <div>
-                <Modal title="填寫病床資訊" visible={this.state.visible} footer={[
-                    <Button key="delete" type="danger" onClick={this.handleCancel}>清床</Button>,
-                    <Button key="cancel" onClick={this.handleCancel}>取消</Button>,
-                    <Button key="ok" type="primary" onClick={this.handleOk}>儲存</Button>]}>
+                <Modal title="填寫病床資訊" visible={this.state.visible}
+                    footer={
+                        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+                            <Button key="delete" type="danger" onClick={this.handleCancel}>清床</Button>
+                            <Button key="cancel" onClick={this.handleCancel}>取消</Button>
+                            <Button key="ok" type="primary" onClick={this.handleOk}>儲存</Button>
+                        </div>}>
+
                     <div style={{ display: "grid", gridTemplateRowss: "1fr 1fr 1fr 1fr 1fr", gridRowGap: "10px" }}>
                         <div style={{ display: "grid", gridTemplateColumns: "20% 80%" }}>
                             <div style={{ width: "100px" }}>病床號碼</div>
@@ -313,7 +225,7 @@ class Wardcarddetail extends Component {
                             <div style={{ fontSize: '1rem', color: "black" }}>{source.weight}g&rarr;{source.weight}g</div>
                         </div>
                         <div style={{ display: modedisplay(simplemode), borderBottomWidth: "0.5px", borderBottomColor: "rgba(215, 238, 255, 1)", borderBottomStyle: "solid" }}>
-                            <Wardcardvalue source={rowdata}></Wardcardvalue>
+                            <Wardcardvalue source={wardstatedata}></Wardcardvalue>
                         </div>
                         <div style={{ height: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: "10px", borderBottomWidth: "0.5px", borderBottomColor: "rgba(215, 238, 255, 1)", borderBottomStyle: "solid", borderTopWidth: "0.5px", borderTopColor: "rgba(215, 238, 255, 1)", borderTopStyle: "solid", position: 'relative' }}>
                             <div style={{ fontSize: '1rem', color: "black" }}>{source.remark}</div>
